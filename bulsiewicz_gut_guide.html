@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Will Bulsiewicz – Gut Health Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --bg-card: #ffffff;
+    --bg-dark: #1a2e1a;
+    --bg-mid: #243524;
+    --green: #2d6a2d;
+    --green-light: #4a9e4a;
+    --green-pale: #e8f3e8;
+    --green-dim: rgba(45,106,45,0.12);
+    --amber: #c47d2b;
+    --amber-pale: #fdf3e3;
+    --amber-dim: rgba(196,125,43,0.12);
+    --red: #b84040;
+    --red-pale: #fdf0f0;
+    --red-dim: rgba(184,64,64,0.1);
+    --teal: #2a7a6f;
+    --teal-pale: #e6f4f2;
+    --text: #1a1a1a;
+    --text-mid: #4a5a4a;
+    --text-dim: #7a8a7a;
+    --border: rgba(45,106,45,0.15);
+    --sidebar-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--bg-dark);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) transparent;
+  }
+
+  #sidebar::-webkit-scrollbar { width: 3px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 28px 22px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sidebar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: #7dc87d;
+    letter-spacing: 0.02em;
+    margin-bottom: 5px;
+  }
+
+  .sidebar-header p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.5;
+  }
+
+  nav { padding: 12px 0 30px; flex: 1; }
+
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 22px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover, nav a.active {
+    color: #7dc87d;
+    border-left-color: #7dc87d;
+    background: rgba(125,200,125,0.08);
+  }
+
+  nav a .nav-num {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: rgba(125,200,125,0.5);
+    min-width: 18px;
+  }
+
+  .nav-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 8px 22px;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 0 0 80px;
+    max-width: 960px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 56px 60px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(45,106,45,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #f0ede8;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    max-width: 560px;
+  }
+
+  #hero h1 em { color: #7dc87d; font-style: italic; }
+
+  #hero p {
+    color: rgba(255,255,255,0.45);
+    font-size: 13.5px;
+    max-width: 500px;
+    margin-bottom: 26px;
+  }
+
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(125,200,125,0.25);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #7dc87d;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SECTIONS ── */
+  .section { border-bottom: 1px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 60px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+
+  .section-header:hover { background: var(--green-pale); }
+
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+
+  .section-num {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    color: var(--bg-dark);
+    font-weight: 700;
+  }
+
+  .chevron {
+    width: 18px; height: 18px;
+    color: var(--green);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .chevron.open { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 60px 40px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+
+  .section-body.open { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SUBSECTIONS ── */
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .subsection-header:hover { background: var(--green-pale); }
+
+  .subsection-header h3 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--bg-dark);
+  }
+
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-body.open { display: block; }
+
+  /* ── PROSE ── */
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  /* ── BULLETS ── */
+  .bullet-list { list-style: none; margin: 10px 0; }
+
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--green-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  /* ── KV ── */
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--green-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--green);
+  }
+
+  .kv-key {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10.5px;
+    color: var(--green);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  /* ── NOTES ── */
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--amber-pale);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--amber);
+    line-height: 1.55;
+  }
+
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--red-pale);
+    border-left: 3px solid var(--red);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--red);
+  }
+
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--green-pale);
+    border-left: 3px solid var(--green-light);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--green);
+  }
+
+  /* ── SUPPLEMENT CARDS ── */
+  .supp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 9px;
+    margin: 14px 0;
+  }
+
+  .supp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .supp-card:hover {
+    border-color: var(--green-light);
+    box-shadow: 0 2px 12px rgba(45,106,45,0.08);
+  }
+
+  .supp-card .supp-timing {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9.5px;
+    color: var(--green);
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .supp-card .supp-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bg-dark);
+  }
+
+  .supp-card .supp-dose {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10.5px;
+    color: var(--amber);
+  }
+
+  .supp-card .supp-benefit {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .supp-flag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+    font-weight: 500;
+  }
+
+  .flag-green { background: var(--green-dim); color: var(--green); }
+  .flag-amber { background: var(--amber-dim); color: var(--amber); }
+  .flag-red   { background: var(--red-dim); color: var(--red); }
+
+  /* ── DIAGRAM ── */
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--green);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  svg text { font-family: 'Source Sans 3', sans-serif; }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .col-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+  }
+
+  .col-card h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .col-card.good h4 { color: var(--green); }
+  .col-card.bad h4 { color: var(--red); }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    margin: 14px 0;
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -19px;
+    top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-time {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10.5px;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .timeline-text {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+
+  /* ── RATIO TABLE ── */
+  .ratio-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+
+  .ratio-table th {
+    background: var(--green-pale);
+    color: var(--green);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ratio-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(45,106,45,0.07);
+    color: var(--text-mid);
+  }
+
+  .ratio-table tr:last-child td { border-bottom: none; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #sidebar { width: 100%; height: auto; position: relative; }
+    #main { margin-left: 0; }
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">Gut Health Reference</div>
+    <p>Dr. Will Bulsiewicz · Diary of a CEO Podcast</p>
+  </div>
+  <nav>
+    <a href="#hero"><span class="nav-num">—</span> Overview</a>
+    <div class="nav-divider"></div>
+    <a href="#s1"><span class="nav-num">01</span> The Gut Microbiome</a>
+    <a href="#s2"><span class="nav-num">02</span> Inflammation</a>
+    <a href="#s3"><span class="nav-num">03</span> Gut Barrier & Leaky Gut</a>
+    <a href="#s4"><span class="nav-num">04</span> Fibre & Short-Chain Fatty Acids</a>
+    <a href="#s5"><span class="nav-num">05</span> Supplements</a>
+    <a href="#s6"><span class="nav-num">06</span> Foods & Diet</a>
+    <a href="#s7"><span class="nav-num">07</span> The Perfect Gut Day</a>
+    <a href="#s8"><span class="nav-num">08</span> Alcohol & the Gut</a>
+    <a href="#s9"><span class="nav-num">09</span> Antibiotics & Gut Damage</a>
+    <a href="#s10"><span class="nav-num">10</span> Bloating, Gas & Constipation</a>
+    <a href="#s11"><span class="nav-num">11</span> Gluten, Fructans & Glyphosate</a>
+    <a href="#s12"><span class="nav-num">12</span> Children's Gut Health</a>
+    <a href="#s13"><span class="nav-num">13</span> Stress, Trauma & the Gut</a>
+    <a href="#s14"><span class="nav-num">14</span> Fecal Transplants</a>
+    <a href="#s15"><span class="nav-num">15</span> The Four Missing Things</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+
+  <section id="hero">
+    <h1>Dr. Will Bulsiewicz<br><em>Gut Health</em> Reference Guide</h1>
+    <p>A structured reference from the Diary of a CEO podcast. All claims are Dr. Bulsiewicz's interpretation of the scientific literature — not medical advice.</p>
+    <div class="hero-tags">
+      <span class="tag">Gut Microbiome</span>
+      <span class="tag">Inflammation</span>
+      <span class="tag">Fibre & SCFAs</span>
+      <span class="tag">Supplements</span>
+      <span class="tag">Circadian Rhythm</span>
+      <span class="tag">Fermented Foods</span>
+      <span class="tag">Brain-Gut Axis</span>
+    </div>
+  </section>
+
+  <!-- ── S1: MICROBIOME ── -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">01</span>
+        <h2>The Gut Microbiome</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">38 trillion microbes live inside your large intestine — bacteria, yeasts, archaea, and possibly parasites. Their primary job is to feed and maintain the gut barrier, regulate the immune system, and produce short-chain fatty acids from fibre.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Three-Layer Defence System</div>
+        <svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2d6a2d"/>
+            </marker>
+            <marker id="arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#b84040"/>
+            </marker>
+          </defs>
+
+          <!-- Layer 1 -->
+          <rect x="20" y="60" width="170" height="80" rx="8" fill="#e8f3e8" stroke="#2d6a2d" stroke-width="1.5"/>
+          <text x="105" y="88" text-anchor="middle" fill="#1a2e1a" font-size="13" font-weight="600">Layer 1: Microbiome</text>
+          <text x="105" y="106" text-anchor="middle" fill="#4a5a4a" font-size="10">38 trillion microbes</text>
+          <text x="105" y="120" text-anchor="middle" fill="#4a5a4a" font-size="10">First line of defence</text>
+          <text x="105" y="133" text-anchor="middle" fill="#2d6a2d" font-size="10">↓ feeds layer 2</text>
+
+          <path d="M190,100 L240,100" stroke="#2d6a2d" stroke-width="1.5" marker-end="url(#arr-g)" fill="none"/>
+          <text x="215" y="92" text-anchor="middle" fill="#7a8a7a" font-size="9">maintains</text>
+
+          <!-- Layer 2 -->
+          <rect x="240" y="60" width="170" height="80" rx="8" fill="#e8f3e8" stroke="#2a7a6f" stroke-width="1.5"/>
+          <text x="325" y="88" text-anchor="middle" fill="#1a2e1a" font-size="13" font-weight="600">Layer 2: Gut Barrier</text>
+          <text x="325" y="106" text-anchor="middle" fill="#4a5a4a" font-size="10">Single cell layer (epithelium)</text>
+          <text x="325" y="120" text-anchor="middle" fill="#4a5a4a" font-size="10">Renews every 3–5 days</text>
+          <text x="325" y="133" text-anchor="middle" fill="#2a7a6f" font-size="10">↓ protects layer 3</text>
+
+          <path d="M410,100 L460,100" stroke="#2d6a2d" stroke-width="1.5" marker-end="url(#arr-g)" fill="none"/>
+          <text x="435" y="92" text-anchor="middle" fill="#7a8a7a" font-size="9">shields</text>
+
+          <!-- Layer 3 -->
+          <rect x="460" y="60" width="190" height="80" rx="8" fill="#e8f3e8" stroke="#4a9e4a" stroke-width="1.5"/>
+          <text x="555" y="88" text-anchor="middle" fill="#1a2e1a" font-size="13" font-weight="600">Layer 3: Immune System</text>
+          <text x="555" y="106" text-anchor="middle" fill="#4a5a4a" font-size="10">Should stay tactical + calm</text>
+          <text x="555" y="120" text-anchor="middle" fill="#4a5a4a" font-size="10">Activated by leaky gut</text>
+          <text x="555" y="133" text-anchor="middle" fill="#b84040" font-size="10">↑ → chronic inflammation</text>
+
+          <!-- Bottom label -->
+          <text x="340" y="175" text-anchor="middle" fill="#7a8a7a" font-size="10" font-style="italic">When Layer 1 fails → Layer 2 weakens → Layer 3 over-activates → Chronic inflammation</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Key Facts About the Microbiome</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>60% of the weight of your stool is microbial — the toilet bowl is the microbiome story</li>
+            <li>Microbes can create new generations in as little as 20 minutes — change can happen rapidly</li>
+            <li>The choices you make today will be reflected in your microbiome by tomorrow</li>
+            <li>Every 3–5 days you build a completely new gut barrier — constant opportunity for repair</li>
+            <li>By age 3 you are essentially fully adult-sized in terms of microbiome complexity</li>
+            <li>Microbes have 60,000 enzymes that humans don't — they digest fibre we cannot</li>
+            <li>More than 50% of microbes rise and fall during the day in line with circadian rhythm</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Damages the Microbiome</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Antibiotics — decimate gut diversity, reduce gut barrier integrity by ~50% during a course</li>
+            <li>Ultra-processed and low-fibre diet</li>
+            <li>Alcohol — causes leaky gut proportional to blood alcohol level</li>
+            <li>Chronic stress and trauma — via cortisol and the brain-gut axis</li>
+            <li>Glyphosate (Roundup) — depletes beneficial bacteria, enriches inflammatory strains</li>
+            <li>Late-night eating — disrupts circadian rhythm of gut microbes</li>
+            <li>C-section birth, bottle feeding, and early antibiotics in children</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S2: INFLAMMATION ── -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">02</span>
+        <h2>Inflammation</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Chronic low-grade inflammation is described as the health story of our time. It flies below the radar — no obvious symptoms — but drives over 130 identified diseases. It is rooted in gut microbiome disruption.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Chronic Inflammation Cascade</div>
+        <svg width="100%" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#b84040"/>
+            </marker>
+          </defs>
+          <rect x="10" y="50" width="110" height="60" rx="6" fill="#fdf0f0" stroke="#b84040" stroke-width="1.5"/>
+          <text x="65" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Damaged</text>
+          <text x="65" y="90" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Microbiome</text>
+          <text x="65" y="104" text-anchor="middle" fill="#7a8a7a" font-size="9">diet, stress, alcohol</text>
+
+          <path d="M120,80 L155,80" stroke="#b84040" stroke-width="1.5" marker-end="url(#arr-b)" fill="none"/>
+
+          <rect x="155" y="50" width="115" height="60" rx="6" fill="#fdf0f0" stroke="#b84040" stroke-width="1.5"/>
+          <text x="213" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Leaky Gut</text>
+          <text x="213" y="90" text-anchor="middle" fill="#7a8a7a" font-size="9">barrier breaks down</text>
+          <text x="213" y="103" text-anchor="middle" fill="#7a8a7a" font-size="9">LPS enters bloodstream</text>
+
+          <path d="M270,80 L305,80" stroke="#b84040" stroke-width="1.5" marker-end="url(#arr-b)" fill="none"/>
+
+          <rect x="305" y="50" width="115" height="60" rx="6" fill="#fdf0f0" stroke="#b84040" stroke-width="1.5"/>
+          <text x="363" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Immune</text>
+          <text x="363" y="90" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Activation</text>
+          <text x="363" y="103" text-anchor="middle" fill="#7a8a7a" font-size="9">cytokine cascade</text>
+
+          <path d="M420,80 L455,80" stroke="#b84040" stroke-width="1.5" marker-end="url(#arr-b)" fill="none"/>
+
+          <rect x="455" y="38" width="230" height="84" rx="6" fill="#fdf0f0" stroke="#c47d2b" stroke-width="1.5"/>
+          <text x="570" y="62" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Chronic Inflammation</text>
+          <text x="570" y="78" text-anchor="middle" fill="#7a8a7a" font-size="10">Fatigue · Brain fog · Poor sleep</text>
+          <text x="570" y="92" text-anchor="middle" fill="#7a8a7a" font-size="10">Joint pain · Skin issues</text>
+          <text x="570" y="106" text-anchor="middle" fill="#b84040" font-size="10">→ 130+ chronic diseases</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Signs of Chronic Low-Grade Inflammation</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Increased fatigue</li>
+            <li>Difficulty concentrating / brain fog</li>
+            <li>Poor sleep quality</li>
+            <li>Waking with aches and pains</li>
+            <li>Joint discomfort</li>
+            <li>Skin issues</li>
+            <li>Bloating and digestive discomfort</li>
+          </ul>
+          <div class="note">You can be lean, in shape, and visibly healthy while still having significant chronic inflammation. Competitive bodybuilders frequently report serious gut issues.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Diseases Associated with Inflammation (130+)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Major depression — neuroinflammation in the brain</li>
+            <li>Alzheimer's disease and Parkinson's disease — neuroinflammation</li>
+            <li>Cancer — compromised immune surveillance (body produces 3.8 million cells/second; immune system must catch abnormalities)</li>
+            <li>Cirrhosis and alcoholic liver disease — requires gut disruption as a prerequisite step</li>
+            <li>Crohn's disease and ulcerative colitis — immune system attacking the microbiome</li>
+            <li>Allergic diseases, autoimmune conditions, metabolic diseases</li>
+            <li>Type 2 diabetes and cardiovascular disease</li>
+          </ul>
+          <div class="positive">Gut microbiome health — gut cancer research: fecal transplants from cancer immunotherapy responders doubled the success rate of immune checkpoint inhibitor treatment in melanoma patients.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S3: GUT BARRIER ── -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">03</span>
+        <h2>Gut Barrier & Leaky Gut</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The gut barrier is a single layer of epithelial cells lining 20–25 feet of intestines. It is your castle wall — letting good things in, keeping bad things out. It renews every 3–5 days, meaning repair opportunity is constant.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How Leaky Gut Develops</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Microbiome damage → microbes can no longer repair and maintain the gut barrier</li>
+            <li>Barrier weakens → increased intestinal permeability (leaky gut)</li>
+            <li>Lipopolysaccharide (LPS) — inflammatory bacterial particles — crosses into the bloodstream</li>
+            <li>Immune system identifies LPS as enemy → activates → releases cytokines → systemic inflammation</li>
+            <li>Antibiotics reduce gut barrier integrity by ~50% during a single course</li>
+          </ul>
+          <div class="caution">Alcohol causes leaky gut directly — lipopolysaccharide in the bloodstream rises in direct proportion to blood alcohol level. The leaky gut does not resolve until blood alcohol is zero.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How to Repair the Gut Barrier</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Feed the microbiome with fibre — microbes then produce butyrate, which is required to make the proteins that hold the gut lining together</li>
+            <li>Eat fermented foods — increases microbiome diversity and reduces inflammatory markers (Stanford study: 8 weeks)</li>
+            <li>Reduce alcohol — every drink creates measurable leaky gut</li>
+            <li>Manage stress — cortisol from chronic stress directly disrupts gut barrier and motility</li>
+            <li>Support circadian rhythm — consistency of meal times and sleep anchors the gut's daily repair cycles</li>
+          </ul>
+          <div class="positive">The gut is very forgiving. Diet changes today are reflected in microbiome composition by tomorrow. New gut barrier cells form every 3–5 days.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S4: FIBRE & SCFAs ── -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">04</span>
+        <h2>Fibre & Short-Chain Fatty Acids</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Fibre is the principal food for beneficial gut bacteria. 95% of Americans and 90% of UK residents are deficient. When fibre meets the microbiome in the right colon, it produces short-chain fatty acids (SCFAs) — the most anti-inflammatory compounds Dr. Bulsiewicz has studied.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Fibre → Microbiome → Short-Chain Fatty Acids → Benefits</div>
+        <svg width="100%" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2d6a2d"/>
+            </marker>
+          </defs>
+          <rect x="10" y="60" width="120" height="60" rx="6" fill="#e8f3e8" stroke="#2d6a2d" stroke-width="1.5"/>
+          <text x="70" y="84" text-anchor="middle" fill="#1a2e1a" font-size="12" font-weight="600">Dietary Fibre</text>
+          <text x="70" y="100" text-anchor="middle" fill="#4a5a4a" font-size="10">Fruits, veg, grains</text>
+          <text x="70" y="113" text-anchor="middle" fill="#4a5a4a" font-size="10">seeds, nuts, legumes</text>
+
+          <path d="M130,90 L165,90" stroke="#2d6a2d" stroke-width="1.5" marker-end="url(#arr-green)" fill="none"/>
+          <text x="148" y="82" text-anchor="middle" fill="#7a8a7a" font-size="9">feeds</text>
+
+          <rect x="165" y="55" width="120" height="70" rx="6" fill="#e8f3e8" stroke="#2d6a2d" stroke-width="1.5"/>
+          <text x="225" y="80" text-anchor="middle" fill="#1a2e1a" font-size="12" font-weight="600">Microbiome</text>
+          <text x="225" y="96" text-anchor="middle" fill="#4a5a4a" font-size="10">60,000 enzymes</text>
+          <text x="225" y="110" text-anchor="middle" fill="#4a5a4a" font-size="10">ferment the fibre</text>
+          <text x="225" y="122" text-anchor="middle" fill="#2d6a2d" font-size="9">right colon</text>
+
+          <path d="M285,90 L320,90" stroke="#2d6a2d" stroke-width="1.5" marker-end="url(#arr-green)" fill="none"/>
+          <text x="303" y="82" text-anchor="middle" fill="#7a8a7a" font-size="9">produces</text>
+
+          <rect x="320" y="40" width="140" height="100" rx="6" fill="#e8f3e8" stroke="#4a9e4a" stroke-width="2"/>
+          <text x="390" y="65" text-anchor="middle" fill="#2d6a2d" font-size="12" font-weight="600">SCFAs</text>
+          <text x="390" y="82" text-anchor="middle" fill="#1a2e1a" font-size="11">Butyrate ★</text>
+          <text x="390" y="97" text-anchor="middle" fill="#1a2e1a" font-size="11">Propionate</text>
+          <text x="390" y="112" text-anchor="middle" fill="#1a2e1a" font-size="11">Acetate</text>
+          <text x="390" y="130" text-anchor="middle" fill="#2d6a2d" font-size="9">★ most important</text>
+
+          <path d="M460,90 L495,90" stroke="#2d6a2d" stroke-width="1.5" marker-end="url(#arr-green)" fill="none"/>
+
+          <rect x="495" y="35" width="185" height="110" rx="6" fill="#e8f3e8" stroke="#2a7a6f" stroke-width="1.5"/>
+          <text x="588" y="57" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Effects</text>
+          <text x="588" y="73" text-anchor="middle" fill="#4a5a4a" font-size="10">Repairs gut barrier proteins</text>
+          <text x="588" y="88" text-anchor="middle" fill="#4a5a4a" font-size="10">Feeds good bacteria</text>
+          <text x="588" y="103" text-anchor="middle" fill="#4a5a4a" font-size="10">Calms immune system</text>
+          <text x="588" y="118" text-anchor="middle" fill="#4a5a4a" font-size="10">Reduces inflammation</text>
+          <text x="588" y="133" text-anchor="middle" fill="#2d6a2d" font-size="10">Most anti-inflammatory known</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Best Fibre Sources</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Any food that comes from a plant contains fibre. Meat and animal products contain no fibre. Oil contains no fibre (though extra-virgin olive oil contains beneficial polyphenols).</p>
+          <ul class="bullet-list">
+            <li>Fruits and vegetables (all types)</li>
+            <li>Whole grains — oats, quinoa, amaranth, sorghum, teff (these also lack fructans)</li>
+            <li>Legumes — beans, lentils, chickpeas</li>
+            <li>Seeds and nuts</li>
+            <li>Mushrooms (technically fungi but share many characteristics with plants)</li>
+          </ul>
+          <div class="note"><strong>Ease into it:</strong> If you rapidly increase fibre intake you will feel worse before you feel better. The fibre-maxing trend (TikTok) is the right direction, wrong execution — increase gradually to avoid gas and bloating while your microbiome adapts.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Butyrate — The Star SCFA</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Needed to produce the proteins that hold the gut lining together — literally rebuilds the barrier</li>
+            <li>Has the biggest direct effect on both the microbes and the gut barrier of the three SCFAs</li>
+            <li>Directly modulates immune cells — the most anti-inflammatory compound identified</li>
+            <li>Low butyrate in infant gut at 12 months predicts allergic diseases by age 5</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S5: SUPPLEMENTS ── -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">05</span>
+        <h2>Supplements</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bulsiewicz's evidence-based supplement recommendations, timed to circadian rhythm. Morning supplements support inflammation and micronutrient needs; evening supplements support sleep and gut motility.</p>
+
+      <div class="supp-grid">
+        <div class="supp-card">
+          <span class="supp-timing">☀ MORNING</span>
+          <span class="supp-name">Vitamin D</span>
+          <span class="supp-dose">Test first; supplement if deficient</span>
+          <span class="supp-benefit">Anti-inflammatory. Immune regulation. Test before supplementing — only beneficial if deficient.</span>
+          <span class="supp-flag flag-amber">Test first</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">☀ MORNING</span>
+          <span class="supp-name">Omega-3 Fish Oil</span>
+          <span class="supp-dose">Test first; supplement if deficient</span>
+          <span class="supp-benefit">Anti-inflammatory. Brain health. Cardiovascular protection. Test omega-3 index before supplementing.</span>
+          <span class="supp-flag flag-amber">Test first</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">☀ MORNING</span>
+          <span class="supp-name">Turmeric / Curcumin</span>
+          <span class="supp-dose">Daily — consistent use</span>
+          <span class="supp-benefit">Blocks specific inflammatory cytokines. Polyphenol. Do not over-supplement. Consistent daily use preferred over high doses.</span>
+          <span class="supp-flag flag-green">Anti-inflammatory</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">🌙 EVENING</span>
+          <span class="supp-name">Zinc</span>
+          <span class="supp-dose">Evening supplement stack</span>
+          <span class="supp-benefit">Immune support. Important for testosterone synthesis. Take in the evening as part of the wind-down routine.</span>
+          <span class="supp-flag flag-green">Evening</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">🌙 EVENING</span>
+          <span class="supp-name">Magnesium</span>
+          <span class="supp-dose">Form-dependent (see below)</span>
+          <span class="supp-benefit">Sleep support (glycinate form) OR constipation relief (oxide/citrate/sulfate form). Form selection is critical.</span>
+          <span class="supp-flag flag-amber">Form matters</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">🌙 EVENING</span>
+          <span class="supp-name">Melatonin</span>
+          <span class="supp-dose">If needed — ~8:30pm</span>
+          <span class="supp-benefit">Sleepy-time hormone. Take 60–90 mins before bed. Supplement only if needed — morning light and exercise are preferred natural pathways.</span>
+          <span class="supp-flag flag-amber">Use if needed</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">☀ MORNING</span>
+          <span class="supp-name">Prebiotic Fibre</span>
+          <span class="supp-dose">Add to morning water</span>
+          <span class="supp-benefit">Feeds gut microbiome immediately on waking. Soluble, tasteless, invisible in water. Wakes up the gut alongside hydration.</span>
+          <span class="supp-flag flag-green">Daily habit</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Turmeric / Curcumin — Detail</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Turmeric is the root. Curcumin is the active phytochemical — a polyphenol — that does the work. It blocks specific inflammatory cytokines, effectively pulling the batteries out of the inflammatory walkie-talkie signal chain.</p>
+          <ul class="bullet-list">
+            <li>Particularly useful for people with chronic inflammatory conditions</li>
+            <li>95% of polyphenols require gut microbes to be activated — a healthy microbiome amplifies the benefit</li>
+            <li>Consistent daily use is more important than high doses</li>
+          </ul>
+          <div class="caution">Do not over-supplement turmeric/curcumin. Too much can cause problems. Daily moderate supplementation is the goal — not high-dose intermittent use.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Magnesium — Form Selection is Critical</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Magnesium Glycinate</span><span class="kv-val">For sleep and relaxation — calming effect. Will NOT help constipation.</span>
+            <span class="kv-key">Magnesium Oxide</span><span class="kv-val">For constipation — draws water into the intestine to soften stool. Preferred choice for this purpose.</span>
+            <span class="kv-key">Magnesium Sulfate</span><span class="kv-val">Also suitable for constipation.</span>
+            <span class="kv-key">Magnesium Citrate</span><span class="kv-val">Also suitable for constipation.</span>
+          </div>
+          <p class="prose">Magnesium works for constipation by drawing water into the intestine — you need the fibre for stool form, and the magnesium to make it soft. Together they produce a soft, formed bowel movement.</p>
+          <div class="caution">Taking magnesium glycinate for constipation will do nothing. Match the form to the goal.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Prebiotic Fibre Supplements</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Soluble prebiotic fibre can be added to water — it has no grit, no roughage, and no taste. Dr. Bulsiewicz references his company 38 Terra as one option, but alternatives exist.</p>
+          <ul class="bullet-list">
+            <li>Feeding microbes with prebiotic fibre in the morning results in a bigger, healthier bowel movement — because the microbes multiply overnight and produce more mass</li>
+            <li>Feeds the right colon where SCFA production primarily occurs</li>
+            <li>Best taken with morning water, before coffee</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Timing Supplements to Circadian Rhythm</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Dr. Bulsiewicz recommends taking supplements at consistent times every day — not just because of absorption, but because everything about the body and microbiome thrives on consistency. The body anticipates and prepares for what happens at the same time each day.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Morning (with breakfast)</span><span class="kv-val">Vitamin D, Omega-3, Turmeric/Curcumin</span>
+            <span class="kv-key">Evening (~8:30pm)</span><span class="kv-val">Zinc, Magnesium, Melatonin (if using)</span>
+            <span class="kv-key">Morning (with water)</span><span class="kv-val">Prebiotic fibre supplement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S6: FOODS & DIET ── -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">06</span>
+        <h2>Foods & Diet</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bulsiewicz does not advocate one specific diet. His book (Fibre Fuelled / Plant Powered Plus) identifies four things missing from almost every diet pattern. The best diet is the one you will actually follow — Mediterranean, pescatarian, or flexitarian all work if done correctly.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Polyphenols</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Every coloured plant food contains polyphenols that define the colour and impact the gut. 95% of polyphenols require the gut microbiome to be activated — a damaged gut = diminished polyphenol benefit.</p>
+          <ul class="bullet-list">
+            <li>Quercetin — in onions and garlic. Associated with longevity benefits</li>
+            <li>Curcumin — in turmeric. Anti-inflammatory cytokine blocker</li>
+            <li>Matcha green tea — highest polyphenol content of all teas. Excellent for the microbiome. Good afternoon substitute for coffee</li>
+            <li>Extra-virgin olive oil — contains polyphenols beneficial to the microbiome (though no fibre)</li>
+            <li>Eat the colours of the rainbow — each colour indicates different polyphenol families</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Healthy Fats</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Avocado — monounsaturated fat, eat whole without restriction</li>
+            <li>Nuts and seeds — eat whole, not as oils</li>
+            <li>Fatty fish (salmon, shellfish) — omega-3 EPA and DHA</li>
+            <li>Extra-virgin olive oil — polyphenols, but limit if trying to lose weight (oil is the highest calorie density food that exists)</li>
+          </ul>
+          <div class="caution">Oil of any kind — including extra-virgin olive oil — is the highest calorie-density food on the planet. If overweight, limit oil specifically. Eat the whole-form fat source (nuts, avocado) instead.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fermented Foods</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The average intake of fermented food in the United States is zero. A Stanford study showed that adding fermented food for just 8 weeks increased microbiome diversity and lowered inflammatory markers.</p>
+          <ul class="bullet-list">
+            <li>Yogurt (live cultures)</li>
+            <li>Kefir</li>
+            <li>Kimchi</li>
+            <li>Sauerkraut</li>
+            <li>Miso</li>
+            <li>Pickles (naturally fermented, not vinegar-brined)</li>
+            <li>Kombucha</li>
+          </ul>
+          <div class="positive">Fermented foods are one of the fastest ways to increase microbiome diversity — which is the primary marker of a healthy gut.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What to Avoid / Reduce</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Refined carbohydrates — flour and sugar (baked goods, white bread)</li>
+            <li>Ultra-processed foods — low fibre, high inflammatory potential</li>
+            <li>Alcohol — causes leaky gut at any detectable blood level</li>
+            <li>Non-organic wheat and oats — risk of glyphosate contamination which disrupts microbiome</li>
+            <li>Eating within 3–4 hours of bed — disrupts metabolism, sleep, and gut motility</li>
+            <li>Highly restrictive elimination diets — removing fibre-containing foods starves the microbiome</li>
+          </ul>
+          <div class="note">Juice cleanses and extreme elimination diets may make you feel temporarily better by removing irritants — but they are not healing the gut. They are avoiding the problem. The microbiome is being starved.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S7: PERFECT GUT DAY ── -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">07</span>
+        <h2>The Perfect Gut Day</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bulsiewicz's 24-hour routine optimised for circadian rhythm, microbiome health, and inflammation reduction. Consistency is the single most important word — same times every day is more powerful than any individual action.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">07:00 — Wake</div>
+          <div class="timeline-text">Wake at a consistent time. Consistency with wake time is itself a powerful circadian anchor. First 5 minutes: reflect on the day ahead.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">07:05 — Hydration + Prebiotic Fibre</div>
+          <div class="timeline-text">Water first — before coffee. Add a prebiotic fibre supplement (tasteless, dissolves fully). Water activates the gut, brain, and kidneys. Prebiotic fibre starts feeding microbes immediately.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">07:15 — Morning Light + Exercise (20 min)</div>
+          <div class="timeline-text"><strong>The most powerful moment of the day.</strong> Light enters the eye → hits the retina → activates the suprachiasmatic nucleus (SCN) — the master clock. This triggers a cortisol spike (the morning hormone — focus, energy, immune suppression in a helpful way). Morning light alone boosts cortisol by 50%. Adding light exercise adds a further 25–50%. Combined: the ultimate morning cortisol peak. Also sets up serotonin → melatonin conversion 14 hours later (better sleep tonight). If indoors: use a 10,000 lux light box. Take off glasses — light must reach the retina directly.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">07:35 — Coffee + Quiet Time (10 min)</div>
+          <div class="timeline-text">Parasympathetic activation: meditation, breathwork, journaling, reading, prayer — whatever works. Intentionally slow the nervous system after the morning activation.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">07:45 — Breakfast + Morning Supplements</div>
+          <div class="timeline-text">High fibre, moderate protein, minimal sugar. No refined carbohydrates. Metabolism is strongest in the morning — the same food eaten at 7:45 vs 3pm gives better blood sugar and blood fat control. Take Vitamin D, Omega-3, and Turmeric/Curcumin with breakfast. Best gut options: overnight oats (organic), avocado toast on sourdough, yogurt with berries, chia pudding, berries and nuts.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">08:45 — Morning Bowel Movement</div>
+          <div class="timeline-text">The natural result of morning light, exercise, coffee, water, and a fibre-rich breakfast all converging. A healthy Bristol 4 (soft, formed, sausage-like) is the goal. This is the visible indicator of a gut in rhythm.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:00 — Lunch with Another Person</div>
+          <div class="timeline-text">Loneliness is on par with smoking in terms of health impact. Eating with others is not optional — it is a health intervention. 45 minutes minimum including conversation, not 10 minutes on your phone.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:45 — Post-Lunch Walk (10–15 min)</div>
+          <div class="timeline-text">10 minutes of walking produces 30–40% improvement in blood sugar control by activating leg muscles to draw glucose from the bloodstream. Also reduces post-meal bloating by getting the gut into rhythm. Gets afternoon sunlight (boosts serotonin differently from morning light).</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:00 — Matcha Green Tea</div>
+          <div class="timeline-text">Highest polyphenol content of all teas. Phenomenal for the microbiome. Good afternoon cognitive boost without the late cortisol disruption of coffee.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:00–18:00 — Exercise Window</div>
+          <div class="timeline-text">Peak core body temperature = peak physical performance. Best time for heavy resistance training. Avoid vigorous exercise within 2 hours of bedtime — activates sympathetic nervous system and delays sleep.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00 — Dinner</div>
+          <div class="timeline-text">Meals spaced ~4 hours apart (8am, 12pm, 5pm) allows the migrating motor complex — the gut's between-meal sweeping and reorganising system — to complete its cycle. Eating disrupts this. Aim for dinner well before 8pm. Eating late at night hits metabolically harder, lingers into the next day, and disrupts sleep.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">19:00 — Dim Lights</div>
+          <div class="timeline-text">Casual indoor lighting can cut melatonin production by 30%. Start dimming lights as it gets dark. Melatonin (the sleepy hormone) is the downstream product of serotonin — which was built by morning light and exercise.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:00 — Reduce Screens / Blue Light Glasses</div>
+          <div class="timeline-text">Blue light from devices suppresses melatonin. Blue light blocking glasses are an option. Begin winding down devices 2 hours before sleep target.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:30 — Evening Supplements</div>
+          <div class="timeline-text">Take Zinc, Magnesium (glycinate for sleep; oxide/citrate/sulfate for constipation), and Melatonin if using. Takes 60–90 minutes to take effect — timed to bed.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">21:00 — Evening Wind-Down</div>
+          <div class="timeline-text">Intentionally activate parasympathetic nervous system: hot shower or sauna (heat paradoxically lowers core body temperature afterwards — exactly what sleep needs), meditation, reading. Cool, dark room for sleep.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">22:00 — Sleep</div>
+          <div class="timeline-text">Time matters less than consistency. Whether 10pm or 11:30pm, the magic number is whatever you always do. Consistent bedtime = consistent circadian anchor = better gut, better sleep, better health.</div>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">Eating window</span><span class="kv-val">8am to 6pm ideally — creates a 14-hour fast overnight. 12+ hours gut rest is beneficial.</span>
+        <span class="kv-key">Meal spacing</span><span class="kv-val">4 hours between meals allows migrating motor complex to complete its sweeping cycle</span>
+        <span class="kv-key">Key word</span><span class="kv-val">CONSISTENCY — same times daily is more powerful than any individual action</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S8: ALCOHOL ── -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">08</span>
+        <h2>Alcohol & the Gut</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">A specific study changed Dr. Bulsiewicz's personal relationship with alcohol. He now rarely drinks. His conclusion: there is no amount of alcohol that is safe from a gut barrier perspective.</p>
+      <ul class="bullet-list">
+        <li>Alcohol causes leaky gut — lipopolysaccharide (LPS) from gut bacteria enters the bloodstream in direct proportion to blood alcohol level</li>
+        <li>LPS is recognised by the immune system as the enemy → immediate immune activation → inflammation</li>
+        <li>Leaky gut does not return to normal until blood alcohol level reaches zero</li>
+        <li>Alcohol also wipes out the oral microbiome — similar to using alcohol-based mouthwash (which is no longer recommended)</li>
+        <li>Heavy drinking is a prerequisite step on the pathway to cirrhosis and alcoholic liver disease — gut disruption must come first</li>
+        <li>Even one drink is sufficient to disrupt sleep quality</li>
+      </ul>
+      <div class="caution">Dr. Bulsiewicz's personal position after reviewing this data: "I don't think there's any amount of alcohol that's safe." He now drinks very rarely — occasionally a glass with his wife at a special dinner.</div>
+    </div>
+  </div>
+
+  <!-- ── S9: ANTIBIOTICS ── -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">09</span>
+        <h2>Antibiotics & Gut Damage</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Nothing decimates the gut faster than antibiotics. They wipe out gut diversity, reduce gut barrier integrity by ~50% during a single course, and activate the immune system. The risk to inflammatory health conditions significantly increases.</p>
+      <ul class="bullet-list">
+        <li>Taking antibiotics doubles the risk of developing an inflammatory bowel disease in the following year</li>
+        <li>Antibiotics reduce gut barrier integrity by approximately 50% during the course</li>
+        <li>When gut is wiped out, pathogenic bacteria (e.g. C. diff) can multiply unchecked — can be life-threatening</li>
+        <li>Cancer immunotherapy (immune checkpoint inhibitors) significantly underperforms in patients who received antibiotics beforehand — the microbiome is required for the treatment to work</li>
+        <li>In children: antibiotics in the first year of life are one of the strongest predictors of allergic disease by age 5</li>
+      </ul>
+      <div class="note">Antibiotics are sometimes necessary and life-saving. The goal is not to avoid them when needed, but to understand the cost and to rebuild the microbiome deliberately afterwards — through fibre, fermented foods, and time.</div>
+    </div>
+  </div>
+
+  <!-- ── S10: BLOATING ── -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">10</span>
+        <h2>Bloating, Gas & Constipation</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Over 60% of people are currently struggling with some kind of gut problem. Constipation is the number one cause of bloating — and most people don't know they have it.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Constipation — What It Actually Is</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Constipation is not defined by frequency alone — it is about adequately emptying the bowels. People who poop multiple times per day can still be constipated if they are only ever doing partial, unsatisfying bowel movements.</p>
+          <ul class="bullet-list">
+            <li>Partial stools (20–25% of what should come out) → poop remains in the colon</li>
+            <li>Stool in gridlock = microbes with unlimited time to ferment = gas production from anything they contact</li>
+            <li>This is why constipation and gas/bloating are so strongly linked</li>
+            <li>Do not sip through straws, drink carbonated drinks, or chew gum when bloated — these add gas directly</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Bristol 1–2</span><span class="kv-val">Constipation (hard pellets / lumpy sausage)</span>
+            <span class="kv-key">Bristol 3–4</span><span class="kv-val">Normal (soft, formed — target is Bristol 4)</span>
+            <span class="kv-key">Bristol 6–7</span><span class="kv-val">Diarrhoea</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Causes of Gas & Bloating</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Motility</strong> — intestines moving too slowly (constipation) or too fast (diarrhoea). Goal: a rhythmic, predictable daily pattern</li>
+            <li><strong>Damaged microbiome</strong> — weak microbes can't process fibre properly → sloppy digestion → gas</li>
+            <li><strong>Diet</strong> — lactose (dairy), fructans (wheat, barley, rye, garlic, onions), large sudden increases in fibre intake</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Solutions for Constipation</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Increase dietary fibre (gradually) — provides form to the stool</li>
+            <li>Magnesium supplement (oxide, citrate, or sulfate — NOT glycinate) — draws water into the intestine to soften stool</li>
+            <li>Morning routine — light exposure, exercise, water, and coffee all contribute to the morning bowel movement</li>
+            <li>Post-meal walk (10 minutes) — activates gut motility and reduces bloating</li>
+            <li>Consistent meal times — anchors digestive rhythm</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S11: GLUTEN / FRUCTANS ── -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">11</span>
+        <h2>Gluten, Fructans & Glyphosate</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Most people who think they have gluten intolerance are actually reacting to fructans — long-chain carbohydrates in the same foods. True coeliac disease affects ~1% of people. The widespread belief in gluten sensitivity is largely a misdiagnosis.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Gluten vs Fructans — The Real Picture</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A study in Gastroenterology (the top journal in the field) gave people with self-reported gluten sensitivity three breakfast bars: a placebo, a high-gluten bar, and a high-fructan bar. The result: the gluten bar produced fewer symptoms than the placebo. The fructan bar triggered symptoms. The conclusion: it was never gluten — it was fructans.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Fructan-containing foods</span><span class="kv-val">Wheat, barley, rye, garlic, onions</span>
+            <span class="kv-key">Gluten-free, fructan-free grains</span><span class="kv-val">Quinoa, amaranth, sorghum, teff</span>
+            <span class="kv-key">Why sourdough is better tolerated</span><span class="kv-val">Fermentation during sourdough production significantly reduces the fructan content</span>
+          </div>
+          <div class="caution">Going unnecessarily gluten-free can cause problems — gluten-containing whole grains contain fibre and fructans that feed the microbiome. Removing them without knowing why starves good bacteria.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Glyphosate (Roundup) in Wheat</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">In the US (unlike Europe), wheat is routinely sprayed with glyphosate (Roundup) before harvest to dry it out faster. Glyphosate is not on the label. Organic wheat by law cannot be sprayed.</p>
+          <ul class="bullet-list">
+            <li>Glyphosate shuts down the shikimate pathway — kills plants but humans have a workaround</li>
+            <li>Gut microbes do NOT have the workaround — glyphosate disrupts their function</li>
+            <li>Depletes beneficial bacteria and enriches inflammatory strains</li>
+            <li>This explains the anecdotal experience of people who cannot eat US wheat but eat Italian pasta without issue</li>
+          </ul>
+          <div class="positive"><strong>Simple fix:</strong> Buy organic wheat, oats, and grain products. Organic certification prohibits glyphosate spraying.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S12: CHILDREN ── -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">12</span>
+        <h2>Children's Gut Health</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The first 3 years of life are critical for microbiome development. The immune system learns from and with the microbiome during this window — disruptions have downstream consequences for allergic, autoimmune, and metabolic diseases.</p>
+
+      <div class="two-col">
+        <div class="col-card good">
+          <h4>Protective Factors</h4>
+          <ul class="bullet-list">
+            <li>Vaginal birth — exposes baby to mother's microbiome</li>
+            <li>Breastfeeding — provides human milk oligosaccharides (HMOs), 200+ prebiotic varieties that feed the developing baby microbiome</li>
+            <li>High maternal fibre intake during pregnancy — reduces allergic disease risk in offspring</li>
+            <li>Model healthy eating — children replicate parents</li>
+          </ul>
+        </div>
+        <div class="col-card bad">
+          <h4>Risk Factors</h4>
+          <ul class="bullet-list">
+            <li>C-section birth — bypasses microbiome transfer from birth canal</li>
+            <li>Bottle feeding / formula — mono-fibre, lacks 200+ HMO varieties</li>
+            <li>Antibiotics in first year of life — strongest predictor of allergic disease by age 5</li>
+            <li>Low maternal fibre diet during pregnancy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">Low butyrate levels at 12 months of age — detectable in the infant's stool — can predict which children will develop allergic diseases by age 5. The microbiome tells the story before the disease arrives.</div>
+    </div>
+  </div>
+
+  <!-- ── S13: STRESS & TRAUMA ── -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">13</span>
+        <h2>Stress, Trauma & the Gut</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The brain and the gut are in constant bidirectional communication via the brain-gut axis. Trauma and chronic stress restructure the brain and keep the body trapped in sympathetic (fight-or-flight) dominance — directly damaging the gut barrier and disrupting gut motility.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Brain-Gut Axis: Stress → Gut Dysfunction</div>
+        <svg width="100%" viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="50" width="130" height="60" rx="6" fill="#fdf3e3" stroke="#c47d2b" stroke-width="1.5"/>
+          <text x="75" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Stress / Trauma</text>
+          <text x="75" y="92" text-anchor="middle" fill="#7a8a7a" font-size="10">Amygdala activated</text>
+          <text x="75" y="105" text-anchor="middle" fill="#7a8a7a" font-size="10">perpetually on</text>
+
+          <path d="M140,80 L175,80" stroke="#c47d2b" stroke-width="1.5" marker-end="url(#arr-b)" fill="none"/>
+
+          <rect x="175" y="50" width="130" height="60" rx="6" fill="#fdf3e3" stroke="#c47d2b" stroke-width="1.5"/>
+          <text x="240" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">CRH Released</text>
+          <text x="240" y="92" text-anchor="middle" fill="#7a8a7a" font-size="10">Corticotropin</text>
+          <text x="240" y="105" text-anchor="middle" fill="#7a8a7a" font-size="10">releasing hormone</text>
+
+          <path d="M305,80 L340,80" stroke="#c47d2b" stroke-width="1.5" marker-end="url(#arr-b)" fill="none"/>
+
+          <rect x="340" y="50" width="130" height="60" rx="6" fill="#fdf3e3" stroke="#b84040" stroke-width="1.5"/>
+          <text x="405" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Elevated Cortisol</text>
+          <text x="405" y="92" text-anchor="middle" fill="#7a8a7a" font-size="10">Good in morning spike</text>
+          <text x="405" y="105" text-anchor="middle" fill="#b84040" font-size="10">Harmful if chronic</text>
+
+          <path d="M470,80 L505,80" stroke="#b84040" stroke-width="1.5" marker-end="url(#arr-b)" fill="none"/>
+
+          <rect x="505" y="38" width="155" height="84" rx="6" fill="#fdf0f0" stroke="#b84040" stroke-width="1.5"/>
+          <text x="583" y="63" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Gut Dysfunction</text>
+          <text x="583" y="80" text-anchor="middle" fill="#7a8a7a" font-size="10">Gut barrier disrupted</text>
+          <text x="583" y="95" text-anchor="middle" fill="#7a8a7a" font-size="10">Motility disrupted</text>
+          <text x="583" y="110" text-anchor="middle" fill="#b84040" font-size="10">Inflammation ↑</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How Trauma Manifests in the Gut</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Trauma restructures the brain — keeps the amygdala (threat detection centre) perpetually activated</li>
+            <li>This keeps the body in sympathetic (fight-or-flight) overdrive chronically</li>
+            <li>Sympathetic dominance sacrifices the gut — motility disrupted, gut barrier weakened, inflammation increased</li>
+            <li>Can occur from trauma before age 2 — no conscious memory required for the body to carry it</li>
+            <li>The body keeps the score — trauma manifests as physical health problems, including gut dysfunction</li>
+          </ul>
+          <div class="note">Loneliness is on par with smoking a pack of cigarettes daily in terms of impact on health and longevity. Connection is a health intervention. Eat with people. The gut benefits.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Parasympathetic Activators — Healing the Gut via the Nervous System</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Activating the parasympathetic nervous system (rest and recovery) directly counteracts the stress response and allows the gut to function properly.</p>
+          <ul class="bullet-list">
+            <li>Meditation and breathwork</li>
+            <li>Journaling</li>
+            <li>Prayer</li>
+            <li>Sauna</li>
+            <li>Hot shower</li>
+            <li>Holding hands / hugs / physical connection</li>
+            <li>Meaningful conversation</li>
+            <li>Morning and evening quiet time (built into the perfect gut day routine)</li>
+          </ul>
+          <div class="positive">Addressing trauma is step one — acknowledge it as the root of the problem, then turn towards it with professional help (cognitive behavioural therapy and other evidence-based approaches). You cannot eat your way out of unresolved trauma's gut effects.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S14: FECAL TRANSPLANTS ── -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">14</span>
+        <h2>Fecal Transplants (FMT)</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Fecal microbiota transplantation (FMT) takes a healthy person's stool and transfers it to a sick person — instantly reinstalling potentially hundreds of species in balance. It is a full ecosystem transplant.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What FMT Is Used For (Evidence)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>C. diff infection</strong> — life-threatening colonic infection; FMT is often more effective than antibiotics. Patient case described: near-death situation resolved overnight, home within 2 days</li>
+            <li><strong>Cancer immunotherapy</strong> — FMT from immune checkpoint inhibitor responders doubled success rates in melanoma patients who were non-responders</li>
+            <li><strong>Parkinson's disease</strong> — multiple studies showing durable benefit in movement symptoms and constipation after FMT; supports the gut-brain origin theory of Parkinson's</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Can You Get One? Should You Do It at Home?</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="caution"><strong>Do NOT do a DIY fecal transplant at home</strong> — regardless of what any Netflix documentary implies. The risks are not yet fully understood and the procedure requires careful donor screening and medical oversight.</div>
+          <ul class="bullet-list">
+            <li>FMT is not the same as rebuilding your microbiome through lifestyle and diet — it does not replace the long-term work</li>
+            <li>Currently administered during colonoscopy in clinical settings</li>
+            <li>Hospital-grade FMT uses screened donor material from specialist companies</li>
+            <li>New pharmaceutical approaches are in development — microbiome restoration products derived from FMT concepts, without using actual stool</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S15: FOUR MISSING THINGS ── -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">15</span>
+        <h2>The Four Missing Things</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bulsiewicz's core thesis from his book Plant Powered Plus: four things are missing from almost every modern diet. These four are present in every healthy dietary pattern — Mediterranean, pescatarian, and flexitarian alike.</p>
+
+      <div class="supp-grid">
+        <div class="supp-card">
+          <span class="supp-timing">MISSING #1</span>
+          <span class="supp-name">Fibre</span>
+          <span class="supp-dose">95% of US / 90% of UK deficient</span>
+          <span class="supp-benefit">Principal food for gut bacteria. Precursor to SCFAs. All plants contain it. No animal products contain it. The single biggest dietary opportunity.</span>
+          <span class="supp-flag flag-red">Most deficient</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">MISSING #2</span>
+          <span class="supp-name">Polyphenols</span>
+          <span class="supp-dose">Eat the rainbow — daily</span>
+          <span class="supp-benefit">Coloured plant compounds. 95% require gut microbes to activate. Every colour = different polyphenol family. Turmeric, matcha, berries, EVOO, onions, garlic.</span>
+          <span class="supp-flag flag-amber">Eat variety</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">MISSING #3</span>
+          <span class="supp-name">Healthy Fat</span>
+          <span class="supp-dose">Whole-form sources preferred</span>
+          <span class="supp-benefit">Avocado, nuts, seeds (whole form). Omega-3s from fatty fish. Monounsaturated fats. Limit oils if trying to lose weight — highest calorie density food that exists.</span>
+          <span class="supp-flag flag-green">Whole food form</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">MISSING #4</span>
+          <span class="supp-name">Fermented Food</span>
+          <span class="supp-dose">Average US intake: zero</span>
+          <span class="supp-benefit">Increases microbiome diversity and reduces inflammation in 8 weeks (Stanford study). Yogurt, kefir, kimchi, sauerkraut, miso, pickles, kombucha. Most people eat none.</span>
+          <span class="supp-flag flag-red">Urgently missing</span>
+        </div>
+      </div>
+
+      <div class="positive">These four things are not about removing what you already eat — they are about adding what is missing. The opportunity is in the gap, not the restriction.</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  const sections = document.querySelectorAll('.section, #hero');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Open first section by default
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
