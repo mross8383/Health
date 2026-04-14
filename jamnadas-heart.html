@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Pradip Jamnadas – Heart & Cardiovascular Health Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0f7;
+    --bg-card: #ffffff;
+    --bg-dark: #1a0d2e;
+    --bg-mid: #2a1545;
+    --plum: #7b2d8b;
+    --plum-light: #9b4dab;
+    --plum-pale: #f3eaf6;
+    --plum-dim: rgba(123,45,139,0.1);
+    --crimson: #a0192c;
+    --crimson-pale: #fdf0f2;
+    --crimson-dim: rgba(160,25,44,0.1);
+    --teal: #1a7a6a;
+    --teal-pale: #e6f4f1;
+    --teal-dim: rgba(26,122,106,0.1);
+    --text: #1a0d2e;
+    --text-mid: #4a3a5a;
+    --text-dim: #8a7a9a;
+    --border: rgba(123,45,139,0.15);
+    --sidebar-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--bg-dark);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: var(--plum) transparent;
+  }
+
+  #sidebar::-webkit-scrollbar { width: 3px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--plum); border-radius: 2px; }
+
+  .sidebar-header { padding: 28px 22px 20px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+  .sidebar-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: #c89ad4;
+    margin-bottom: 5px;
+  }
+
+  .sidebar-header p { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.5; }
+
+  nav { padding: 12px 0 30px; flex: 1; }
+
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 22px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover, nav a.active {
+    color: #c89ad4;
+    border-left-color: #c89ad4;
+    background: rgba(123,45,139,0.1);
+  }
+
+  nav a .nav-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: rgba(200,154,212,0.5);
+    min-width: 18px;
+  }
+
+  .nav-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 22px; }
+
+  #main { margin-left: var(--sidebar-w); flex: 1; padding: 0 0 80px; max-width: 960px; }
+
+  #hero {
+    padding: 56px 60px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(123,45,139,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    color: #f0eaf5;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    max-width: 560px;
+    font-weight: 600;
+  }
+
+  #hero h1 em { color: #c89ad4; font-style: italic; }
+
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 500px; margin-bottom: 26px; }
+
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(200,154,212,0.3);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #c89ad4;
+    font-weight: 400;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 60px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+
+  .section-header:hover { background: var(--plum-pale); }
+
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+
+  .section-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--plum);
+    background: var(--plum-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    color: var(--bg-dark);
+    font-weight: 700;
+  }
+
+  .chevron { width: 18px; height: 18px; color: var(--plum); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 60px 40px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+
+  .section-body.open { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .subsection-header:hover { background: var(--plum-pale); }
+
+  .subsection-header h3 { font-size: 13.5px; font-weight: 700; color: var(--bg-dark); }
+
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--plum-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--plum-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--plum);
+  }
+
+  .kv-key {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    color: var(--plum);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 700;
+  }
+
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--plum-pale);
+    border-left: 3px solid var(--plum-light);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--plum);
+    line-height: 1.55;
+  }
+
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+  }
+
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--teal-pale);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--teal);
+  }
+
+  .supp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 9px;
+    margin: 14px 0;
+  }
+
+  .supp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .supp-card:hover {
+    border-color: var(--plum-light);
+    box-shadow: 0 2px 12px rgba(123,45,139,0.08);
+  }
+
+  .supp-timing {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9.5px;
+    color: var(--plum);
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  .supp-name { font-size: 13px; font-weight: 700; color: var(--bg-dark); }
+  .supp-dose { font-family: 'Courier Prime', monospace; font-size: 10.5px; color: var(--crimson); }
+  .supp-benefit { font-size: 11.5px; color: var(--text-dim); line-height: 1.45; flex: 1; }
+
+  .supp-flag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+    font-weight: 700;
+  }
+
+  .flag-plum { background: var(--plum-dim); color: var(--plum); }
+  .flag-teal { background: var(--teal-dim); color: var(--teal); }
+  .flag-crimson { background: var(--crimson-dim); color: var(--crimson); }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--plum);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  svg text { font-family: 'Lato', sans-serif; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+
+  .col-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+  }
+
+  .col-card h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .col-card.good h4 { color: var(--teal); }
+  .col-card.bad h4 { color: var(--crimson); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #sidebar { width: 100%; height: auto; position: relative; }
+    #main { margin-left: 0; }
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">Cardiovascular Health Reference</div>
+    <p>Dr. Pradip Jamnadas · Diary of a CEO Podcast</p>
+  </div>
+  <nav>
+    <a href="#hero"><span class="nav-num">—</span> Overview</a>
+    <div class="nav-divider"></div>
+    <a href="#s1"><span class="nav-num">01</span> Heart Disease — How It Happens</a>
+    <a href="#s2"><span class="nav-num">02</span> Insulin & Visceral Fat</a>
+    <a href="#s3"><span class="nav-num">03</span> Fasting — Types & Benefits</a>
+    <a href="#s4"><span class="nav-num">04</span> Ketones</a>
+    <a href="#s5"><span class="nav-num">05</span> Supplements</a>
+    <a href="#s6"><span class="nav-num">06</span> Diet & Foods</a>
+    <a href="#s7"><span class="nav-num">07</span> Gut Health & the Heart</a>
+    <a href="#s8"><span class="nav-num">08</span> Toxins & Mould</a>
+    <a href="#s9"><span class="nav-num">09</span> Exercise</a>
+    <a href="#s10"><span class="nav-num">10</span> The Vagus Nerve</a>
+    <a href="#s11"><span class="nav-num">11</span> Sleep & Stress</a>
+    <a href="#s12"><span class="nav-num">12</span> LDL, Statins & Cholesterol</a>
+    <a href="#s13"><span class="nav-num">13</span> Testing & Screening</a>
+    <a href="#s14"><span class="nav-num">14</span> Warning Signs & Symptoms</a>
+  </nav>
+</aside>
+
+<main id="main">
+
+  <section id="hero">
+    <h1>Dr. Pradip Jamnadas<br><em>Heart & Cardiovascular</em><br>Health Reference</h1>
+    <p>Dr. Jamnadas is a cardiologist with 35 years' experience who has treated over 250,000 patients. This guide covers his prevention-first approach. All claims represent his interpretation of the evidence — not medical advice.</p>
+    <div class="hero-tags">
+      <span class="tag">Heart Disease</span>
+      <span class="tag">Insulin</span>
+      <span class="tag">Fasting</span>
+      <span class="tag">Gut Health</span>
+      <span class="tag">Mould</span>
+      <span class="tag">Vagus Nerve</span>
+      <span class="tag">Inflammation</span>
+    </div>
+  </section>
+
+  <!-- S1: HEART DISEASE -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>Heart Disease — How It Actually Happens</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Heart disease is now affecting people in their 20s and 30s. The youngest patient Dr. Jamnadas has treated was 28 years old — having a full heart attack with a completely blocked artery. Demographics are shifting: 50% of cardiac patients are now under 65.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Three-Step Path to a Heart Attack</div>
+        <svg width="100%" viewBox="0 0 700 165" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#7b2d8b"/>
+            </marker>
+            <marker id="arr-c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#a0192c"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="47" width="145" height="70" rx="6" fill="#f3eaf6" stroke="#7b2d8b" stroke-width="1.5"/>
+          <text x="83" y="71" text-anchor="middle" fill="#1a0d2e" font-size="12" font-weight="700">Step 1: Plaque</text>
+          <text x="83" y="87" text-anchor="middle" fill="#4a3a5a" font-size="10">Inflammatory buildup</text>
+          <text x="83" y="101" text-anchor="middle" fill="#4a3a5a" font-size="10">inside artery wall</text>
+          <text x="83" y="112" text-anchor="middle" fill="#7b2d8b" font-size="9">"pimple" on artery lining</text>
+
+          <path d="M155,82 L192,82" stroke="#7b2d8b" stroke-width="1.5" marker-end="url(#arr-p)" fill="none"/>
+          <text x="174" y="74" text-anchor="middle" fill="#8a7a9a" font-size="9">systemic</text>
+          <text x="174" y="85" text-anchor="middle" fill="#8a7a9a" font-size="9">inflammation</text>
+
+          <rect x="192" y="40" width="155" height="84" rx="6" fill="#f3eaf6" stroke="#a0192c" stroke-width="1.5"/>
+          <text x="270" y="64" text-anchor="middle" fill="#1a0d2e" font-size="12" font-weight="700">Step 2: Rupture</text>
+          <text x="270" y="80" text-anchor="middle" fill="#4a3a5a" font-size="10">Plaque cracks open</text>
+          <text x="270" y="95" text-anchor="middle" fill="#4a3a5a" font-size="10">like a pimple bursting</text>
+          <text x="270" y="110" text-anchor="middle" fill="#a0192c" font-size="9">caused by inflammation</text>
+          <text x="270" y="122" text-anchor="middle" fill="#a0192c" font-size="9">NOT the plaque size</text>
+
+          <path d="M347,82 L384,82" stroke="#a0192c" stroke-width="1.5" marker-end="url(#arr-c)" fill="none"/>
+          <text x="366" y="74" text-anchor="middle" fill="#8a7a9a" font-size="9">blood sees</text>
+          <text x="366" y="85" text-anchor="middle" fill="#8a7a9a" font-size="9">the crack</text>
+
+          <rect x="384" y="35" width="165" height="94" rx="6" fill="#fdf0f2" stroke="#a0192c" stroke-width="2"/>
+          <text x="467" y="60" text-anchor="middle" fill="#1a0d2e" font-size="12" font-weight="700">Step 3: Blood Clot</text>
+          <text x="467" y="76" text-anchor="middle" fill="#4a3a5a" font-size="10">Forms on ruptured plaque</text>
+          <text x="467" y="91" text-anchor="middle" fill="#4a3a5a" font-size="10">Seals off the artery</text>
+          <text x="467" y="107" text-anchor="middle" fill="#a0192c" font-size="10">= Heart Attack</text>
+          <text x="467" y="120" text-anchor="middle" fill="#a0192c" font-size="9">80% have NO prior chest pain</text>
+
+          <text x="350" y="152" text-anchor="middle" fill="#8a7a9a" font-size="10" font-style="italic">Key insight: It is a minor plaque that ruptures — not the biggest blockage — that causes most heart attacks</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Drives Plaque Formation — The Real Causes</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Insulin — a highly atherogenic (plaque-forming) molecule. Causes smooth muscle proliferation in artery walls, vasoconstriction, increased blood clotting, and inflammation</li>
+            <li>Leaky gut — lipopolysaccharides (LPS) entering the bloodstream trigger immune activation and plaque formation</li>
+            <li>Mould toxicity — causes systemic inflammation that progresses coronary calcium scores</li>
+            <li>Food sensitivities (e.g. undiagnosed coeliac disease) — ongoing gut damage drives inflammation</li>
+            <li>Pesticides, herbicides, PFAS forever chemicals — disrupt metabolism and trigger inflammation</li>
+            <li>Oral microbiome — bad dental hygiene directly linked to valvular heart disease and coronary calcification</li>
+            <li>Chronic sinusitis (especially fungal) — low-grade inflammation linked to premature coronary artery disease</li>
+            <li>Sleep apnoea — causes hypertension and insulin resistance</li>
+            <li>Visceral fat — produces inflammatory molecules IL-6 and TNF that directly promote plaque</li>
+          </ul>
+          <div class="caution">Only 20% of patients with significant artery blockages experience chest pain. The other 80% have no warning — which is why screening is critical.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: INSULIN & VISCERAL FAT -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Insulin & Visceral Fat</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">High background insulin — not high blood glucose — is the silent driver of heart disease. Patients can have normal HbA1c and be told they're "not diabetic" while carrying 10 years of damaging hyperinsulinemia. By the time diabetes is diagnosed, coronary artery disease is already present.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why Glucose Is Toxic & What Insulin Does</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Glucose in the bloodstream causes glycation — glucose attaches to and damages proteins, enzymes, hormones, and blood vessel walls, accelerating ageing</li>
+            <li>The body responds by releasing insulin to push glucose into cells (liver, muscle, fat)</li>
+            <li>Frequent carbohydrate consumption keeps insulin elevated — insulin stays in the blood for ~4 hours even after glucose has cleared in 2–3</li>
+            <li>Chronically high insulin → insulin resistance → the body needs even more insulin for the same effect</li>
+            <li>By the time diabetes is diagnosed, the patient has already had ~10 years of dangerous hyperinsulinemia</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Fasting insulin target</span><span class="kv-val">Measure and aim to keep low — most doctors don't test it but it should be tested</span>
+            <span class="kv-key">Key phenotype</span><span class="kv-val">Belly protruding but otherwise not overweight = visceral fat = hyperinsulinemia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Visceral Fat — Why It's Different & Dangerous</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Visceral fat is created from excess glucose — a different fat to dietary fat. High-calorie diets cause weight gain everywhere; high-glucose diets specifically cause belly visceral fat</li>
+            <li>Visceral fat secretes IL-6 and TNF (tumour necrosis factor) — highly inflammatory molecules that promote plaque formation around the coronary arteries</li>
+            <li>Ectopic fat (fat around the coronary arteries, liver, and pancreas) is now detectable by CT scan and is directly linked to atherosclerosis</li>
+            <li>Biopsy comparison: visceral fat = full of inflammatory molecules; buttock fat = not inflammatory. Two completely different tissues.</li>
+            <li>Fatty liver has three causes: excess alcohol, leaky gut (LPS), and excess insulin converting glucose to fat</li>
+          </ul>
+          <div class="positive">After 12 hours of fasting, the body begins pulling fat out of storage — and visceral fat is the first to go. This is why fasting specifically targets the most dangerous fat.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: FASTING -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Fasting — Types, Benefits & Protocols</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Fasting and calorie restriction are NOT the same thing. Calorie restriction slows metabolism and breaks down muscle. Fasting triggers a completely different physiology — the body draws from fat reserves without sacrificing muscle, produces BDNF, stem cells, and growth hormone, and reverses insulin resistance.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fasting Protocols — By Goal</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">12:12</span><span class="kv-val">12 hours fasted, 12 hours eating. Starting point for beginners. Run for 2–3 weeks before progressing.</span>
+            <span class="kv-key">18:6</span><span class="kv-val">18 hours fasted, 6-hour eating window. Only water, black tea, black coffee, green tea during the fast. Dr. Jamnadas's recommended standard.</span>
+            <span class="kv-key">OMAD</span><span class="kv-val">One meal a day. Dr. Jamnadas does this 3–4 times per week (eating at 6pm). Reports having more energy than in the morning on OMAD days.</span>
+            <span class="kv-key">36-hour fast</span><span class="kv-val">Once a month for otherwise healthy adults. Should become a normal part of life.</span>
+            <span class="kv-key">48-hour fast</span><span class="kv-val">For significantly overweight patients or those needing to reverse diabetes. Once a week.</span>
+            <span class="kv-key">72-hour fast</span><span class="kv-val">Every 9 days (combined with daily OMAD for the other 9 days). For patients needing major intervention. Medical supervision required.</span>
+            <span class="kv-key">Extended fasts</span><span class="kv-val">Extended medically supervised fasts (e.g. 72 days with electrolytes and MCT oil) used for extreme obesity with diabetes, hypertension, and joint disease. Not DIY.</span>
+          </div>
+          <div class="caution">Extended fasting beyond 24–36 hours must be done under medical supervision. During a supervised fast, patients may use water, black tea/coffee, electrolytes (ELEMENT or Celtic salt in water), and MCT oil if hunger is severe.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Happens During a Fast</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Hours 0–12: glycogen depleted from liver and muscles</li>
+            <li>After 12 hours: fat mobilisation begins — visceral fat is burned first</li>
+            <li>Insulin drops → fat cells release free fatty acids → liver converts to ketones</li>
+            <li>BDNF (brain-derived neurotrophic factor) increases — improved cognition, new cell growth, better reflexes, sharper vision</li>
+            <li>Growth hormone increases — peak growth hormone production occurs during fasting, enabling muscle retention and gain even while fasted</li>
+            <li>Stem cell mobilisation — on breaking the fast, a surge of stem cells from bone marrow enter the bloodstream, becoming immune cells, progenitor cells, and repair cells</li>
+            <li>Endothelial progenitor cells increase — these specifically repair the lining of blood vessels, directly relevant to preventing coronary artery disease</li>
+            <li>Autophagy activates — cells recycle damaged organelles. Mitophagy repairs and renews mitochondria. Toxins are cleared from cells.</li>
+            <li>Immunity boosts — people who fast regularly get fewer infections and colds</li>
+          </ul>
+          <div class="positive">Fasting produces real, visible body recomposition. Patients who lose weight through fasting do not get excess loose skin — because fasting preserves and tightens skin in a way calorie restriction does not.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exercise Timing During a Fast</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Exercise at the peak of your fast — 2 hours before breaking the fast. This is when growth hormone is highest, enabling maximum muscle retention and gain even in a fasted state.</p>
+          <ul class="bullet-list">
+            <li>Resistance training and HIIT are well-tolerated fasted — glucose depletion is not a significant problem</li>
+            <li>Long-duration aerobic exercise (40+ minutes running) fasted is not recommended — this risks muscle breakdown, particularly in women</li>
+            <li>Women: HIIT and resistance training fasted are fine. Sustained treadmill running fasted is not.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: KETONES -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Ketones</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Ketones are an alternative energy source produced by the liver from fat when insulin is low. They are a cleaner fuel than glucose — producing fewer reactive oxygen species (free radicals) in the mitochondria. They are also signalling molecules.</p>
+      <ul class="bullet-list">
+        <li>Ketones appear after ~12 hours of fasting (once glycogen is depleted)</li>
+        <li>Produce less oxidative damage to cells than glucose metabolism</li>
+        <li>Trigger BDNF production — new brain cells, sharper cognition, better reflexes</li>
+        <li>Act as signalling molecules that change physiology broadly</li>
+        <li>You are designed to cycle in and out of ketosis — constant ketosis is not the natural state. Fasting and feasting rhythms were normal for human physiology throughout history</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">Ketogenic diet</span><span class="kv-val">&lt;50g carbohydrates/day. Used to achieve ketosis without fasting. Cycle in and out — don't stay in permanently.</span>
+        <span class="kv-key">Cycle for weight loss</span><span class="kv-val">Stay ketogenic until goal weight is reached, then return to 18:6 time-restricted eating, with occasional 36-hour fasts monthly.</span>
+      </div>
+      <div class="note">Dr. Jamnadas: you want both fuel systems (glucose and ketones) working. You are supposed to feast and fast — modern life has removed the fasting half of this cycle entirely.</div>
+    </div>
+  </div>
+
+  <!-- S5: SUPPLEMENTS -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Supplements</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Jamnadas's personal supplement stack and those he prescribes to patients. His rationale: modern food is nutritionally depleted, we don't eat enough variety, and the diet cannot fill all gaps.</p>
+
+      <div class="supp-grid">
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Vitamin D3</span>
+          <span class="supp-dose">Supplement — test first</span>
+          <span class="supp-benefit">Required for calcium absorption. Deficiency linked to osteoporosis and cardiovascular disease. Must be paired with K2 to work correctly.</span>
+          <span class="supp-flag flag-plum">Pair with K2</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Vitamin K2</span>
+          <span class="supp-dose">Supplement all cardiac patients</span>
+          <span class="supp-benefit">Directs calcium into bones, NOT into artery walls. Prevents coronary calcification. Warfarin (blood thinner) depletes K2 — patients on it have higher coronary calcium scores.</span>
+          <span class="supp-flag flag-plum">Critical for heart</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Omega-3 Fish Oil</span>
+          <span class="supp-dose">2 capsules daily (Dr. J's dose)</span>
+          <span class="supp-benefit">Anti-inflammatory. Required for vagus nerve function (DHA specifically). 50% of population severely deficient. Reduces small dense LDL formation.</span>
+          <span class="supp-flag flag-plum">Essential</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Vitamin C</span>
+          <span class="supp-dose">1g daily</span>
+          <span class="supp-benefit">Antioxidant. Supports immune function and collagen production in artery walls.</span>
+          <span class="supp-flag flag-teal">Antioxidant</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Magnesium</span>
+          <span class="supp-dose">Daily supplement</span>
+          <span class="supp-benefit">Required for 300+ enzymatic reactions. Supports heart rhythm, blood pressure, sleep, and insulin sensitivity.</span>
+          <span class="supp-flag flag-teal">Essential mineral</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Inulin with FOS</span>
+          <span class="supp-dose">1 scoop powder in water daily</span>
+          <span class="supp-benefit">Soluble prebiotic fibre. Feeds good gut bacteria. Prescribed to all patients to address fibre deficiency. Also used as breakfast base with kefir.</span>
+          <span class="supp-flag flag-teal">Gut health</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Nattokinase</span>
+          <span class="supp-dose">8,000 units/day (Dr. J's dose)</span>
+          <span class="supp-benefit">Natural enzyme from fermented soy (natto). Mildly thins the blood — reduces tendency to form clots. Used for elevated fibrinogen. Does not cause bleeding at this dose.</span>
+          <span class="supp-flag flag-plum">Anti-clotting</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Mega Spore Probiotic</span>
+          <span class="supp-dose">Spore-based probiotic</span>
+          <span class="supp-benefit">Spore form survives stomach acid — germinates in the intestines. Contains Bacillus species from soil. Standard probiotics are largely killed by stomach acid before reaching the gut.</span>
+          <span class="supp-flag flag-teal">Gut health</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Kefir</span>
+          <span class="supp-dose">Daily — drunk not supplemented</span>
+          <span class="supp-benefit">Multiple strains of live bacteria plus postbiotics (including K2 and SCFAs). Restores gut microbiome diversity. Dr. J counts it as a supplement — drinks daily.</span>
+          <span class="supp-flag flag-teal">Fermented food</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>D3 + K2 — Why They Must Be Taken Together</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">This is one of the most important supplement combinations in cardiology, yet widely misunderstood.</p>
+          <ul class="bullet-list">
+            <li>Vitamin D3 increases calcium absorption from the gut — ensuring more calcium enters the body</li>
+            <li>Vitamin K2 directs that calcium into bones and teeth — and keeps it OUT of artery walls and soft tissues</li>
+            <li>Without K2, absorbed calcium deposits in the wrong places — including coronary arteries (coronary calcification)</li>
+            <li>Calcium supplements without D3 and K2 increase cardiovascular event risk — calcium goes into arteries, not bones</li>
+            <li>Warfarin (anticoagulant) depletes both K1 and K2 — patients on warfarin have documented higher rates of coronary calcification</li>
+          </ul>
+          <div class="caution">Stop all calcium supplements. They increase cardiovascular risk. Fix the underlying cause: D3 deficiency (absorption) and K2 deficiency (direction). Dietary calcium from real food is fine.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Nattokinase — Detail</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Nattokinase is an enzyme from natto (fermented soy). Dr. Jamnadas takes it because his own fibrinogen level was at the upper limit of normal — high fibrinogen indicates a greater tendency to form blood clots, a key step in heart attacks.</p>
+          <ul class="bullet-list">
+            <li>Metabolic syndrome increases clotting tendency and raises fibrinogen</li>
+            <li>Nattokinase mildly reduces blood viscosity without causing the bleeding risks of pharmaceutical anticoagulants</li>
+            <li>No significant bleeding risk at 8,000 units/day</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: DIET -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Diet & Foods</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Dr. Jamnadas's Own Diet</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Grass-finished (not just grass-fed) meat, fish, chicken, turkey — small amounts, organic and correctly sourced</li>
+            <li>Vegetables with meals</li>
+            <li>Lentils and curries from his Indian heritage</li>
+            <li>Kefir daily</li>
+            <li>Inulin powder in water daily</li>
+            <li>OMAD (one meal a day) 3–4 times per week, eating at 6pm</li>
+            <li>No breakfast most days — skips it to extend the fast</li>
+            <li>Breakfast if eaten: 2 eggs, or kefir with a small amount of berries and inulin powder</li>
+          </ul>
+          <div class="note"><strong>Grass-finished vs grass-fed:</strong> "Grass-fed" is often misleading — animals may be fed grass briefly and then finished on corn. Grass-finished means grass from birth to slaughter — this gives more omega-3, more K2, better nutrition, and fewer toxins.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Foods to Avoid — Surprising Ones</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Excessive fruit</strong> — fructose causes fatty liver. Should only be eaten in season, in small amounts. Fruit is not a free food — overconsumption contributes to coronary artery disease, diabetes, and fatty liver</li>
+            <li><strong>White rice</strong> — contains arsenic (from contaminated paddyfields). To prepare safely: soak overnight, discard water, cook with excess water, discard again, cool in refrigerator overnight, then reheat. This creates resistant starch (fed to bacteria rather than absorbed) and removes much of the arsenic</li>
+            <li><strong>Orange juice</strong> — produces a profound glucose/insulin spike, causes hunger 3–4 hours later. No fibre, high fructose. Not a health food</li>
+            <li><strong>Vegetable seed oils</strong> — extremely high in omega-6, distorting the omega-6:omega-3 ratio that is already deeply imbalanced in modern diets</li>
+            <li><strong>Advanced glycation end products (AGEs)</strong> — formed by overcooking, blackening, frying food. Nature cannot produce these; only high-temperature cooking does. They cause severe inflammation via RAGE receptors</li>
+            <li><strong>Calcium supplements</strong> — increase cardiovascular event risk without D3 and K2 to direct the calcium correctly</li>
+            <li><strong>Excessive B vitamins</strong> — particularly from fortified processed foods. May increase fat storage efficiency in mitochondria</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Cooking Oils & Bread</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Salads / cold use</span><span class="kv-val">Extra virgin olive oil</span>
+            <span class="kv-key">High-temperature cooking</span><span class="kv-val">Butter, ghee, or coconut oil — stable at high temperatures</span>
+            <span class="kv-key">Avoid always</span><span class="kv-val">All vegetable / seed oils (sunflower, rapeseed, canola, corn oil) — extremely high omega-6</span>
+            <span class="kv-key">Best bread</span><span class="kv-val">Sourdough only, occasionally — fermentation removes lectins. Small amounts. Bread is a survival food — empty calories.</span>
+            <span class="kv-key">Worst bread</span><span class="kv-val">White bread — equivalent to eating 10 teaspoons of sugar per slice</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Coffee & Cacao</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Coffee is beneficial — not because of the caffeine, but because of soluble fibre and polyphenols that feed good gut bacteria</li>
+            <li>1–2 coffees per day is fine. More than that becomes a toxicity issue — acts like adrenaline, keeps the body in sympathetic (fight-or-flight) mode, is a diuretic that causes dehydration and further sympathetic activation</li>
+            <li>85% dark cacao / cacao — high in antioxidants and soluble fibre. Feeds the gut microbiome. Has been called "heart medicine" — correctly so for reasons of gut health and polyphenols</li>
+            <li>Above 600mg caffeine/day: raises blood pressure, triggers arrhythmias, stresses the heart</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: GUT HEALTH -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Gut Health & the Heart</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The biggest border between you and your external environment is not your skin — it is your gut. 100 trillion bacteria and ~400 trillion viruses live there in a symbiotic relationship, producing micronutrients, short-chain fatty acids, postbiotics, and maintaining the integrity of the gut lining.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How Gut Health Drives Heart Disease</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Leaky gut → LPS (lipopolysaccharides) enter bloodstream → travel to liver → fatty liver → systemic inflammation</li>
+            <li>Dysfunctional microbiome → gut lining integrity compromised → leaky gut → plaque formation</li>
+            <li>Bad oral microbiome → directly linked to valvular heart disease and coronary calcification (unequivocal evidence)</li>
+            <li>Chronic sinusitis (especially fungal) → low-grade systemic inflammation → premature coronary artery disease</li>
+            <li>Dr. Jamnadas case: patient with coronary calcium score of 1,000+ had no conventional risk factors — investigation found a lifelong bad microbiome and chronic constipation (bowel movement every 3–4 days)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Gut Repair Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Eat 30–40 different types of vegetables per week — variety matters as different fibres feed different bacterial species</li>
+            <li>Include spices — each counts as a vegetable type</li>
+            <li>Take inulin with FOS powder daily — soluble prebiotic fibre for good bacteria</li>
+            <li>Eat fermented foods daily: kefir (multiple bacterial strains + postbiotics including K2 and SCFAs), kimchi, sauerkraut, yogurt</li>
+            <li>Use spore-based probiotics (Mega Spore) — bypass stomach acid, germinate in the intestines</li>
+            <li>Sleep 7 hours minimum — one night of poor sleep changes gut microbiome composition</li>
+            <li>Fix eating frequency — eating constantly feeds bad bacteria. Time-restricted eating starves them.</li>
+          </ul>
+          <div class="note">Postbiotics are the products made BY gut bacteria — including vitamin K2, short-chain fatty acids, and other beneficial molecules. You get them from fermented foods even if you don't know they're in there.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: TOXINS & MOULD -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Toxins & Mould</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Toxins are a major underappreciated driver of cardiovascular disease. Dr. Jamnadas tests all patients with blood, urine, and stool samples for detoxification ability, heavy metals, pesticides, herbicides, and mould. He is finding unexpectedly high levels across his patient population.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Mould — An Emerging Concern</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>~70% of homes have some form of mould toxicity — from water damage or exposure</li>
+            <li>Mould triggers the innate immune system → chronic low-grade inflammation → progressive coronary artery disease</li>
+            <li>When Dr. Jamnadas removes mould from patients' environments, the rate of coronary calcium score progression flattens</li>
+            <li>Mould can colonise the gut and sinuses — recontaminating the person even after leaving the mouldy environment</li>
+            <li>Fungal sinusitis is directly linked to premature coronary artery disease</li>
+            <li>Blood markers of mould: elevated CRP, complement levels, and specific inflammatory molecule ratios</li>
+          </ul>
+          <div class="caution"><strong>If you smell an earthy, pungent smell near cracks or seams in wet areas (bathrooms, steam rooms, basements) — that is almost certainly mould.</strong> Smell directly near the crack. If the smell intensifies, arrange professional remediation. Do not ignore it.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Other Toxins</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Arsenic in rice</strong> — from contaminated paddy fields. Slow poison at chronic low doses. Mitigation: soak overnight, discard water, cook in excess water, discard again, refrigerate, reheat (creates resistant starch)</li>
+            <li><strong>Pesticides and herbicides</strong> — oestrogen receptor disruptors. Living on or near a golf course (heavily treated) is a risk factor. Buy organic produce.</li>
+            <li><strong>PFAS / BPA</strong> — disrupt metabolism, cause inflammation. Avoid plastic containers and non-stick cookware</li>
+            <li><strong>Heavy metals</strong> — found in contaminated soil and water. The liver detoxifies these but can be overwhelmed. Healthy gut bacteria help excrete heavy metals in stool.</li>
+            <li><strong>AGEs (Advanced Glycation End Products)</strong> — produced by blackening, burning, or frying food. Cause severe inflammation. Cook at lower temperatures; avoid charred food.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: EXERCISE -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Exercise for Heart Health</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Excessive aerobic exercise causes more coronary artery disease than short sprints and resistance training. This contradicts conventional wisdom and is based on Dr. Jamnadas's direct clinical observation across 250,000+ patients.</p>
+
+      <div class="two-col">
+        <div class="col-card good">
+          <h4>Recommended Exercise</h4>
+          <ul class="bullet-list">
+            <li>HIIT: 30–45 seconds intense work, 30–45 seconds complete rest — allows the body to clear reactive oxygen species between bursts</li>
+            <li>Resistance / body-weight exercises: planks, leg lifts, push-ups, flow exercises</li>
+            <li>Short aerobic sessions: 15–20 minutes only — for cardiovascular endurance</li>
+            <li>Exercise at peak of fast (2 hours before breaking it) for maximum growth hormone</li>
+          </ul>
+        </div>
+        <div class="col-card bad">
+          <h4>What to Avoid</h4>
+          <ul class="bullet-list">
+            <li>Excessive endurance aerobic training: 2-hour daily treadmill runs, 100-mile cycling days, marathon training every day</li>
+            <li>This level of aerobic exercise creates more inflammation and more coronary artery disease than patients who do only short sprints and resistance work</li>
+            <li>Over-exercise diverts blood from the gut → gut ischaemia → vagus nerve dysfunction → heart palpitations and arrhythmias</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">The rate-limiting step in cleaning up oxidative stress from exercise is glutathione and superoxide dismutase production. HIIT with rest intervals allows this cleanup to occur between bursts — continuous aerobic exercise does not give the body time to catch up.</div>
+    </div>
+  </div>
+
+  <!-- S10: VAGUS NERVE -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>The Vagus Nerve</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The vagus nerve is the largest nerve in the body. Its greatest distribution is in the gut — reflecting how important gut health is to the brain. It carries bidirectional information between the gut, heart, lungs, and brain. A dysfunctional vagus nerve = too much sympathetic (fight-or-flight), too little parasympathetic (repair).</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Benefits of a Healthy Vagus Nerve</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Faster healing and recovery</li>
+            <li>Reduced coronary artery disease progression</li>
+            <li>Lower blood pressure</li>
+            <li>Less blood clotting tendency</li>
+            <li>Lower inflammatory markers (IL-6, TNF, CRP, small dense LDL)</li>
+            <li>Better heart rate variability (HRV) — when Dr. Jamnadas fixes patients' guts, their HRV improves</li>
+            <li>Resolution of POTS (postural orthostatic tachycardia syndrome) in young women — often caused by gut dysfunction</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How to Stimulate the Vagus Nerve</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Breathing exercise</strong> — inhale for count of 4, exhale for count of 8. Deliberately long expiration. 10 minutes daily stimulates parasympathetic nerve endings.</li>
+            <li><strong>Cold water / ice pack on front of neck</strong> — vagus nerve lies close to the carotid sheath. Cold stimulates it. Ice pack on back of neck also works.</li>
+            <li><strong>Eye movements</strong> — looking right, left, up, down stimulates the vagus nerve via connections to the oculomotor nerve</li>
+            <li><strong>Eyeball pressure</strong> — gentle cold water on closed eyes triggers the dive reflex, lowering pulse rate</li>
+            <li><strong>Humming / singing for 10 minutes</strong> — vibration is transmitted to the vagus nerve, creates electrical impulses</li>
+            <li><strong>Laughing</strong> — diaphragmatic movement stimulates the vagus nerve. Laughing clubs exist for this purpose.</li>
+            <li><strong>Valsalva manoeuvre</strong> — breathe in, then bear down without releasing the air. Compresses the thoracic and abdominal cavity, stimulates vagus nerve</li>
+            <li><strong>Fix the gut</strong> — the primary, most lasting intervention. Vagus nerve has its largest distribution in the gut lining. Healing the gut heals the vagus nerve.</li>
+            <li><strong>Omega-3 supplementation</strong> — DHA specifically is required for optimal vagus nerve function</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: SLEEP & STRESS -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Sleep & Stress</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <ul class="bullet-list">
+        <li>One night of poor sleep = insulin resistant the next day. This is not subtle — it is direct and measurable</li>
+        <li>Frequent time-zone changes cause liver dysfunction and gut microbiome disruption</li>
+        <li>Target: 7 hours per night minimum</li>
+        <li>Sleep apnoea causes hypertension — there is no such thing as "essential hypertension." There is always a cause. Sleep apnoea and hyperinsulinemia are the two most common.</li>
+        <li>Chronic stress keeps the body in sympathetic (fight-or-flight) mode — no opportunity for parasympathetic repair → gut dysfunction → leaky gut → inflammation → heart disease</li>
+        <li>Depression is inflammation in the brain — not a psychological issue. Patients who go on Dr. Jamnadas's anti-inflammatory diet often have their depression resolve</li>
+        <li>Changing time zones frequently: liver dysfunctions and gut microbiome also dysfunctions</li>
+      </ul>
+      <div class="positive">When Dr. Jamnadas changes patients' diets and fixes their gut, joint pains improve, skin diseases improve, psoriasis improves, rheumatoid arthritis improves, and depression resolves. The underlying mechanism is the same: inflammation.</div>
+    </div>
+  </div>
+
+  <!-- S12: LDL & STATINS -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>LDL, Statins & Cholesterol</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Total LDL is not the problem. Small, dense, damaged LDL is the problem. This distinction changes everything about how cardiovascular risk should be assessed and managed.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>LDL — What Actually Matters</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Large, fluffy LDL particles — normal, not atherogenic. Even high levels are not a problem.</li>
+            <li>Small, dense, oxidised LDL — these destroy the glycocalyx (artery lining), activate endothelium, get engulfed by macrophages, become foam cells, and form plaque</li>
+            <li>Recent data: patients with the highest LDL levels live into their 90s and have healthier lives — it is the damaged LDL, not total LDL, that matters</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Five causes of small dense LDL</span><span class="kv-val">1. Sugar/glucose 2. Omega-6 oils 3. AGEs (overcooked food) 4. Toxins 5. LPS from leaky gut</span>
+            <span class="kv-key">Test to request</span><span class="kv-val">LDL subfraction test — is your LDL large and fluffy or small and dense? Available in the US; harder to access in some other countries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Statins — Honest Assessment</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Statins lower LDL — but lowering total LDL is not the same as reducing cardiovascular events</li>
+            <li>20–30% of patients experience myopathy (muscle weakness, aches, pains)</li>
+            <li>Statins can cause diabetes by inducing mitochondrial dysfunction</li>
+            <li>Can cause cognitive impairment — memory problems, brain fog. Often reverses when statins are stopped</li>
+            <li>Can cause liver dysfunction — requires monitoring</li>
+            <li>The goal should be eliminating small dense LDL — not simply lowering total LDL with a drug</li>
+          </ul>
+          <div class="caution">Statins are not universally safe. If you are on a statin and experiencing muscle weakness, memory problems, or have developed diabetes since starting, discuss statin-related side effects with your doctor. Stopping without medical advice is not recommended.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S13: TESTING -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Testing & Screening</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Two tests that every adult over 30 should have. These are Dr. Jamnadas's recommendations — not standard NHS/healthcare guidance.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>1. Coronary Calcium Score (CT Scan)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A CT scan that measures calcium deposits in coronary artery walls. Calcium = plaque = atherosclerosis. The more calcium, the more plaque present.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Score of 0</span><span class="kv-val">No coronary calcium — you are in a good place. Continue prevention.</span>
+            <span class="kv-key">Score &gt;0</span><span class="kv-val">Atherosclerosis is already present. See a prevention-focused cardiologist immediately.</span>
+            <span class="kv-key">Tracking</span><span class="kv-val">Used to monitor treatment — the score should not be rising. If it is, something is still driving inflammation. Dr. J investigates until he finds the cause.</span>
+            <span class="kv-key">Who needs it</span><span class="kv-val">All adults over 30 with any concerns about heart health or family history</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2. Inflammatory Blood Panel (Cleveland Heart Labs)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Standard cholesterol panels are insufficient. Dr. Jamnadas orders the Cleveland Heart Labs panel which goes much deeper.</p>
+          <ul class="bullet-list">
+            <li>HDL, LDL, cholesterol — with particle size analysis (small dense vs large fluffy)</li>
+            <li>Is the LDL oxidised?</li>
+            <li>CRP (C-reactive protein) — general inflammation marker</li>
+            <li>IL-6 (interleukin-6) — inflammatory cytokine</li>
+            <li>TNF (tumour necrosis factor) — inflammatory cytokine</li>
+            <li>HbA1c — long-term blood glucose average</li>
+            <li>Fasting insulin level — the most important number most doctors don't test</li>
+          </ul>
+          <div class="positive">Inflammation is invisible — you cannot feel it in most cases. The blood test is the only way to know. Mental fog, low mood, poor memory, and poor sleep are symptoms of systemic inflammation — not just lifestyle issues.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S14: WARNING SIGNS -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">14</span><h2>Warning Signs & Symptoms</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Signs of cardiovascular risk and systemic inflammation that can be observed or felt — and what they indicate.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Physical Signs</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Protruding belly — the single most visible indicator of visceral fat and hyperinsulinemia. "If you have a belly, you have a problem."</li>
+            <li>Joint pain — often inflammation-driven, not just mechanical. When gut and diet are fixed, joint pain typically resolves</li>
+            <li>Bad breath — linked to oral and gut microbiome dysfunction, which correlates with cardiovascular risk</li>
+            <li>Chronic sinusitis / blocked nose / sinus headaches — possible fungal mould exposure; directly linked to coronary disease</li>
+            <li>Heart palpitations — especially in otherwise healthy people, often indicates vagus nerve dysfunction from gut issues or sympathetic overdrive from stress/caffeine</li>
+            <li>POTS (rapid heartbeat on standing) in young women — often a gut problem, not a heart problem</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Mental & Cognitive Signs</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Brain fog / difficulty concentrating — a symptom of systemic inflammation</li>
+            <li>Depression — inflammation in the brain. Not purely psychological. Often resolves with anti-inflammatory diet.</li>
+            <li>Memory decline — inflammation-driven. Also a symptom of statin side effects in some.</li>
+            <li>Feeling suboptimal / not at your best — pay attention to this. Inflammation does not always have a visible physical marker.</li>
+          </ul>
+          <div class="caution">If you have chest pain, severe breathlessness, sudden crushing pressure across the chest, or pain radiating to the jaw or left arm — call emergency services immediately. Do not attempt to drive yourself to hospital.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  const sections = document.querySelectorAll('.section, #hero');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(s => observer.observe(s));
+
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
