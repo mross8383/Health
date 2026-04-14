@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Reference Library</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #162032;
+    --teal: #00b4a6;
+    --teal-glow: rgba(0,180,166,0.1);
+    --green: #2d6a2d;
+    --green-light: #4a9e4a;
+    --green-glow: rgba(45,106,45,0.1);
+    --amber: #c47820;
+    --amber-light: #e09840;
+    --amber-glow: rgba(196,120,32,0.1);
+    --text: #d8e4ee;
+    --text-dim: #7a9ab5;
+    --text-bright: #eef4fa;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .container { max-width: 720px; width: 100%; }
+
+  .header { text-align: center; margin-bottom: 56px; }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: var(--text-bright);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .header h1 em { font-style: italic; color: var(--teal); }
+
+  .header p {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px; }
+
+  .card {
+    display: block;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 26px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    background: var(--navy-mid);
+  }
+
+  .card:hover { transform: translateY(-2px); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-rhonda { border-color: rgba(0,180,166,0.2); }
+  .card-rhonda:hover { border-color: var(--teal); box-shadow: 0 8px 32px rgba(0,180,166,0.12); }
+  .card-rhonda::before { background: var(--teal-glow); }
+
+  .card-gut { border-color: rgba(45,106,45,0.25); background: #111e11; }
+  .card-gut:hover { border-color: var(--green-light); box-shadow: 0 8px 32px rgba(45,106,45,0.12); }
+  .card-gut::before { background: var(--green-glow); }
+
+  .card-bikman { border-color: rgba(196,120,32,0.25); background: #1c1209; }
+  .card-bikman:hover { border-color: var(--amber-light); box-shadow: 0 8px 32px rgba(196,120,32,0.12); }
+  .card-bikman::before { background: var(--amber-glow); }
+
+  .card-inner { display: flex; align-items: center; gap: 22px; position: relative; z-index: 1; }
+
+  .card-icon {
+    width: 50px; height: 50px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 21px;
+  }
+
+  .icon-teal { background: var(--teal-glow); border: 1px solid rgba(0,180,166,0.25); }
+  .icon-green { background: var(--green-glow); border: 1px solid rgba(45,106,45,0.3); }
+  .icon-amber { background: var(--amber-glow); border: 1px solid rgba(196,120,32,0.3); }
+
+  .card-text { flex: 1; }
+
+  .card-guest {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .text-teal { color: var(--teal); }
+  .text-green { color: #7dc87d; }
+  .text-amber { color: var(--amber-light); }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    color: var(--text-bright);
+    margin-bottom: 5px;
+    line-height: 1.2;
+  }
+
+  .card-desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+
+  .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+
+  .card-tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+
+  .tag-teal { background: rgba(0,180,166,0.1); color: var(--teal); border: 1px solid rgba(0,180,166,0.2); }
+  .tag-green { background: rgba(45,106,45,0.12); color: #7dc87d; border: 1px solid rgba(45,106,45,0.25); }
+  .tag-amber { background: rgba(196,120,32,0.12); color: var(--amber-light); border: 1px solid rgba(196,120,32,0.25); }
+
+  .card-arrow {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .arrow-teal { background: rgba(0,180,166,0.1); }
+  .arrow-green { background: rgba(45,106,45,0.15); }
+  .arrow-amber { background: rgba(196,120,32,0.12); }
+
+  .card:hover .card-arrow { transform: translateX(3px); }
+  .card-arrow svg { width: 13px; height: 13px; }
+
+  .divider { width: 40px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto 40px; }
+
+  .footer { text-align: center; font-size: 12px; color: var(--text-dim); line-height: 1.6; opacity: 0.6; }
+
+  @media (max-width: 560px) {
+    .header h1 { font-size: 30px; }
+    .card-inner { flex-wrap: wrap; gap: 14px; }
+    .card-arrow { display: none; }
+    .card { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <div class="eyebrow">Health Reference Library</div>
+    <h1>Expert Knowledge,<br><em>Organised</em></h1>
+    <p>Structured reference guides from leading health experts, based on Diary of a CEO podcast transcripts.</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <div class="cards">
+
+    <a class="card card-rhonda" href="rhonda-patrick.html">
+      <div class="card-inner">
+        <div class="card-icon icon-teal">🧬</div>
+        <div class="card-text">
+          <div class="card-guest text-teal">Dr. Rhonda Patrick</div>
+          <div class="card-title">Health & Anti-Aging Reference</div>
+          <div class="card-desc">Visceral fat, supplements, intermittent fasting, exercise science, endocrine disruptors, peak span, and brain ageing.</div>
+          <div class="card-tags">
+            <span class="card-tag tag-teal">Visceral Fat</span>
+            <span class="card-tag tag-teal">Supplements</span>
+            <span class="card-tag tag-teal">Fasting</span>
+            <span class="card-tag tag-teal">Peak Span</span>
+            <span class="card-tag tag-teal">Toxins</span>
+          </div>
+        </div>
+        <div class="card-arrow arrow-teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00b4a6" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <a class="card card-gut" href="gut-health.html">
+      <div class="card-inner">
+        <div class="card-icon icon-green">🦠</div>
+        <div class="card-text">
+          <div class="card-guest text-green">Dr. Will Bulsiewicz</div>
+          <div class="card-title">Gut Health Reference</div>
+          <div class="card-desc">The gut microbiome, inflammation, fibre and SCFAs, the perfect gut day routine, supplements, fermented foods, and the brain-gut axis.</div>
+          <div class="card-tags">
+            <span class="card-tag tag-green">Microbiome</span>
+            <span class="card-tag tag-green">Inflammation</span>
+            <span class="card-tag tag-green">Fibre</span>
+            <span class="card-tag tag-green">Supplements</span>
+            <span class="card-tag tag-green">Gut Routine</span>
+          </div>
+        </div>
+        <div class="card-arrow arrow-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7dc87d" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <a class="card card-bikman" href="bikman-insulin.html">
+      <div class="card-inner">
+        <div class="card-icon icon-amber">⚡</div>
+        <div class="card-text">
+          <div class="card-guest text-amber">Dr. Benjamin Bikman</div>
+          <div class="card-title">Insulin & Metabolic Health Reference</div>
+          <div class="card-desc">Insulin as the master hormone, ketosis, fatty liver, fat cell science, creatine, exogenous ketones, GLP-1 drugs, and the perfect metabolic day.</div>
+          <div class="card-tags">
+            <span class="card-tag tag-amber">Insulin</span>
+            <span class="card-tag tag-amber">Ketosis</span>
+            <span class="card-tag tag-amber">Fat Loss</span>
+            <span class="card-tag tag-amber">Creatine</span>
+            <span class="card-tag tag-amber">GLP-1</span>
+          </div>
+        </div>
+        <div class="card-arrow arrow-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e09840" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <footer class="footer">
+    All content is based on podcast transcripts from the Diary of a CEO.<br>
+    These guides represent the experts' interpretation of scientific literature — not medical advice.
+  </footer>
+
+</div>
+
+</body>
+</html>
