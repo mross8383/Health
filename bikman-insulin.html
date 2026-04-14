@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Benjamin Bikman – Insulin & Metabolic Health Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --bg-card: #ffffff;
+    --bg-dark: #1c1209;
+    --bg-mid: #2a1c0f;
+    --amber: #c47820;
+    --amber-light: #e09840;
+    --amber-pale: #fdf6e8;
+    --amber-dim: rgba(196,120,32,0.12);
+    --rust: #b84020;
+    --rust-pale: #fdf0ec;
+    --rust-dim: rgba(184,64,32,0.1);
+    --teal: #1a6a5a;
+    --teal-pale: #e6f3f0;
+    --teal-dim: rgba(26,106,90,0.1);
+    --text: #1a1209;
+    --text-mid: #4a3c2a;
+    --text-dim: #8a7a6a;
+    --border: rgba(196,120,32,0.15);
+    --sidebar-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--bg-dark);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: var(--amber) transparent;
+  }
+
+  #sidebar::-webkit-scrollbar { width: 3px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 28px 22px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .sidebar-brand {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    color: var(--amber-light);
+    margin-bottom: 5px;
+  }
+
+  .sidebar-header p { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.5; }
+
+  nav { padding: 12px 0 30px; flex: 1; }
+
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 22px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--amber-light);
+    border-left-color: var(--amber-light);
+    background: rgba(196,120,32,0.08);
+  }
+
+  nav a .nav-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(196,120,32,0.5);
+    min-width: 18px;
+  }
+
+  .nav-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 22px; }
+
+  /* ── MAIN ── */
+  #main { margin-left: var(--sidebar-w); flex: 1; padding: 0 0 80px; max-width: 960px; }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 56px 60px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(196,120,32,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 36px;
+    color: #f5ede0;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    max-width: 560px;
+  }
+
+  #hero h1 em { color: var(--amber-light); font-style: italic; }
+
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 500px; margin-bottom: 26px; }
+
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(196,120,32,0.3);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--amber-light);
+    font-weight: 500;
+  }
+
+  /* ── SECTIONS ── */
+  .section { border-bottom: 1px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 60px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+
+  .section-header:hover { background: var(--amber-pale); }
+
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--amber);
+    background: var(--amber-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 21px;
+    color: var(--bg-dark);
+    font-weight: 700;
+  }
+
+  .chevron { width: 18px; height: 18px; color: var(--amber); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 60px 40px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+
+  .section-body.open { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SUBSECTIONS ── */
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .subsection-header:hover { background: var(--amber-pale); }
+
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); }
+
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-body.open { display: block; }
+
+  /* ── PROSE ── */
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  /* ── BULLETS ── */
+  .bullet-list { list-style: none; margin: 10px 0; }
+
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--amber-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  /* ── KV ── */
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--amber-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--amber);
+  }
+
+  .kv-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--amber);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  /* ── NOTES ── */
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--amber-pale);
+    border-left: 3px solid var(--amber-light);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--amber);
+    line-height: 1.55;
+  }
+
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--rust-pale);
+    border-left: 3px solid var(--rust);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--rust);
+  }
+
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--teal-pale);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--teal);
+  }
+
+  /* ── SUPPLEMENT CARDS ── */
+  .supp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 9px;
+    margin: 14px 0;
+  }
+
+  .supp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .supp-card:hover {
+    border-color: var(--amber-light);
+    box-shadow: 0 2px 12px rgba(196,120,32,0.08);
+  }
+
+  .supp-timing {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .supp-name { font-size: 13px; font-weight: 600; color: var(--bg-dark); }
+
+  .supp-dose {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--rust);
+  }
+
+  .supp-benefit { font-size: 11.5px; color: var(--text-dim); line-height: 1.45; flex: 1; }
+
+  .supp-flag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+    font-weight: 500;
+  }
+
+  .flag-amber { background: var(--amber-dim); color: var(--amber); }
+  .flag-teal { background: var(--teal-dim); color: var(--teal); }
+  .flag-rust { background: var(--rust-dim); color: var(--rust); }
+
+  /* ── DIAGRAM ── */
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--amber);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  svg text { font-family: 'Inter', sans-serif; }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+
+  .col-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+  }
+
+  .col-card h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .col-card.good h4 { color: var(--teal); }
+  .col-card.bad h4 { color: var(--rust); }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 14px 0; position: relative; padding-left: 24px; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .timeline-item { position: relative; margin-bottom: 14px; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -19px; top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--amber);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .timeline-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #sidebar { width: 100%; height: auto; position: relative; }
+    #main { margin-left: 0; }
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">Metabolic Health Reference</div>
+    <p>Dr. Benjamin Bikman · Diary of a CEO Podcast</p>
+  </div>
+  <nav>
+    <a href="#hero"><span class="nav-num">—</span> Overview</a>
+    <div class="nav-divider"></div>
+    <a href="#s1"><span class="nav-num">01</span> Insulin — The Master Hormone</a>
+    <a href="#s2"><span class="nav-num">02</span> Ketones & Ketosis</a>
+    <a href="#s3"><span class="nav-num">03</span> Fat Cells & Weight Loss</a>
+    <a href="#s4"><span class="nav-num">04</span> Fatty Liver</a>
+    <a href="#s5"><span class="nav-num">05</span> Supplements</a>
+    <a href="#s6"><span class="nav-num">06</span> Foods, Diet & Strategy</a>
+    <a href="#s7"><span class="nav-num">07</span> Dr. Bikman's Perfect Day</a>
+    <a href="#s8"><span class="nav-num">08</span> GLP-1 Drugs</a>
+    <a href="#s9"><span class="nav-num">09</span> Alcohol, Sleep & Stress</a>
+    <a href="#s10"><span class="nav-num">10</span> Testosterone & Men's Health</a>
+    <a href="#s11"><span class="nav-num">11</span> Women & Keto</a>
+    <a href="#s12"><span class="nav-num">12</span> Cancer & Metabolism</a>
+    <a href="#s13"><span class="nav-num">13</span> Testing & Monitoring</a>
+  </nav>
+</aside>
+
+<main id="main">
+
+  <section id="hero">
+    <h1>Dr. Benjamin Bikman<br><em>Insulin & Metabolic</em><br>Health Reference</h1>
+    <p>A structured reference from the Diary of a CEO podcast. All claims are Dr. Bikman's interpretation of the scientific literature — not medical advice.</p>
+    <div class="hero-tags">
+      <span class="tag">Insulin</span>
+      <span class="tag">Ketosis</span>
+      <span class="tag">Fat Loss</span>
+      <span class="tag">Fatty Liver</span>
+      <span class="tag">Creatine</span>
+      <span class="tag">GLP-1</span>
+      <span class="tag">Metabolism</span>
+    </div>
+  </section>
+
+  <!-- S1: INSULIN -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>Insulin — The Master Hormone</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Insulin is described as "the one metabolic hormone to rule them all." It tells every single cell in the body — from brain to bone — what to do with energy. Without insulin, it is physically impossible to get fat. With chronically elevated insulin, fat loss is nearly impossible.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">High Insulin → Fat Storage Cascade</div>
+        <svg width="100%" viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#c47820"/>
+            </marker>
+            <marker id="arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#b84020"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="55" width="120" height="60" rx="6" fill="#fdf6e8" stroke="#c47820" stroke-width="1.5"/>
+          <text x="70" y="79" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Eat Refined</text>
+          <text x="70" y="93" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Carbs / Sugar</text>
+          <text x="70" y="107" text-anchor="middle" fill="#8a7a6a" font-size="9">blood glucose spikes</text>
+
+          <path d="M130,85 L165,85" stroke="#c47820" stroke-width="1.5" marker-end="url(#arr-a)" fill="none"/>
+
+          <rect x="165" y="55" width="120" height="60" rx="6" fill="#fdf6e8" stroke="#c47820" stroke-width="1.5"/>
+          <text x="225" y="79" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Insulin Spikes</text>
+          <text x="225" y="93" text-anchor="middle" fill="#8a7a6a" font-size="10">pancreas releases</text>
+          <text x="225" y="107" text-anchor="middle" fill="#8a7a6a" font-size="10">large amounts</text>
+
+          <path d="M285,85 L320,85" stroke="#c47820" stroke-width="1.5" marker-end="url(#arr-a)" fill="none"/>
+
+          <rect x="320" y="40" width="140" height="90" rx="6" fill="#fdf6e8" stroke="#b84020" stroke-width="1.5"/>
+          <text x="390" y="67" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Energy Stored</text>
+          <text x="390" y="83" text-anchor="middle" fill="#8a7a6a" font-size="10">fat cells grow ↑</text>
+          <text x="390" y="97" text-anchor="middle" fill="#8a7a6a" font-size="10">liver stores fat ↑</text>
+          <text x="390" y="111" text-anchor="middle" fill="#8a7a6a" font-size="10">ketones blocked ✗</text>
+          <text x="390" y="123" text-anchor="middle" fill="#b84020" font-size="9">metabolism slows down</text>
+
+          <path d="M460,85 L495,85" stroke="#b84020" stroke-width="1.5" marker-end="url(#arr-r)" fill="none"/>
+
+          <rect x="495" y="40" width="185" height="90" rx="6" fill="#fdf0ec" stroke="#b84020" stroke-width="1.5"/>
+          <text x="588" y="62" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Brain Fuel Drops</text>
+          <text x="588" y="78" text-anchor="middle" fill="#8a7a6a" font-size="10">glucose pushed to storage</text>
+          <text x="588" y="93" text-anchor="middle" fill="#8a7a6a" font-size="10">ketones blocked by insulin</text>
+          <text x="588" y="108" text-anchor="middle" fill="#b84020" font-size="10">hunger + cravings → repeat</text>
+          <text x="588" y="122" text-anchor="middle" fill="#b84020" font-size="9">brain fog · fatigue · weight gain</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Insulin Does — Beyond Blood Sugar</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Controls energy use in every single cell — brain, bone, liver, lung, fat</li>
+            <li>Slows the body's metabolic rate in order to store more energy</li>
+            <li>Directs calories from the blood into fat cells and the liver</li>
+            <li>Blocks the liver from making ketones — preventing the brain's preferred alternative fuel</li>
+            <li>A low-carb meal vs. a high-carb meal at identical calorie counts produces a measurably higher metabolic rate for hours — because insulin stays lower</li>
+          </ul>
+          <div class="positive">Without insulin: physically impossible to get fat. With chronically elevated insulin: fat loss is extremely difficult regardless of calorie restriction.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Insulin Resistance — What It Is & Why It Matters</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">If you have gained weight, you have insulin resistance. It is impossible to have one without the other. Insulin resistance makes every calorie you eat more likely to be stored as fat.</p>
+          <ul class="bullet-list">
+            <li>Three things rapidly cause insulin resistance: stress, poor sleep, and excessive carbohydrate consumption</li>
+            <li>Morning insulin resistance is natural (due to cortisol) — do not eat starchy or sugary foods in the morning as it doubles the existing glucose load</li>
+            <li>Alcohol causes insulin resistance — raises cortisol the next day, making every calorie eaten more efficiently stored as fat</li>
+            <li>The HOMA score (using fasting insulin + fasting glucose) is the best accessible measure of insulin resistance</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Fasting insulin target</span><span class="kv-val">≤7 microunits per millilitre — ideal range</span>
+            <span class="kv-key">How to test</span><span class="kv-val">Doctor blood test — insulin is not routinely measured but should be requested. HOMA score calculated from insulin + glucose together.</span>
+          </div>
+          <div class="caution">Insulin is not included in standard blood panels. Dr. Bikman's single policy wish: add insulin to all routine blood tests globally. Request it specifically from your GP.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: KETONES -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Ketones & Ketosis</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Ketones are produced by the liver when insulin is low and fat burning is high. They are both a fuel and a signalling molecule — acting like a hormone as well as an energy source. The main ketone is beta-hydroxybutyrate (BHB).</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Low Insulin → Fat Burning → Ketone Production</div>
+        <svg width="100%" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-g2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#1a6a5a"/>
+            </marker>
+          </defs>
+          <rect x="10" y="50" width="120" height="60" rx="6" fill="#e6f3f0" stroke="#1a6a5a" stroke-width="1.5"/>
+          <text x="70" y="75" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Low Insulin</text>
+          <text x="70" y="89" text-anchor="middle" fill="#4a3c2a" font-size="10">fasting or low carb</text>
+          <text x="70" y="103" text-anchor="middle" fill="#4a3c2a" font-size="10">~16 hrs to trigger</text>
+
+          <path d="M130,80 L165,80" stroke="#1a6a5a" stroke-width="1.5" marker-end="url(#arr-g2)" fill="none"/>
+
+          <rect x="165" y="50" width="130" height="60" rx="6" fill="#e6f3f0" stroke="#1a6a5a" stroke-width="1.5"/>
+          <text x="230" y="75" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">Fat Cells Release</text>
+          <text x="230" y="89" text-anchor="middle" fill="#4a3c2a" font-size="10">free fatty acids</text>
+          <text x="230" y="103" text-anchor="middle" fill="#4a3c2a" font-size="10">travel to liver</text>
+
+          <path d="M295,80 L330,80" stroke="#1a6a5a" stroke-width="1.5" marker-end="url(#arr-g2)" fill="none"/>
+
+          <rect x="330" y="40" width="130" height="80" rx="6" fill="#e6f3f0" stroke="#c47820" stroke-width="2"/>
+          <text x="395" y="65" text-anchor="middle" fill="#1c1209" font-size="12" font-weight="600">Liver Burns Fat</text>
+          <text x="395" y="81" text-anchor="middle" fill="#4a3c2a" font-size="10">produces BHB ketones</text>
+          <text x="395" y="95" text-anchor="middle" fill="#4a3c2a" font-size="10">fat in tissue 3× higher</text>
+          <text x="395" y="109" text-anchor="middle" fill="#c47820" font-size="9">metabolic rate ↑↑↑</text>
+
+          <path d="M460,80 L495,80" stroke="#1a6a5a" stroke-width="1.5" marker-end="url(#arr-g2)" fill="none"/>
+
+          <rect x="495" y="35" width="185" height="90" rx="6" fill="#e6f3f0" stroke="#1a6a5a" stroke-width="1.5"/>
+          <text x="588" y="60" text-anchor="middle" fill="#1c1209" font-size="11" font-weight="600">BHB in Bloodstream</text>
+          <text x="588" y="76" text-anchor="middle" fill="#4a3c2a" font-size="10">Brain fuel (preferred)</text>
+          <text x="588" y="91" text-anchor="middle" fill="#4a3c2a" font-size="10">Heart fuel (2nd best)</text>
+          <text x="588" y="106" text-anchor="middle" fill="#4a3c2a" font-size="10">Anxiolytic · anti-inflammatory</text>
+          <text x="588" y="118" text-anchor="middle" fill="#1a6a5a" font-size="9">hunger suppressed ✓</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Benefits of Ketones (BHB)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Brain's preferred fuel — stable, consistent energy vs. the glucose roller coaster</li>
+            <li>Anxiolytic — directly reduces anxiety by signalling in the brain</li>
+            <li>Improves depression and mood</li>
+            <li>Improves attention, memory, and cognition</li>
+            <li>Evidence of benefit in: schizophrenia, bipolar disorder, depression, Alzheimer's, Parkinson's, multiple sclerosis, epilepsy, migraines</li>
+            <li>Heart: ketones increase ejection fraction (amount of blood pumped per beat) — L-BHB specifically caused a 40% increase in a pig heart model via vessel expansion</li>
+            <li>Fat tissue: ketones increase the metabolic rate of fat cells by 3× — proven in human biopsies</li>
+            <li>Appetite suppression — brain senses abundant fuel, hunger signals drop</li>
+            <li>Eliminates cravings — brain nourished by stable ketone energy, indifference to sugar emerges</li>
+            <li>Blood pressure: L-BHB increases nitric oxide, expanding blood vessels — Dr. Bikman reports personal blood pressure drop from 139/90 to 110/70 within an hour of L-BHB supplementation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exogenous Ketones — Forms & Uses</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Exogenous ketones let you raise BHB without being in ketosis. They help with the transition into a ketogenic diet and have independent benefits.</p>
+          <div class="kv-grid">
+            <span class="kv-key">1,3-Butanediol (precursor)</span><span class="kv-val">e.g. Ketone IQ. Absorbed from gut → liver converts to BHB over 1–2 hours. Delayed onset. Most affordable.</span>
+            <span class="kv-key">BHB Ester</span><span class="kv-val">BHB esterified to 1,3-butanediol. Immediate + sustained effect. Higher peak BHB. More expensive.</span>
+            <span class="kv-key">BHB Salts</span><span class="kv-val">BHB bound to sodium, calcium, or potassium. Available in D or L forms.</span>
+            <span class="kv-key">BHB Acid (straight)</span><span class="kv-val">Pure BHB acid — no electrolytes. D-BHB or L-BHB. L-BHB specifically associated with vasodilation and blood pressure effects.</span>
+            <span class="kv-key">Ketosis threshold</span><span class="kv-val">Dr. Bikman calls 0.3 mmol/L ketosis (technically 0.5 is the classic cutoff — both indicate fat burning)</span>
+          </div>
+          <div class="caution">Exogenous ketones will temporarily suppress fat burning (lipolysis). The body senses ketones are present and reduces its own fat mobilisation. Use for cognitive/performance benefit, not during fasting windows aimed at fat loss.</div>
+          <div class="positive">New: continuous ketone monitors (worn like a CGM) are available in Europe (e.g. Sibio from Germany) — not yet FDA approved. Blood ketone meters with finger prick are widely available.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: FAT CELLS -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Fat Cells & Weight Loss</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Weight loss is about shrinking fat cells — not destroying them. Liposuction removes fat cells but zero health markers improve. You must shrink fat cells through hormonal means, not just calorie restriction.</p>
+      <ul class="bullet-list">
+        <li>Fat cells store energy as triglycerides. In a low-insulin state, triglycerides break down into free fatty acids (lipolysis) and travel to the liver</li>
+        <li>Two variables control fat cell size: calorie quantity AND insulin level. Focusing only on calories without addressing insulin causes hunger — and hunger always wins</li>
+        <li>In ketosis, fat tissue metabolic rate increases 3× — proven in human biopsies. The body becomes a far more efficient fat burner</li>
+        <li>Ketones breathed out or urinated out represent calories wasted — free energy loss that doesn't require exercise</li>
+        <li>Subcutaneous fat (pinchable) burns readily and quickly. Visceral fat (around organs) also responds well to low-insulin states</li>
+      </ul>
+      <div class="note">Every diet works until you stop doing it. A ketogenic diet's advantage is it doesn't rely on hunger suppression through willpower — it suppresses hunger hormonally by keeping the brain fuelled with ketones.</div>
+    </div>
+  </div>
+
+  <!-- S4: FATTY LIVER -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Fatty Liver</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The liver is described as "the soccer mom of nutrient metabolism — it knows what to do with everything." When insulin is high, the liver is directed to store fat. When insulin drops, the liver is forced to burn fat and cannot store it.</p>
+      <ul class="bullet-list">
+        <li>High insulin tells the liver to store incoming fat. Low insulin makes fat storage in the liver impossible — it must burn the fat instead</li>
+        <li>Human studies: people with confirmed fatty liver disease on ultrasound went on a low-carb/ketogenic diet for one week — liver fat reduced by approximately 60%</li>
+        <li>This reduction was significantly greater than the high-carb group eating the same total calories — further evidence that insulin, not calories, is the key variable</li>
+        <li>The liver burns so much fat in ketosis that it makes ketones as a way of sharing the energy surplus with the brain (which cannot burn fat directly)</li>
+      </ul>
+      <div class="positive">Fatty liver can be dramatically reversed in as little as one week of low-carb eating — the liver cannot hold onto fat when insulin is low.</div>
+    </div>
+  </div>
+
+  <!-- S5: SUPPLEMENTS -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Supplements</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bikman's personally used and evidence-backed supplements, plus substances and foods discussed for their metabolic effects.</p>
+
+      <div class="supp-grid">
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Creatine Monohydrate</span>
+          <span class="supp-dose">5g muscle / 10–15g brain</span>
+          <span class="supp-benefit">Muscle energy, growth, and repair. Cognitive performance, especially when sleep-deprived. Alzheimer's protection at higher doses.</span>
+          <span class="supp-flag flag-amber">NSF certified</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Omega-3 Fish Oil</span>
+          <span class="supp-dose">Supplement if not eating fish</span>
+          <span class="supp-benefit">Supports muscle building meaningfully. Heart health. Anti-inflammatory. Dr. Bikman takes daily.</span>
+          <span class="supp-flag flag-amber">Essential</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Exogenous Ketones (BHB)</span>
+          <span class="supp-dose">Per product — 1 shot</span>
+          <span class="supp-benefit">Cognitive boost. Anxiety reduction. Aids keto transition. Preserves lean mass during weight loss (human study). Blood pressure via L-BHB.</span>
+          <span class="supp-flag flag-teal">Evidence-based</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">DAILY</span>
+          <span class="supp-name">Collagen Peptides</span>
+          <span class="supp-dose">Per product label</span>
+          <span class="supp-benefit">Increases GLP-1 naturally. Skin integrity and collagen production (recent 2025 study). Dr. Bikman takes Iron Feather brand.</span>
+          <span class="supp-flag flag-amber">GLP-1 booster</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">AS NEEDED</span>
+          <span class="supp-name">Ashwagandha</span>
+          <span class="supp-dose">Full therapeutic dose daily</span>
+          <span class="supp-benefit">Adaptogen. Reduces cortisol. Improves sleep latency and sleep architecture. Useful for stress-driven insulin resistance.</span>
+          <span class="supp-flag flag-teal">Sleep & stress</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">MORNING HABIT</span>
+          <span class="supp-name">Yerba Mate</span>
+          <span class="supp-dose">Daily — replaces coffee</span>
+          <span class="supp-benefit">GLP-1 stimulating effect — increases satiety. Published research by Dr. Bikman's lab. Natural energy. Supports fasted morning state.</span>
+          <span class="supp-flag flag-amber">GLP-1 booster</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-timing">FOOD/SUPPLEMENT</span>
+          <span class="supp-name">Alulose</span>
+          <span class="supp-dose">Use as sweetener</span>
+          <span class="supp-benefit">Rare sugar — non-metabolisable (no calories, no insulin response). Travels to intestines and significantly increases natural GLP-1 production. Good for reducing drug dependency.</span>
+          <span class="supp-flag flag-teal">Natural GLP-1</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Creatine — Deep Dive</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Creatine is the first thing Dr. Bikman takes every morning. Its muscle benefits are well established — its brain benefits are the exciting new frontier.</p>
+          <ul class="bullet-list">
+            <li>Mechanism: creatine stores as creatine phosphate in cells, rapidly recycling ATP (energy currency) — allows more work in less time, shorter rest periods</li>
+            <li>Increases muscle strength by up to 10%, power output up to 15%, reduces muscle damage 20–40% after intense exercise</li>
+            <li>Stimulates myogenic genes — promotes muscle protein synthesis and growth</li>
+            <li>Brain: at 10–15g/day, saturates the brain (5g is insufficient for this). Improves cognition in people with cognitive decline or early dementia</li>
+            <li>Sleep deprivation: human study — sleep-deprived people taking creatine performed significantly better on cognitive tests than sleep-deprived placebo group</li>
+            <li>Alzheimer's: women are affected at almost double or triple the rate of men. Dr. Bikman recommends middle-aged women take creatine daily at the higher dose specifically for brain protection</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Muscle dose</span><span class="kv-val">5g/day creatine monohydrate</span>
+            <span class="kv-key">Brain dose</span><span class="kv-val">10–15g/day (muscles are greedy — higher dose needed to saturate brain)</span>
+            <span class="kv-key">Vegetarians/vegans</span><span class="kv-val">Particularly important — creatine comes primarily from red meat. Non-meat eaters are likely deficient.</span>
+            <span class="kv-key">Creatinine concern</span><span class="kv-val">High creatinine on blood tests is expected and harmless when supplementing — it is simply the metabolite of creatine being excreted. Not a sign of kidney damage. 5-year study: zero kidney changes in athletes taking up to 20g/day.</span>
+            <span class="kv-key">Women & bulk concern</span><span class="kv-val">Women cannot get big muscles from creatine — female sex hormones make this physiologically impossible. Creatine produces healthy, strong muscles only.</span>
+          </div>
+          <div class="caution">Check your creatine powder for maltodextrin — it's sometimes added and will spike blood glucose. Use pure creatine monohydrate, NSF certified.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>B Vitamins — A Caution</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Animal ranching studies found that adding B vitamin complexes to livestock feed could triple the efficiency with which animals gained weight per pound of food eaten. Dr. Bikman raises this as a concern for humans.</p>
+          <ul class="bullet-list">
+            <li>B vitamins make mitochondria more efficient at storing energy — which is the opposite of what you want for fat loss</li>
+            <li>For fat loss, metabolic inefficiency is actually desirable — burning more than you store</li>
+            <li>High-dose niacin (a B vitamin) in clinical trials is associated with weight gain</li>
+            <li>Modern fortified foods (especially flour) are heavily loaded with B vitamins — processed food eaters may be getting far more than needed</li>
+            <li>You are unlikely to overload on B vitamins from whole foods like steak and eggs — the concern is with fortified packaged foods</li>
+          </ul>
+          <div class="caution">Dr. Bikman's concern: high B vitamin intake may be one of the contributing factors to the obesity epidemic — by making the body too efficient at storing energy from food. Avoid mega-dosing B vitamin supplements unless clinically indicated.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Ashwagandha — Detail</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Recommended for people whose gut health or weight issues are rooted in chronic stress and poor sleep — stress is one of three cardinal causes of rapid insulin resistance.</p>
+          <ul class="bullet-list">
+            <li>Adaptogen — helps the body manage the cortisol stress response</li>
+            <li>Shown in human studies to improve sleep latency (time to fall asleep) and sleep architecture</li>
+            <li>Likely mechanism: suppression of cortisol response</li>
+            <li>Available in gummy form at full therapeutic doses — more palatable than the bitter powder</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">When to take</span><span class="kv-val">Before bed as part of evening wind-down</span>
+            <span class="kv-key">Who benefits most</span><span class="kv-val">People with high stress, poor sleep, or elevated cortisol driving insulin resistance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: DIET -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Foods, Diet & Strategy</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bikman's approach centres on insulin control rather than calorie counting. The recommended strategy is ketogenic or low-carb, but any dietary approach that lowers insulin will produce results.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Core Dietary Principles</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Protein and fat have little to no effect on insulin — eat as much as desired</li>
+            <li>Fat has zero insulin effect. Protein has a modest effect depending on context</li>
+            <li>Carbohydrates are the primary insulin driver — controlling carbs controls insulin</li>
+            <li>Fruit and vegetables are acceptable — whole form, not juiced</li>
+            <li>Zero to minimal carbs for breakfast and lunch — morning insulin resistance means starchy foods are particularly harmful in the morning</li>
+            <li>Carbs, if eaten, are best reserved for dinner — when insulin sensitivity is improved and the social/family meal is the priority</li>
+            <li>Big hearty lunch of protein and fat is the key meal — makes evening cravings far more manageable</li>
+          </ul>
+          <div class="note">Stop snacking in the evening. If there is one single change anyone can make, it is this. Evening is when willpower is lowest and metabolic timing is worst — going to bed with a glucose spike activates the sympathetic nervous system and ruins sleep quality.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Keto — Evidence & Concerns</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Practical advantage: not based on hunger — sustainable long term</li>
+            <li>Takes approximately 16 hours of no eating/low carb before ketosis begins</li>
+            <li>"Keto flu" during transition — exogenous ketones can help ease this</li>
+            <li>People adopt keto lifelong for epilepsy, migraines, and metabolic diseases</li>
+            <li>Not the only way to lose weight — but described as the most practical and simplest</li>
+          </ul>
+          <div class="caution"><strong>Important exception:</strong> People with insulinoma (insulin-secreting pancreatic tumour) must NOT adopt a low-carb diet — they cannot stop producing insulin and will become severely hypoglycaemic. Anyone who feels extremely unwell within hours of starting keto should seek medical advice immediately.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Natural GLP-1 Boosters (Food & Drink)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">GLP-1 is the satiety hormone that injectable drugs mimic. These foods/substances raise it naturally:</p>
+          <ul class="bullet-list">
+            <li>Yerba mate — Dr. Bikman's lab has published reports on this. Replaces coffee in his routine</li>
+            <li>Alulose — rare sugar, non-metabolisable, travels to intestines and significantly boosts GLP-1. Can be used as a sweetener in tea, coffee, or baking</li>
+            <li>Collagen peptides — also shown to increase GLP-1</li>
+            <li>Protein generally — moderate GLP-1 effect</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: PERFECT DAY -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Dr. Bikman's Perfect Day</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Bikman's own daily protocol — framed as a metabolic scientist with real-world constraints. The key principles: no carbs until dinner, exercise fasted for metabolic goals, big lunch, early dinner, no evening snacking.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">05:00 — Weighted Ruck</div>
+          <div class="timeline-text">Weighted vest + 15lb kettlebells. 1 mile uphill, 1 mile back. Light aerobic movement fasted — burns fat, sets circadian clock, improves sleep that evening.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">05:30 — Ice Bath</div>
+          <div class="timeline-text">Cold plunge (Morozko Forge). Improves sleep quality in the evening by resetting the body clock. Boosts testosterone — some men have doubled levels with cold plunge + workout. Jolts the body awake, especially important in winter when sunrise is late.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Morning — Creatine + Yerba Mate</div>
+          <div class="timeline-text">Creatine monohydrate is the first thing consumed each morning. Yerba mate replaces coffee — GLP-1 stimulating, satiety-supporting, provides energy lift without coffee's cortisol effects. Continues fasted state.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:30–11:00 — Resistance Training</div>
+          <div class="timeline-text">Brief, effective workout. Done fasted for metabolic/longevity goals — burns fat, maintains insulin sensitivity. If performance (not longevity) is the goal, fuel before training instead.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Post-Workout — Sauna (12–15 min)</div>
+          <div class="timeline-text">After resistance training. Combined with the morning ice bath and workout for testosterone support and recovery.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Midday — Big Lunch (protein + fat)</div>
+          <div class="timeline-text">The largest and most important meal of the day. Zero or minimal carbohydrates. High protein, high fat. Satiation lasts for hours, making evening cravings manageable. This is the key meal that prevents evening snacking.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00–18:00 — Dinner with Family</div>
+          <div class="timeline-text">The social meal — whatever the family is eating. Generally meat and vegetables. If it's pizza or pasta occasionally, that's fine — the rest of the day has been low insulin. No rigidity. Carbs allowed at dinner as the one flexible meal.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">After Dinner — Stop Eating</div>
+          <div class="timeline-text">The single most impactful habit change anyone can make. No evening snacking whatsoever. Going to bed without a glucose spike is essential for sleep quality and overnight fat burning.</div>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">Eating window</span><span class="kv-val">Roughly noon to 6pm — extended fasted state morning and evening</span>
+        <span class="kv-key">Carb timing</span><span class="kv-val">Zero carbs breakfast and lunch. Flexible at dinner. Never in the evening after dinner.</span>
+        <span class="kv-key">Exercise fasted?</span><span class="kv-val">Yes — if goal is metabolic health and longevity. No — if goal is athletic performance.</span>
+        <span class="kv-key">One change only</span><span class="kv-val">If someone can only change one thing: stop eating after dinner. This alone transforms sleep, insulin levels, and fat storage overnight.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: GLP-1 -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>GLP-1 Drugs (Ozempic, Mounjaro etc.)</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">GLP-1 drugs suppress appetite and slow gastric emptying — food can sit in the stomach for 24 hours instead of 4–6. They work, but diminishing returns set in and the consequences of stopping are significant.</p>
+
+      <div class="two-col">
+        <div class="col-card good">
+          <h4>What They Do Well</h4>
+          <ul class="bullet-list">
+            <li>Significant appetite suppression</li>
+            <li>People naturally reduce carbohydrate intake</li>
+            <li>Substantial weight loss, especially for obese patients</li>
+            <li>Effective tool to break carb addiction during a coached programme</li>
+          </ul>
+        </div>
+        <div class="col-card bad">
+          <h4>Concerns & Limitations</h4>
+          <ul class="bullet-list">
+            <li>Sweet cravings return to baseline by 2 years on the drug</li>
+            <li>~70% of people stop the drug within 2 years (constant nausea)</li>
+            <li>40% of weight lost comes from lean mass (muscle and bone) — not just fat</li>
+            <li>Lost muscle may never return — particularly dangerous in older women</li>
+            <li>Weight regains rapidly on stopping</li>
+            <li>"Ozempic burps" — food sitting in stomach for 24 hours</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Dr. Bikman's Recommended Approach if Using GLP-1 Drugs</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Use a low dose (micro dose) — not the full weight loss dose</li>
+            <li>Cycle: 90 days on the drug with low-carb diet coaching simultaneously</li>
+            <li>Wean off after 90 days — assess if habits have stuck</li>
+            <li>If cravings return, cycle back on and try again</li>
+            <li>Results from Idaho clinic using this approach: vastly outperform drug-only trials — better fat loss AND better muscle retention</li>
+          </ul>
+          <div class="positive">The goal of GLP-1 drugs in Dr. Bikman's view is to use them as a temporary tool to cure carbohydrate addiction — not as a lifelong medication. The drug makes it easier than ever to adopt low-carb habits, and the habits should eventually sustain without the drug.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: ALCOHOL, SLEEP, STRESS -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Alcohol, Sleep & Stress</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Three of the fastest triggers of insulin resistance: stress, poor sleep, and excessive carbohydrates. Alcohol and sleep deprivation both act through cortisol — elevating insulin the following day and making every calorie eaten more likely to be stored as fat.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Alcohol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>People think alcohol helps sleep — they fall asleep faster but sleep quality is significantly worse throughout the night</li>
+            <li>Next morning: elevated cortisol, higher insulin resistance — every calorie consumed that day is more likely to be stored as fat</li>
+            <li>Alcohol is metabolically incompatible with fat loss goals</li>
+            <li>Cutting alcohol is one of the highest-impact single changes — with knock-on improvements to sleep, energy, and craving control</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sleep & Evening Glucose</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Sleep deprivation is the leading cause of stress — and stress is a cardinal cause of insulin resistance</li>
+            <li>Going to bed with elevated or crashing blood glucose activates the sympathetic nervous system (fight-or-flight) — raises heart rate, raises body temperature, fragments sleep</li>
+            <li>A glucose spike before bed = poor sleep = elevated cortisol next day = higher insulin resistance = more fat storage that day</li>
+            <li>Evening is when people are weakest to cravings — structure the environment to prevent this rather than relying on willpower</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Fix for sleep</span><span class="kv-val">Stop all eating after dinner. Ashwagandha before bed. Ice bath in the morning (resets body clock for better evening tiredness). No carb spike before bed.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Stress & Cortisol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Stress causes acute insulin resistance within hours — one of the fastest pathways to metabolic dysfunction</li>
+            <li>Ketones are anxiolytic — BHB directly reduces anxiety signalling in the brain. Being in ketosis makes stress management physiologically easier</li>
+            <li>Ashwagandha supplements cortisol suppression</li>
+            <li>Read books — Dr. Bikman's non-physical recommendation for 2026. Brain fuelled by ketones learns and retains better than on glucose</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10: TESTOSTERONE -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Testosterone & Men's Health</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Men experience a gradual testosterone decline (andropause) — a less dramatic but real parallel to female menopause. Fatigue and weight gain in middle-aged men should prompt a testosterone check before assuming it's lifestyle alone.</p>
+      <ul class="bullet-list">
+        <li>If tired and gaining weight: get testosterone checked — it may be low and addressable</li>
+        <li>Losing weight raises testosterone — fat loss and testosterone are bidirectionally linked</li>
+        <li>Ice bath (cold plunge) + workout: some men have doubled testosterone levels with this combination</li>
+        <li>Supplements can support testosterone production before full TRT (testosterone replacement therapy) becomes necessary</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">How to test</span><span class="kv-val">Doctor blood test — or home services (e.g. Blok, Joi in the US) that send kits by post</span>
+        <span class="kv-key">Natural boosters</span><span class="kv-val">Ice bath + resistance workout combination. Zinc and magnesium sufficiency. Losing excess fat. Adequate sleep.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: WOMEN & KETO -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Women & Keto</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Women are not small men — their hormonal cycle creates meaningful differences in how they respond to ketogenic diets. However, the concern that keto is uniquely stressful for women is overstated, according to human cortisol data.</p>
+
+      <div class="two-col">
+        <div class="col-card good">
+          <h4>Follicular Phase (Post-Period → Ovulation)</h4>
+          <ul class="bullet-list">
+            <li>Low progesterone, rising estrogen</li>
+            <li>Women are fat-burning machines — free fatty acids 40–50% higher than men</li>
+            <li>Enter ketosis faster than men</li>
+            <li>Ideal time for stricter keto adherence</li>
+          </ul>
+        </div>
+        <div class="col-card bad">
+          <h4>Luteal Phase (Post-Ovulation → Period)</h4>
+          <ul class="bullet-list">
+            <li>High progesterone — a hunger hormone</li>
+            <li>Cravings significantly higher</li>
+            <li>Harder to stick to keto</li>
+            <li>Dr. Bikman: be generous with yourself during this phase</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="positive">Dr. Isabella Cooper (UK) study: women switching between keto and high-carb diet showed no statistically significant change in cortisol at any point. The claim that keto is uniquely cortisol-stressful for women is not supported by the data.</div>
+    </div>
+  </div>
+
+  <!-- S12: CANCER -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>Cancer & Metabolism</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Thomas Seyfried's work (referenced extensively) proposes that cancer is primarily a metabolic disease of glucose and mitochondrial dysfunction — not a genetic disease of nuclear mutations. This is the Warburg Effect, modernised.</p>
+      <ul class="bullet-list">
+        <li>Cancer cells rely almost entirely on glucose as fuel (and glutamine secondarily)</li>
+        <li>PET scans inject radioactive glucose — cancer cells are visible because they absorb far more glucose than normal cells</li>
+        <li>Seyfried experiment: transplanting the nucleus of a cancer cell into a healthy cell produced a normal healthy cell. Transplanting the mitochondria of a cancer cell into a healthy cell produced a cancer cell — proving it is a mitochondrial, not nuclear, disease</li>
+        <li>Ketogenic diet starves cancer cells of glucose while normal cells thrive on ketones</li>
+        <li>Low-carb diets make chemotherapy significantly more effective by depriving cancer cells of their fuel</li>
+        <li>Dr. Bikman personally adheres to a ketogenic diet partly as cancer prevention — his mother died of cancer and first-degree relatives have elevated risk</li>
+      </ul>
+      <div class="note">This is an active and contested area of research. Dr. Seyfried's work is peer-reviewed. It does not claim keto cures cancer — it proposes metabolic deprivation as an adjunct to conventional treatment that makes those treatments more effective.</div>
+    </div>
+  </div>
+
+  <!-- S13: TESTING -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Testing & Monitoring</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fasting Insulin Test</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Dr. Bikman's single most important policy wish: add insulin to all routine blood panels globally. Currently it is not routinely measured. Request it specifically.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Target level</span><span class="kv-val">≤7 microunits per millilitre (fasted)</span>
+            <span class="kv-key">HOMA score</span><span class="kv-val">Calculated using fasting insulin + fasting glucose — best accessible measure of insulin resistance spectrum</span>
+            <span class="kv-key">At home?</span><span class="kv-val">Not yet practical — visit GP or use private blood test service</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Continuous Glucose Monitor (CGM)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">One of the most powerful behaviour-change tools available. People make changes of their own volition simply by seeing what happens in their blood in real time.</p>
+          <ul class="bullet-list">
+            <li>Costs ~£15–20 online, worn on the arm for 14 days</li>
+            <li>Shows glucose response to every food, drink, meal, and sleep pattern within minutes</li>
+            <li>Most revealing insight: how much poor sleep raises fasting glucose — often more than food choices</li>
+            <li>Stack with Whoop/HRV wearable: when HRV shows stress, cross-reference with CGM — often hypoglycaemia is the cause of what feels like stress or anxiety</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Blood Ketone Meter</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">How it works</span><span class="kv-val">Finger prick blood drop on ketone sensor strip — reads BHB in millimoles per litre</span>
+            <span class="kv-key">Ketosis threshold</span><span class="kv-val">0.3 mmol/L (Dr. Bikman's cut-off) — classic definition is 0.5 mmol/L</span>
+            <span class="kv-key">Continuous ketone monitor</span><span class="kv-val">Now available in Europe (e.g. Sibio, Germany) — worn like a CGM patch. Not yet FDA-approved in US.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Testosterone Test</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Standard blood test via GP</li>
+            <li>Home services available: Blok, Joi (US) — send kit by post or dispatch a phlebotomist</li>
+            <li>Recommended for any middle-aged man experiencing unexplained fatigue and weight gain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  const sections = document.querySelectorAll('.section, #hero');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(s => observer.observe(s));
+
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
