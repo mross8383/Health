@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Rhonda Patrick – Health & Anti-Aging Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #162032;
+    --navy-light: #1e2f45;
+    --teal: #00b4a6;
+    --teal-dim: #007d74;
+    --teal-glow: rgba(0,180,166,0.12);
+    --amber: #f5a623;
+    --amber-dim: rgba(245,166,35,0.15);
+    --red-soft: #e05c5c;
+    --green-soft: #4caf7d;
+    --text: #d8e4ee;
+    --text-dim: #7a9ab5;
+    --text-bright: #eef4fa;
+    --border: rgba(0,180,166,0.18);
+    --card-bg: rgba(22,32,50,0.9);
+    --sidebar-w: 270px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--navy-mid);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: var(--teal-dim) transparent;
+  }
+
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--teal-dim); border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 28px 22px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-header .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    color: var(--teal);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-header p {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  nav { padding: 14px 0 30px; flex: 1; }
+
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 22px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--teal);
+    border-left-color: var(--teal);
+    background: var(--teal-glow);
+  }
+
+  nav a .nav-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal-dim);
+    min-width: 18px;
+  }
+
+  .nav-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 22px;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 0 0 80px;
+    max-width: 960px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 60px 60px 50px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,180,166,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--text-bright);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    max-width: 600px;
+  }
+
+  #hero h1 span { color: var(--teal); }
+
+  #hero p {
+    color: var(--text-dim);
+    font-size: 14px;
+    max-width: 520px;
+    margin-bottom: 28px;
+  }
+
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 60px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .section-header:hover { background: rgba(0,180,166,0.04); }
+
+  .section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    background: var(--teal-glow);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 36px;
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text-bright);
+    font-weight: 400;
+  }
+
+  .chevron {
+    width: 20px; height: 20px;
+    color: var(--teal-dim);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .chevron.open { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 60px 40px;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .section-body.open { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SUBSECTIONS ── */
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .subsection-header:hover { background: var(--teal-glow); }
+
+  .subsection-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-bright);
+    letter-spacing: 0.01em;
+  }
+
+  .subsection-body {
+    display: none;
+    padding: 0 20px 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-body.open { display: block; }
+
+  /* ── PROSE ── */
+  .prose { margin: 14px 0; color: var(--text); font-size: 14px; }
+
+  /* ── BULLETS ── */
+  .bullet-list { list-style: none; margin: 12px 0; }
+
+  .bullet-list li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 11px;
+    top: 7px;
+  }
+
+  /* ── KEY-VALUE PAIRS ── */
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    margin: 12px 0;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    border-left: 3px solid var(--teal-dim);
+  }
+
+  .kv-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+
+  .kv-val { font-size: 13.5px; color: var(--text); }
+
+  /* ── NOTE / WARNING ── */
+  .note {
+    margin: 12px 0;
+    padding: 10px 14px;
+    background: var(--amber-dim);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--amber);
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  .caution {
+    margin: 12px 0;
+    padding: 10px 14px;
+    background: rgba(224,92,92,0.1);
+    border-left: 3px solid var(--red-soft);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--red-soft);
+  }
+
+  .positive {
+    margin: 12px 0;
+    padding: 10px 14px;
+    background: rgba(76,175,125,0.1);
+    border-left: 3px solid var(--green-soft);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--green-soft);
+  }
+
+  /* ── SUPPLEMENT COMPARISON TABLE ── */
+  .supp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .supp-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s;
+  }
+
+  .supp-card:hover { border-color: var(--teal); }
+
+  .supp-card .supp-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+  }
+
+  .supp-card .supp-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+  }
+
+  .supp-card .supp-dose {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+  }
+
+  .supp-card .supp-benefit {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .supp-card .supp-flag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .flag-green { background: rgba(76,175,125,0.15); color: var(--green-soft); }
+  .flag-amber { background: var(--amber-dim); color: var(--amber); }
+  .flag-red   { background: rgba(224,92,92,0.1); color: var(--red-soft); }
+
+  /* ── INTRO LABEL ── */
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  /* ── SVG DIAGRAMS ── */
+  .diagram-wrap {
+    margin: 20px 0;
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    overflow-x: auto;
+  }
+
+  .diagram-label {
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  svg text { font-family: 'DM Sans', sans-serif; }
+
+  /* ── RATIO TABLE ── */
+  .ratio-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .ratio-table th {
+    background: var(--navy-light);
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ratio-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(0,180,166,0.08);
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  .ratio-table tr:last-child td { border-bottom: none; }
+
+  .ratio-bar-wrap { display: flex; align-items: center; gap: 8px; }
+
+  .ratio-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .ratio-bar.mod { background: #4a7fa5; }
+  .ratio-bar.light { background: #2a4a66; }
+
+  /* ── GLP COMPARISON ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .col-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .col-card h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .col-card.pro h4 { color: var(--green-soft); }
+  .col-card.con h4 { color: var(--red-soft); }
+
+  /* ── PEAK SPAN LEGEND ── */
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-dim); }
+
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    #sidebar { width: 100%; height: auto; position: relative; }
+    #main { margin-left: 0; }
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="brand">Health Reference</div>
+    <p>Dr. Rhonda Patrick · Diary of a CEO Podcast</p>
+  </div>
+  <nav>
+    <a href="#hero"><span class="nav-num">—</span> Overview</a>
+    <div class="nav-divider"></div>
+    <a href="#s1"><span class="nav-num">01</span> Visceral Fat</a>
+    <a href="#s2"><span class="nav-num">02</span> Insulin Resistance</a>
+    <a href="#s3"><span class="nav-num">03</span> Supplements</a>
+    <a href="#s4"><span class="nav-num">04</span> Fasting & Ketosis</a>
+    <a href="#s5"><span class="nav-num">05</span> Exercise</a>
+    <a href="#s6"><span class="nav-num">06</span> Environmental Toxins</a>
+    <a href="#s7"><span class="nav-num">07</span> Hormones</a>
+    <a href="#s8"><span class="nav-num">08</span> Sleep</a>
+    <a href="#s9"><span class="nav-num">09</span> Peak Span</a>
+    <a href="#s10"><span class="nav-num">10</span> GLP-1 Drugs</a>
+    <a href="#s11"><span class="nav-num">11</span> Self-Monitoring</a>
+    <a href="#s12"><span class="nav-num">12</span> Brain & Alzheimer's</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- HERO -->
+  <section id="hero">
+    <h1>Dr. Rhonda Patrick<br><span>Health & Anti-Aging</span><br>Reference Guide</h1>
+    <p>A structured reference from the Diary of a CEO podcast. All claims are Dr. Patrick's interpretation of the scientific literature — not medical advice.</p>
+    <div class="hero-tags">
+      <span class="tag">Visceral Fat</span>
+      <span class="tag">Supplements</span>
+      <span class="tag">Fasting</span>
+      <span class="tag">Exercise Science</span>
+      <span class="tag">Endocrine Disruptors</span>
+      <span class="tag">Peak Span</span>
+      <span class="tag">Brain Ageing</span>
+    </div>
+  </section>
+
+  <!-- ────── S1: VISCERAL FAT ────── -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">01</span>
+        <h2>Visceral Fat</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Visceral fat is metabolically active fat stored deep within the abdomen, surrounding organs. Unlike subcutaneous fat (pinchable), it is invisible from outside. You can be lean and still carry dangerous levels.</p>
+
+      <!-- Diagram: Vicious Cycle -->
+      <div class="diagram-wrap">
+        <div class="diagram-label">Visceral Fat → Insulin Resistance Cycle</div>
+        <svg width="100%" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#00b4a6"/>
+            </marker>
+            <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#e05c5c"/>
+            </marker>
+          </defs>
+
+          <!-- Node 1: Visceral Fat -->
+          <rect x="20" y="100" width="160" height="64" rx="8" fill="#1e2f45" stroke="#00b4a6" stroke-width="1.5"/>
+          <text x="100" y="126" text-anchor="middle" fill="#eef4fa" font-size="13" font-weight="600">Visceral Fat</text>
+          <text x="100" y="145" text-anchor="middle" fill="#7a9ab5" font-size="10">secretes free fatty acids</text>
+          <text x="100" y="159" text-anchor="middle" fill="#7a9ab5" font-size="10">+ cytokines continuously</text>
+
+          <!-- Arrow 1→2 -->
+          <path d="M180,132 L260,132" stroke="#00b4a6" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+          <text x="220" y="124" text-anchor="middle" fill="#7a9ab5" font-size="10">blocks</text>
+
+          <!-- Node 2: Insulin Resistance -->
+          <rect x="260" y="100" width="170" height="64" rx="8" fill="#1e2f45" stroke="#e05c5c" stroke-width="1.5"/>
+          <text x="345" y="126" text-anchor="middle" fill="#eef4fa" font-size="13" font-weight="600">Insulin Resistance</text>
+          <text x="345" y="145" text-anchor="middle" fill="#7a9ab5" font-size="10">glucose stays in bloodstream</text>
+          <text x="345" y="159" text-anchor="middle" fill="#7a9ab5" font-size="10">cells can't absorb it</text>
+
+          <!-- Arrow 2→3 -->
+          <path d="M430,132 L510,132" stroke="#e05c5c" stroke-width="1.5" marker-end="url(#arr2)" fill="none"/>
+          <text x="470" y="124" text-anchor="middle" fill="#7a9ab5" font-size="10">drives</text>
+
+          <!-- Node 3: Consequences -->
+          <rect x="510" y="100" width="160" height="64" rx="8" fill="#1e2f45" stroke="#f5a623" stroke-width="1.5"/>
+          <text x="590" y="122" text-anchor="middle" fill="#eef4fa" font-size="13" font-weight="600">Consequences</text>
+          <text x="590" y="141" text-anchor="middle" fill="#7a9ab5" font-size="10">Type 2 diabetes</text>
+          <text x="590" y="155" text-anchor="middle" fill="#7a9ab5" font-size="10">brain fog · fatigue</text>
+          <text x="590" y="169" text-anchor="middle" fill="#7a9ab5" font-size="10">more visceral fat stored</text>
+
+          <!-- Feedback arrow: consequences → more visceral fat (curve underneath) -->
+          <path d="M590,164 Q590,230 345,240 Q170,240 100,164" stroke="#e05c5c" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+          <text x="345" y="255" text-anchor="middle" fill="#e05c5c" font-size="10" font-style="italic">vicious cycle — compounds over time</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Average visceral fat by age</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Age 30</span><span class="kv-val">Male: 1.2 lb · Female: 0.5 lb</span>
+            <span class="kv-key">Age 40</span><span class="kv-val">Male: 1.7 lb · Female: 0.7 lb</span>
+            <span class="kv-key">Age 50</span><span class="kv-val">Male: 2.2 lb · Female: 1.0 lb</span>
+            <span class="kv-key">Age 60</span><span class="kv-val">Male: 2.7 lb · Female: 1.54 lb</span>
+          </div>
+          <p class="prose">70% of women over 50 and 50% of men over 50 carry a high amount. From age 25–65, men see a 200% increase in visceral fat even if body weight stays the same.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Health risks</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Doubles the risk of early mortality</li>
+            <li>44% increased risk of metastatic cancer</li>
+            <li>Causes and worsens insulin resistance → type 2 diabetes</li>
+            <li>Chronic inflammation via cytokines → brain fog, fatigue, lethargy</li>
+            <li>Non-alcoholic fatty liver disease</li>
+            <li>Elevated cardiovascular disease risk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Causes & How to Reduce It</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose" style="color:var(--red-soft); font-weight:600; font-size:13px; margin-bottom:8px;">CAUSES</p>
+          <ul class="bullet-list">
+            <li>Ageing + hormonal decline (testosterone, oestrogen)</li>
+            <li>Sleep deprivation — 4 hrs/night for 2 weeks = 11% more visceral fat, no change on scales</li>
+            <li>Caloric excess from ultra-processed foods — just 5 days at +1,200–1,500 kcal caused measurable gain</li>
+            <li>Chronic stress (elevated cortisol)</li>
+            <li>Excess alcohol</li>
+            <li>Sedentary lifestyle</li>
+          </ul>
+          <p class="prose" style="color:var(--green-soft); font-weight:600; font-size:13px; margin:14px 0 8px;">HOW TO REDUCE IT</p>
+          <ul class="bullet-list">
+            <li>Vigorous aerobic exercise — most effective type for visceral fat loss specifically</li>
+            <li>Intermittent fasting / caloric restriction</li>
+            <li>Prioritising sleep quality and duration</li>
+            <li>Reducing chronic stress</li>
+            <li>Cutting excess alcohol</li>
+          </ul>
+          <div class="positive">Visceral fat is one of the first types to be lost in any weight-loss programme.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Measurement & Screening</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Waist (women)</span><span class="kv-val">&gt;35 inches = warning sign</span>
+            <span class="kv-key">Waist (men)</span><span class="kv-val">&gt;40 inches = warning sign</span>
+            <span class="kv-key">DEXA scan</span><span class="kv-val">Most direct measure. Target: &lt;300 g visceral fat</span>
+            <span class="kv-key">CGM</span><span class="kv-val">Continuous glucose monitor — reveals insulin resistance indirectly</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S2: INSULIN RESISTANCE ────── -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">02</span>
+        <h2>Insulin Resistance</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Insulin resistance occurs when cells stop responding to insulin, preventing glucose from being absorbed. Think of insulin as a taxi driver — insulin resistance means the phone is ringing but nobody's picking up.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Normal vs. Insulin Resistant Glucose Flow</div>
+        <svg width="100%" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- NORMAL side -->
+          <text x="160" y="22" text-anchor="middle" fill="#4caf7d" font-size="12" font-weight="600">NORMAL</text>
+          <rect x="30" y="35" width="90" height="36" rx="6" fill="#1e2f45" stroke="#4caf7d" stroke-width="1.5"/>
+          <text x="75" y="54" text-anchor="middle" fill="#d8e4ee" font-size="11">Eat food</text>
+          <text x="75" y="66" text-anchor="middle" fill="#7a9ab5" font-size="9">glucose rises</text>
+          <path d="M120,53 L155,53" stroke="#4caf7d" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+          <rect x="155" y="35" width="90" height="36" rx="6" fill="#1e2f45" stroke="#4caf7d" stroke-width="1.5"/>
+          <text x="200" y="54" text-anchor="middle" fill="#d8e4ee" font-size="11">Insulin released</text>
+          <text x="200" y="66" text-anchor="middle" fill="#7a9ab5" font-size="9">taxi dispatched</text>
+          <path d="M245,53 L280,53" stroke="#4caf7d" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+          <rect x="280" y="35" width="90" height="36" rx="6" fill="#1e2f45" stroke="#4caf7d" stroke-width="1.5"/>
+          <text x="325" y="54" text-anchor="middle" fill="#d8e4ee" font-size="11">Glucose stored</text>
+          <text x="325" y="66" text-anchor="middle" fill="#7a9ab5" font-size="9">in liver, muscle</text>
+          <text x="325" y="78" text-anchor="middle" fill="#4caf7d" font-size="9">✓ energy available</text>
+
+          <!-- RESISTANT side -->
+          <text x="160" y="115" text-anchor="middle" fill="#e05c5c" font-size="12" font-weight="600">INSULIN RESISTANT</text>
+          <rect x="30" y="128" width="90" height="36" rx="6" fill="#1e2f45" stroke="#e05c5c" stroke-width="1.5"/>
+          <text x="75" y="147" text-anchor="middle" fill="#d8e4ee" font-size="11">Eat food</text>
+          <text x="75" y="159" text-anchor="middle" fill="#7a9ab5" font-size="9">glucose rises</text>
+          <path d="M120,146 L155,146" stroke="#e05c5c" stroke-width="1.5" marker-end="url(#arr2)" fill="none"/>
+          <rect x="155" y="128" width="90" height="36" rx="6" fill="#1e2f45" stroke="#e05c5c" stroke-width="1.5"/>
+          <text x="200" y="147" text-anchor="middle" fill="#d8e4ee" font-size="11">Insulin released</text>
+          <text x="200" y="159" text-anchor="middle" fill="#7a9ab5" font-size="9">taxi dispatched</text>
+          <path d="M245,146 L280,146" stroke="#e05c5c" stroke-width="1.5" marker-end="url(#arr2)" fill="none"/>
+          <rect x="280" y="128" width="90" height="36" rx="6" fill="#1e2f45" stroke="#e05c5c" stroke-width="1.5"/>
+          <text x="325" y="143" text-anchor="middle" fill="#d8e4ee" font-size="11">Cells don't respond</text>
+          <text x="325" y="157" text-anchor="middle" fill="#7a9ab5" font-size="9">phone ringing, no answer</text>
+          <path d="M370,146 L405,146" stroke="#e05c5c" stroke-width="1.5" marker-end="url(#arr2)" fill="none"/>
+          <rect x="405" y="128" width="110" height="50" rx="6" fill="#1e2f45" stroke="#f5a623" stroke-width="1.5"/>
+          <text x="460" y="146" text-anchor="middle" fill="#d8e4ee" font-size="10">Body panics:</text>
+          <text x="460" y="159" text-anchor="middle" fill="#7a9ab5" font-size="9">makes MORE insulin</text>
+          <text x="460" y="172" text-anchor="middle" fill="#e05c5c" font-size="9">crash → cravings → repeat</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Consequences of Insulin Resistance</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Blood glucose sits elevated → cellular damage</li>
+            <li>Pancreas overproduces insulin to compensate → eventually fails → type 2 diabetes</li>
+            <li>Energy crashes and hunger spikes 1 hour after meals</li>
+            <li>Brain insulin resistance → poor fat-storage signalling → more visceral fat</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How to Improve Insulin Sensitivity</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Vigorous aerobic exercise — muscles become glucose-responsive without needing insulin</li>
+            <li>Intermittent fasting and ketosis (metabolic switch)</li>
+            <li>Adequate sleep — sleep deprivation is a rapid driver of resistance</li>
+            <li>Reducing visceral fat (which directly blocks insulin signalling)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S3: SUPPLEMENTS ────── -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">03</span>
+        <h2>Supplements</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Patrick's top 5 (in order of priority, for either gender). She then adds two further 'essential extras'.</p>
+
+      <!-- Supplement comparison cards -->
+      <div class="supp-grid">
+        <div class="supp-card">
+          <span class="supp-rank">#1 PRIORITY</span>
+          <span class="supp-name">Fish Oil (Omega-3)</span>
+          <span class="supp-dose">1.6–2 g EPA+DHA/day</span>
+          <span class="supp-benefit">5-yr life extension. 66% lower Alzheimer's risk. Slows biological ageing epigenetically.</span>
+          <span class="supp-flag flag-green">Everyone</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-rank">#2 PRIORITY</span>
+          <span class="supp-name">Vitamin D3</span>
+          <span class="supp-dose">Supplement to sufficiency</span>
+          <span class="supp-benefit">Deficiency = accelerated ageing. Correcting it slows biological age by ~2 years.</span>
+          <span class="supp-flag flag-amber">Check levels first</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-rank">#3 PRIORITY</span>
+          <span class="supp-name">Multivitamin</span>
+          <span class="supp-dose">1 daily (third-party tested)</span>
+          <span class="supp-benefit">Reversed brain ageing 2.1 yrs (global) and 5 yrs (episodic memory) in 65+ over 3 years.</span>
+          <span class="supp-flag flag-green">Everyone</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-rank">#4 PRIORITY</span>
+          <span class="supp-name">Magnesium</span>
+          <span class="supp-dose">350–400 mg/day</span>
+          <span class="supp-benefit">300+ enzymatic reactions. DNA repair. Sleep quality. Cancer prevention. 50% of people are deficient.</span>
+          <span class="supp-flag flag-green">Everyone</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-rank">#5 PRIORITY</span>
+          <span class="supp-name">Creatine</span>
+          <span class="supp-dose">5 g/day (10 g for brain)</span>
+          <span class="supp-benefit">Muscle energy and growth. Cognitive boost. Negates sleep-deprivation cognitive effects at higher doses.</span>
+          <span class="supp-flag flag-green">Everyone</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-rank">EXTRA #1</span>
+          <span class="supp-name">Urolithin A</span>
+          <span class="supp-dose">1,000 mg/day</span>
+          <span class="supp-benefit">Clears damaged mitochondria (mitophagy). Immune rejuvenation. +10% VO2 max. Not on high street.</span>
+          <span class="supp-flag flag-amber">Buy online only</span>
+        </div>
+        <div class="supp-card">
+          <span class="supp-rank">EXTRA #2</span>
+          <span class="supp-name">Curcumin (Phytosomal)</span>
+          <span class="supp-dose">Phytosomal form only</span>
+          <span class="supp-benefit">Lowers TNF-alpha (key ageing cytokine). Anti-inflammatory without blunting exercise gains.</span>
+          <span class="supp-flag flag-amber">Form matters</span>
+        </div>
+      </div>
+
+      <!-- Individual supplement subsections -->
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fish Oil / Omega-3 (EPA & DHA)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">90% of the US population and 80% globally are deficient. A low omega-3 index carries a similar mortality risk to smoking.</p>
+          <ul class="bullet-list">
+            <li>High omega-3 index → 5-year increased life expectancy</li>
+            <li>High omega-3 index → 66% lower Alzheimer's risk</li>
+            <li>Swiss study: only omega-3 (of omega-3, vitamin D, and resistance training) slowed epigenetic ageing independently</li>
+            <li>All three combined: slowed biological ageing 4 months in one year, 60% lower pre-frailty risk</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Dose</span><span class="kv-val">1.6–2 g EPA+DHA per day</span>
+            <span class="kv-key">Target</span><span class="kv-val">Omega-3 index ≥ 8%</span>
+            <span class="kv-key">Storage</span><span class="kv-val">Keep in fridge; freeze bulk stock</span>
+            <span class="kv-key">Quality</span><span class="kv-val">TOTOX (total oxidation) score &lt;10</span>
+          </div>
+          <div class="note"><strong>Test first:</strong> Omega-3 index finger-prick test (~£20 online). You may be supplementing with a product that's not being absorbed or is oxidised — you won't know without testing.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Vitamin D3</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">D3 is the form produced by skin from sunlight. D2 (plant-based, found in mushrooms) is less effective. Vegans should seek D3 from lichen specifically.</p>
+          <ul class="bullet-list">
+            <li>Deficiency = accelerated biological ageing</li>
+            <li>Supplementing D3 in deficient people slowed biological ageing by ~2 years (large study)</li>
+            <li>No benefit if you are already sufficient — the goal is to avoid deficiency, not mega-dose</li>
+            <li>People with darker skin require far more sun exposure to produce equivalent D3 — supplementation more important</li>
+          </ul>
+          <div class="note"><strong>Supplement regulation:</strong> Some D3 supplements contain up to 10,000× the labelled dose. Third-party tested brands only (NSF or Consumer Lab verified).</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Multivitamin</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Fills micronutrient gaps caused by poor diet, depleted soils (glyphosate), and ultra-processed food. The COSMOS study using Centrum Silver is the key evidence cited.</p>
+          <ul class="bullet-list">
+            <li>Adults 65+ taking a daily multivitamin for 3 years reversed global brain ageing by 2.1 years</li>
+            <li>Reversed episodic memory ageing by almost 5 years</li>
+            <li>COSMOS study: slowed epigenetic ageing by several months after just 2 years</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Key nutrients</span><span class="kv-val">Vitamin C, D3, E, K, B vitamins, folate, selenium, zinc</span>
+            <span class="kv-key">Men's note</span><span class="kv-val">Do NOT choose a multivitamin with added iron unless blood tests show deficiency</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Magnesium</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">~50% of the population is deficient. Active people lose additional magnesium through sweat, increasing requirements further.</p>
+          <ul class="bullet-list">
+            <li>Required for 300+ enzymatic reactions</li>
+            <li>Critical for DNA repair from oxidative damage</li>
+            <li>Studies link adequate magnesium levels to lower cancer risk</li>
+            <li>Supports sleep quality</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Target</span><span class="kv-val">350–400 mg/day</span>
+            <span class="kv-key">Food sources</span><span class="kv-val">Dark leafy greens, almonds</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Creatine</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Most well-studied supplement for muscle. Stored primarily in muscles, which are very greedy for it — saturation takes time.</p>
+          <ul class="bullet-list">
+            <li>Increases phosphocreatine in muscles → more training volume → greater growth</li>
+            <li>At 10 g/day: measurably increases brain creatine → reduces afternoon mental slump</li>
+            <li>At 20–25 g/day: negates sleep-deprivation cognitive effects and may temporarily raise performance above rested baseline</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Muscle dose</span><span class="kv-val">5 g/day</span>
+            <span class="kv-key">Brain/cognitive dose</span><span class="kv-val">10 g/day</span>
+            <span class="kv-key">Sleep deprivation</span><span class="kv-val">20–25 g/day (temporary)</span>
+            <span class="kv-key">Saturation time</span><span class="kv-val">3–4 weeks at 5 g/day from zero — no loading needed</span>
+            <span class="kv-key">Side effects</span><span class="kv-val">Bloating/nausea in some — halve dose and split with food</span>
+          </div>
+          <div class="caution"><strong>Gummies are useless:</strong> Consumer testing found almost no creatine gummies contain measurable creatine. Use creatine monohydrate powder, NSF certified only.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Urolithin A — Mitochondrial Rejuvenation</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+
+          <div class="diagram-wrap" style="margin-top:0">
+            <div class="diagram-label">Mitophagy: Clearing Damaged Mitochondria</div>
+            <svg width="100%" viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Old damaged mito -->
+              <ellipse cx="90" cy="80" rx="65" ry="38" fill="#1e2f45" stroke="#e05c5c" stroke-width="1.5"/>
+              <text x="90" y="74" text-anchor="middle" fill="#e05c5c" font-size="11" font-weight="600">Damaged</text>
+              <text x="90" y="88" text-anchor="middle" fill="#7a9ab5" font-size="10">Mitochondria</text>
+              <text x="90" y="102" text-anchor="middle" fill="#7a9ab5" font-size="9">low energy output</text>
+
+              <!-- Arrow: Urolithin A triggers mitophagy -->
+              <path d="M158,80 L240,80" stroke="#00b4a6" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+              <text x="199" y="68" text-anchor="middle" fill="#00b4a6" font-size="10" font-weight="600">Urolithin A</text>
+              <text x="199" y="80" text-anchor="middle" fill="#7a9ab5" font-size="9">triggers</text>
+              <text x="199" y="92" text-anchor="middle" fill="#7a9ab5" font-size="9">mitophagy</text>
+
+              <!-- Clearance box -->
+              <rect x="240" y="52" width="110" height="56" rx="6" fill="#1e2f45" stroke="#00b4a6" stroke-width="1.5"/>
+              <text x="295" y="74" text-anchor="middle" fill="#d8e4ee" font-size="11" font-weight="600">Cleared</text>
+              <text x="295" y="89" text-anchor="middle" fill="#7a9ab5" font-size="10">cellular waste</text>
+              <text x="295" y="103" text-anchor="middle" fill="#7a9ab5" font-size="9">removed selectively</text>
+
+              <!-- Arrow to new mito -->
+              <path d="M350,80 L430,80" stroke="#4caf7d" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+              <text x="390" y="68" text-anchor="middle" fill="#4caf7d" font-size="10">Exercise</text>
+              <text x="390" y="80" text-anchor="middle" fill="#7a9ab5" font-size="9">builds new</text>
+              <text x="390" y="92" text-anchor="middle" fill="#7a9ab5" font-size="9">mitochondria</text>
+
+              <!-- New healthy mito -->
+              <ellipse cx="530" cy="80" rx="75" ry="40" fill="#1e2f45" stroke="#4caf7d" stroke-width="1.5"/>
+              <text x="530" y="74" text-anchor="middle" fill="#4caf7d" font-size="11" font-weight="600">Rejuvenated</text>
+              <text x="530" y="88" text-anchor="middle" fill="#7a9ab5" font-size="10">Mitochondria</text>
+              <text x="530" y="102" text-anchor="middle" fill="#7a9ab5" font-size="9">peak energy output</text>
+
+              <!-- Label: combined effect -->
+              <text x="650" y="80" text-anchor="middle" fill="#f5a623" font-size="18">→</text>
+            </svg>
+          </div>
+
+          <ul class="bullet-list">
+            <li>20% life extension in mouse studies (preclinical)</li>
+            <li>Human muscle biopsies confirmed mitophagy activation</li>
+            <li>1,000 mg/day in older adults: increased CD8+ T-cells and natural killer cells (immune rejuvenation)</li>
+            <li>+10% VO2 max vs. exercise alone (untrained); +5% in trained athletes</li>
+            <li>+10–12% hamstring strength in older adults vs. exercise alone</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Dose</span><span class="kv-val">1,000 mg/day</span>
+            <span class="kv-key">Availability</span><span class="kv-val">Online only — not available on the high street</span>
+            <span class="kv-key">Budget alternative</span><span class="kv-val">Pomegranate juice pre-exercise — meta-analysis: up to 17% VO2 max improvement (only if you have the right gut bacteria)</span>
+          </div>
+          <div class="note"><strong>50% of people</strong> lack the gut bacteria to convert pomegranate polyphenols into urolithin A — direct supplementation bypasses this lottery.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Curcumin (Phytosomal form only)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The active compound in turmeric. Standard curcumin is rapidly cleared by the liver (treated as a foreign substance). Phytosomal or liposomal delivery is required for cellular uptake.</p>
+          <ul class="bullet-list">
+            <li>Lowers TNF-alpha (major pro-ageing cytokine) by ~5 pg/mL — most potent natural compound known to do this</li>
+            <li>TNF-alpha inhibitor drugs: 50% lower Alzheimer's risk in rheumatoid arthritis patients</li>
+            <li>Anti-inflammatory without blunting exercise adaptations (unlike ibuprofen/NSAIDs)</li>
+          </ul>
+          <div class="caution"><strong>Standard curcumin = largely wasted.</strong> Plain turmeric extract or non-phytosomal curcumin is cleared before it reaches cells. Seek phytosomal or liposomal form specifically.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sulforaphane, Glutamine, Liposomal Glutathione & Iron</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px;">Sulforaphane (e.g. Avmacol by Nutramax)</p>
+          <ul class="bullet-list">
+            <li>Found in broccoli sprouts (100× more than mature broccoli)</li>
+            <li>Activates Phase 2 detox enzymes → converts BPA from fat-soluble to water-soluble → excreted in urine</li>
+            <li>12 published clinical studies on the Avmacol brand</li>
+          </ul>
+
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px; margin-top:14px;">Glutamine</p>
+          <ul class="bullet-list">
+            <li>Amino acid used as energy by immune cells and gut cells</li>
+            <li>Reduced respiratory illness frequency in endurance athletes</li>
+            <li>Supports gut healing via alpha-ketoglutarate conversion</li>
+          </ul>
+
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px; margin-top:14px;">Liposomal Glutathione</p>
+          <ul class="bullet-list">
+            <li>Standard 'reduced glutathione' supplements cannot cross cell membranes — largely useless</li>
+            <li>Liposomal form encapsulates the molecule in a lipid layer that fuses with cell membranes</li>
+            <li>Intracellular antioxidant — reduces oxidation-driven brain ageing</li>
+          </ul>
+          <div class="caution">Do not buy standard glutathione. Only liposomal form has demonstrated intracellular uptake.</div>
+
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px; margin-top:14px;">Iron — Context Dependent</p>
+          <ul class="bullet-list">
+            <li>Most men should NOT supplement iron — excess free iron is oxidative and damages DNA</li>
+            <li>Pre-menopausal women: ~16% are deficient due to menstrual losses — may need it</li>
+            <li>Post-menopausal women: similar requirements to men — iron generally not needed</li>
+          </ul>
+          <div class="caution">Always test iron levels before supplementing. Never assume deficiency.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exogenous Ketones</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Raise beta-hydroxybutyrate (BHB) in blood artificially, mimicking the fasted/ketogenic state. BHB is a signalling molecule as well as a fuel.</p>
+          <ul class="bullet-list">
+            <li>Increases GABA → calms background mental noise → improved focus</li>
+            <li>Raises BDNF (brain-derived neurotrophic factor) → learning and memory</li>
+            <li>Cognitive boost particularly useful for presentations, demanding interviews, heavy research</li>
+          </ul>
+          <div class="caution"><strong>Fat-loss warning:</strong> Exogenous ketones suppress lipolysis (fat burning) for ~3 hours. If fasting for fat loss, do NOT take ketone supplements during the fast — you will briefly halt fat mobilisation.</div>
+          <div class="kv-grid">
+            <span class="kv-key">Ketone IQ</span><span class="kv-val">Uses 1,3-butanediol → converted to BHB in liver. Delayed onset. More affordable.</span>
+            <span class="kv-key">Oxford Ketone</span><span class="kv-val">BHB esterified — immediate + sustained effect. ~£30/dose.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S4: FASTING ────── -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">04</span>
+        <h2>Intermittent Fasting & Ketosis</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Intermittent fasting reduces caloric intake without calorie counting. The real power beyond weight loss is the metabolic switch to ketosis and the activation of cellular repair.</p>
+
+      <!-- Metabolic Switch Diagram -->
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Metabolic Switch: Fed → Fasted → Ketosis</div>
+        <svg width="100%" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Timeline bar -->
+          <line x1="40" y1="100" x2="660" y2="100" stroke="#1e2f45" stroke-width="3"/>
+
+          <!-- Fed zone -->
+          <rect x="40" y="70" width="180" height="60" rx="6" fill="rgba(245,166,35,0.12)" stroke="#f5a623" stroke-width="1"/>
+          <text x="130" y="93" text-anchor="middle" fill="#f5a623" font-size="12" font-weight="600">FED STATE</text>
+          <text x="130" y="108" text-anchor="middle" fill="#7a9ab5" font-size="10">Glucose burning</text>
+          <text x="130" y="120" text-anchor="middle" fill="#7a9ab5" font-size="10">Glycogen filling</text>
+
+          <!-- Arrow -->
+          <path d="M220,100 L260,100" stroke="#7a9ab5" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+          <text x="240" y="90" text-anchor="middle" fill="#7a9ab5" font-size="9">~10–12 hrs</text>
+          <text x="240" y="116" text-anchor="middle" fill="#7a9ab5" font-size="9">no eating</text>
+
+          <!-- Transition zone -->
+          <rect x="260" y="70" width="150" height="60" rx="6" fill="rgba(0,180,166,0.08)" stroke="#007d74" stroke-width="1"/>
+          <text x="335" y="93" text-anchor="middle" fill="#00b4a6" font-size="12" font-weight="600">SWITCHING</text>
+          <text x="335" y="108" text-anchor="middle" fill="#7a9ab5" font-size="10">Glycogen depleted</text>
+          <text x="335" y="120" text-anchor="middle" fill="#7a9ab5" font-size="10">Fat mobilised</text>
+
+          <!-- Arrow -->
+          <path d="M410,100 L450,100" stroke="#4caf7d" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+
+          <!-- Ketosis zone -->
+          <rect x="450" y="60" width="200" height="80" rx="6" fill="rgba(76,175,125,0.1)" stroke="#4caf7d" stroke-width="1.5"/>
+          <text x="550" y="87" text-anchor="middle" fill="#4caf7d" font-size="13" font-weight="600">KETOSIS</text>
+          <text x="550" y="103" text-anchor="middle" fill="#d8e4ee" font-size="10">BHB ketones produced</text>
+          <text x="550" y="116" text-anchor="middle" fill="#d8e4ee" font-size="10">Brain energy ↑ · GABA ↑</text>
+          <text x="550" y="129" text-anchor="middle" fill="#d8e4ee" font-size="10">Cellular repair activated</text>
+
+          <!-- Labels below -->
+          <text x="130" y="150" text-anchor="middle" fill="#7a9ab5" font-size="9">insulin active</text>
+          <text x="335" y="150" text-anchor="middle" fill="#7a9ab5" font-size="9">transition zone</text>
+          <text x="550" y="150" text-anchor="middle" fill="#4caf7d" font-size="9">fat loss · repair · cognitive boost</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Dr. Patrick's Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Protocol</span><span class="kv-val">16:8 — 16 hrs fasted, 8-hr eating window</span>
+            <span class="kv-key">Fasting window</span><span class="kv-val">Mornings — extends overnight fast to reach ketosis</span>
+            <span class="kv-key">Why morning</span><span class="kv-val">Gets into metabolic switch quickly; ketones provide morning cognitive boost</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Benefits of the Metabolic Switch</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Ketones provide brain with easily usable energy</li>
+            <li>BHB signals the brain to be cognitively sharp (evolutionary adaptation for food-seeking)</li>
+            <li>Increased GABA production → calmer, more focused, background anxiety reduced</li>
+            <li>Fasted state activates autophagy (cellular waste clearance) and mitophagy (mitochondrial clearance)</li>
+            <li>Body fat (including visceral fat) mobilised as fuel source</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fasted Exercise & Sleep/Eating Timing</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px;">Fasted Exercise</p>
+          <ul class="bullet-list">
+            <li>Aerobic endurance exercise done fasted produces better mitochondrial adaptations</li>
+            <li>Body becomes better at burning fat; continues doing so throughout the day</li>
+            <li>Short sessions appropriate fasted (e.g. 3 miles); sessions 10+ miles require fuel</li>
+            <li>Women: risk of hormonal disruption if large caloric deficit + high training volume + insufficient food — listen to your body</li>
+          </ul>
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px; margin-top:14px;">Eating Window & Sleep</p>
+          <ul class="bullet-list">
+            <li>Stop eating at least 3 hours before bed — eating activates sympathetic nervous system (fight-or-flight), fragmenting sleep</li>
+            <li>Light pre-bed snack if needed: cooled baked potato or green banana (resistant starch) — good for gut microbiome and actually improves sleep quality</li>
+            <li>Resistant starch: cook → cool → reheat (structure changes during cooling)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S5: EXERCISE ────── -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">05</span>
+        <h2>Exercise</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Current exercise guidelines are based on energy expenditure (calorie burn). A major accelerometer study revealed the actual health benefit ratio of vigorous exercise is far greater than guidelines suggest.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Exercise Intensity Equivalence — How Many Minutes of Other Exercise = 1 Minute of Vigorous?</div>
+        <table class="ratio-table">
+          <thead>
+            <tr>
+              <th>Health Outcome</th>
+              <th>Vigorous</th>
+              <th>Moderate equivalent</th>
+              <th>Light equivalent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>All-cause mortality</td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar" style="width:20px"></div><span style="color:var(--teal)">1 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar mod" style="width:80px"></div><span>4 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar light" style="width:120px"></div><span>100–150 min</span></div></td>
+            </tr>
+            <tr>
+              <td>Cardiovascular mortality</td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar" style="width:20px"></div><span style="color:var(--teal)">1 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar mod" style="width:160px"></div><span>8 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar light" style="width:120px"></div><span>200 min</span></div></td>
+            </tr>
+            <tr>
+              <td>Type 2 diabetes risk</td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar" style="width:20px"></div><span style="color:var(--teal)">1 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar mod" style="width:200px"></div><span>10 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar light" style="width:120px"></div><span>150–200 min</span></div></td>
+            </tr>
+            <tr>
+              <td>Cancer mortality</td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar" style="width:20px"></div><span style="color:var(--teal)">1 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar mod" style="width:80px"></div><span>4 min</span></div></td>
+              <td><div class="ratio-bar-wrap"><div class="ratio-bar light" style="width:50px"></div><span>250–300 min</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px; color:var(--text-dim); margin-top:10px;">Vigorous = 70%+ max heart rate (jogging, running, cycling, swimming). HIIT = 80%+ MHR.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exercise Snacks — Short Bursts Count</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">You don't need 30 continuous minutes. Short vigorous bursts throughout the day accumulate significant benefits:</p>
+          <ul class="bullet-list">
+            <li>Women doing 3.5 min/day vigorous activity → 40% lower cancer risk</li>
+            <li>Men and women accumulating 9 min/day of short vigorous bursts → 40% lower cancer mortality, 50% lower cardiovascular mortality</li>
+            <li>Body-weight squats, jumping jacks, high knees, playing tag — all count</li>
+            <li>Getting up every hour and doing 1 minute of vigorous movement breaks sedentary time and adds to your daily total</li>
+          </ul>
+          <div class="note"><strong>Recommendation:</strong> Replace "10,000 steps" goal with "10 minutes of getting your heart rate up per day." 10,000 steps is mostly light intensity and does not deliver the same mortality benefits.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exercise & the Brain</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Aerobic exercise is the single most effective intervention for brain health</li>
+            <li>Increases BDNF (brain-derived neurotrophic factor) — new neuron growth, strengthens connections</li>
+            <li>Improves both fluid intelligence (processing speed) and crystallised intelligence</li>
+            <li>5 hours/week with HIIT = reverse heart ageing by 20 years (study cited)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sedentary Behaviour — Independent Risk Factor</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Sitting is an independent risk factor for disease even in people who exercise regularly. Particularly strongly linked to cancer.</p>
+          <ul class="bullet-list">
+            <li>Standing desks help; exercise snacks are better</li>
+            <li>Break sitting every hour with movement</li>
+            <li>Exercising for 1 hour then sitting for 8 hours does not fully offset the sedentary risk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S6: ENVIRONMENTAL TOXINS ────── -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">06</span>
+        <h2>Environmental Toxins</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Three classes of endocrine disrupting chemicals (EDCs) dominate: BPA, phthalates, and PFAS (forever chemicals). All interfere with hormone function — primarily sex hormones and thyroid hormone.</p>
+
+      <!-- EDC Overview Diagram -->
+      <div class="diagram-wrap">
+        <div class="diagram-label">Three Main Endocrine Disruptors — Sources & Targets</div>
+        <svg width="100%" viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg">
+          <!-- BPA -->
+          <rect x="20" y="20" width="200" height="190" rx="8" fill="#1e2f45" stroke="#e05c5c" stroke-width="1.5"/>
+          <text x="120" y="45" text-anchor="middle" fill="#e05c5c" font-size="13" font-weight="600">BPA</text>
+          <text x="120" y="62" text-anchor="middle" fill="#7a9ab5" font-size="9">Bisphenol A</text>
+          <line x1="40" y1="72" x2="200" y2="72" stroke="#e05c5c" stroke-width="0.5" opacity="0.4"/>
+          <text x="40" y="89" fill="#7a9ab5" font-size="10">Sources:</text>
+          <text x="40" y="104" fill="#d8e4ee" font-size="10">· Receipts (thermal paper)</text>
+          <text x="40" y="118" fill="#d8e4ee" font-size="10">· Plastic bottles</text>
+          <text x="40" y="132" fill="#d8e4ee" font-size="10">· Can linings (soup +1000%)</text>
+          <text x="40" y="146" fill="#d8e4ee" font-size="10">· Paper coffee cups</text>
+          <line x1="40" y1="156" x2="200" y2="156" stroke="#e05c5c" stroke-width="0.5" opacity="0.4"/>
+          <text x="40" y="172" fill="#7a9ab5" font-size="10">Targets:</text>
+          <text x="40" y="187" fill="#d8e4ee" font-size="10">Oestrogen + androgen receptors</text>
+          <text x="40" y="201" fill="#d8e4ee" font-size="10">→ 50% lower testosterone (teens)</text>
+
+          <!-- Phthalates -->
+          <rect x="250" y="20" width="200" height="190" rx="8" fill="#1e2f45" stroke="#f5a623" stroke-width="1.5"/>
+          <text x="350" y="45" text-anchor="middle" fill="#f5a623" font-size="13" font-weight="600">Phthalates</text>
+          <text x="350" y="62" text-anchor="middle" fill="#7a9ab5" font-size="9">Plasticisers</text>
+          <line x1="270" y1="72" x2="430" y2="72" stroke="#f5a623" stroke-width="0.5" opacity="0.4"/>
+          <text x="270" y="89" fill="#7a9ab5" font-size="10">Sources:</text>
+          <text x="270" y="104" fill="#d8e4ee" font-size="10">· PVC piping</text>
+          <text x="270" y="118" fill="#d8e4ee" font-size="10">· Meat/cheese wrapping</text>
+          <text x="270" y="132" fill="#d8e4ee" font-size="10">· Cosmetics, hair products</text>
+          <text x="270" y="146" fill="#d8e4ee" font-size="10">· Flexible food packaging</text>
+          <line x1="270" y1="156" x2="430" y2="156" stroke="#f5a623" stroke-width="0.5" opacity="0.4"/>
+          <text x="270" y="172" fill="#7a9ab5" font-size="10">Targets:</text>
+          <text x="270" y="187" fill="#d8e4ee" font-size="10">Testes (testosterone synthesis)</text>
+          <text x="270" y="201" fill="#d8e4ee" font-size="10">→ 20% lower testosterone (men)</text>
+
+          <!-- PFAS -->
+          <rect x="480" y="20" width="200" height="190" rx="8" fill="#1e2f45" stroke="#7a9ab5" stroke-width="1.5"/>
+          <text x="580" y="45" text-anchor="middle" fill="#aac4d8" font-size="13" font-weight="600">PFAS</text>
+          <text x="580" y="62" text-anchor="middle" fill="#7a9ab5" font-size="9">Forever Chemicals</text>
+          <line x1="500" y1="72" x2="660" y2="72" stroke="#7a9ab5" stroke-width="0.5" opacity="0.4"/>
+          <text x="500" y="89" fill="#7a9ab5" font-size="10">Sources:</text>
+          <text x="500" y="104" fill="#d8e4ee" font-size="10">· Teflon / non-stick pans</text>
+          <text x="500" y="118" fill="#d8e4ee" font-size="10">· Stain-resistant coatings</text>
+          <text x="500" y="132" fill="#d8e4ee" font-size="10">· Black plastic (recycled</text>
+          <text x="500" y="146" fill="#d8e4ee" font-size="10">  electronics) — flame retardants</text>
+          <line x1="500" y1="156" x2="660" y2="156" stroke="#7a9ab5" stroke-width="0.5" opacity="0.4"/>
+          <text x="500" y="172" fill="#7a9ab5" font-size="10">Targets:</text>
+          <text x="500" y="187" fill="#d8e4ee" font-size="10">Thyroid + ovaries</text>
+          <text x="500" y="201" fill="#d8e4ee" font-size="10">→ Menopause 1–2 yrs earlier</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>BPA — Detailed Health Effects & Mitigation</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Acts as oestrogen mimetic AND androgen receptor binder — disrupts both male and female hormones</li>
+            <li>Adolescent boys with highest BPA had 50% lower testosterone than those with lowest levels</li>
+            <li>Linked to low sperm count, poor motility, and abnormal morphology</li>
+            <li>Pregnant women with high BPA: 6× more likely to have a child with autism spectrum disorder</li>
+            <li>'BPA-free' plastics often contain BPS — equally or more harmful</li>
+          </ul>
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px; margin-top:14px;">Mitigation</p>
+          <ul class="bullet-list">
+            <li>Request digital receipts instead of paper — cashiers handling receipts have extremely high BPA levels</li>
+            <li>Cashiers: wear nitrile gloves (not latex — latex does not block BPA)</li>
+            <li>Hand lotion or sanitiser while handling receipts increases absorption ~100-fold</li>
+            <li>Store acidic foods (ketchup, hot sauce, vinegar) in glass — acidity dramatically accelerates leaching</li>
+            <li>Avoid canned soup especially — increases BPA levels by ~1,000%</li>
+            <li>Supplement sulforaphane to boost BPA excretion via urine</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Kitchen Audit — Changes Ranked by Impact</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Replace Teflon pans</strong> with stainless steel, cast iron, or ceramic — largest single domestic PFAS source</li>
+            <li><strong>Remove all black plastic</strong> containers and utensils — recycled electronics contain cancer-causing brominated flame retardants</li>
+            <li><strong>Store acidic condiments in glass</strong> — ketchup, hot sauce, mustard, vinegar leach rapidly from plastic</li>
+            <li><strong>Use a reverse osmosis water filter</strong> — removes microplastics, BPA, phthalates (also removes trace minerals — compensate with multivitamin)</li>
+            <li><strong>Stainless steel blender jug</strong> — plastic blenders shed high levels of microplastics via friction</li>
+            <li><strong>Glass water over plastic</strong> — plastic has nanoplastics that enter the bloodstream; glass has larger particles that pass through</li>
+            <li><strong>Wooden or stainless utensils</strong> — silicone often contains plastic; black plastic spatulas are worst</li>
+            <li><strong>Glass or bamboo-lidded glass containers</strong> for food storage and takeaway</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S7: HORMONES ────── -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">07</span>
+        <h2>Hormones & Testosterone</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Testosterone levels in men have dropped by up to 20% over the last two decades — with environmental endocrine disruptors considered the primary population-level cause.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Male Testosterone Decline</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Declines ~1% per year from age 30</li>
+            <li>Age 25–65: 200% increase in visceral fat even with no change in body weight</li>
+            <li>Testosterone helps burn visceral fat — as it declines, net visceral fat accumulation accelerates</li>
+          </ul>
+          <p class="prose" style="font-weight:600; color:var(--teal); font-size:13px; margin-top:12px;">Contributing factors to population-level decline</p>
+          <ul class="bullet-list">
+            <li>Environmental EDCs — BPA, phthalates, PFAS (considered primary driver)</li>
+            <li>Sleep deprivation — one of the most impactful individual levers</li>
+            <li>Excess refined sugar in diet</li>
+            <li>Micronutrient deficiencies — especially zinc and magnesium (essential for testosterone synthesis)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Female Hormones, Perimenopause & Visceral Fat</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Oestrogen tells the body to store fat subcutaneously (thighs, buttocks) rather than viscerally</li>
+            <li>As oestrogen declines in perimenopause, fat shifts sharply to visceral storage — often feels overnight</li>
+            <li>Perimenopause typically starts mid-40s — 8–10% annual visceral fat increase begins here</li>
+            <li>SWAN study: accelerated visceral fat gain starts 2 years before the final menstrual period</li>
+            <li>Obesity accelerates ovarian ageing → earlier menopause</li>
+            <li>High PFAS exposure → menopause 1–2 years earlier</li>
+            <li>Testosterone (even in women) helps burn visceral fat — some consider testosterone therapy during perimenopause for this reason</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S8: SLEEP ────── -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">08</span>
+        <h2>Sleep</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Sleep is one of the fastest levers for accumulating visceral fat, impairing immune function, disrupting glucose metabolism, and dropping testosterone. It is undervalued relative to diet and exercise.</p>
+      <ul class="bullet-list">
+        <li>4 hrs/night for 2 weeks = 11% more visceral fat — no change on the scales</li>
+        <li>Accelerates immune system ageing significantly</li>
+        <li>Directly impairs blood glucose regulation and insulin sensitivity</li>
+        <li>Testosterone drops significantly with inadequate sleep</li>
+        <li>Stop eating at least 3 hours before bed — activates sympathetic nervous system, fragments sleep quality</li>
+        <li>Continuous glucose monitors reveal sleep's direct effect on metabolic health in real time</li>
+        <li>Melatonin supplements are frequently mis-dosed at manufacturing level — third-party tested brands only</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ────── S9: PEAK SPAN ────── -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">09</span>
+        <h2>Peak Span</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">A new concept from Duke University: maintaining within 90% of your peak physiological function for as long as possible. Beyond health span (disease-free) — this is about staying near peak performance.</p>
+
+      <!-- Peak Span Curve Diagram -->
+      <div class="diagram-wrap">
+        <div class="diagram-label">Physiological Function Over Lifespan — When Systems Peak & Decline</div>
+        <svg width="100%" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Axes -->
+          <line x1="60" y1="250" x2="660" y2="250" stroke="#2a4a66" stroke-width="1.5"/>
+          <line x1="60" y1="20" x2="60" y2="250" stroke="#2a4a66" stroke-width="1.5"/>
+
+          <!-- Y axis labels -->
+          <text x="52" y="30" text-anchor="end" fill="#7a9ab5" font-size="10">100%</text>
+          <text x="52" y="95" text-anchor="end" fill="#7a9ab5" font-size="10">75%</text>
+          <text x="52" y="160" text-anchor="end" fill="#7a9ab5" font-size="10">50%</text>
+          <text x="52" y="225" text-anchor="end" fill="#7a9ab5" font-size="10">25%</text>
+
+          <!-- X axis labels (age) -->
+          <text x="60" y="265" text-anchor="middle" fill="#7a9ab5" font-size="10">0</text>
+          <text x="175" y="265" text-anchor="middle" fill="#7a9ab5" font-size="10">20</text>
+          <text x="290" y="265" text-anchor="middle" fill="#7a9ab5" font-size="10">40</text>
+          <text x="405" y="265" text-anchor="middle" fill="#7a9ab5" font-size="10">60</text>
+          <text x="520" y="265" text-anchor="middle" fill="#7a9ab5" font-size="10">80</text>
+          <text x="635" y="265" text-anchor="middle" fill="#7a9ab5" font-size="10">100</text>
+          <text x="350" y="282" text-anchor="middle" fill="#7a9ab5" font-size="11">Age</text>
+          <text x="20" y="140" text-anchor="middle" fill="#7a9ab5" font-size="11" transform="rotate(-90,20,140)">Relative Capacity</text>
+
+          <!-- 90% peak span line -->
+          <line x1="60" y1="47" x2="660" y2="47" stroke="#00b4a6" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+          <text x="665" y="51" fill="#00b4a6" font-size="9">90% target</text>
+
+          <!-- Muscle / Bone (peaks 25, steady decline) -->
+          <path d="M60,200 Q120,100 175,32 Q220,32 290,80 Q360,128 430,165 Q520,200 635,235" stroke="#4caf7d" stroke-width="2" fill="none"/>
+
+          <!-- Fluid Intelligence (peaks 22, sharp decline) -->
+          <path d="M60,210 Q100,100 165,32 Q200,32 260,95 Q340,155 430,185 Q530,215 635,240" stroke="#00b4a6" stroke-width="2" fill="none"/>
+
+          <!-- Crystallised Intelligence (peaks 45, gentle decline) -->
+          <path d="M60,220 Q120,160 200,110 Q260,80 290,52 Q330,42 390,42 Q430,42 460,52 Q530,90 635,170" stroke="#f5a623" stroke-width="2" fill="none"/>
+
+          <!-- Immune Function (peaks 18, early decline) -->
+          <path d="M60,190 Q90,80 140,32 Q165,32 200,65 Q280,130 380,180 Q490,220 635,245" stroke="#e05c5c" stroke-width="2" fill="none"/>
+
+          <!-- Female Reproductive -->
+          <path d="M60,220 Q100,110 155,35 Q175,35 200,55 Q250,100 280,165 Q300,215 320,248" stroke="#c984c7" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+
+          <!-- Legend -->
+          <rect x="80" y="10" width="12" height="3" fill="#4caf7d" rx="1"/>
+          <text x="97" y="18" fill="#7a9ab5" font-size="10">Muscle/Bone density</text>
+          <rect x="230" y="10" width="12" height="3" fill="#00b4a6" rx="1"/>
+          <text x="247" y="18" fill="#7a9ab5" font-size="10">Fluid intelligence</text>
+          <rect x="370" y="10" width="12" height="3" fill="#f5a623" rx="1"/>
+          <text x="387" y="18" fill="#7a9ab5" font-size="10">Crystallised intelligence</text>
+          <rect x="80" y="26" width="12" height="3" fill="#e05c5c" rx="1"/>
+          <text x="97" y="34" fill="#7a9ab5" font-size="10">Immune function</text>
+          <line x1="230" y1="28" x2="242" y2="28" stroke="#c984c7" stroke-width="2" stroke-dasharray="4,2"/>
+          <text x="247" y="34" fill="#7a9ab5" font-size="10">Female reproductive</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>When Systems Peak</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Female reproductive</span><span class="kv-val">Peaks ~25, sharp decline to ~40, effectively ends ~50–52</span>
+            <span class="kv-key">Immune function</span><span class="kv-val">Peaks ~18–25, steady decline thereafter</span>
+            <span class="kv-key">Muscle mass / bone density</span><span class="kv-val">Peaks ~25, steady decline</span>
+            <span class="kv-key">Fluid intelligence</span><span class="kv-val">Peaks ~20–25 (processing speed — answering without prior knowledge)</span>
+            <span class="kv-key">Crystallised intelligence</span><span class="kv-val">Peaks ~40–45 (accumulated knowledge, wisdom, pattern recognition)</span>
+            <span class="kv-key">VO2 max / cardiorespiratory</span><span class="kv-val">Peaks ~20–25</span>
+          </div>
+          <div class="positive">Crystallised intelligence peaking at 40–45 makes midlife the prime time for entrepreneurship, strategic problem-solving, and leadership roles — you have maximum accumulated knowledge plus still adequate processing speed.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How to Maintain Peak Span</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Vigorous aerobic exercise — cardiorespiratory fitness, brain, immune function, visceral fat</li>
+            <li>Resistance training — muscle mass and bone density</li>
+            <li>Omega-3 supplementation — biological ageing rate</li>
+            <li>Sleep — immune system ageing specifically</li>
+            <li>Novel cognitive engagement — fluid and crystallised intelligence</li>
+            <li>Avoiding endocrine disruptors — hormonal and ovarian health</li>
+            <li>Intermittent fasting — cellular repair, metabolic health</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S10: GLP-1 ────── -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">10</span>
+        <h2>GLP-1 Drugs</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">GLP-1 receptor agonists (Ozempic/Wegovy = semaglutide; Mounjaro = tirzepatide) suppress appetite and slow gastric emptying, mimicking caloric restriction. Powerful for obesity — controversial for mild overweight use.</p>
+
+      <div class="two-col">
+        <div class="col-card pro">
+          <h4>Benefits (for appropriate candidates)</h4>
+          <ul class="bullet-list">
+            <li>Significant weight and visceral fat loss</li>
+            <li>Cardiovascular, cancer, and Alzheimer's risk all fall with weight reduction</li>
+            <li>Life-changing for those with obesity who cannot lose weight by lifestyle alone</li>
+            <li>Lowest-dose Ozempic can match intermittent fasting for 5–10% body weight loss</li>
+          </ul>
+        </div>
+        <div class="col-card con">
+          <h4>Risks & Concerns</h4>
+          <ul class="bullet-list">
+            <li>Weight regain when stopping — appetite returns more intensely than before</li>
+            <li>Up to 40% of weight lost can be muscle if protein + resistance training not maintained</li>
+            <li>Bone loss (mechanism unclear)</li>
+            <li>Increased kidney cancer signal</li>
+            <li>Black-box warning for thyroid cancer (animal data only)</li>
+            <li>Gallstone formation — some require gallbladder removal</li>
+            <li>Nausea and GI upset</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Key Practical Points</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>May need to be taken for life to maintain results — most regain all weight within ~1 year of stopping</li>
+            <li>If stopping, taper dose gradually rather than stopping abruptly — slows rate of weight regain</li>
+            <li>Maintain protein intake and resistance training throughout to prevent muscle loss</li>
+            <li>Dr. Patrick's concern: widespread use by people wanting to lose 10–15 lb who could achieve this through lifestyle changes — long-term effects in healthy-weight individuals unknown</li>
+          </ul>
+          <div class="note"><strong>The no-free-lunch reality:</strong> These drugs make you not feel hungry, which mimics caloric restriction. When you stop, the body's hunger response rebounds — often described as a ferocious, animalistic urge to eat far more intense than before starting the medication.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S11: MONITORING ────── -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">11</span>
+        <h2>Self-Monitoring & Testing</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Omega-3 Index Test</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Finger-prick blood spot test, ordered online, done at home. Measures the % of omega-3 fatty acids in red blood cell membranes.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Target</span><span class="kv-val">8% or above</span>
+            <span class="kv-key">What 8% delivers</span><span class="kv-val">5-year increased life expectancy, 66% lower dementia risk</span>
+            <span class="kv-key">Why test</span><span class="kv-val">Your supplement may not be being absorbed, or may be oxidised — you won't know without testing</span>
+            <span class="kv-key">Cost</span><span class="kv-val">~£20 online (Dr. Patrick's top purchase under $100)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Continuous Glucose Monitor (CGM)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Worn on the arm, tracks blood glucose in real time over 2–4 weeks. Reveals the direct impact of food, sleep, and stress on metabolic health.</p>
+          <div class="kv-grid">
+            <span class="kv-key">What to watch</span><span class="kv-val">Fasting blood glucose (morning before eating) — compare to age/gender norms</span>
+            <span class="kv-key">Post-meal</span><span class="kv-val">30–60 min after eating — glucose should peak then clear. Glucose not clearing = insulin resistance</span>
+            <span class="kv-key">Sleep insight</span><span class="kv-val">Most people are shocked by how much poor sleep raises fasting glucose — often more than food choices</span>
+            <span class="kv-key">Cost</span><span class="kv-val">~£15–20 online (Dr. Patrick's second top purchase under $100)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>DEXA Scan</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Precise body composition scan: visceral fat, muscle mass, bone density. Not routine but provides objective baseline data.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Visceral fat target</span><span class="kv-val">Below 300 g (closer to zero = better)</span>
+          </div>
+          <div class="note">You can be visibly lean and still fail a DEXA scan for visceral fat. Scale weight does not reflect visceral fat accumulation — especially in the 500 g range.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────── S12: BRAIN ────── -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <span class="section-num">12</span>
+        <h2>Brain Ageing & Alzheimer's Risk</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Multiple lifestyle, supplement, and cognitive factors converge on brain ageing. Novel learning and aerobic exercise are the two highest-impact modifiable levers.</p>
+      <ul class="bullet-list">
+        <li>Novel cognitive engagement → strong Alzheimer's protection (London taxi drivers: 25,000 streets memorised, negligible Alzheimer's rates, physically larger hippocampi)</li>
+        <li>Learning a new language → rapid decrease in Alzheimer's risk</li>
+        <li>High omega-3 index → 66% lower dementia risk</li>
+        <li>Curcumin (phytosomal) → lowers TNF-alpha → linked to 50% lower Alzheimer's risk (via TNF-alpha inhibition pathway)</li>
+        <li>Aerobic exercise → BDNF → new neuron growth, stronger connections, greater brain plasticity</li>
+        <li>Sleep → brain waste clearance and neurological repair — inadequate sleep is a direct Alzheimer's risk driver</li>
+        <li>Vitamin D3 deficiency → accelerated brain ageing</li>
+        <li>Multivitamin (3 years in adults 65+) → reversed brain ageing 2.1 yrs overall, 5 yrs episodic memory</li>
+        <li>Retirement without cognitive engagement → rapid cognitive decline and earlier dementia onset</li>
+        <li>AI over-reliance → EEG studies show brain connectivity nearly halved when thinking is outsourced vs. writing manually; 83% of AI users couldn't recall details of text written with AI assistance</li>
+        <li>Handwriting notes (vs. typing or AI) significantly improves memory retention and cognitive encoding</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+  }
+
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+  }
+
+  // Highlight active nav item on scroll
+  const sections = document.querySelectorAll('.section, #hero');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Open first section by default
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
