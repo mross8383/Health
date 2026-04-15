@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Simon Mills – Herbal Medicine Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&family=Inconsolata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f7f0;
+    --bg-card: #ffffff;
+    --bg-dark: #1b2d1b;
+    --bg-mid: #243624;
+    --forest: #2e6b2e;
+    --forest-light: #4a8f4a;
+    --forest-pale: #e8f3e6;
+    --forest-dim: rgba(46,107,46,0.11);
+    --bark: #7a4f1e;
+    --bark-pale: #faf3eb;
+    --bark-dim: rgba(122,79,30,0.1);
+    --sage: #3a6b5a;
+    --sage-pale: #e6f2ee;
+    --sage-dim: rgba(58,107,90,0.1);
+    --crimson-r: #a01c2c;
+    --crimson-pale: #fdf0f2;
+    --crimson-dim: rgba(160,28,44,0.1);
+    --text: #1a2a1a;
+    --text-mid: #3a4e3a;
+    --text-dim: #7a8e7a;
+    --border: rgba(46,107,46,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: block;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 0 0 80px;
+  }
+
+  /* ── BACK BUTTON ── */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover {
+    background: rgba(0,0,0,0.13);
+    color: #111;
+    border-color: rgba(0,0,0,0.25);
+  }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -40px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(46,107,46,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 40px;
+    color: #f0f5ee;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    max-width: 600px;
+    font-weight: 600;
+  }
+
+  #hero h1 em { color: #8fd48f; font-style: italic; }
+
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 520px; margin-bottom: 26px; }
+
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(143,212,143,0.3);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #8fd48f;
+    font-weight: 600;
+  }
+
+  /* ── SECTIONS ── */
+  .section { border-bottom: 1px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+
+  .section-header:hover { background: var(--forest-pale); }
+
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+
+  .section-num {
+    font-family: 'Inconsolata', monospace;
+    font-size: 10px;
+    color: var(--forest);
+    background: var(--forest-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+  }
+
+  .chevron { width: 18px; height: 18px; color: var(--forest); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 48px 40px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+
+  .section-body.open { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SUBSECTIONS ── */
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .subsection-header:hover { background: var(--forest-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 700; color: var(--bg-dark); }
+
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-body.open { display: block; }
+
+  /* ── PROSE ── */
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  /* ── BULLETS ── */
+  .bullet-list { list-style: none; margin: 10px 0; }
+
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--forest-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  /* ── KV ── */
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--forest-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--forest);
+  }
+
+  .kv-key {
+    font-family: 'Inconsolata', monospace;
+    font-size: 10.5px;
+    color: var(--forest);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 700;
+  }
+
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  /* ── NOTES ── */
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--bark-pale);
+    border-left: 3px solid var(--bark);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--bark);
+    line-height: 1.55;
+  }
+
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson-r);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson-r);
+  }
+
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+  }
+
+  /* ── PLANT CARDS ── */
+  .plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .plant-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .plant-card:hover {
+    border-color: var(--forest-light);
+    box-shadow: 0 2px 12px rgba(46,107,46,0.08);
+  }
+
+  .plant-emoji { font-size: 22px; margin-bottom: 2px; }
+
+  .plant-name { font-size: 13px; font-weight: 700; color: var(--bg-dark); }
+
+  .plant-also {
+    font-family: 'Inconsolata', monospace;
+    font-size: 10px;
+    color: var(--forest);
+    font-style: italic;
+  }
+
+  .plant-use { font-size: 11.5px; color: var(--text-dim); line-height: 1.45; flex: 1; }
+
+  .plant-flag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    display: inline-block;
+    width: fit-content;
+    font-weight: 700;
+  }
+
+  .flag-forest { background: var(--forest-dim); color: var(--forest); }
+  .flag-bark { background: var(--bark-dim); color: var(--bark); }
+  .flag-sage { background: var(--sage-dim); color: var(--sage); }
+  .flag-crimson { background: var(--crimson-dim); color: var(--crimson-r); }
+
+  /* ── DIAGRAM ── */
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--forest);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'Inconsolata', monospace;
+  }
+
+  svg text { font-family: 'Nunito', sans-serif; }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+
+  .col-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+  }
+
+  .col-card h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .col-card.warming h4 { color: var(--bark); }
+  .col-card.cooling h4 { color: var(--sage); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .two-col { grid-template-columns: 1fr; }
+    .back-btn { margin: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <h1>Dr. Simon Mills<br><em>Herbal Medicine</em><br>Reference Guide</h1>
+    <p>Dr. Mills has practised herbal medicine for over 50 years, led European Commission research programmes, and treated more than 10,000 patients. All claims represent his interpretation of the evidence — not medical advice.</p>
+    <div class="hero-tags">
+      <span class="tag">Herbal Medicine</span>
+      <span class="tag">Inflammation</span>
+      <span class="tag">Gut & Microbiome</span>
+      <span class="tag">Brain Health</span>
+      <span class="tag">Women's Health</span>
+      <span class="tag">Antibiotics</span>
+      <span class="tag">Polyphenols</span>
+    </div>
+  </section>
+
+  <!-- S1: PHILOSOPHY -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>Philosophy & Approach</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills's approach is not to treat disease — it is to improve the performance of the body's underlying systems so that disease cannot take hold. He rarely focuses on the diagnosis. He looks for where the body's performance broke down, how far back that goes, and what was upstream.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Core Principles</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>"I can't do anything about the sea and the waves, but I can help you build a better boat." — the goal is resilience, not just symptom removal</li>
+            <li>Plants were humanity's primary source of medicine for almost all of history. We have evolved alongside them.</li>
+            <li>Most of his herbs have an immediate effect — he asks new patients to call him the next day, not wait weeks</li>
+            <li>The patient is the boss — Dr. Mills gives guidance, the patient discovers what works for them</li>
+            <li>He dislikes the word "anti-inflammatory" — he prefers "modulating" or "supporting" inflammation, because inflammation is a defence, not the enemy</li>
+            <li>Only 5 countries in the world are not broadly using herbal medicine: UK, US, Canada, Australia, New Zealand — all originally English-speaking white settler countries. The rest of the world uses plants as routine medicine.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What He Treats — and How He Thinks About It</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Most patients who come to him have been around the block — they've had their conditions for years, tried conventional treatment, and been told "nothing more can be done." His approach: go backwards and fix what wasn't fixed earlier.</p>
+          <ul class="bullet-list">
+            <li>~25% of patients are living with cancer — he supports quality of life and function, not treating the cancer itself</li>
+            <li>~30–35% have chronic inflammatory conditions — Crohn's, ulcerative colitis, psoriasis, autoimmune diseases</li>
+            <li>He starts with digestion, liver function, kidney function, and circulation — wherever the original disruption appears to have started</li>
+            <li>He always asks: "What was going on in this person's life before the condition appeared? What was the original insult?"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: INFLAMMATION -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Inflammation — Friend, Not Enemy</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">One of Dr. Mills's strongest positions: inflammation is not the disease. It is the body's defence mechanism doing its job. The question is always: why is the inflammation necessary, and what can we do upstream to reduce the need for it?</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Acute vs. Chronic Inflammation — Two Very Different Things</div>
+        <svg width="100%" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-f" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2e6b2e"/>
+            </marker>
+            <marker id="arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#a01c2c"/>
+            </marker>
+          </defs>
+
+          <!-- ACUTE -->
+          <text x="185" y="22" text-anchor="middle" fill="#2e6b2e" font-size="12" font-weight="700">ACUTE INFLAMMATION — Let it do its job</text>
+          <rect x="10" y="35" width="115" height="56" rx="6" fill="#e8f3e6" stroke="#2e6b2e" stroke-width="1.5"/>
+          <text x="68" y="58" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">Problem arrives</text>
+          <text x="68" y="73" text-anchor="middle" fill="#3a4e3a" font-size="10">injury / infection</text>
+          <text x="68" y="85" text-anchor="middle" fill="#3a4e3a" font-size="10">foreign material</text>
+
+          <path d="M125,63 L160,63" stroke="#2e6b2e" stroke-width="1.5" marker-end="url(#arr-f)" fill="none"/>
+
+          <rect x="160" y="35" width="130" height="56" rx="6" fill="#e8f3e6" stroke="#2e6b2e" stroke-width="1.5"/>
+          <text x="225" y="58" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">Marines sent in</text>
+          <text x="225" y="73" text-anchor="middle" fill="#3a4e3a" font-size="10">neutrophils, white cells</text>
+          <text x="225" y="85" text-anchor="middle" fill="#3a4e3a" font-size="10">do the job fast</text>
+
+          <path d="M290,63 L325,63" stroke="#2e6b2e" stroke-width="1.5" marker-end="url(#arr-f)" fill="none"/>
+
+          <rect x="325" y="30" width="120" height="66" rx="6" fill="#e8f3e6" stroke="#2e6b2e" stroke-width="2"/>
+          <text x="385" y="53" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">Job done</text>
+          <text x="385" y="68" text-anchor="middle" fill="#2e6b2e" font-size="10">Marines return</text>
+          <text x="385" y="82" text-anchor="middle" fill="#2e6b2e" font-size="10">body heals ✓</text>
+          <text x="385" y="90" text-anchor="middle" fill="#7a8e7a" font-size="9">DON'T suppress this</text>
+
+          <!-- CHRONIC -->
+          <text x="650" y="22" text-anchor="middle" fill="#a01c2c" font-size="12" font-weight="700">CHRONIC INFLAMMATION — Address the cause</text>
+          <rect x="480" y="35" width="120" height="56" rx="6" fill="#fdf0f2" stroke="#a01c2c" stroke-width="1.5"/>
+          <text x="540" y="58" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">Junk keeps</text>
+          <text x="540" y="73" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">piling in</text>
+          <text x="540" y="87" text-anchor="middle" fill="#7a8e7a" font-size="9">gut, diet, toxins</text>
+
+          <path d="M600,63 L638,63" stroke="#a01c2c" stroke-width="1.5" marker-end="url(#arr-r)" fill="none"/>
+
+          <rect x="638" y="30" width="160" height="80" rx="6" fill="#fdf0f2" stroke="#a01c2c" stroke-width="2"/>
+          <text x="718" y="55" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">Marines become</text>
+          <text x="718" y="70" text-anchor="middle" fill="#1a2a1a" font-size="11" font-weight="600">the problem</text>
+          <text x="718" y="86" text-anchor="middle" fill="#a01c2c" font-size="10">collateral damage to tissue</text>
+          <text x="718" y="100" text-anchor="middle" fill="#7a8e7a" font-size="9">go upstream — find the cause</text>
+
+          <text x="410" y="150" text-anchor="middle" fill="#7a8e7a" font-size="10" font-style="italic">Ibuprofen stops acute inflammation doing its essential work. Address chronic inflammation by removing the source upstream — usually the gut.</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Ibuprofen & NSAIDs — Dr. Mills's View</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Ibuprofen is derived from salicylic acid — a plant substance that gave us aspirin. NSAIDs work by cutting the inflammatory process entirely. That may be necessary short-term, but it comes with a cost.</p>
+          <ul class="bullet-list">
+            <li>Short-term acute inflammation: overwhelmingly the advice is not to suppress it — the body is doing its job</li>
+            <li>Chronic inflammation: always ask why the inflammation is there. What is being dumped on the joint or tissue? Go upstream.</li>
+            <li>For arthritis specifically: the joint has poor circulation by design (two surfaces pressing together). Metabolic waste deposits there — like a U-bend under a sink. The inflammation is trying to flush it clean.</li>
+            <li>Using ibuprofen stops the cleanup process. The better approach: help the body do the cleanup more efficiently by improving circulation and removing the upstream source of metabolic waste.</li>
+          </ul>
+          <div class="note">Turmeric/curcumin was found in a 2016 meta-analysis of RCTs to be comparable to ibuprofen for pain relief — but works via a different mechanism that supports rather than suppresses inflammation modulation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: THE GUT -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>The Gut & Microbiome</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills starts almost every treatment with the gut — not because it's fashionable, but because it's where plants go, where most of the immune system lives, and where most chronic problems originate. "We are walking gut bags — there are more bacteria in the gut than cells in our body."</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Microbiome — What It Actually Does</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>More bacteria in the gut than human cells — they have ~100× our genetic capacity</li>
+            <li>The microbiome runs the show — the heart, kidney, and brain only function as they do because they work with the microbiome</li>
+            <li>The microbiome is required to process polyphenols — without a healthy microbiome, you cannot unlock the benefits of coloured foods</li>
+            <li>Curcumin from turmeric works primarily via the microbiome — it barely enters the blood (~1–2%), but the microbiome converts it into active anti-inflammatory compounds</li>
+            <li>Antibiotics reduce microbiome biodiversity — this loss, even if partial, affects nearly every system in the body</li>
+            <li>Coloured fruits and vegetables (polyphenols) are prebiotic — they directly feed the beneficial species</li>
+          </ul>
+          <div class="positive">Aim for 30 different plant varieties per week. Diversity of plant types creates diversity of bacterial species. No one knows exactly which species you personally need — so give as many as possible.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Probiotics, Prebiotics & Postbiotics</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Probiotics</span><span class="kv-val">Living organisms — yogurt, kimchi, kefir. Must survive stomach acid to be effective. Some strains do make it through.</span>
+            <span class="kv-key">Prebiotics</span><span class="kv-val">Foods that feed the good bacteria — coloured plants, root vegetables, garlic, inulin. The most powerful intervention.</span>
+            <span class="kv-key">Postbiotics</span><span class="kv-val">Products the bacteria make — short-chain fatty acids, vitamin K2, and the activated forms of polyphenols. You get these from fermented foods and from having a healthy microbiome processing plant foods.</span>
+          </div>
+          <div class="note">A damaged microbiome (from antibiotics, poor diet, or stress) means even good supplements are less effective — the microbiome can't convert them. Fix the gut first.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: WARMING PLANTS -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Warming Plants — Colds, Pain & Circulation</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Old medicine divided remedies into warming (stimulating circulation) and cooling (stimulating digestion). Warming remedies are for conditions that feel better with heat — colds, joint pain that wants a hot water bottle, menstrual cramps, headaches that want a hot pack.</p>
+
+      <div class="two-col">
+        <div class="col-card warming">
+          <h4>Use Warming Remedies When...</h4>
+          <ul class="bullet-list">
+            <li>You feel cold, chilly, want to wrap up</li>
+            <li>Pain is better with a hot water bottle or heat pack</li>
+            <li>Headache prefers heat (70% of migraine sufferers)</li>
+            <li>Menstrual cramps, joint pain that responds to warmth</li>
+            <li>Cold / flu onset — feeling "cold" is diagnostic</li>
+          </ul>
+        </div>
+        <div class="col-card cooling">
+          <h4>Use Cooling Remedies When...</h4>
+          <ul class="bullet-list">
+            <li>You feel hot and want to cool down</li>
+            <li>Pain is better with an ice pack (30% of migraine sufferers)</li>
+            <li>Fever — the body is overheating</li>
+            <li>Digestive stimulation needed (bitters)</li>
+            <li>Poor appetite after illness</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Ginger & Cinnamon — The Foundation Remedy</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The combination Dr. Mills calls "made in heaven." Both are warming — ginger stimulates pain fibres which open blood vessels (hyperaemia), loosening mucus in airways and warming the body throughout.</p>
+          <div class="kv-grid">
+            <span class="kv-key">How to make</span><span class="kv-val">Grate a thumb-sized piece of fresh ginger into a mug. Add 1 tsp of Ceylon cinnamon (tightly rolled, many fine layers — not the single large curled Cassia bark). Add hot water. Sieve and drink.</span>
+            <span class="kv-key">Use for</span><span class="kv-val">Colds, flu, headaches that want heat, menstrual cramps, joint pain that responds to warmth, chills</span>
+            <span class="kv-key">Also works</span><span class="kv-val">Turmeric (same family as ginger), chillies, black pepper — all warming</span>
+            <span class="kv-key">Not for everyone</span><span class="kv-val">Some people find ginger too stimulating — it heats them up too much or upsets the stomach. Listen to your body.</span>
+          </div>
+          <p class="prose">Ginger stimulates pain fibres throughout mucous membranes — opening blood vessels, loosening mucus, helping flush the airways. If you have a lung issue, you will start to bring up more material after drinking it. The warmth you feel is real — not imagined.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Cayenne / Capsicum — For Joint Pain</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Applied externally, not eaten. Capsicum (chilli) plasters/creams directly bring blood into the joint — meaning the inflammation doesn't have to do it, and therefore the pain reduces. This was the standard Native American and European (mustard) approach to joint pain for centuries.</p>
+          <ul class="bullet-list">
+            <li>Capsicum plasters are available in pharmacies as standard prescriptions for pain</li>
+            <li>For arthritic fingers: a warm mustard bath (dilute yellow mustard in warm water, soak fingers) can ease pain quickly</li>
+            <li>The heat you feel is stimulating pain fibres — there is no actual tissue burning; chilli does not damage mucosa</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Other Warming Herbs</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Cardamom</strong> — Dr. Mills's personal favourite. Warming, sustaining, nourishing for digestion. Used in India and the Middle East. Used in China as a convalescent tonic when digestion is weak after illness. "One of my favourite remedies for when people are run low."</li>
+            <li><strong>Fennel tea</strong> — warming digestive remedy</li>
+            <li><strong>Turmeric</strong> — warming, anti-inflammatory modulator. Works via the microbiome. Pairs well with black pepper (raises curcumin availability slightly). Best consumed as food — in curries, with a variety of spices.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: COOLING / BITTERS -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Cooling Plants & Bitters</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Cooling remedies stimulate digestion and were historically used for fever. Bitters are the most important category — they trigger taste buds which hardwire to digestive hormones, increasing all digestive activity.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Bitters — How They Work</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Bitter taste buds in the mouth are hardwired to the stomach via hormonal pathways. When triggered, they switch on all digestive activity — increasing gastric juices, bile flow, appetite, and blood supply to the gut. This is why a bitter aperitif before a meal was a universal tradition.</p>
+          <ul class="bullet-list">
+            <li>Wormwood — the most valued European bitter. The French name is vermouth. Used as an aperitif before meals to stimulate appetite.</li>
+            <li>Dandelion — a familiar bitter, now available as a soft drink (particularly in the US)</li>
+            <li>Burdock — another classic bitter, now also a soft drink</li>
+            <li>Coffee — an accessible bitter. Used originally as a post-meal digestive in the Middle East (ground, not filtered). An espresso without sugar is a bitter. Coffee is beneficial for its soluble fibre and polyphenols — NOT primarily for the caffeine.</li>
+            <li>Artichoke leaf — a liver and digestive bitter. Used widely in France for liver and fat-processing problems.</li>
+          </ul>
+          <div class="note">Bitters are used when appetite is poor, especially after illness. They can kick-start the digestive system when it has stalled. Effect is noticeable within an hour.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Peppermint — The Classic Cooling Herb</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The most widely known cooling remedy. If someone prefers peppermint tea to ginger tea, that tells Dr. Mills something useful about what their system needs — they are constitutionally cooling rather than warming.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Use for</span><span class="kv-val">Fever management, digestive discomfort, headaches that prefer ice packs, general cooling</span>
+            <span class="kv-key">Simple diagnostic</span><span class="kv-val">Would you prefer ginger tea or peppermint tea right now? The answer narrows down which type of remedy your body is calling for.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: KEY PLANTS A-Z -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Key Plants — Reference Cards</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">All plants and substances discussed in the interview with their key properties, uses, and notes from Dr. Mills.</p>
+
+      <div class="plant-grid">
+        <div class="plant-card">
+          <span class="plant-emoji">🍫</span>
+          <span class="plant-name">Dark Chocolate / Cacao</span>
+          <span class="plant-also">75%+ cocoa solids</span>
+          <span class="plant-use">Brain health, cardiovascular health, improved blood flow within minutes. Polyphenols and soluble fibre. Dr. Mills: "One of the best medicines around." 50g/day at 75%+ is a medicine dose. Also contains mild stimulants similar to coffee.</span>
+          <span class="plant-flag flag-forest">50g/day medicine dose</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🧄</span>
+          <span class="plant-name">Garlic (Raw)</span>
+          <span class="plant-also">Russian Penicillin</span>
+          <span class="plant-use">Powerful prebiotic. Antimicrobial. Used instead of penicillin in parts of the world. Good guys in the gut like it; bad guys do not. Oil of garlic kills pathogens — breathe it, it comes out the lungs. Particularly effective for chest and lung infections.</span>
+          <span class="plant-flag flag-bark">Garlic intensive protocol</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌿</span>
+          <span class="plant-name">Rosemary</span>
+          <span class="plant-also">For remembrance</span>
+          <span class="plant-use">Brain health. Inhaling volatile oils enters the brain directly via the olfactory lobe. Clinical trial showed improvement in cognitive performance. "One of the ones to watch for long-term brain health." Just press and sniff fresh rosemary — immediate effect.</span>
+          <span class="plant-flag flag-forest">Inhale — don't just eat</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🍵</span>
+          <span class="plant-name">Green Tea</span>
+          <span class="plant-also">Camellia sinensis</span>
+          <span class="plant-use">Brain health, reduced cognitive decline, lower Alzheimer's risk (populations that drink regularly). Modulates the blood-brain barrier (neurovascular unit). Polyphenols. Drink it as tea — the supplement form is less effective. Matcha is higher quality and likely more beneficial.</span>
+          <span class="plant-flag flag-forest">Drink — not supplement</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌱</span>
+          <span class="plant-name">Turmeric / Curcumin</span>
+          <span class="plant-also">Works via microbiome</span>
+          <span class="plant-use">Inflammation modulator. Cardiovascular and brain health. Works primarily in the gut — only 1–2% enters the bloodstream, but the microbiome converts it into active compounds. Meta-analysis 2016: comparable to ibuprofen for pain relief. Black pepper raises availability slightly.</span>
+          <span class="plant-flag flag-forest">Gut + microbiome first</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">💊</span>
+          <span class="plant-name">Echinacea</span>
+          <span class="plant-also">E. angustifolia root</span>
+          <span class="plant-use">Upper respiratory infections, throat, sinuses, ear, gum problems. Works on frontline immune cells (white blood cells). For full effect must be taken as a liquid extract that causes tingling on the tongue — pills without this effect are less potent for the tingle-dependent mechanism.</span>
+          <span class="plant-flag flag-bark">Tingle = working</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌸</span>
+          <span class="plant-name">Hawthorn</span>
+          <span class="plant-also">Mayflower</span>
+          <span class="plant-use">Cardiovascular health and prevention. Leaf and flower used as a tea — a traditional home remedy for heart support. Dr. Mills uses as a preventative for cardiovascular problems. Evidence for regular consumption reducing cardiovascular risk.</span>
+          <span class="plant-flag flag-sage">Heart preventative</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌼</span>
+          <span class="plant-name">Artichoke Leaf</span>
+          <span class="plant-also">Cynara scolymus</span>
+          <span class="plant-use">Cholesterol and liver. Widely used in France for liver-related fat processing problems. Dr. Mills uses it as a pressed juice. Lowers cholesterol mainly by improving bile flow and fat excretion. Also a digestive bitter — stimulates liver and digestive function.</span>
+          <span class="plant-flag flag-bark">Cholesterol + liver</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌻</span>
+          <span class="plant-name">Milk Thistle</span>
+          <span class="plant-also">Silybum marianum</span>
+          <span class="plant-use">Liver support. Used in patient case with panic attacks and anxiety linked to liver dysfunction. Liver handles detox, emotions, immune system, and hormonal processing. A damaged liver from early hepatitis or COVID can leave lasting metabolic problems. Milk thistle helps restore liver function.</span>
+          <span class="plant-flag flag-forest">Liver / metabolic</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌿</span>
+          <span class="plant-name">Frankincense / Boswellia</span>
+          <span class="plant-also">One of the three wise gifts</span>
+          <span class="plant-use">Anti-inflammatory resin. Comes as tablets (ground resin, greeny-yellow). Combined with echinacea and liquorice for mouth, throat, and sinus infections. One of the most widely used medicines in ancient times. Myrrh (related) lines the mouth mucosa — used for oral and throat infections.</span>
+          <span class="plant-flag flag-bark">Throat + sinuses</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌿</span>
+          <span class="plant-name">Ginkgo Biloba</span>
+          <span class="plant-also">GKO</span>
+          <span class="plant-use">Cardiovascular and brain health. Prescription medicine in Europe for cardiovascular problems. Uses similar mechanisms to green tea polyphenols on the blood-brain barrier (neurovascular unit). Evidence for brain circulation and cognitive protection.</span>
+          <span class="plant-flag flag-sage">Brain circulation</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌾</span>
+          <span class="plant-name">Slippery Elm</span>
+          <span class="plant-also">Raft principle</span>
+          <span class="plant-use">Acid reflux / GERD. Forms a mucous layer in the stomach that acts as a physical barrier (raft) preventing acid from refluxing into the oesophagus. Works as a tablet. Alternatively: Gaviscon (seaweed gum) uses the same raft principle. Used to wean patients off omeprazole.</span>
+          <span class="plant-flag flag-sage">Reflux alternative</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🫚</span>
+          <span class="plant-name">Aloe Vera</span>
+          <span class="plant-also">Mucilaginous</span>
+          <span class="plant-use">Acid reflux and gut lining support. A mucilaginous (mucousy) plant that coats and soothes the gut lining. Part of the raft principle family alongside slippery elm and Gaviscon.</span>
+          <span class="plant-flag flag-forest">Gut lining</span>
+        </div>
+
+        <div class="plant-card">
+          <span class="plant-emoji">🌱</span>
+          <span class="plant-name">Dandelion Root</span>
+          <span class="plant-also">Taraxacum</span>
+          <span class="plant-use">Cholesterol and liver. A bitter herb that helps flush cholesterol through the bile. Also available as a soft drink (dandelion and burdock). Helpful for poor appetite after illness — bitters stimulate digestive activity.</span>
+          <span class="plant-flag flag-bark">Cholesterol + bitter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: ANTIBIOTICS -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Antibiotics — The Real Crisis</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills describes antibiotic resistance as one of the most urgent health threats of our time — and he is not alone. The WHO declared it a top global health threat in 2023. It is already responsible for over 1.27 million deaths annually (2019 figure, rising).</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why the Crisis Is Real</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Every time you take an antibiotic, you select for resistant bacteria — natural selection in action. 1,000 bacteria, kill 999 — the one survivor doubles every 20 minutes. It is now resistant.</li>
+            <li>236 million antibiotic prescriptions given in the US in 2022 (roughly 7 per 10 people). At least 30% are unnecessary.</li>
+            <li>30 million antibiotic prescriptions in the UK in 2020</li>
+            <li>Antibiotics are useless against viruses — they do nothing for colds, flu, or COVID. Yet they are routinely prescribed for viral symptoms by harassed doctors responding to patient demand.</li>
+            <li>Pipeline of new antibiotics is poor — little financial incentive to develop them</li>
+            <li>Hospital-acquired infections are increasingly untreatable — going to hospital for surgery is becoming a real risk of encountering an antibiotic-resistant infection</li>
+          </ul>
+          <div class="caution">Dr. Mills's position: take antibiotics when you genuinely need them — serious bacterial infections. Do not take them for colds, flu, or viral respiratory problems. They do not help and actively contribute to the global crisis.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What to Do Instead for Colds, Flu & Upper Respiratory Infections</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Ginger and cinnamon tea</strong> — warming, opens airways, stimulates mucus clearance</li>
+            <li><strong>Echinacea liquid extract</strong> — activates frontline immune cells in throat and sinuses</li>
+            <li><strong>Echinacea + frankincense/boswellia + liquorice</strong> — combined for mouth, throat, and sinus infections</li>
+            <li><strong>Garlic intensive</strong> (see below) — for gut or lung infections</li>
+            <li><strong>Vitamin D, Vitamin C, Zinc</strong> — evidence for improving resilience in the face of infection (not replacements for antibiotics in serious infection)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Garlic Intensive — Dr. Mills's Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">For when everything is running down — gut infection, lung infection, or a need for something antibiotic-like. Do this on a Friday evening (you have the weekend to recover socially).</p>
+          <div class="kv-grid">
+            <span class="kv-key">Step 1</span><span class="kv-val">Don't eat much that day — keep the gut relatively clear</span>
+            <span class="kv-key">Step 2</span><span class="kv-val">Peel one garlic clove, chop into small pieces, swallow with water. Do NOT chew.</span>
+            <span class="kv-key">Step 3</span><span class="kv-val">Wait 30 minutes — make sure your stomach is tolerating it</span>
+            <span class="kv-key">Step 4</span><span class="kv-val">If fine, take another clove. Repeat every 30 minutes.</span>
+            <span class="kv-key">Target</span><span class="kv-val">8 cloves by 10pm if starting at 6pm</span>
+            <span class="kv-key">Effect</span><span class="kv-val">Garlic oil comes out through skin pores AND lungs — killing pathogens in the airways. Good gut bacteria tolerate garlic; harmful species do not.</span>
+            <span class="kv-key">Warning</span><span class="kv-val">Sleep alone that night. Garlic aroma will come from all pores. One intensive is usually enough for most people — not a regular protocol.</span>
+          </div>
+          <div class="note">Raw garlic breathed onto a petri dish containing pathogens can kill them — the antimicrobial oil is potent enough to do this.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: BRAIN HEALTH -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Brain Health & Dementia Prevention</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The emerging area Dr. Mills is most excited about. Research is increasingly focusing on the blood-brain barrier (now called the neurovascular unit — NVU) rather than amyloid plaques. Most things that protect the NVU are plants.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Neurovascular Unit (Blood-Brain Barrier)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">What was called the blood-brain barrier is now understood as a dynamic, living interface — the neurovascular unit. It controls what enters and exits the brain. Protecting it reduces dementia risk.</p>
+          <ul class="bullet-list">
+            <li><strong>Green tea</strong> — polyphenols modulate the NVU. Populations that drink green tea regularly have lower rates of cognitive decline and Alzheimer's. Drink it — supplement form less effective.</li>
+            <li><strong>Rosemary</strong> — volatile oils inhaled directly enter the brain via the olfactory lobe. Clinical trial showed improved cognitive performance. Shakespeare's Hamlet: "Rosemary, that's for remembrance" — everyone knew this.</li>
+            <li><strong>Dark chocolate/cacao</strong> — brain blood flow improved within minutes of consumption in studies. Polyphenols reach the NVU.</li>
+            <li><strong>Ginkgo biloba</strong> — prescription medicine in Europe for cardiovascular and cognitive problems. Works on NVU similar to green tea.</li>
+            <li><strong>Turmeric/curcumin</strong> — early preclinical evidence for brain health. Note: preclinical = test tubes and animals, not yet proven in large human trials.</li>
+            <li><strong>Matcha</strong> — likely more beneficial than standard green tea (higher quality, more concentrated polyphenols). Evidence is building.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: WOMEN'S HEALTH -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Women's Health, PCOS & Fertility</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills has approximately 13 "herb babies" — pregnancies in women who had been struggling to conceive, who became pregnant after herbal treatment stabilised their menstrual cycles. Many women's health problems begin elsewhere — in the liver, digestion, or blood sugar metabolism.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>PCOS, Insulin Resistance & the Menstrual Cycle</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>80% of women with PCOS have some degree of insulin resistance — even those who are not overweight</li>
+            <li>Insulin resistance disrupts the hormonal choreography of the menstrual cycle — causing irregular periods, cysts on ovaries, and reduced fertility</li>
+            <li>Reducing sugar and refined carbohydrates improves insulin sensitivity → menstrual cycles regularise → fertility improves</li>
+            <li>Keto diet has been observed to abolish or significantly reduce menstrual irregularity in women with insulin resistance</li>
+            <li>If trying to conceive: reducing sugar intake is one of the most evidence-supported first steps</li>
+            <li>Dr. Mills uses liver-supporting herbs (milk thistle, berberine-containing plants, artichoke leaf, bupleurum) alongside women's herbs to stabilise cycles</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Women's Herbs — How They Work</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">North America is particularly rich in women's herbal remedies — developed by indigenous women healers. Many contain plant equivalents of steroids that interact with the body's own hormone receptors.</p>
+          <ul class="bullet-list">
+            <li>Some North American women's herbs were so effective at regulating cycles that women were warned not to take them unless they wished to become pregnant</li>
+            <li>Dr. Mills prescribes individual liquid herb combinations drawn from ~100 plant stocks — tailored to each woman's specific pattern</li>
+            <li>He always works upstream first — liver, digestion, blood sugar — before adding specific hormonal herbs</li>
+            <li>Typical timeline: 3 months for menstrual cycles to begin to respond</li>
+          </ul>
+          <div class="note">The case of Karen: 37-year-old with panic attacks and anxiety. Dr. Mills prescribed nothing for the anxiety — only liver and metabolic herbs (milk thistle, berberine, bupleurum, artichoke leaf, gymnema). Within months the anxiety resolved because the metabolic root was addressed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10: CHOLESTEROL -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Cholesterol & Heart Health</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills's view aligns with emerging cardiology evidence: cholesterol is not intrinsically bad — it is essential. The problem is when it accumulates due to physical inactivity, poor diet, or liver stress.</p>
+      <ul class="bullet-list">
+        <li>Cholesterol is made by the liver and is necessary — it is the basis of many hormones and cell functions. "The tiger in the tank."</li>
+        <li>High cholesterol is often a sign of liver distress — treat the liver, and cholesterol can be brought back into range naturally</li>
+        <li>Plant-based diet reduces cholesterol by mopping it up digestively</li>
+        <li>Exercise is important — physical activity manages cholesterol more effectively than diet alone</li>
+        <li>Statins: modest effect overall; Dr. Mills prefers to address the root cause (liver function, diet, exercise) rather than just lowering the number</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">Artichoke leaf</span><span class="kv-val">Lowers cholesterol via bile — increases fat excretion. Best as a pressed juice. Used widely in France for liver-fat problems.</span>
+        <span class="kv-key">Dandelion root</span><span class="kv-val">Also works via bile pathway. Classical cholesterol-supportive bitter.</span>
+        <span class="kv-key">Spices generally</span><span class="kv-val">Ginger, cinnamon, turmeric — all have vascular benefits. Dr. Mills's first-line approach to cardiovascular prevention.</span>
+        <span class="kv-key">Hawthorn</span><span class="kv-val">Preventative cardiovascular herb. Leaf and flower as tea.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: ACID REFLUX / PPIs -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Acid Reflux & PPIs (Omeprazole)</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Omeprazole (a PPI — proton pump inhibitor) is the most widely prescribed drug in both the UK and US. Dr. Mills regards it as mostly unnecessary, difficult to stop, and associated with growing long-term risks.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Problem with PPIs</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Acid reflux is NOT caused by too much acid — it is caused by acid going to the wrong place (refluxing back into the oesophagus)</li>
+            <li>Stomach acid is essential — it sterilises food, breaks down proteins, and makes food immunologically safe for the body</li>
+            <li>PPIs shut down acid production — solving the symptom while eliminating a critical defence</li>
+            <li>Long-term PPI use: growing associations with cancers and dementias</li>
+            <li>Rebound effect: stopping PPIs causes far worse reflux — the body has upregulated acid production. This makes people feel they must keep taking it.</li>
+            <li>GERD is literally diagnosed by the fact that omeprazole makes it better — it is defined by its treatment</li>
+          </ul>
+          <div class="caution">Do not stop PPIs abruptly — the rebound effect is real and severe. Weaning off requires a slow taper using the raft principle to manage symptoms during the transition.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Raft Principle — Natural Alternative</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Instead of blocking acid, put a physical mucous barrier on top of the stomach contents so the acid cannot reflux. Take it after the last mouthful of a meal.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Gaviscon</span><span class="kv-val">Seaweed gum with minerals — forms a raft. Widely available. Breaks down within 2 hours — not a drug, just a physical barrier.</span>
+            <span class="kv-key">Slippery Elm</span><span class="kv-val">North American plant powder — forms a mucous paste in the stomach. Take as a tablet (not powder). Provides the same raft effect.</span>
+            <span class="kv-key">Aloe Vera</span><span class="kv-val">Mucilaginous — coats and soothes the stomach lining.</span>
+            <span class="kv-key">Timing</span><span class="kv-val">After the last mouthful of a meal — before food can push acid back up</span>
+          </div>
+          <div class="positive">The raft is a carbohydrate — it digests within a couple of hours. No drug, no side effects, no dependency. Can be used during PPI withdrawal to manage symptoms while the stomach rebalances.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S12: POLYPHENOLS & COLOUR -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>Polyphenols, Colour & Eating the Rainbow</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Every colour in a plant is produced by a specific class of polyphenol. Each has different effects. 95% of polyphenols require the microbiome to activate them — they are not absorbed directly. A damaged microbiome = diminished polyphenol benefit.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Colour Guide</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Purple / Blue</span><span class="kv-val">Anthocyanins — the most powerful. Eyesight, brain health, blood pressure control, circulatory health. Sources: beetroot, berries, red/black grapes, purple carrot, purple broccoli. Dr. Mills: "We are probably purple deficient."</span>
+            <span class="kv-key">Red</span><span class="kv-val">Lycopene and other carotenoids — cardiovascular and cancer prevention. Sources: tomatoes, red peppers, red onions.</span>
+            <span class="kv-key">Green</span><span class="kv-val">Chlorophyll, lutein, glucosinolates — gut health, hormonal metabolism, liver. Sources: broccoli (the cabbage family), dark leafy greens, herbs.</span>
+            <span class="kv-key">Orange / Yellow</span><span class="kv-val">Carotenoids, quercetin — immune support, cardiovascular. Sources: carrots, turmeric, squash, onions.</span>
+            <span class="kv-key">White / Tan</span><span class="kv-val">Allicin (garlic), inulin (chicory, onion), fibre. Prebiotic effects.</span>
+          </div>
+          <div class="positive">Start with roots (carrots, beetroot, parsnips — powerful prebiotic fibre), then greens (broccoli, cabbage family), then grains and legumes (lentils, beans, peas). Aim for as much variety as possible.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Organically Grown Plants — Why They're More Potent</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A plant that grows organically — without pesticides — has to fight its own battles. Polyphenols are part of the plant's defence mechanism. An organic plant produces more polyphenols because it needs them. A pesticide-protected plant doesn't need to make as many.</p>
+          <ul class="bullet-list">
+            <li>Wild or foraged plants have the highest polyphenol content of all</li>
+            <li>Organic is better than conventionally grown, which is still better than nothing</li>
+            <li>Industrial monoculture plants (rows sprayed with herbicide) are the lowest polyphenol option</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S13: SUPPLEMENTS & VITAMINS -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Supplements — Dr. Mills's View</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills's general position on supplements: "None — not for most people." He does not supplement himself. However, he does recommend specific supplements in specific situations — and he does prescribe them in practice.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">Vitamin D</span><span class="kv-val">One of the few he endorses widely. Deficiency is common in darker countries (low sun). Dark-skinned people in northern climates are particularly at risk. 15 minutes outdoors in sun can help. Supplement through winter especially. Even 15 min of sun exposure daily is preventative.</span>
+        <span class="kv-key">Vitamin C</span><span class="kv-val">Evidence for improving resilience to infection. Useful as a backup supplement alongside zinc during cold/flu season.</span>
+        <span class="kv-key">Zinc</span><span class="kv-val">Evidence for improving resilience to infection. Used alongside vitamin C and D for immune support.</span>
+        <span class="kv-key">General view</span><span class="kv-val">Real food is always better than supplements. Supplements are for when you have a genuine identified deficiency or a specific need. Don't take them as insurance — fix the diet instead.</span>
+      </div>
+      <div class="note">Dr. Mills does not take supplements himself — but acknowledges that in specific situations (dark skin in low-sun countries, proven deficiency, post-antibiotic recovery) they are appropriate. He prescribes them when needed.</div>
+    </div>
+  </div>
+
+  <!-- S14: FASTING -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">14</span><h2>Fasting — Dr. Mills's View</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Mills supports intermittent fasting in principle — it reflects how humans evolved. Hunter-gatherers ate intermittently by necessity; the feast-fast rhythm is baked into our physiology. However, he cautions that extended fasting is not right for everyone.</p>
+      <ul class="bullet-list">
+        <li>Intermittent fasting is part of our evolutionary design — we were built to eat intermittently, not continuously</li>
+        <li>The fundamental principle is sound — but extended fasts (7-day water fasts etc.) require checking that your metabolism, digestion, and hormones are in a good enough state first</li>
+        <li>If underlying functions are not at prime, extended fasting can be damaging — get advice before attempting anything beyond 24 hours</li>
+        <li>The body was designed to feast and fast — the problem is modern life has removed the fasting half entirely</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
