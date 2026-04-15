@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Alan Goldhamer – Water Fasting Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4f0;
+    --bg-card: #ffffff;
+    --bg-dark: #1a1410;
+    --slate: #2c4a6e;
+    --slate-light: #4a7ab5;
+    --slate-pale: #eaf0f8;
+    --slate-dim: rgba(44,74,110,0.1);
+    --ocean: #1a5c6e;
+    --ocean-pale: #e6f4f7;
+    --ocean-dim: rgba(26,92,110,0.1);
+    --amber: #b5620a;
+    --amber-pale: #fdf5e8;
+    --amber-dim: rgba(181,98,10,0.1);
+    --rust: #a02020;
+    --rust-pale: #fdf0f0;
+    --rust-dim: rgba(160,32,32,0.1);
+    --text: #1a1410;
+    --text-mid: #3a3028;
+    --text-dim: #8a7a6a;
+    --border: rgba(44,74,110,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--bg); color: var(--text); display: block; min-height: 100vh; font-size: 15px; line-height: 1.7; }
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; margin: 20px 48px; background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.15); border-radius: 8px; color: #444; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; transition: all 0.2s; }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; border-color: rgba(0,0,0,0.25); }
+  .back-btn svg { width: 14px; height: 14px; }
+  #hero { padding: 48px 48px 40px; border-bottom: 1px solid var(--border); background: var(--bg-dark); position: relative; overflow: hidden; }
+  #hero::after { content: ''; position: absolute; top: -40px; right: -40px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(44,74,110,0.18) 0%, transparent 70%); pointer-events: none; }
+  #hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: #f0ecf5; line-height: 1.2; margin-bottom: 12px; max-width: 580px; }
+  #hero h1 em { color: #7ab0e8; font-style: italic; }
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 520px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag { padding: 3px 11px; border: 1px solid rgba(122,176,232,0.35); border-radius: 20px; font-size: 11px; color: #7ab0e8; font-weight: 600; }
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 26px 48px; cursor: pointer; user-select: none; transition: background 0.2s; background: var(--bg); }
+  .section-header:hover { background: var(--slate-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num { font-family: 'Source Code Pro', monospace; font-size: 10px; color: var(--slate); background: var(--slate-dim); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; min-width: 34px; text-align: center; }
+  .section-header h2 { font-family: 'Playfair Display', serif; font-size: 23px; color: var(--bg-dark); }
+  .chevron { width: 18px; height: 18px; color: var(--slate); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body { display: none; padding: 0 48px 40px; animation: fadeIn 0.22s ease; background: var(--bg); }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+  .subsection { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; background: var(--bg-card); overflow: hidden; }
+  .subsection-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; cursor: pointer; user-select: none; transition: background 0.2s; }
+  .subsection-header:hover { background: var(--slate-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 700; color: var(--bg-dark); }
+  .subsection-body { display: none; padding: 0 18px 16px; border-top: 1px solid var(--border); }
+  .subsection-body.open { display: block; }
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro { font-size: 14px; color: var(--text-mid); margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border); line-height: 1.7; }
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li { padding: 4px 0 4px 20px; position: relative; font-size: 13.5px; color: var(--text-mid); line-height: 1.6; }
+  .bullet-list li::before { content: '→'; position: absolute; left: 0; color: var(--slate-light); font-size: 11px; top: 6px; }
+  .kv-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 12px 0; padding: 12px 14px; background: var(--slate-pale); border-radius: 6px; border-left: 3px solid var(--slate); }
+  .kv-key { font-family: 'Source Code Pro', monospace; font-size: 10.5px; color: var(--slate); white-space: nowrap; padding-top: 2px; font-weight: 600; }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+  .note { margin: 10px 0; padding: 9px 13px; background: var(--amber-pale); border-left: 3px solid var(--amber); border-radius: 0 6px 6px 0; font-size: 12.5px; color: var(--amber); line-height: 1.55; }
+  .caution { margin: 10px 0; padding: 9px 13px; background: var(--rust-pale); border-left: 3px solid var(--rust); border-radius: 0 6px 6px 0; font-size: 12.5px; color: var(--rust); }
+  .positive { margin: 10px 0; padding: 9px 13px; background: var(--ocean-pale); border-left: 3px solid var(--ocean); border-radius: 0 6px 6px 0; font-size: 12.5px; color: var(--ocean); }
+  .diagram-wrap { margin: 18px 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 22px; overflow-x: auto; }
+  .diagram-label { font-size: 10.5px; color: var(--slate); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; font-family: 'Source Code Pro', monospace; }
+  svg text { font-family: 'Source Sans 3', sans-serif; }
+  .timeline { margin: 14px 0; position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 14px; }
+  .timeline-item::before { content: ''; position: absolute; left: -19px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--slate); border: 2px solid var(--bg); }
+  .timeline-time { font-family: 'Source Code Pro', monospace; font-size: 10.5px; color: var(--slate); font-weight: 600; margin-bottom: 2px; }
+  .timeline-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <h1>Dr. Alan Goldhamer<br><em>Water Fasting</em><br>Reference Guide</h1>
+    <p>Dr. Goldhamer has spent 40 years running the True North Health Center in California, supervising thousands of medically supervised water-only fasts. All claims represent his interpretation of the evidence — not medical advice.</p>
+    <div class="hero-tags">
+      <span class="tag">Water Fasting</span>
+      <span class="tag">Hypertension</span>
+      <span class="tag">Visceral Fat</span>
+      <span class="tag">Autophagy</span>
+      <span class="tag">Gut Microbiome</span>
+      <span class="tag">SOS-Free Diet</span>
+      <span class="tag">Cancer</span>
+    </div>
+  </section>
+
+  <!-- S1 -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>What Fasting Actually Is</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Fasting is the complete abstinence of all substances in an environment of complete rest. Not juice fasting, not calorie restriction, not intermittent eating — complete abstinence, combined with rest. These are physiologically distinct with different effects.</p>
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Key Distinctions</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">True fasting</span><span class="kv-val">Water only. Complete rest. No supplements, no medications. The body draws exclusively from stored reserves and enters a distinct physiological state.</span>
+            <span class="kv-key">Juice fasting</span><span class="kv-val">Not technically fasting — a modified diet. High sugar, very low fibre, still in feeding physiology. Some value as a transition tool but lacks the depth of water fasting.</span>
+            <span class="kv-key">Calorie restriction</span><span class="kv-val">Different physiology. Slows metabolic rate, breaks down lean tissue alongside fat. The body senses scarcity and conserves — the opposite of what water fasting does.</span>
+            <span class="kv-key">Intermittent fasting</span><span class="kv-val">Time-restricted feeding. Useful daily habit with real benefit, but does not replicate therapeutic water fasting.</span>
+          </div>
+          <div class="note">"It's not that fasting doubles your lifespan. It's overfeeding that cuts it in half." Fasting allows the body to live its full potential — it isn't adding something extra, it's removing the damage of excess.</div>
+        </div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why Rest Is Non-Negotiable</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Active exercise during a fast increases total weight loss — but the extra weight is lean tissue, not fat. When glycogen stores are depleted, the body needs glucose for brain and muscle activity. If you are active, it obtains that glucose by breaking down muscle protein (gluconeogenesis). If you are resting, the brain converts to ketones and fat becomes the primary fuel.</p>
+          <div class="caution">Exercise during a water fast shifts weight loss toward lean tissue. Rest is required to maximise fat loss (especially visceral fat) and minimise muscle loss.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>What Happens Inside the Body</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The physiological sequence of fasting is well studied. The body transitions through a series of fuel-source adaptations — each with distinct effects on fat, brain function, cellular housekeeping, and the immune system.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Fasting Fuel Switch — Progression Over Time</div>
+        <svg width="100%" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-s" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2c4a6e"/>
+            </marker>
+          </defs>
+          <rect x="10" y="50" width="140" height="78" rx="6" fill="#eaf0f8" stroke="#2c4a6e" stroke-width="1.5"/>
+          <text x="80" y="73" text-anchor="middle" fill="#1a1410" font-size="12" font-weight="700">0–16 hrs</text>
+          <text x="80" y="90" text-anchor="middle" fill="#3a3028" font-size="10">Glucose burning</text>
+          <text x="80" y="105" text-anchor="middle" fill="#3a3028" font-size="10">Glycogen stores used</text>
+          <text x="80" y="120" text-anchor="middle" fill="#8a7a6a" font-size="9">liver and muscles</text>
+          <path d="M150,89 L188,89" stroke="#2c4a6e" stroke-width="1.5" marker-end="url(#arr-s)" fill="none"/>
+          <rect x="188" y="42" width="155" height="96" rx="6" fill="#eaf0f8" stroke="#2c4a6e" stroke-width="1.5"/>
+          <text x="265" y="66" text-anchor="middle" fill="#1a1410" font-size="12" font-weight="700">16–48 hrs</text>
+          <text x="265" y="83" text-anchor="middle" fill="#3a3028" font-size="10">Glycogen depleted</text>
+          <text x="265" y="98" text-anchor="middle" fill="#3a3028" font-size="10">Ketosis begins</text>
+          <text x="265" y="113" text-anchor="middle" fill="#3a3028" font-size="10">Brain switches to BHB</text>
+          <text x="265" y="128" text-anchor="middle" fill="#2c4a6e" font-size="9">BDNF rises ↑</text>
+          <path d="M343,89 L381,89" stroke="#2c4a6e" stroke-width="1.5" marker-end="url(#arr-s)" fill="none"/>
+          <rect x="381" y="35" width="160" height="110" rx="6" fill="#e6f4f7" stroke="#1a5c6e" stroke-width="2"/>
+          <text x="461" y="58" text-anchor="middle" fill="#1a1410" font-size="12" font-weight="700">Day 3–7</text>
+          <text x="461" y="75" text-anchor="middle" fill="#3a3028" font-size="10">Deep ketosis</text>
+          <text x="461" y="90" text-anchor="middle" fill="#3a3028" font-size="10">Visceral fat mobilised first</text>
+          <text x="461" y="105" text-anchor="middle" fill="#3a3028" font-size="10">Autophagy activated</text>
+          <text x="461" y="120" text-anchor="middle" fill="#1a5c6e" font-size="10">Gut microbiome resets</text>
+          <text x="461" y="135" text-anchor="middle" fill="#8a7a6a" font-size="9">sodium shed — several lbs fluid lost</text>
+          <path d="M541,89 L579,89" stroke="#1a5c6e" stroke-width="1.5" marker-end="url(#arr-s)" fill="none"/>
+          <rect x="579" y="28" width="270" height="122" rx="6" fill="#e6f4f7" stroke="#1a5c6e" stroke-width="2"/>
+          <text x="714" y="52" text-anchor="middle" fill="#1a1410" font-size="12" font-weight="700">Extended (1–40 days)</text>
+          <text x="714" y="69" text-anchor="middle" fill="#3a3028" font-size="10">Continued visceral fat mobilisation</text>
+          <text x="714" y="84" text-anchor="middle" fill="#3a3028" font-size="10">Toxin elimination from fat tissue</text>
+          <text x="714" y="99" text-anchor="middle" fill="#3a3028" font-size="10">Autonomic nervous system rebalances</text>
+          <text x="714" y="114" text-anchor="middle" fill="#3a3028" font-size="10">Taste sensitivity dramatically enhanced</text>
+          <text x="714" y="129" text-anchor="middle" fill="#1a5c6e" font-size="9">Supervised only — electrolytes monitored</text>
+          <text x="714" y="142" text-anchor="middle" fill="#8a7a6a" font-size="9">Potassium floor: 3.0 mmol/L</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>BDNF & Brain Protection</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>BDNF (brain-derived neurotrophic factor) protects the brain from oxidative damage linked to Alzheimer's disease and dementia</li>
+            <li>The higher blood BHB (beta-hydroxybutyric acid — the main ketone), the more BDNF is produced</li>
+            <li>Both exercise and fasting dramatically raise BDNF — because both undo the consequences of dietary excess (reducing visceral fat and inflammation)</li>
+            <li>Cognitive clarity during fasting may be partly because stable glucose removes the blood sugar roller coaster, not just because ketones directly boost cognition</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Autophagy — Cellular Housekeeping</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Autophagy removes senescent cells, waste products, and abnormal cells — fasting is one of the most powerful activators known</li>
+            <li>Rodent studies: periodic fasting increases lifespan by 30–100% vs. ad libitum feeding</li>
+            <li>The body shows intelligence in autophagy — a tumour may lose 50% of its mass while total body fat only drops 10%</li>
+            <li>Mitochondria are recycled — new, more efficient mitochondria emerge, explaining the energy improvement felt after fasting ends</li>
+            <li>Nervous system tissue is preserved even in extreme starvation — the body prioritises it over fat and non-essential tissue</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Body Composition Data — What the DEXA Scans Show</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Total body weight</span><span class="kv-val">~10% reduction over approximately 2 weeks</span>
+            <span class="kv-key">Total fat lost</span><span class="kv-val">~20% of total body fat</span>
+            <span class="kv-key">Visceral fat lost</span><span class="kv-val">~40% — disproportionately targeted. The body preferentially mobilises visceral fat first.</span>
+            <span class="kv-key">Lean tissue lost</span><span class="kv-val">~6% during fasting — but fully recovered at 6-week follow-up without exercise during the fast</span>
+            <span class="kv-key">Post-refeeding</span><span class="kv-val">Fat loss continues even as scale weight rises (glycogen, fluid, and fibre returning). Lean mass percentage at 6 weeks is higher than pre-fast baseline.</span>
+          </div>
+          <div class="positive">Lean tissue is fully recovered at 6-week follow-up even without exercise during fasting — because fat loss continues during refeeding while lean mass returns.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Fasting Protocols — By Person & Goal</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Goldhamer prescribes fasting duration based on the individual — it is as much diagnostic as therapeutic. He always tries to fast people "as short as possible, but long enough to resolve the problem."</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">Healthy person</span><span class="kv-val">Fast 12 hours every day (stop eating 3–4 hours before bed). Consider one 5–10 day water fast per year — recalibrates taste, reboots the gut microbiome, enhances cognition, and provides a forced period of rest.</span>
+        <span class="kv-key">High blood pressure</span><span class="kv-val">Average ~2 weeks of water fasting to normalise. 174/174 consecutive patients normalised blood pressure without medication in Dr. Goldhamer's landmark study.</span>
+        <span class="kv-key">Type 2 diabetes</span><span class="kv-val">Significant percentage achieve normal blood sugar without medication. Medications must be carefully managed during fasting — they will overshoot as the condition resolves.</span>
+        <span class="kv-key">PCOS / hormonal</span><span class="kv-val">Responds consistently. Menstrual normalisation typically seen at second cycle post-fast (~6 weeks). Driven by gut microbiome and liver effects on estradiol conversion.</span>
+        <span class="kv-key">Autoimmune disease</span><span class="kv-val">Results depend on gut healing and dietary compliance after the fast. Leaky gut resolution drives improvement in conditions including rheumatoid arthritis, Hashimoto's, and ulcerative colitis.</span>
+        <span class="kv-key">Cancer support</span><span class="kv-val">Published case reports (BMJ Case Reports). 3-week fasts. Requires permanent dietary change — management, not cure. Peer-reviewed.</span>
+        <span class="kv-key">40-day fast</span><span class="kv-val">Only 1% of patients. Reserved for conditions unresolved by shorter fasts. Example: 16-year constant daily headache from traumatic brain injury — resolved after two 40-day fasts, headache-free for 12+ years.</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Daily 12-Hour Fast — The Baseline for Everyone</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>"I think you should be fasting every day" — stop eating 3–4 hours before bed, giving a minimum 12-hour daily fast</li>
+            <li>Extending to 16 hours (exercising fasted in the morning) adds further fat-burning benefit for those with weight goals</li>
+            <li>The 8-hour feeding window helps limit passive overeating — much evening eating is boredom or fatigue, not genuine hunger</li>
+          </ul>
+          <div class="note">When tired, go to sleep. When bored, engage in productive activity. When hungry, eat. Evening eating after a full dinner is almost never genuine hunger — it is dopamine-seeking behaviour triggered by fatigue.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Refeeding — The Critical Phase</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Refeeding is as important as the fast itself — and the most dangerous phase if done incorrectly. Refeeding syndrome can be serious or fatal. The protocol must be progressive and gradual.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">Phase 1 — Fresh fruit and vegetable juice (1 day per week fasted)</div>
+          <div class="timeline-text">~600 calories of fresh juice. No fibre — easy to absorb, gently raises blood sugar, begins moving the body out of fasting physiology. Given in the morning, not at night.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Phase 2 — Raw fruits and vegetables</div>
+          <div class="timeline-text">Introduces some fibre. Light, easy to digest, continues the microbiome reseeding process.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Phase 3 — Steamed starchy vegetables</div>
+          <div class="timeline-text">More concentrated calories. Still plant-based, no SOS. Progressively increasing digestive demand.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Phase 4 — Whole plant food SOS-free diet</div>
+          <div class="timeline-text">The target diet — maintained permanently. Total refeeding period is approximately half the length of the fast.</div>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">Refeeding duration</span><span class="kv-val">Approximately half the length of the fast. A 20-day fast requires ~10 days of supervised refeeding.</span>
+        <span class="kv-key">Why it matters</span><span class="kv-val">This is when the gut microbiome is repopulated. How you refeed determines which species re-establish. Whole plant foods restore the beneficial balance.</span>
+        <span class="kv-key">Refeeding syndrome</span><span class="kv-val">Rapid reintroduction of calories after extended fasting can cause dangerous electrolyte shifts — potentially fatal. Supervision is essential for any fast beyond a few days.</span>
+      </div>
+      <div class="caution">Never end an extended water fast and immediately return to normal eating. The refeeding phase is non-negotiable and must be gradual. This is clinically the most dangerous phase — not the fast itself.</div>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Conditions — Evidence & Results</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Hypertension — The Flagship Result</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Study 1: 174 consecutive hypertensive patients — all 174 normalised blood pressure without medication</li>
+            <li>Study 2 (with Mayo Clinic colleague): 27 patients; 26 achieved normal blood pressure without medication; 76% maintained at 1-year follow-up without continuing to fast — just maintaining the diet</li>
+            <li>Stage 3 hypertension (180+ systolic): average 60-point drop in systolic blood pressure</li>
+            <li>Average fast duration: ~2 weeks</li>
+          </ul>
+          <div class="positive">People medicated for high blood pressure are being medicated for their diet, not their blood pressure. The day the diet changes, the need for medication begins to reduce — and if medication isn't reduced accordingly, over-medication becomes the danger.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Cancer — Published Case Reports</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Follicular lymphoma (BMJ Case Reports):</strong> 2-year progressive lymphoma. Refused chemotherapy. 3-week water fast — tumours disappeared on CT scan. Cancer-free at 1, 3, and 10-year follow-up. Whole plant food SOS-free diet maintained throughout.</li>
+            <li><strong>Stage 4 lymphoma with bone metastasis:</strong> Had failed chemotherapy. 3-week fast then 39-day fast — dramatic improvement. Published peer-reviewed.</li>
+            <li><strong>Mechanism:</strong> Autophagy during fasting targets abnormal cells preferentially — a tumour may lose 50% of its mass while total body fat only drops 10%</li>
+            <li><strong>Important caveat:</strong> "You can't cure lymphoma any more than you can cure obesity. If they go back to the foods that caused it, it comes back." These are remissions requiring lifelong dietary adherence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>PCOS & Women's Hormonal Conditions</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Fibrocystic breast disease, dysmenorrhoea, menorrhagia, and PCOS all associated with excess estradiol</li>
+            <li>Estradiol normally converts to estriol and is excreted — the conversion is done by the gut microbiome and liver, both profoundly improved by fasting</li>
+            <li>Not uncommon for women struggling to conceive to fast and achieve pregnancy within a cycle or two</li>
+            <li>Menstrual normalisation typically seen at the second cycle (~6 weeks post-fast) — the first cycle's hormones are already set when the fast ends</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Gut Conditions, Depression & Mental Health</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Ulcerative colitis, Crohn's disease, IBS, and chronic constipation — all linked to microbiome imbalance; fasting wipes the slate and careful refeeding restores balance</li>
+            <li>2024 study: after a 7-day water-only fast, harmful fusobacteria dropped by more than 80% and the gut microbiome shifted to a healthier overall balance</li>
+            <li>90–95% of the body's dopamine and serotonin are produced in the gut — microbiome imbalance directly affects mood, anxiety, and cognitive function</li>
+            <li>Leaky gut triggers immune overactivation — autoimmune conditions (rheumatoid arthritis, Hashimoto's, ankylosing spondylitis) improve as the gut heals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Visceral Fat — Why It's the Priority Target</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Visceral fat is the approximately 10% of total body fat that accumulates around the belly and organs. It is hypertrophic, hypermetabolic, and pro-inflammatory — constantly secreting inflammatory products that drive heart disease, cancer, diabetes, and autoimmune disease. It acts like a tumour.</p>
+      <ul class="bullet-list">
+        <li>Subcutaneous fat (under the skin, pinchable) is relatively benign. Visceral fat (around organs, not pinchable) is the dangerous kind.</li>
+        <li>Heart disease, diabetes, cancer, and autoimmune disease are treated as unrelated conditions — but all are associated with the same root: dietary excess → visceral fat → inflammation</li>
+        <li>During fasting, the body preferentially mobilises visceral fat first — making fasting uniquely efficient at targeting the most dangerous fat</li>
+        <li>Water fasting mobilises visceral fat faster and more completely than diet and exercise alone</li>
+        <li>76% of people in the US are overweight or obese — but the visceral fat problem extends to many who appear a normal weight</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">2–2.5%</span><span class="kv-val">of people are objectively measured as genuinely healthy by biomarkers. Most people who believe they are healthy are carrying higher visceral fat, inflammatory markers, and lipid levels than they realise — while asymptomatic.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7 -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>The SOS-Free Diet</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">SOS = Salt, Oil, Sugar. These are the three chemicals added to food that hijack the brain's satiety mechanisms, cause passive overeating, and drive the diseases of dietary excess. Fasting only works long-term if followed by a whole plant food SOS-free diet.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why SOS Causes Overeating</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Salt, oil, and sugar are hyperconcentrated components derived from food, added back in to increase palatability — they are not food themselves</li>
+            <li>Palatability = more dopamine stimulation per bite. More dopamine = more pleasure = eat more before satiety triggers</li>
+            <li>The brain evolved in scarcity and values calorie-dense foods — in a modern environment of abundance, this mechanism causes passive overeating</li>
+            <li>70% of the average person's calories come from ultraprocessed foods that use SOS as carrier chemicals</li>
+            <li>Emulsifiers, artificial colours, and other additives beyond SOS also affect the gut microbiome in ways still being studied</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What the Diet Looks Like</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Whole fruits, vegetables, legumes, and whole grains — eaten without added salt, oil, or sugar</li>
+            <li>No added oils of any kind — fat comes from whole food sources (avocado, nuts, seeds)</li>
+            <li>No refined carbohydrates — whole grains only</li>
+            <li>Adequate protein from plants (~10% of calories is sufficient). Excess animal protein is associated with cardiovascular disease, cancer, and kidney disease</li>
+            <li>After fasting, whole plant foods start to taste genuinely good — dopamine recalibration makes this physiologically easier than it sounds</li>
+          </ul>
+          <div class="positive">The longer you eat whole plant foods SOS-free, the better they taste. People reach a point where they genuinely prefer this way of eating over processed food — this is physiology, not willpower.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8 -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Gut Microbiome Reset</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Fasting causes a dramatic drop in total gut organisms. Refeeding with the right foods then repopulates with beneficial species. This is described as turning a corrupted computer off and back on again — a complete reboot.</p>
+      <ul class="bullet-list">
+        <li>2024 study: 7-day water-only fast reduced harmful fusobacteria by more than 80% and shifted the microbiome to a healthier overall balance</li>
+        <li>The microbiome depends entirely on what you feed it — animal diet, plant diet, high-sugar diet, fasted state all produce different species</li>
+        <li>Gut microbiome produces 90–95% of the body's dopamine and serotonin — restoring it affects mood, anxiety, and depression directly</li>
+        <li>This is why conditions that seem unrelated to digestion (depression, autoimmune disease, hormonal imbalance) also improve with fasting</li>
+        <li>The refeeding diet determines what grows back — whole plant foods restore beneficial diversity; refined foods restore harmful species</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S9 -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Safety, Monitoring & Candidate Assessment</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Pre-Fast Assessment</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Full medical history review</li>
+            <li>Medication review — blood pressure and diabetes drugs must be reduced progressively as the fast works or they will overshoot dangerously</li>
+            <li>Blood tests: kidney and liver function must be assessed</li>
+            <li>Not everyone is a suitable candidate — individual assessment is required</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>During the Fast — Monitoring</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Water type</span><span class="kv-val">Fractionally distilled or reverse osmosis — purified, free of chlorine and hydrocarbons</span>
+            <span class="kv-key">Supplements</span><span class="kv-val">None — not during a true water fast</span>
+            <span class="kv-key">Monitoring</span><span class="kv-val">Twice daily at True North Health Center</span>
+            <span class="kv-key">Potassium floor</span><span class="kv-val">Normal: 3.5 mmol/L. Fasting tolerance: 3.0. Below 3.0 → terminate fast, begin refeeding with broths and juices.</span>
+            <span class="kv-key">Natriuresis</span><span class="kv-val">Early fasting: stored sodium is shed. Several pounds of fluid lost in the first days — this is not fat, it is fluid held around excess dietary sodium.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Common Misconceptions</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>"I'll lose all my muscle"</strong> — lean tissue loss is ~6% during a properly conducted rest fast, fully recovered within 6 weeks of refeeding</li>
+            <li><strong>"The weight comes straight back"</strong> — fat loss continues during refeeding even as scale weight rises; body composition improves beyond what the scale shows</li>
+            <li><strong>"It's dangerous"</strong> — when done according to protocol with proper monitoring, it is a safe and well-studied intervention with decades of published data</li>
+            <li><strong>"I need to skip meals to get benefits"</strong> — a daily 12-hour overnight fast is meaningful and accessible to everyone</li>
+          </ul>
+          <div class="caution">Water fasting beyond 1–2 days should not be attempted without medical supervision. Contact truenorthhealth.com for a free phone consultation before considering any extended fast.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10 -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Additional Mechanisms</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Detoxification</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Fat biopsies of humans consistently show hundreds of stored chemicals — PCBs, dioxins, pesticide residues, and heavy metals</li>
+            <li>Fasting rapidly mobilises and eliminates these from fat tissue — this is a biological adaptation the body is designed to perform</li>
+            <li>Up to 90% of some stored toxins came from eating animal foods — which bioconcentrate environmental pollution across a lifetime</li>
+            <li>Each time the body enters a fasting state, the detoxification system becomes more efficient — it improves with repetition</li>
+            <li>This degree of toxin mobilisation does not occur with juice fasting or modified feeding regimes — only with true water fasting</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Autonomic Nervous System Rebalancing</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The autonomic nervous system controls all involuntary functions — heart rate, blood pressure, digestion, immune response. It has two branches that must be balanced: sympathetic (fight-or-flight) and parasympathetic (rest-and-repair). Modern life keeps most people chronically in sympathetic overdrive.</p>
+          <ul class="bullet-list">
+            <li>Massage, biofeedback, acupuncture, chiropractic, and meditation all work partly by rebalancing the autonomic nervous system</li>
+            <li>Fasting is the most powerful autonomic rebalancer Dr. Goldhamer has encountered in 40 years</li>
+            <li>This rebalancing may explain improvements across seemingly unrelated conditions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Taste Recalibration</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Sensitivity to sweetness and saltiness is dramatically enhanced after fasting — a measurable physiological change called taste neuroadaptation</li>
+            <li>Whole plant foods that previously tasted bland now taste genuinely good after fasting</li>
+            <li>Refined carbohydrates (not whole food carbohydrates) are what desensitise taste — whole plant foods maintain taste acuity long-term</li>
+            <li>The ketogenic diet produces similar taste changes — it is described as a "fasting-mimicking diet" in this respect</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Psychological Reset</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>After fasting, the fear of hunger or missed meals largely disappears — understanding that the body can fast safely removes a significant psychological block</li>
+            <li>People told their conditions were permanent (learned helplessness) have their entire worldview changed when the condition resolves through fasting</li>
+            <li>Dopamine levels rebalance — breaking the dopamine-hijacking cycle of processed food dependency</li>
+            <li>Extended fasting is linked to spiritual practices across every major religion — the psychological clarity and introspective depth are real, not mythological</li>
+            <li>"The most difficult thing is not the fasting. It's going back and living in a world designed to make you fat, sick, and miserable." — Dr. Goldhamer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11 -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Philosophy & Resources</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">"The biggest lie ruining most people's lives is that health comes from pills, potions, and powders rather than healthful living." Health is the direct result of diet, sleep, and exercise — there is no shortcut.</p>
+      <ul class="bullet-list">
+        <li>Most chronic disease is not treated — it is managed while the cause continues. Medications for high blood pressure manage the symptom; they do not address the diet causing it.</li>
+        <li>"Cure" in medicine means surviving 5 years — not resolving the underlying cause</li>
+        <li>Long-term success requires the ability to sustain behavioural change in a world designed to prevent it</li>
+        <li>Three characteristics of successful people: honesty (tell themselves the truth), integrity (do the right thing), and intelligence (do things right)</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">True North Health</span><span class="kv-val">truenorthhealth.com — free phone consultation to assess whether fasting is appropriate for you</span>
+        <span class="kv-key">Book</span><span class="kv-val">"Can Fasting Save Your Life" by Dr. Goldhamer — covers protocols, evidence, and what patients and their doctors need to know</span>
+        <span class="kv-key">Upcoming study</span><span class="kv-val">Planning to enrol 2,000–3,000 people for lifetime follow-up to track whether diet, sleep, exercise, and periodic fasting can eliminate the average 16 years of disability at end of life</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
