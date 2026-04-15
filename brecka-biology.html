@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gary Brecka – Human Biology & Longevity Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f2ee;
+    --bg-card: #ffffff;
+    --bg-dark: #141210;
+    --coal: #1e1a16;
+    --copper: #b56a20;
+    --copper-light: #d4853a;
+    --copper-pale: #fdf5ec;
+    --copper-dim: rgba(181,106,32,0.1);
+    --iron: #3a4a5e;
+    --iron-pale: #edf1f7;
+    --iron-dim: rgba(58,74,94,0.1);
+    --sage: #3a5e48;
+    --sage-pale: #ecf5f0;
+    --sage-dim: rgba(58,94,72,0.1);
+    --crimson: #8c1c1c;
+    --crimson-pale: #fdf0f0;
+    --crimson-dim: rgba(140,28,28,0.1);
+    --text: #1a1612;
+    --text-mid: #3a3028;
+    --text-dim: #8a7a6a;
+    --border: rgba(181,106,32,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: block;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; border-color: rgba(0,0,0,0.25); }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(181,106,32,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 38px;
+    color: #f2ede6;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    max-width: 580px;
+    font-weight: 800;
+  }
+  #hero h1 em { color: #d4853a; font-style: normal; }
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 520px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(212,133,58,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #d4853a;
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--copper-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    background: var(--copper-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    color: var(--coal);
+    font-weight: 700;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--copper); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 40px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--copper-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--coal); }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--copper-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--copper-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--copper);
+  }
+  .kv-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--copper);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--copper-pale);
+    border-left: 3px solid var(--copper-light);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--copper);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+  }
+
+  .routine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .routine-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .routine-card:hover {
+    border-color: var(--copper-light);
+    box-shadow: 0 2px 12px rgba(181,106,32,0.08);
+  }
+  .routine-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--copper);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .routine-title { font-size: 13px; font-weight: 700; color: var(--coal); }
+  .routine-detail { font-size: 11.5px; color: var(--text-dim); line-height: 1.45; flex: 1; }
+
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--copper);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <h1>Gary Brecka<br><em>Human Biology</em><br>& Longevity</h1>
+    <p>Gary Brecka is a human biologist who spent 20 years predicting mortality for life insurance companies, analysing hundreds of thousands of medical records. He now applies that data to helping people extend healthspan. Not a licensed physician — all claims are his interpretation of the evidence.</p>
+    <div class="hero-tags">
+      <span class="tag">Methylation</span>
+      <span class="tag">MTHFR Gene</span>
+      <span class="tag">Nutrient Deficiency</span>
+      <span class="tag">Biomarkers</span>
+      <span class="tag">Morning Routine</span>
+      <span class="tag">Red Light</span>
+      <span class="tag">Longevity</span>
+    </div>
+  </section>
+
+  <!-- S1: METHYLATION -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>Methylation — The Hub of the Wheel</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Methylation is Gary Brecka's central concept. It is a sequence of biochemical conversions in the body — where one raw material becomes the waste product that feeds the next process. Many common conditions that appear fixed and unresolvable are actually downstream consequences of broken methylation caused by nutrient deficiencies.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Methylation Chain — From Green Leaves to Sleep</div>
+        <svg width="100%" viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#b56a20"/>
+            </marker>
+          </defs>
+          <rect x="10" y="45" width="130" height="70" rx="6" fill="#fdf5ec" stroke="#b56a20" stroke-width="1.5"/>
+          <text x="75" y="68" text-anchor="middle" fill="#1a1612" font-size="12" font-weight="700">Folate</text>
+          <text x="75" y="85" text-anchor="middle" fill="#3a3028" font-size="10">from green leafy</text>
+          <text x="75" y="100" text-anchor="middle" fill="#3a3028" font-size="10">vegetables / food</text>
+          <path d="M140,80 L178,80" stroke="#b56a20" stroke-width="1.5" marker-end="url(#arr-c)" fill="none"/>
+          <text x="159" y="73" text-anchor="middle" fill="#8a7a6a" font-size="8">MTHFR gene</text>
+          <rect x="178" y="38" width="140" height="84" rx="6" fill="#fdf5ec" stroke="#b56a20" stroke-width="1.5"/>
+          <text x="248" y="62" text-anchor="middle" fill="#1a1612" font-size="12" font-weight="700">Methylfolate</text>
+          <text x="248" y="78" text-anchor="middle" fill="#3a3028" font-size="10">usable form of folate</text>
+          <text x="248" y="93" text-anchor="middle" fill="#3a3028" font-size="10">downregulates</text>
+          <text x="248" y="108" text-anchor="middle" fill="#b56a20" font-size="10">homocysteine ↓</text>
+          <path d="M318,80 L356,80" stroke="#b56a20" stroke-width="1.5" marker-end="url(#arr-c)" fill="none"/>
+          <rect x="356" y="38" width="145" height="84" rx="6" fill="#fdf5ec" stroke="#b56a20" stroke-width="1.5"/>
+          <text x="428" y="62" text-anchor="middle" fill="#1a1612" font-size="12" font-weight="700">Methionine</text>
+          <text x="428" y="78" text-anchor="middle" fill="#3a3028" font-size="10">converted from</text>
+          <text x="428" y="93" text-anchor="middle" fill="#3a3028" font-size="10">homocysteine</text>
+          <text x="428" y="108" text-anchor="middle" fill="#3a3028" font-size="10">travels to brain</text>
+          <path d="M501,80 L539,80" stroke="#b56a20" stroke-width="1.5" marker-end="url(#arr-c)" fill="none"/>
+          <rect x="539" y="28" width="265" height="104" rx="6" fill="#ecf5f0" stroke="#3a5e48" stroke-width="2"/>
+          <text x="671" y="52" text-anchor="middle" fill="#1a1612" font-size="12" font-weight="700">Neurotransmitter Balance</text>
+          <text x="671" y="69" text-anchor="middle" fill="#3a3028" font-size="10">quiets the mind · improves sleep</text>
+          <text x="671" y="84" text-anchor="middle" fill="#3a3028" font-size="10">reduces anxiety · supports mood</text>
+          <text x="671" y="99" text-anchor="middle" fill="#3a5e48" font-size="10">serotonin · dopamine production ↑</text>
+          <text x="671" y="114" text-anchor="middle" fill="#8a7a6a" font-size="9">starts with spinach → ends with sleep</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Tree Analogy — Why Treating Symptoms Is the Wrong Approach</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A true arborist seeing a rotting palm leaf will not touch the leaf — they will test the soil, find the missing nitrogen, and add it. The leaf heals on its own. Modern medicine focuses on the leaf (the symptom). Brecka's approach focuses on the soil (the nutrient deficiency).</p>
+          <ul class="bullet-list">
+            <li>You could supplement every trending product — NMN, resveratrol, CoQ10, ashwagandha, vitamin C — and if the core deficiency isn't addressed, nothing fundamental changes</li>
+            <li>Most people supplement for the sake of supplementing because they have no data on their body</li>
+            <li>The solution: get data first, identify deficiencies, supplement specifically for those gaps</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The MTHFR Gene — The Most Common Mutation in the World</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">44% of the global population carries this gene mutation — making it the most common genetic SNP (single nucleotide polymorphism) in the world. It is a simple inability to convert folic acid into its usable form, methylfolate.</p>
+          <ul class="bullet-list">
+            <li>Folic acid from food or standard supplements cannot be properly converted to methylfolate</li>
+            <li>Methylfolate deficiency is linked to: neural tube defects, mental illness, depression, bipolar disorder, OCD, ADHD, anxiety, severe gut issues, sleep disorders, manic depression</li>
+            <li>It is not folic acid that prevents neural tube defects — it is methylfolate that does this. People with the MTHFR mutation taking standard folic acid are not getting the protection they think they are.</li>
+            <li>The fix is simple and inexpensive: supplement with methylfolate (the pre-converted form) rather than folic acid</li>
+            <li>You cannot fix the gene but you can supplement for its function</li>
+          </ul>
+          <div class="positive">This is a test you do once in a lifetime. It tells you exactly what raw materials your body can convert and what it cannot — giving you a precise supplementation roadmap rather than guesswork.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Five Key Methylation Genes to Test</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">MTHFR</span><span class="kv-val">Folate → methylfolate conversion. Most common. Linked to anxiety, depression, ADD/ADHD, sleep, gut issues. Fix: methylfolate supplement.</span>
+            <span class="kv-key">MTR</span><span class="kv-val">Affects B12 metabolism and homocysteine regulation.</span>
+            <span class="kv-key">MTRR</span><span class="kv-val">Works alongside MTR — B12 recycling. Fix: methylcobalamin (B12 in usable form).</span>
+            <span class="kv-key">AHCY</span><span class="kv-val">Homocysteine metabolism. Elevated homocysteine linked to cardiovascular disease — causes vasoconstriction, raising blood pressure.</span>
+            <span class="kv-key">COMT</span><span class="kv-val">Catechol-O-methyltransferase. Breaks down catecholamines (adrenaline, noradrenaline, dopamine). Slow COMT = anxiety, overthinking, poor sleep, worst-case-scenario thinking. Fast COMT = may be prone to low dopamine.</span>
+          </div>
+          <div class="note">Methylation genetic tests are widely available globally — a cheek swab, done once in a lifetime. Also search for these as a panel or via Brecka's clinic Streamline.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: ANXIETY & COMT -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Anxiety, ADD/ADHD & the COMT Gene</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Anxiety without a specific trigger is often not a psychological problem — it is a physiological one. Catecholamines (adrenaline, noradrenaline, dopamine) are building up in the body faster than the COMT gene can break them down, creating a chronic low-level fight-or-flight state.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Is Actually Happening in Anxiety</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Catecholamines are neurotransmitters responsible for the fight-or-flight response: adrenaline, noradrenaline, a-fedone, dopamine</li>
+            <li>The brain cannot distinguish between a real fear (knife at your throat) and an imagined fear (thinking about sharks in bed) — both activate the same catecholamine response</li>
+            <li>People with slow COMT cannot break these catecholamines down quickly enough — they accumulate, keeping the person in a permanent state of low-level alertness</li>
+            <li>This creates anxiousness, racing mind at bedtime, worst-case-scenario thinking, and an over-reaction to situations that others dismiss as minor</li>
+            <li>They have often had this on and off throughout their entire life — even as a child, feeling fearful or anxious without being able to explain why</li>
+            <li>Anti-anxiety medications typically do not work well for this type — they feel "like a zombie" but the underlying catecholamine issue is not addressed</li>
+          </ul>
+          <div class="kv-grid">
+            <span class="kv-key">Hallmarks of slow COMT</span><span class="kv-val">Body tired but mind awake at night · goes to worst case scenario · feels anxious without a clear trigger · overreacts to situations proportionally · has felt this since childhood · anti-anxiety drugs don't really help</span>
+            <span class="kv-key">The fix</span><span class="kv-val">Methylated B vitamin complex — specifically methylfolate and methylcobalamin (B12). These provide the raw material to break down catecholamines. Not pharmaceutical suppression — nutritional restoration.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>ADD/ADHD — Attention Overload, Not Attention Deficit</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Brecka reframes ADD and ADHD entirely. People with these conditions do not lack the ability to pay attention — they lack the ability to pay attention to just one thing. It is an overactive mind, not a deficient one.</p>
+          <ul class="bullet-list">
+            <li>Adderall and amphetamines work by stimulating the central nervous system to "match the pace of the mind" — but they do not address the underlying cause</li>
+            <li>The goal should be quieting an overactive mind through neurotransmitter balance, not stimulating the CNS to keep up with it</li>
+            <li>Methylated B vitamins provide the raw material for the brain to regulate its own pace, without pharmaceutical CNS stimulation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: BIOMARKERS -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Essential Biomarkers — What to Test</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Most people have more data on their business than on their own body. A basic blood panel answering three questions — blood sugar regulation, hormone balance, and nutrient deficiencies — gives a roadmap that most doctors don't order together.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>1. Glycemic Profile — Blood Sugar Regulation</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">"Blood sugar is the root of all evil." Brecka's most urgent biomarker category. When insulin rises chronically, there is a downstream cascade affecting hormone production, fat metabolism, cardiovascular risk, and triglycerides.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Glucose</span><span class="kv-val">Amount of sugar in the blood right now</span>
+            <span class="kv-key">HbA1c</span><span class="kv-val">Three-month average of blood sugar — shows the trend, not just today's snapshot</span>
+            <span class="kv-key">Insulin</span><span class="kv-val">The ratio of insulin to glucose reveals insulin resistance. The higher the insulin needed to control glucose, the more resistant you are. An early warning sign of metabolic syndrome that standard panels miss.</span>
+          </div>
+          <ul class="bullet-list">
+            <li>High insulin blocks fatty acid metabolism — people with high insulin almost always have high triglycerides (high blood fat), which is a separate cardiovascular risk factor</li>
+            <li>Pre-diabetes is a pandemic — not only caused by sugary foods; high glycemic carbohydrates (white flour, white rice, white bread, white pasta) overpower the pancreas even without obvious sugar intake</li>
+            <li>By addressing insulin alone, you create positive downstream effects across cardiovascular risk, triglycerides, and inflammation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2. Hormone Panel</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">DHEA</span><span class="kv-val">Raw material the body uses to manufacture hormones including testosterone. Deficiency = hormone deficiency even without an endocrine disorder.</span>
+            <span class="kv-key">SHBG</span><span class="kv-val">Sex hormone binding globulin — a protein that binds testosterone and prevents it from being used as free testosterone. High SHBG = low effective testosterone even if total T looks normal.</span>
+            <span class="kv-key">Free testosterone</span><span class="kv-val">The usable form. Many men have normal total testosterone but low free testosterone because of high SHBG. This is the number that matters.</span>
+            <span class="kv-key">Thyroid panel</span><span class="kv-val">Full thyroid — not just TSH. T3, T4, and reverse T3 paint a complete picture.</span>
+          </div>
+          <div class="positive">In younger men, low testosterone is often not an endocrine system failure — it is a nutrient deficiency. DHEA and vitamin D3 alone can restore testosterone to the normal range by giving the body the raw materials to manufacture it. This is preferable to exogenous testosterone which shuts down the body's own production.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>3. Essential Nutrient Deficiencies</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Vitamin D3</span><span class="kv-val">50% of the population is clinically deficient. Every cell in the body has a D3 receptor. Made from sunlight and cholesterol. Deficiency: compromised immune system, osteoporosis, rheumatoid-like joint symptoms, hormone disruption. Brecka considers it arguably the most important single nutrient.</span>
+            <span class="kv-key">Vitamin B12</span><span class="kv-val">Majority of people are deficient. Optimal level is 500–1,500 (not just "in range"). Must be in methylcobalamin form for people with MTR/MTRR mutations — standard cyanocobalamin won't be converted properly.</span>
+            <span class="kv-key">Magnesium</span><span class="kv-val">Involved in hundreds of enzymatic processes. Widely deficient. Critical for sleep, blood pressure, insulin sensitivity.</span>
+            <span class="kv-key">Potassium</span><span class="kv-val">Essential electrolyte — low levels associated with blood pressure issues and muscle function.</span>
+          </div>
+          <div class="caution">Vitamin D3 deficiency presenting as joint aches, stiffness, and difficulty making a fist can be misdiagnosed as rheumatoid arthritis — leading to corticosteroid prescriptions. Corticosteroids are initially anti-inflammatory but then damage joints like a termite over years, leading to joint replacements. The deficiency should be tested before a rheumatoid diagnosis is accepted.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Homocysteine & Blood Pressure</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">85% of hypertension diagnoses are "idiopathic" — of unknown origin. Brecka believes a significant proportion are caused by elevated homocysteine (an inflammatory amino acid) which causes the vascular system to constrict, raising pressure in a fixed system.</p>
+          <ul class="bullet-list">
+            <li>Elevated homocysteine → vascular constriction → raised blood pressure. Nothing wrong with the heart — the pipe is simply narrower.</li>
+            <li>Fix: supplement with trimethylglycine (TMG / betaine) to break down homocysteine into methionine</li>
+            <li>When homocysteine drops, blood pressure normalises — without pharmaceutical intervention in many cases</li>
+            <li>2018 study (Journal of Headaches and Face Pain, n=8,819): direct inverse relationship between sodium intake and migraine headaches — as sodium rose, migraines fell. Low sodium (from over-filtering water, sweating without remineralising) can drive the osmotic changes that stretch the dura and cause migraines.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: FIVE DAILY HABITS -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Five Daily Habits & the Morning Routine</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Gary Brecka's own morning protocol and five foundational daily habits — all based on what Mother Nature provides and what the body is physiologically designed to receive.</p>
+
+      <div class="routine-grid">
+        <div class="routine-card">
+          <span class="routine-num">HABIT 01</span>
+          <span class="routine-title">Mineralised Water on Waking</span>
+          <span class="routine-detail">10 oz water with Baja Gold sea salt or Celtic sea salt (not table salt). Provides 91 trace minerals. Remineralises after overnight fasting. Replaces filtered water which strips minerals.</span>
+        </div>
+        <div class="routine-card">
+          <span class="routine-num">HABIT 02</span>
+          <span class="routine-title">Omega-3 / Fatty Acid Supplement</span>
+          <span class="routine-detail">EPA/DHA fish oil or omega-3 supplement with DHEA and/or MCT oil. Taken in the morning. Essential fatty acids support cell membranes, hormones, and brain function.</span>
+        </div>
+        <div class="routine-card">
+          <span class="routine-num">HABIT 03</span>
+          <span class="routine-title">Grounding (Earthing)</span>
+          <span class="routine-detail">Bare feet on bare soil, grass, or sand. Discharges the body into the Earth's low Gauss current, repolarising red blood cells. Brecka claims this is visible under a microscope — clumped cells separate after 10 minutes of grounding.</span>
+        </div>
+        <div class="routine-card">
+          <span class="routine-num">HABIT 04</span>
+          <span class="routine-title">Breathwork</span>
+          <span class="routine-detail">Three rounds of 30 breaths (Wim Hof style) with extended breath hold. Done every single morning without exception. Engages auxiliary respiration muscles, drives oxygen into the lung lobes, alkalises the body, and signals "this is go time" to the circadian system.</span>
+        </div>
+        <div class="routine-card">
+          <span class="routine-num">HABIT 05</span>
+          <span class="routine-title">First Light Sunlight</span>
+          <span class="routine-detail">First 45 minutes of daylight — no UVA/UVB, high healthy blue light. Resets circadian rhythm. Raises cortisol (waking hormone). Downregulates melatonin receptors for morning. Generates vitamin D3. Stacked with grounding and breathwork outdoors.</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Grounding — The Science</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>The Earth has a low Gauss current. We evolved spending ~85% of time outdoors — we now spend ~97% indoors.</li>
+            <li>When red blood cells have the same electrical charge they repel each other — maximising surface area available for gas exchange, waste elimination, and regeneration</li>
+            <li>Modern life causes cells to accumulate the same charge — they attract and clump together, reducing exchange surface area</li>
+            <li>Bare feet on earth, grass, sand, or soil exchanges ions — repolarising cells so they repel rather than attract. Brecka demonstrates this with microscope blood slides before and after grounding.</li>
+            <li>Cannot be done through floors, tiles, asphalt, wood, or concrete — these insulate from the Earth's magnetic field</li>
+            <li>Alternative: PEMF (pulsed electromagnetic field) mat — runs a low Gauss current through the body during sleep. ~£4,000–5,000. Drives out electrosmog (5G, WiFi), alkalises the body, improves sleep depth.</li>
+          </ul>
+          <div class="note">You can test this yourself: prick your finger, put a drop of blood on a microscope slide. Look at the cell clumping. Ground for 10 minutes. Repeat the slide. The cells should be visibly more separated.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Breathwork Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>3 rounds × 30 deep breaths with an extended breath hold at the end of each round (Wim Hof method)</li>
+            <li>Purpose: engage auxiliary muscles of respiration, push air into the lower lobes of the lungs (not just the upper Apex). After age 35, the vast majority of people never sprint — so these respiratory muscles are never fully engaged.</li>
+            <li>Poor posture → shallow breathing → CO2 builds → accelerated ageing. Oxygen is the absence of disease.</li>
+            <li>More advanced option: EWOT (Exercise With Oxygen Therapy) — breathe 95% O2 from a concentrator bag for 10–12 minutes while active on a treadmill. Based on Nobel Prize-winning work by Drs Van Aaken and Otto Warburg.</li>
+            <li>Consistency is critical: Brecka has not missed a single morning of breathwork in years. The body's circadian system begins to use it as a "this is morning" signal.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Salt — Which Type and Why It Matters</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Baja Gold sea salt</span><span class="kv-val">Best option. Contains all 91 trace minerals. Tested to 250 parts per billion for microplastics and glyphosate residues.</span>
+            <span class="kv-key">Celtic sea salt</span><span class="kv-val">Excellent alternative — full trace mineral profile.</span>
+            <span class="kv-key">Pink Himalayan sea salt</span><span class="kv-val">Decent option but increasingly sourced from China with potential heavy metal contamination.</span>
+            <span class="kv-key">Table salt (NaCl)</span><span class="kv-val">Avoid permanently. Sodium chloride only — stripped of trace minerals. The addition of iodine does not compensate for what is removed.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: RED LIGHT THERAPY -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Red Light Therapy & Photobiomodulation</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Photobiomodulation (PBM) is the technical term for red and near-infrared light therapy. It is one of the most studied areas in regenerative medicine with over 1,000 published clinical trials. It works by entering the mitochondria and forcing oxygen in — making cells 16× more energy-efficient.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How It Works — The Mitochondria Mechanism</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Inside each mitochondrion is a motor called the Krebs cycle. Each revolution produces either 2 units or 36 units of ATP (energy). The difference: whether oxygen is present.</li>
+            <li>Red light penetrates the mitochondrial wall and expels mitochondrial nitric oxide — forcing oxygen to dock into the cycle</li>
+            <li>Result: 16× more energy produced per cycle. Cells can now eliminate waste, detoxify, repair, and regenerate at dramatically higher rates.</li>
+            <li>Measurable in real time: saliva nitric oxide strips show elevated nitric oxide levels within 10 minutes of exiting a red light bed</li>
+            <li>Additional benefits: reduces inflammation, increases microvascular circulation, promotes collagen/elastin production, improves angiogenesis (new blood vessel formation)</li>
+            <li>Search term for clinical studies: "photobiomodulation" + your condition of interest (dementia, Alzheimer's, inflammation, skin, etc.)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Red Light vs. Infrared Sauna vs. First Sunlight</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Red light therapy bed/panel</span><span class="kv-val">600–1,000 nanometre wavelengths. Does not create heat. Does not make you sweat. Safe to look at (no UVA/UVB). Can be used any time of day or night. Does not disrupt sleep (not blue light spectrum).</span>
+            <span class="kv-key">Infrared sauna</span><span class="kv-val">Very high in the infrared spectrum. Creates heat by exciting chromophores in body water → vibration → sweating. Different mechanism and effect from red light therapy panels.</span>
+            <span class="kv-key">First light sunlight</span><span class="kv-val">First 45 minutes of the day. No UVA/UVB. High healthy blue light. Resets circadian rhythm, raises cortisol, downregulates melatonin receptors, generates vitamin D3. Free and universally accessible. "Your sleep routine starts with your morning routine."</span>
+          </div>
+          <div class="note">Brecka credits red light therapy with Joe Rogan no longer needing reading glasses after regular use — attributed to improved microvascular circulation to the eyes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: HYDROGEN WATER -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Hydrogen Water</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Brecka considers hydrogen water the best water to put in the human body. Over 1,350 human and animal clinical studies at hydrogenStudies.com. It works by dissolving hydrogen gas into water under pressure — the colder the water, the higher the concentration possible.</p>
+      <ul class="bullet-list">
+        <li>Reduces inflammation systemically</li>
+        <li>Improves absorption of supplements</li>
+        <li>Improves athletic performance and reduces delayed onset muscle soreness</li>
+        <li>Reduces neural inflammation</li>
+        <li>Can be consumed via hydrogen water bottles/generators, H2 tablets, nasal cannula, or inhaled hydrogen gas</li>
+        <li>The hydrogen gas dissipates from liquid within ~5 hours — consume soon after generating</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">Research resource</span><span class="kv-val">hydrogenStudies.com — searchable database of clinical trials. Can filter by human clinical trials specifically.</span>
+        <span class="kv-key">Alkaline water myth</span><span class="kv-val">Drinking alkaline water does NOT meaningfully change blood pH — blood pH is tightly regulated in a narrow 0.5-point range. To move blood pH, you need a low Gauss current (grounding or PEMF). "pH" stands for potential hydrogen — it is a charge, not just a chemical property.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: LONGEVITY INSIGHTS -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Longevity Insights from Life Insurance Data</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Brecka spent nearly 20 years reading medical records and predicting mortality for life insurance companies. This gave him access to one of the largest mortality databases in the world — covering date, time, location, and cause of death for millions of lives across decades.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What He Saw in the Data</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Comorbidities are not additive — hypertension + diabetes + obesity is not 1+1+1=3, it is 1+1+1=10. Conditions compound each other massively.</li>
+            <li>He never saw a single centenarian at time of death who did not have clinically elevated LDL cholesterol — raising the question of whether high LDL is a longevity marker rather than a pure risk factor</li>
+            <li>Statins reduce LDL but also reduce the body's ability to produce hormones, cell walls, and cell membranes — trading one risk for others downstream</li>
+            <li>Corticosteroids initially reduce inflammation but damage joints over ~6 years — the data was accurate enough to predict joint replacements and schedule them in advance</li>
+            <li>Simple nutrient deficiencies (D3, B12, DHEA) would routinely present as conditions being treated with powerful pharmaceuticals, accelerating mortality</li>
+            <li>Isolation cuts life expectancy in half at any age. "Broken heart syndrome" (surviving spouse dying shortly after the death of a long-term companion) is a well-documented mortality factor.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Blue Zones — What They Actually Share</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The diets of Blue Zones are wildly different from each other — making diet an unlikely common cause of their longevity. Singapore (longest life expectancy) eats the most meat. Sardinia eats high amounts of bread, pasta, and flour. Mediterranean zones eat high fats, oils, and fish.</p>
+          <ul class="bullet-list">
+            <li>The consistent common thread: <strong>mobility into older ages</strong> and a <strong>sense of purpose</strong></li>
+            <li>No such thing as assisted living in these communities — elderly relatives moved in with family and remained purposeful until death</li>
+            <li>Mortality accelerates post-retirement — correlated with the loss of purpose and reduced community interaction</li>
+            <li>Community has a biological effect all the way down to the cellular level — cells exist in communities too, exchanging waste, detoxifying, and repairing in relation to each other</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Isolation & Community — The Data Is Stark</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Isolation cuts life expectancy in half — at any age. This was used as a comorbidity factor in mortality predictions.</li>
+            <li>Studying cells in isolation (in vitro) and then assuming they will behave the same way inside the body is one of the biggest flaws in biological research — cells in the body exist in communities that change how they behave</li>
+            <li>Loneliness is a comorbidity factor on the same order as smoking, obesity, or diabetes in terms of mortality impact</li>
+          </ul>
+          <div class="positive">Community, purpose, and mobility are the common threads of longevity across all Blue Zones — regardless of wildly different diets. These are modifiable factors available to everyone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: GLP-1 / OZEMPIC -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>GLP-1 Drugs (Ozempic, Mounjaro) — Brecka's View</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Brecka's view broadly aligns with other experts — these drugs have legitimate medical applications but have become drugs for vanity, and their side effect profile is being underestimated.</p>
+      <ul class="bullet-list">
+        <li>Semaglutide (Ozempic/Wegovy) and tirzepatide (Mounjaro) — GLP-1 receptor agonists. Tirzepatide outperformed semaglutide in head-to-head trials.</li>
+        <li>Appropriate for: type 2 diabetics, morbidly obese with significant cravings, severe insulin resistance</li>
+        <li>Concerns: gastric emptying slows → paralytic gut → gut contents can putrefy. "Ozempic face" — fat mobilised from cheeks and eye pads, causing sunken appearance.</li>
+        <li>Up to half of weight lost may be lean body mass in some studies — muscle and bone, not just fat</li>
+        <li>If using these drugs, Brecka strongly recommends: a resistance training programme AND a growth hormone peptide (e.g. sermorelin/ipamorelin) to protect muscle mass</li>
+        <li>"For vanity purposes, there are a lot better peptides and better ways to do it"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S9: PHILOSOPHY -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Philosophy — Disease Is Happening Within You</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Brecka's central message: most chronic disease is not happening <em>to</em> you — it is happening <em>within</em> you, driven by nutrient deficiencies and broken methylation, not by pathology that requires pharmaceutical management.</p>
+      <ul class="bullet-list">
+        <li>The US spends $4.5 trillion/year on healthcare. It has the highest infant mortality, highest maternal mortality, leads the world in cancer, ranks 52nd in life expectancy, and 39th in healthcare delivery — despite leading the world in cancer screening and flu vaccinations.</li>
+        <li>"Medical error is the third leading cause of death" — yet this is the primary source most people use for information on how to extend their life</li>
+        <li>We have more data on our businesses than on our own bodies — this needs to change</li>
+        <li>Get data: a basic blood panel (glycemic profile, hormones, nutrient deficiencies) + a once-in-a-lifetime genetic methylation test</li>
+        <li>Supplement for identified deficiencies — not for the sake of supplementing</li>
+        <li>Find the missing raw material. Put it back. Watch the body heal itself.</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">Brecka's clinic</span><span class="kv-val">Streamline Medical / 10X Health System. 20,000 genetic methylation tests per month.</span>
+        <span class="kv-key">His background</span><span class="kv-val">Human biologist (not a physician). Undergraduate: biology. Postgraduate: human biology. 20 years in life insurance mortality prediction. Not licensed to practise medicine — always states this explicitly.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
