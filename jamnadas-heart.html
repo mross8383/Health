@@ -25,7 +25,7 @@
     --text-mid: #4a3a5a;
     --text-dim: #8a7a9a;
     --border: rgba(123,45,139,0.15);
-    --sidebar-w: 260px;
+    
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,40 +35,22 @@
     font-family: 'Lato', sans-serif;
     background: var(--bg);
     color: var(--text);
-    display: flex;
+    display: block;
     min-height: 100vh;
     font-size: 15px;
     line-height: 1.7;
   }
 
-  #sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: var(--sidebar-w);
-    height: 100vh;
-    background: var(--bg-dark);
-    border-right: 1px solid rgba(255,255,255,0.06);
-    overflow-y: auto;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    scrollbar-width: thin;
-    scrollbar-color: var(--plum) transparent;
-  }
+  
 
-  #sidebar::-webkit-scrollbar { width: 3px; }
-  #sidebar::-webkit-scrollbar-thumb { background: var(--plum); border-radius: 2px; }
+  
+  
 
-  .sidebar-header { padding: 28px 22px 20px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  
 
-  .sidebar-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    color: #c89ad4;
-    margin-bottom: 5px;
-  }
+  
 
-  .sidebar-header p { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.5; }
+  
 
   nav { padding: 12px 0 30px; flex: 1; }
 
@@ -100,10 +82,10 @@
 
   .nav-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 22px; }
 
-  #main { margin-left: var(--sidebar-w); flex: 1; padding: 0 0 80px; max-width: 960px; }
+  #main { margin: 0 auto; flex: 1; padding: 0 0 80px; max-width: 900px; }
 
   #hero {
-    padding: 56px 60px 48px;
+    padding: 48px 48px 40px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-dark);
     position: relative;
@@ -150,7 +132,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 26px 60px;
+    padding: 26px 48px;
     cursor: pointer;
     user-select: none;
     transition: background 0.2s;
@@ -185,7 +167,7 @@
 
   .section-body {
     display: none;
-    padding: 0 60px 40px;
+    padding: 0 48px 40px;
     animation: fadeIn 0.22s ease;
     background: var(--bg);
   }
@@ -404,41 +386,45 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
   @media (max-width: 768px) {
-    #sidebar { width: 100%; height: auto; position: relative; }
+    
     #main { margin-left: 0; }
     #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
     .two-col { grid-template-columns: 1fr; }
   }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .back-btn svg { width: 14px; height: 14px; }
+
 </style>
 </head>
 <body>
 
-<aside id="sidebar">
-  <div class="sidebar-header">
-    <div class="sidebar-brand">Cardiovascular Health Reference</div>
-    <p>Dr. Pradip Jamnadas · Diary of a CEO Podcast</p>
-  </div>
-  <nav>
-    <a href="#hero"><span class="nav-num">—</span> Overview</a>
-    <div class="nav-divider"></div>
-    <a href="#s1"><span class="nav-num">01</span> Heart Disease — How It Happens</a>
-    <a href="#s2"><span class="nav-num">02</span> Insulin & Visceral Fat</a>
-    <a href="#s3"><span class="nav-num">03</span> Fasting — Types & Benefits</a>
-    <a href="#s4"><span class="nav-num">04</span> Ketones</a>
-    <a href="#s5"><span class="nav-num">05</span> Supplements</a>
-    <a href="#s6"><span class="nav-num">06</span> Diet & Foods</a>
-    <a href="#s7"><span class="nav-num">07</span> Gut Health & the Heart</a>
-    <a href="#s8"><span class="nav-num">08</span> Toxins & Mould</a>
-    <a href="#s9"><span class="nav-num">09</span> Exercise</a>
-    <a href="#s10"><span class="nav-num">10</span> The Vagus Nerve</a>
-    <a href="#s11"><span class="nav-num">11</span> Sleep & Stress</a>
-    <a href="#s12"><span class="nav-num">12</span> LDL, Statins & Cholesterol</a>
-    <a href="#s13"><span class="nav-num">13</span> Testing & Screening</a>
-    <a href="#s14"><span class="nav-num">14</span> Warning Signs & Symptoms</a>
-  </nav>
-</aside>
-
 <main id="main">
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
 
   <section id="hero">
     <h1>Dr. Pradip Jamnadas<br><em>Heart & Cardiovascular</em><br>Health Reference</h1>
@@ -458,14 +444,14 @@
   <div class="section" id="s1">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">01</span><h2>Heart Disease — How It Actually Happens</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Heart disease is now affecting people in their 20s and 30s. The youngest patient Dr. Jamnadas has treated was 28 years old — having a full heart attack with a completely blocked artery. Demographics are shifting: 50% of cardiac patients are now under 65.</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">The Three-Step Path to a Heart Attack</div>
-        <svg width="100%" viewBox="0 0 700 165" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 165" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr-p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#7b2d8b"/>
@@ -510,7 +496,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>What Drives Plaque Formation — The Real Causes</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -534,7 +520,7 @@
   <div class="section" id="s2">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">02</span><h2>Insulin & Visceral Fat</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">High background insulin — not high blood glucose — is the silent driver of heart disease. Patients can have normal HbA1c and be told they're "not diabetic" while carrying 10 years of damaging hyperinsulinemia. By the time diabetes is diagnosed, coronary artery disease is already present.</p>
@@ -542,7 +528,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Why Glucose Is Toxic & What Insulin Does</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -562,7 +548,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Visceral Fat — Why It's Different & Dangerous</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -582,7 +568,7 @@
   <div class="section" id="s3">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">03</span><h2>Fasting — Types, Benefits & Protocols</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Fasting and calorie restriction are NOT the same thing. Calorie restriction slows metabolism and breaks down muscle. Fasting triggers a completely different physiology — the body draws from fat reserves without sacrificing muscle, produces BDNF, stem cells, and growth hormone, and reverses insulin resistance.</p>
@@ -590,7 +576,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Fasting Protocols — By Goal</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <div class="kv-grid">
@@ -609,7 +595,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>What Happens During a Fast</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -630,7 +616,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Exercise Timing During a Fast</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Exercise at the peak of your fast — 2 hours before breaking the fast. This is when growth hormone is highest, enabling maximum muscle retention and gain even in a fasted state.</p>
@@ -648,7 +634,7 @@
   <div class="section" id="s4">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">04</span><h2>Ketones</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Ketones are an alternative energy source produced by the liver from fat when insulin is low. They are a cleaner fuel than glucose — producing fewer reactive oxygen species (free radicals) in the mitochondria. They are also signalling molecules.</p>
@@ -671,7 +657,7 @@
   <div class="section" id="s5">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">05</span><h2>Supplements</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Jamnadas's personal supplement stack and those he prescribes to patients. His rationale: modern food is nutritionally depleted, we don't eat enough variety, and the diet cannot fill all gaps.</p>
@@ -745,7 +731,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>D3 + K2 — Why They Must Be Taken Together</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">This is one of the most important supplement combinations in cardiology, yet widely misunderstood.</p>
@@ -763,7 +749,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Nattokinase — Detail</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Nattokinase is an enzyme from natto (fermented soy). Dr. Jamnadas takes it because his own fibrinogen level was at the upper limit of normal — high fibrinogen indicates a greater tendency to form blood clots, a key step in heart attacks.</p>
@@ -781,14 +767,14 @@
   <div class="section" id="s6">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">06</span><h2>Diet & Foods</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
 
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Dr. Jamnadas's Own Diet</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -808,7 +794,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Foods to Avoid — Surprising Ones</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -826,7 +812,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Cooking Oils & Bread</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <div class="kv-grid">
@@ -842,7 +828,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Coffee & Cacao</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -860,7 +846,7 @@
   <div class="section" id="s7">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">07</span><h2>Gut Health & the Heart</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">The biggest border between you and your external environment is not your skin — it is your gut. 100 trillion bacteria and ~400 trillion viruses live there in a symbiotic relationship, producing micronutrients, short-chain fatty acids, postbiotics, and maintaining the integrity of the gut lining.</p>
@@ -868,7 +854,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>How Gut Health Drives Heart Disease</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -884,7 +870,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Gut Repair Protocol</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -906,7 +892,7 @@
   <div class="section" id="s8">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">08</span><h2>Toxins & Mould</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Toxins are a major underappreciated driver of cardiovascular disease. Dr. Jamnadas tests all patients with blood, urine, and stool samples for detoxification ability, heavy metals, pesticides, herbicides, and mould. He is finding unexpectedly high levels across his patient population.</p>
@@ -914,7 +900,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Mould — An Emerging Concern</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -932,7 +918,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Other Toxins</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -951,7 +937,7 @@
   <div class="section" id="s9">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">09</span><h2>Exercise for Heart Health</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Excessive aerobic exercise causes more coronary artery disease than short sprints and resistance training. This contradicts conventional wisdom and is based on Dr. Jamnadas's direct clinical observation across 250,000+ patients.</p>
@@ -984,7 +970,7 @@
   <div class="section" id="s10">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">10</span><h2>The Vagus Nerve</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">The vagus nerve is the largest nerve in the body. Its greatest distribution is in the gut — reflecting how important gut health is to the brain. It carries bidirectional information between the gut, heart, lungs, and brain. A dysfunctional vagus nerve = too much sympathetic (fight-or-flight), too little parasympathetic (repair).</p>
@@ -992,7 +978,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Benefits of a Healthy Vagus Nerve</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1010,7 +996,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>How to Stimulate the Vagus Nerve</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1033,7 +1019,7 @@
   <div class="section" id="s11">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">11</span><h2>Sleep & Stress</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <ul class="bullet-list">
@@ -1053,7 +1039,7 @@
   <div class="section" id="s12">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">12</span><h2>LDL, Statins & Cholesterol</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Total LDL is not the problem. Small, dense, damaged LDL is the problem. This distinction changes everything about how cardiovascular risk should be assessed and managed.</p>
@@ -1061,7 +1047,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>LDL — What Actually Matters</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1079,7 +1065,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Statins — Honest Assessment</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1100,7 +1086,7 @@
   <div class="section" id="s13">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">13</span><h2>Testing & Screening</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Two tests that every adult over 30 should have. These are Dr. Jamnadas's recommendations — not standard NHS/healthcare guidance.</p>
@@ -1108,7 +1094,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>1. Coronary Calcium Score (CT Scan)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">A CT scan that measures calcium deposits in coronary artery walls. Calcium = plaque = atherosclerosis. The more calcium, the more plaque present.</p>
@@ -1124,7 +1110,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>2. Inflammatory Blood Panel (Cleveland Heart Labs)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Standard cholesterol panels are insufficient. Dr. Jamnadas orders the Cleveland Heart Labs panel which goes much deeper.</p>
@@ -1147,7 +1133,7 @@
   <div class="section" id="s14">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">14</span><h2>Warning Signs & Symptoms</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Signs of cardiovascular risk and systemic inflammation that can be observed or felt — and what they indicate.</p>
@@ -1155,7 +1141,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Physical Signs</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1172,7 +1158,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Mental & Cognitive Signs</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">

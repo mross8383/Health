@@ -25,7 +25,7 @@
     --text-mid: #4a3c2a;
     --text-dim: #8a7a6a;
     --border: rgba(196,120,32,0.15);
-    --sidebar-w: 260px;
+    
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,44 +35,23 @@
     font-family: 'Inter', sans-serif;
     background: var(--bg);
     color: var(--text);
-    display: flex;
+    display: block;
     min-height: 100vh;
     font-size: 15px;
     line-height: 1.7;
   }
 
   /* ── SIDEBAR ── */
-  #sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: var(--sidebar-w);
-    height: 100vh;
-    background: var(--bg-dark);
-    border-right: 1px solid rgba(255,255,255,0.06);
-    overflow-y: auto;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    scrollbar-width: thin;
-    scrollbar-color: var(--amber) transparent;
-  }
+  
 
-  #sidebar::-webkit-scrollbar { width: 3px; }
-  #sidebar::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+  
+  
 
-  .sidebar-header {
-    padding: 28px 22px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
+  
 
-  .sidebar-brand {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 13px;
-    color: var(--amber-light);
-    margin-bottom: 5px;
-  }
+  
 
-  .sidebar-header p { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.5; }
+  
 
   nav { padding: 12px 0 30px; flex: 1; }
 
@@ -105,11 +84,11 @@
   .nav-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 22px; }
 
   /* ── MAIN ── */
-  #main { margin-left: var(--sidebar-w); flex: 1; padding: 0 0 80px; max-width: 960px; }
+  #main { margin: 0 auto; flex: 1; padding: 0 0 80px; max-width: 900px; }
 
   /* ── HERO ── */
   #hero {
-    padding: 56px 60px 48px;
+    padding: 48px 48px 40px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-dark);
     position: relative;
@@ -156,7 +135,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 26px 60px;
+    padding: 26px 48px;
     cursor: pointer;
     user-select: none;
     transition: background 0.2s;
@@ -191,7 +170,7 @@
 
   .section-body {
     display: none;
-    padding: 0 60px 40px;
+    padding: 0 48px 40px;
     animation: fadeIn 0.22s ease;
     background: var(--bg);
   }
@@ -457,40 +436,45 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
   @media (max-width: 768px) {
-    #sidebar { width: 100%; height: auto; position: relative; }
+    
     #main { margin-left: 0; }
     #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
     .two-col { grid-template-columns: 1fr; }
   }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .back-btn svg { width: 14px; height: 14px; }
+
 </style>
 </head>
 <body>
 
-<aside id="sidebar">
-  <div class="sidebar-header">
-    <div class="sidebar-brand">Metabolic Health Reference</div>
-    <p>Dr. Benjamin Bikman · Diary of a CEO Podcast</p>
-  </div>
-  <nav>
-    <a href="#hero"><span class="nav-num">—</span> Overview</a>
-    <div class="nav-divider"></div>
-    <a href="#s1"><span class="nav-num">01</span> Insulin — The Master Hormone</a>
-    <a href="#s2"><span class="nav-num">02</span> Ketones & Ketosis</a>
-    <a href="#s3"><span class="nav-num">03</span> Fat Cells & Weight Loss</a>
-    <a href="#s4"><span class="nav-num">04</span> Fatty Liver</a>
-    <a href="#s5"><span class="nav-num">05</span> Supplements</a>
-    <a href="#s6"><span class="nav-num">06</span> Foods, Diet & Strategy</a>
-    <a href="#s7"><span class="nav-num">07</span> Dr. Bikman's Perfect Day</a>
-    <a href="#s8"><span class="nav-num">08</span> GLP-1 Drugs</a>
-    <a href="#s9"><span class="nav-num">09</span> Alcohol, Sleep & Stress</a>
-    <a href="#s10"><span class="nav-num">10</span> Testosterone & Men's Health</a>
-    <a href="#s11"><span class="nav-num">11</span> Women & Keto</a>
-    <a href="#s12"><span class="nav-num">12</span> Cancer & Metabolism</a>
-    <a href="#s13"><span class="nav-num">13</span> Testing & Monitoring</a>
-  </nav>
-</aside>
-
 <main id="main">
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
 
   <section id="hero">
     <h1>Dr. Benjamin Bikman<br><em>Insulin & Metabolic</em><br>Health Reference</h1>
@@ -510,14 +494,14 @@
   <div class="section" id="s1">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">01</span><h2>Insulin — The Master Hormone</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Insulin is described as "the one metabolic hormone to rule them all." It tells every single cell in the body — from brain to bone — what to do with energy. Without insulin, it is physically impossible to get fat. With chronically elevated insulin, fat loss is nearly impossible.</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">High Insulin → Fat Storage Cascade</div>
-        <svg width="100%" viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 170" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#c47820"/>
@@ -562,7 +546,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>What Insulin Does — Beyond Blood Sugar</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -579,7 +563,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Insulin Resistance — What It Is & Why It Matters</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">If you have gained weight, you have insulin resistance. It is impossible to have one without the other. Insulin resistance makes every calorie you eat more likely to be stored as fat.</p>
@@ -603,14 +587,14 @@
   <div class="section" id="s2">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">02</span><h2>Ketones & Ketosis</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Ketones are produced by the liver when insulin is low and fat burning is high. They are both a fuel and a signalling molecule — acting like a hormone as well as an energy source. The main ketone is beta-hydroxybutyrate (BHB).</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">Low Insulin → Fat Burning → Ketone Production</div>
-        <svg width="100%" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr-g2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#1a6a5a"/>
@@ -650,7 +634,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Benefits of Ketones (BHB)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -671,7 +655,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Exogenous Ketones — Forms & Uses</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Exogenous ketones let you raise BHB without being in ketosis. They help with the transition into a ketogenic diet and have independent benefits.</p>
@@ -693,7 +677,7 @@
   <div class="section" id="s3">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">03</span><h2>Fat Cells & Weight Loss</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Weight loss is about shrinking fat cells — not destroying them. Liposuction removes fat cells but zero health markers improve. You must shrink fat cells through hormonal means, not just calorie restriction.</p>
@@ -712,7 +696,7 @@
   <div class="section" id="s4">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">04</span><h2>Fatty Liver</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">The liver is described as "the soccer mom of nutrient metabolism — it knows what to do with everything." When insulin is high, the liver is directed to store fat. When insulin drops, the liver is forced to burn fat and cannot store it.</p>
@@ -730,7 +714,7 @@
   <div class="section" id="s5">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">05</span><h2>Supplements</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bikman's personally used and evidence-backed supplements, plus substances and foods discussed for their metabolic effects.</p>
@@ -790,7 +774,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Creatine — Deep Dive</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Creatine is the first thing Dr. Bikman takes every morning. Its muscle benefits are well established — its brain benefits are the exciting new frontier.</p>
@@ -816,7 +800,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>B Vitamins — A Caution</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Animal ranching studies found that adding B vitamin complexes to livestock feed could triple the efficiency with which animals gained weight per pound of food eaten. Dr. Bikman raises this as a concern for humans.</p>
@@ -834,7 +818,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Ashwagandha — Detail</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Recommended for people whose gut health or weight issues are rooted in chronic stress and poor sleep — stress is one of three cardinal causes of rapid insulin resistance.</p>
@@ -857,7 +841,7 @@
   <div class="section" id="s6">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">06</span><h2>Foods, Diet & Strategy</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bikman's approach centres on insulin control rather than calorie counting. The recommended strategy is ketogenic or low-carb, but any dietary approach that lowers insulin will produce results.</p>
@@ -865,7 +849,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Core Dietary Principles</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -884,7 +868,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Keto — Evidence & Concerns</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -901,7 +885,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Natural GLP-1 Boosters (Food & Drink)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">GLP-1 is the satiety hormone that injectable drugs mimic. These foods/substances raise it naturally:</p>
@@ -920,7 +904,7 @@
   <div class="section" id="s7">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">07</span><h2>Dr. Bikman's Perfect Day</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bikman's own daily protocol — framed as a metabolic scientist with real-world constraints. The key principles: no carbs until dinner, exercise fasted for metabolic goals, big lunch, early dinner, no evening snacking.</p>
@@ -973,7 +957,7 @@
   <div class="section" id="s8">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">08</span><h2>GLP-1 Drugs (Ozempic, Mounjaro etc.)</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">GLP-1 drugs suppress appetite and slow gastric emptying — food can sit in the stomach for 24 hours instead of 4–6. They work, but diminishing returns set in and the consequences of stopping are significant.</p>
@@ -1004,7 +988,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Dr. Bikman's Recommended Approach if Using GLP-1 Drugs</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1024,7 +1008,7 @@
   <div class="section" id="s9">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">09</span><h2>Alcohol, Sleep & Stress</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Three of the fastest triggers of insulin resistance: stress, poor sleep, and excessive carbohydrates. Alcohol and sleep deprivation both act through cortisol — elevating insulin the following day and making every calorie eaten more likely to be stored as fat.</p>
@@ -1032,7 +1016,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Alcohol</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1047,7 +1031,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Sleep & Evening Glucose</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1065,7 +1049,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Stress & Cortisol</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1083,7 +1067,7 @@
   <div class="section" id="s10">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">10</span><h2>Testosterone & Men's Health</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Men experience a gradual testosterone decline (andropause) — a less dramatic but real parallel to female menopause. Fatigue and weight gain in middle-aged men should prompt a testosterone check before assuming it's lifestyle alone.</p>
@@ -1104,7 +1088,7 @@
   <div class="section" id="s11">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">11</span><h2>Women & Keto</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Women are not small men — their hormonal cycle creates meaningful differences in how they respond to ketogenic diets. However, the concern that keto is uniquely stressful for women is overstated, according to human cortisol data.</p>
@@ -1138,7 +1122,7 @@
   <div class="section" id="s12">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">12</span><h2>Cancer & Metabolism</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Thomas Seyfried's work (referenced extensively) proposes that cancer is primarily a metabolic disease of glucose and mitochondrial dysfunction — not a genetic disease of nuclear mutations. This is the Warburg Effect, modernised.</p>
@@ -1158,14 +1142,14 @@
   <div class="section" id="s13">
     <div class="section-header" onclick="toggleSection(this)">
       <div class="section-header-left"><span class="section-num">13</span><h2>Testing & Monitoring</h2></div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
 
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Fasting Insulin Test</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Dr. Bikman's single most important policy wish: add insulin to all routine blood panels globally. Currently it is not routinely measured. Request it specifically.</p>
@@ -1180,7 +1164,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Continuous Glucose Monitor (CGM)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">One of the most powerful behaviour-change tools available. People make changes of their own volition simply by seeing what happens in their blood in real time.</p>
@@ -1196,7 +1180,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Blood Ketone Meter</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <div class="kv-grid">
@@ -1210,7 +1194,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Testosterone Test</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">

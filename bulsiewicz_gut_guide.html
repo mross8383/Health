@@ -27,7 +27,7 @@
     --text-mid: #4a5a4a;
     --text-dim: #7a8a7a;
     --border: rgba(45,106,45,0.15);
-    --sidebar-w: 260px;
+    
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,49 +37,23 @@
     font-family: 'Source Sans 3', sans-serif;
     background: var(--bg);
     color: var(--text);
-    display: flex;
+    display: block;
     min-height: 100vh;
     font-size: 15px;
     line-height: 1.7;
   }
 
   /* ── SIDEBAR ── */
-  #sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: var(--sidebar-w);
-    height: 100vh;
-    background: var(--bg-dark);
-    border-right: 1px solid rgba(255,255,255,0.06);
-    overflow-y: auto;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green) transparent;
-  }
+  
 
-  #sidebar::-webkit-scrollbar { width: 3px; }
-  #sidebar::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+  
+  
 
-  .sidebar-header {
-    padding: 28px 22px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
+  
 
-  .sidebar-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    color: #7dc87d;
-    letter-spacing: 0.02em;
-    margin-bottom: 5px;
-  }
+  
 
-  .sidebar-header p {
-    font-size: 11px;
-    color: rgba(255,255,255,0.35);
-    line-height: 1.5;
-  }
+  
 
   nav { padding: 12px 0 30px; flex: 1; }
 
@@ -117,15 +91,15 @@
 
   /* ── MAIN ── */
   #main {
-    margin-left: var(--sidebar-w);
+    margin: 0 auto;
     flex: 1;
     padding: 0 0 80px;
-    max-width: 960px;
+    max-width: 900px;
   }
 
   /* ── HERO ── */
   #hero {
-    padding: 56px 60px 48px;
+    padding: 48px 48px 40px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-dark);
     position: relative;
@@ -178,7 +152,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 26px 60px;
+    padding: 26px 48px;
     cursor: pointer;
     user-select: none;
     transition: background 0.2s;
@@ -219,7 +193,7 @@
 
   .section-body {
     display: none;
-    padding: 0 60px 40px;
+    padding: 0 48px 40px;
     animation: fadeIn 0.22s ease;
     background: var(--bg);
   }
@@ -543,44 +517,47 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
   @media (max-width: 768px) {
-    #sidebar { width: 100%; height: auto; position: relative; }
+    
     #main { margin-left: 0; }
     #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
     .two-col { grid-template-columns: 1fr; }
   }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .back-btn svg { width: 14px; height: 14px; }
+
 </style>
 </head>
 <body>
 
 <!-- SIDEBAR -->
-<aside id="sidebar">
-  <div class="sidebar-header">
-    <div class="sidebar-brand">Gut Health Reference</div>
-    <p>Dr. Will Bulsiewicz · Diary of a CEO Podcast</p>
-  </div>
-  <nav>
-    <a href="#hero"><span class="nav-num">—</span> Overview</a>
-    <div class="nav-divider"></div>
-    <a href="#s1"><span class="nav-num">01</span> The Gut Microbiome</a>
-    <a href="#s2"><span class="nav-num">02</span> Inflammation</a>
-    <a href="#s3"><span class="nav-num">03</span> Gut Barrier & Leaky Gut</a>
-    <a href="#s4"><span class="nav-num">04</span> Fibre & Short-Chain Fatty Acids</a>
-    <a href="#s5"><span class="nav-num">05</span> Supplements</a>
-    <a href="#s6"><span class="nav-num">06</span> Foods & Diet</a>
-    <a href="#s7"><span class="nav-num">07</span> The Perfect Gut Day</a>
-    <a href="#s8"><span class="nav-num">08</span> Alcohol & the Gut</a>
-    <a href="#s9"><span class="nav-num">09</span> Antibiotics & Gut Damage</a>
-    <a href="#s10"><span class="nav-num">10</span> Bloating, Gas & Constipation</a>
-    <a href="#s11"><span class="nav-num">11</span> Gluten, Fructans & Glyphosate</a>
-    <a href="#s12"><span class="nav-num">12</span> Children's Gut Health</a>
-    <a href="#s13"><span class="nav-num">13</span> Stress, Trauma & the Gut</a>
-    <a href="#s14"><span class="nav-num">14</span> Fecal Transplants</a>
-    <a href="#s15"><span class="nav-num">15</span> The Four Missing Things</a>
-  </nav>
-</aside>
-
 <!-- MAIN -->
 <main id="main">
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
 
   <section id="hero">
     <h1>Dr. Will Bulsiewicz<br><em>Gut Health</em> Reference Guide</h1>
@@ -603,14 +580,14 @@
         <span class="section-num">01</span>
         <h2>The Gut Microbiome</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">38 trillion microbes live inside your large intestine — bacteria, yeasts, archaea, and possibly parasites. Their primary job is to feed and maintain the gut barrier, regulate the immune system, and produce short-chain fatty acids from fibre.</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">The Three-Layer Defence System</div>
-        <svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#2d6a2d"/>
@@ -655,7 +632,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Key Facts About the Microbiome</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -673,7 +650,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>What Damages the Microbiome</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -697,14 +674,14 @@
         <span class="section-num">02</span>
         <h2>Inflammation</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Chronic low-grade inflammation is described as the health story of our time. It flies below the radar — no obvious symptoms — but drives over 130 identified diseases. It is rooted in gut microbiome disruption.</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">Chronic Inflammation Cascade</div>
-        <svg width="100%" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#b84040"/>
@@ -742,7 +719,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Signs of Chronic Low-Grade Inflammation</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -761,7 +738,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Diseases Associated with Inflammation (130+)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -786,7 +763,7 @@
         <span class="section-num">03</span>
         <h2>Gut Barrier & Leaky Gut</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">The gut barrier is a single layer of epithelial cells lining 20–25 feet of intestines. It is your castle wall — letting good things in, keeping bad things out. It renews every 3–5 days, meaning repair opportunity is constant.</p>
@@ -794,7 +771,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>How Leaky Gut Develops</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -811,7 +788,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>How to Repair the Gut Barrier</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -834,14 +811,14 @@
         <span class="section-num">04</span>
         <h2>Fibre & Short-Chain Fatty Acids</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Fibre is the principal food for beneficial gut bacteria. 95% of Americans and 90% of UK residents are deficient. When fibre meets the microbiome in the right colon, it produces short-chain fatty acids (SCFAs) — the most anti-inflammatory compounds Dr. Bulsiewicz has studied.</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">Fibre → Microbiome → Short-Chain Fatty Acids → Benefits</div>
-        <svg width="100%" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="#2d6a2d"/>
@@ -886,7 +863,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Best Fibre Sources</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Any food that comes from a plant contains fibre. Meat and animal products contain no fibre. Oil contains no fibre (though extra-virgin olive oil contains beneficial polyphenols).</p>
@@ -904,7 +881,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Butyrate — The Star SCFA</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -925,7 +902,7 @@
         <span class="section-num">05</span>
         <h2>Supplements</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bulsiewicz's evidence-based supplement recommendations, timed to circadian rhythm. Morning supplements support inflammation and micronutrient needs; evening supplements support sleep and gut motility.</p>
@@ -985,7 +962,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Turmeric / Curcumin — Detail</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Turmeric is the root. Curcumin is the active phytochemical — a polyphenol — that does the work. It blocks specific inflammatory cytokines, effectively pulling the batteries out of the inflammatory walkie-talkie signal chain.</p>
@@ -1001,7 +978,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Magnesium — Form Selection is Critical</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <div class="kv-grid">
@@ -1018,7 +995,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Prebiotic Fibre Supplements</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Soluble prebiotic fibre can be added to water — it has no grit, no roughage, and no taste. Dr. Bulsiewicz references his company 38 Terra as one option, but alternatives exist.</p>
@@ -1033,7 +1010,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Timing Supplements to Circadian Rhythm</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Dr. Bulsiewicz recommends taking supplements at consistent times every day — not just because of absorption, but because everything about the body and microbiome thrives on consistency. The body anticipates and prepares for what happens at the same time each day.</p>
@@ -1054,7 +1031,7 @@
         <span class="section-num">06</span>
         <h2>Foods & Diet</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bulsiewicz does not advocate one specific diet. His book (Fibre Fuelled / Plant Powered Plus) identifies four things missing from almost every diet pattern. The best diet is the one you will actually follow — Mediterranean, pescatarian, or flexitarian all work if done correctly.</p>
@@ -1062,7 +1039,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Polyphenols</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Every coloured plant food contains polyphenols that define the colour and impact the gut. 95% of polyphenols require the gut microbiome to be activated — a damaged gut = diminished polyphenol benefit.</p>
@@ -1079,7 +1056,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Healthy Fats</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1095,7 +1072,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Fermented Foods</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">The average intake of fermented food in the United States is zero. A Stanford study showed that adding fermented food for just 8 weeks increased microbiome diversity and lowered inflammatory markers.</p>
@@ -1115,7 +1092,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>What to Avoid / Reduce</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1139,7 +1116,7 @@
         <span class="section-num">07</span>
         <h2>The Perfect Gut Day</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bulsiewicz's 24-hour routine optimised for circadian rhythm, microbiome health, and inflammation reduction. Consistency is the single most important word — same times every day is more powerful than any individual action.</p>
@@ -1226,7 +1203,7 @@
         <span class="section-num">08</span>
         <h2>Alcohol & the Gut</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">A specific study changed Dr. Bulsiewicz's personal relationship with alcohol. He now rarely drinks. His conclusion: there is no amount of alcohol that is safe from a gut barrier perspective.</p>
@@ -1249,7 +1226,7 @@
         <span class="section-num">09</span>
         <h2>Antibiotics & Gut Damage</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Nothing decimates the gut faster than antibiotics. They wipe out gut diversity, reduce gut barrier integrity by ~50% during a single course, and activate the immune system. The risk to inflammatory health conditions significantly increases.</p>
@@ -1271,7 +1248,7 @@
         <span class="section-num">10</span>
         <h2>Bloating, Gas & Constipation</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Over 60% of people are currently struggling with some kind of gut problem. Constipation is the number one cause of bloating — and most people don't know they have it.</p>
@@ -1279,7 +1256,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Constipation — What It Actually Is</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Constipation is not defined by frequency alone — it is about adequately emptying the bowels. People who poop multiple times per day can still be constipated if they are only ever doing partial, unsatisfying bowel movements.</p>
@@ -1300,7 +1277,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Causes of Gas & Bloating</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1314,7 +1291,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Solutions for Constipation</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1336,7 +1313,7 @@
         <span class="section-num">11</span>
         <h2>Gluten, Fructans & Glyphosate</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Most people who think they have gluten intolerance are actually reacting to fructans — long-chain carbohydrates in the same foods. True coeliac disease affects ~1% of people. The widespread belief in gluten sensitivity is largely a misdiagnosis.</p>
@@ -1344,7 +1321,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Gluten vs Fructans — The Real Picture</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">A study in Gastroenterology (the top journal in the field) gave people with self-reported gluten sensitivity three breakfast bars: a placebo, a high-gluten bar, and a high-fructan bar. The result: the gluten bar produced fewer symptoms than the placebo. The fructan bar triggered symptoms. The conclusion: it was never gluten — it was fructans.</p>
@@ -1360,7 +1337,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Glyphosate (Roundup) in Wheat</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">In the US (unlike Europe), wheat is routinely sprayed with glyphosate (Roundup) before harvest to dry it out faster. Glyphosate is not on the label. Organic wheat by law cannot be sprayed.</p>
@@ -1383,7 +1360,7 @@
         <span class="section-num">12</span>
         <h2>Children's Gut Health</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">The first 3 years of life are critical for microbiome development. The immune system learns from and with the microbiome during this window — disruptions have downstream consequences for allergic, autoimmune, and metabolic diseases.</p>
@@ -1420,14 +1397,14 @@
         <span class="section-num">13</span>
         <h2>Stress, Trauma & the Gut</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">The brain and the gut are in constant bidirectional communication via the brain-gut axis. Trauma and chronic stress restructure the brain and keep the body trapped in sympathetic (fight-or-flight) dominance — directly damaging the gut barrier and disrupting gut motility.</p>
 
       <div class="diagram-wrap">
         <div class="diagram-label">Brain-Gut Axis: Stress → Gut Dysfunction</div>
-        <svg width="100%" viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
           <rect x="10" y="50" width="130" height="60" rx="6" fill="#fdf3e3" stroke="#c47d2b" stroke-width="1.5"/>
           <text x="75" y="76" text-anchor="middle" fill="#1a2e1a" font-size="11" font-weight="600">Stress / Trauma</text>
           <text x="75" y="92" text-anchor="middle" fill="#7a8a7a" font-size="10">Amygdala activated</text>
@@ -1460,7 +1437,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>How Trauma Manifests in the Gut</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1477,7 +1454,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Parasympathetic Activators — Healing the Gut via the Nervous System</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <p class="prose">Activating the parasympathetic nervous system (rest and recovery) directly counteracts the stress response and allows the gut to function properly.</p>
@@ -1504,7 +1481,7 @@
         <span class="section-num">14</span>
         <h2>Fecal Transplants (FMT)</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Fecal microbiota transplantation (FMT) takes a healthy person's stool and transfers it to a sick person — instantly reinstalling potentially hundreds of species in balance. It is a full ecosystem transplant.</p>
@@ -1512,7 +1489,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>What FMT Is Used For (Evidence)</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <ul class="bullet-list">
@@ -1526,7 +1503,7 @@
       <div class="subsection">
         <div class="subsection-header" onclick="toggleSub(this)">
           <h3>Can You Get One? Should You Do It at Home?</h3>
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="subsection-body">
           <div class="caution"><strong>Do NOT do a DIY fecal transplant at home</strong> — regardless of what any Netflix documentary implies. The risks are not yet fully understood and the procedure requires careful donor screening and medical oversight.</div>
@@ -1548,7 +1525,7 @@
         <span class="section-num">15</span>
         <h2>The Four Missing Things</h2>
       </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg class="chevron" viewBox="0 0 800 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
     <div class="section-body">
       <p class="section-intro">Dr. Bulsiewicz's core thesis from his book Plant Powered Plus: four things are missing from almost every modern diet. These four are present in every healthy dietary pattern — Mediterranean, pescatarian, and flexitarian alike.</p>
