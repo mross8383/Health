@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Benjamin Bikman – Insulin Resistance Deep Dive</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2f0;
+    --bg-card: #ffffff;
+    --bg-dark: #141018;
+    --plum: #6b3a7d;
+    --plum-light: #9a5fb5;
+    --plum-pale: #f5eefa;
+    --plum-dim: rgba(107,58,125,0.1);
+    --teal: #1a7a6e;
+    --teal-pale: #e8f5f3;
+    --teal-dim: rgba(26,122,110,0.1);
+    --rust: #8c2a1c;
+    --rust-pale: #fdf0ee;
+    --rust-dim: rgba(140,42,28,0.1);
+    --gold: #7a5a10;
+    --gold-pale: #fdf8e8;
+    --gold-dim: rgba(122,90,16,0.1);
+    --text: #141018;
+    --text-mid: #2e2438;
+    --text-dim: #7a6a8a;
+    --border: rgba(107,58,125,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(107,58,125,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(26,122,110,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 38px;
+    color: #f0eaf5;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    max-width: 580px;
+  }
+  #hero h1 em { color: #c09ad4; font-style: italic; }
+  .hero-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(192,154,212,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero p { color: rgba(255,255,255,0.38); font-size: 13.5px; max-width: 520px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(192,154,212,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #c09ad4;
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--plum-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--plum);
+    background: var(--plum-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 21px;
+    color: var(--bg-dark);
+  }
+  .chevron { width: 18px; height: 18px; color: var(--plum); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--plum-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--plum-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--plum-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--plum);
+  }
+  .kv-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--plum);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--gold);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--rust-pale);
+    border-left: 3px solid var(--rust);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--rust);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--teal-pale);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--teal);
+    line-height: 1.55;
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pillar-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #c09ad4;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .pillar-title { font-size: 13px; font-weight: 700; color: #f0eaf5; line-height: 1.2; }
+  .pillar-detail { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.45; }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--plum);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .sweetener-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .sweetener-card {
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .s-safe { background: var(--teal-pale); border: 1px solid rgba(26,122,110,0.2); color: var(--teal); }
+  .s-caution { background: var(--gold-pale); border: 1px solid rgba(122,90,16,0.2); color: var(--gold); }
+  .s-avoid { background: var(--rust-pale); border: 1px solid rgba(140,42,28,0.2); color: var(--rust); }
+  .sweetener-label { font-weight: 700; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr 1fr; }
+    .sweetener-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <div class="hero-sub">Episode 2 — Deep Dive</div>
+    <h1>Dr. Benjamin Bikman<br><em>Insulin Resistance</em><br>Reference Guide</h1>
+    <p>Dr. Bikman is a metabolic scientist at BYU whose lab focuses on insulin resistance — the common root of most chronic disease. This second episode covers the full mechanism of IR, the four pillars to fix it, the evolutionary basis, Alzheimer's, cancer, GLP-1 drugs, vaping, sweeteners, and more.</p>
+    <div class="hero-tags">
+      <span class="tag">Insulin Resistance</span>
+      <span class="tag">Fat Cells</span>
+      <span class="tag">Ketones</span>
+      <span class="tag">Four Pillars</span>
+      <span class="tag">Alzheimer's</span>
+      <span class="tag">Vaping</span>
+      <span class="tag">GLP-1</span>
+    </div>
+  </section>
+
+  <!-- S1: WHAT IS INSULIN RESISTANCE -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>What Is Insulin Resistance</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Insulin resistance is a two-sided coin. Most people only think of one side. Understanding both sides is essential to understanding why most common chronic diseases are branches from the same tree.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Two-Coin Problem — Both Sides of Insulin Resistance</div>
+        <svg width="100%" viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#6b3a7d"/>
+            </marker>
+          </defs>
+          <!-- Side 1 -->
+          <rect x="10" y="30" width="370" height="120" rx="8" fill="#f5eefa" stroke="#6b3a7d" stroke-width="1.5"/>
+          <text x="195" y="58" text-anchor="middle" fill="#141018" font-size="13" font-weight="700">SIDE ONE — Insulin Not Working</text>
+          <text x="195" y="76" text-anchor="middle" fill="#2e2438" font-size="11">Cells become deaf to insulin's signal</text>
+          <text x="195" y="91" text-anchor="middle" fill="#2e2438" font-size="11">Muscle won't open doors for glucose</text>
+          <text x="195" y="106" text-anchor="middle" fill="#2e2438" font-size="11">Body sends more insulin (mob of bouncers)</text>
+          <text x="195" y="121" text-anchor="middle" fill="#6b3a7d" font-size="10">→ Blood sugar stays elevated</text>
+          <text x="195" y="138" text-anchor="middle" fill="#6b3a7d" font-size="10">→ Glucose cannot enter cells properly</text>
+          <!-- Divider -->
+          <text x="410" y="95" text-anchor="middle" fill="#7a6a8a" font-size="18" font-weight="700">+</text>
+          <!-- Side 2 -->
+          <rect x="440" y="30" width="370" height="120" rx="8" fill="#f5eefa" stroke="#6b3a7d" stroke-width="2"/>
+          <text x="625" y="58" text-anchor="middle" fill="#141018" font-size="13" font-weight="700">SIDE TWO — Insulin Chronically High</text>
+          <text x="625" y="76" text-anchor="middle" fill="#2e2438" font-size="11">Body sends more insulin to compensate</text>
+          <text x="625" y="91" text-anchor="middle" fill="#2e2438" font-size="11">High insulin is also a CAUSE of IR</text>
+          <text x="625" y="106" text-anchor="middle" fill="#2e2438" font-size="11">Fat cells told to grow · fat burning blocked</text>
+          <text x="625" y="121" text-anchor="middle" fill="#6b3a7d" font-size="10">→ Erectile dysfunction · PCOS · infertility</text>
+          <text x="625" y="138" text-anchor="middle" fill="#6b3a7d" font-size="10">→ Hypertension · Alzheimer's · cancer risk</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Insulin Actually Does — Beyond Blood Sugar</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Insulin is produced by beta cells in the pancreas. Its most famous effect is controlling blood sugar — but it tells every cell in the body what to do with energy in all its forms: glucose, fats, ketones, lactate, and amino acids.</li>
+            <li>Insulin tells blood vessels to expand (hence erectile dysfunction when vessels become IR — the vessels won't dilate)</li>
+            <li>Insulin tells fat cells to grow and store fat — the only hormone that can do this</li>
+            <li>Insulin inhibits fat burning — while insulin is high, the body cannot burn its own fat for fuel</li>
+            <li>Insulin inhibits autophagy — cellular self-cleaning, linked to longevity</li>
+            <li>Insulin determines which fuel the body burns: high insulin = sugar burning; low insulin = fat burning</li>
+            <li>Insulin signals growth — which is why it links to cancer, puberty, pregnancy, and brain growth</li>
+          </ul>
+          <div class="note">88% of adults in the US have some degree of insulin resistance. The US is not even the worst country — differences in how ethnicities store fat change the metabolic risk profile significantly.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Diseases Sharing Insulin Resistance as Their Root</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Conventional medicine treats these as separate conditions with separate prescriptions — pruning branches without ever addressing the root. All of the following share insulin resistance as a core driver:</p>
+          <div class="kv-grid">
+            <span class="kv-key">Hypertension</span><span class="kv-val">Most common cardiovascular problem. Insulin resistance causes vascular constriction — insulin is supposed to tell blood vessels to expand. When they don't listen, pressure rises. 85% of hypertension diagnoses are "idiopathic" — in reality, insulin resistance.</span>
+            <span class="kv-key">Alzheimer's</span><span class="kv-val">Insulin resistance of the brain. The section of the brain affected in Alzheimer's needs insulin to let glucose in. When it becomes IR, the brain starves of glucose and cannot access enough ketones to fill the gap. Brain glucose hypometabolism.</span>
+            <span class="kv-key">Type 2 diabetes</span><span class="kv-val">The end-stage of chronic insulin resistance — the pancreas can no longer compensate with higher insulin.</span>
+            <span class="kv-key">PCOS</span><span class="kv-val">Most common form of female infertility. Insulin resistance affecting the ovaries disrupts sex hormone production. Reversible with dietary change alone — published reports.</span>
+            <span class="kv-key">Erectile dysfunction</span><span class="kv-val">Most common form of male infertility. Published paper: "Is ED the earliest manifestation of insulin resistance in otherwise young healthy men?" The blood vessels of the genitals become IR and refuse to dilate.</span>
+            <span class="kv-key">Fatty liver disease</span><span class="kv-val">High insulin tells the liver to store fat. The liver becomes congested.</span>
+            <span class="kv-key">Cancer (breast)</span><span class="kv-val">Breast tumour tissue has 7× more insulin receptors than normal breast tissue. Insulin tells cells to grow. High insulin accelerates tumour growth.</span>
+            <span class="kv-key">Depression / migraines / epilepsy / Parkinson's</span><span class="kv-val">All share brain glucose hypometabolism — the brain not getting enough energy from glucose. All benefit when ketones are available to fill the gap.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: TWO ROADS TO IR -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Two Roads to Insulin Resistance</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">There are two completely different pathways to insulin resistance — and the distinction matters enormously because the fast lane resolves quickly if the cause is removed, while the slow lane takes longer to build and longer to undo.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fast Lane — Three Causes, Fast Resolution</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Bikman can make any person clinically insulin resistant in 6 hours using any one of these three causes. Remove them and resistance resolves in hours.</p>
+          <div class="kv-grid">
+            <span class="kv-key">1. Stress</span><span class="kv-val">Cortisol and adrenaline (epinephrine) both push blood glucose up — fight-or-flight preparation. This directly opposes insulin's job of keeping glucose down, forcing insulin to work harder. Sleep deprivation is a very effective way to chronically elevate cortisol. Excess caffeine chronically elevates epinephrine.</span>
+            <span class="kv-key">2. Inflammation</span><span class="kv-val">Any time inflammation is up, insulin resistance is up. Even a common cold measurably raises glucose levels. Autoimmune disease flare days correlate exactly with higher insulin resistance. Rheumatoid arthritis bad days = measurably more IR than good days.</span>
+            <span class="kv-key">3. Too much insulin</span><span class="kv-val">High insulin is both a consequence of IR and a cause — a circular loop. The body, like Bikman's wife becoming "selectively deaf" to children calling her name all day, becomes resistant to any signal that is always present. Eating 6 carb-heavy meals a day means insulin is never allowed to come down — the signal never goes away.</span>
+          </div>
+          <div class="note">The average person spends every waking moment in a state of elevated insulin — breakfast spikes it, a mid-morning snack restimulates it before it can come down, lunch follows, afternoon snack, dinner, evening snack. Insulin never gets a break.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Slow Lane — Fat Cell Size</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The slow lane develops when fat cells grow too large. A fat cell stuffed to its limit begins releasing pro-inflammatory proteins — which then cause insulin resistance throughout the entire body. This takes longer to develop and longer to reverse.</p>
+          <ul class="bullet-list">
+            <li><strong>The key insight:</strong> it is not the mass of fat that matters — it is the size of each fat cell. Someone with 10kg of fat can be less metabolically healthy than someone with 20kg of fat if the first person's fat cells are larger.</li>
+            <li>Small fat cells are anti-inflammatory, insulin-sensitive, and release hormones that fight inflammation. They are healthy.</li>
+            <li>Big fat cells are pro-inflammatory, insulin-resistant, and begin spreading disease to the rest of the body.</li>
+            <li>Fat cells grow only when two things are present simultaneously: an insulin signal AND sufficient calories. You must have both. Remove either and fat cells stop growing — or even shrink.</li>
+            <li>A Type 1 diabetic (no insulin) literally cannot gain fat no matter how many calories they eat. This is so well-established it has created a formal eating disorder — diabulimia — where Type 1 diabetics skip insulin to stay thin.</li>
+            <li>In Bikman's lab, fat cells grown in petri dishes surrounded by abundant glucose and fat stay small until insulin is added. Four hours after adding insulin — they are fatter. Four hours more — fatter still.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: FAT CELLS & ETHNICITY -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Fat Cells, Ethnicity & Personal Fat Threshold</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The number of fat cells a person has is largely fixed by the end of puberty. After that, fat cells only shrink or grow — they are not created or destroyed (in adults). This single fact explains why ethnicity, sex, liposuction, and the personal fat threshold all matter so much.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Ethnicity Spectrum</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">East Asian</span><span class="kv-val">Fewest fat cells. Rarely visibly obese — but reach metabolic danger (hypertension, T2D, fatty liver) at much lower levels of fat gain. The same 10kg of fat gain that merely changes a Caucasian's appearance will cause clinical metabolic disease in an East Asian. Also store proportionally more fat viscerally (around organs) rather than subcutaneously (under skin). Worst metabolic risk per kg gained.</span>
+            <span class="kv-key">Hispanic/Latino</span><span class="kv-val">Higher fat cell count than East Asian. More visceral fat storage tendency. Increased risk of obesity-related conditions despite moderate fat cell numbers.</span>
+            <span class="kv-key">Caucasian</span><span class="kv-val">More fat cells than East Asian. Store more fat subcutaneously (the fat you can pinch). Subcutaneous fat is relatively metabolically benign. Can become visibly overweight while remaining metabolically healthier than an East Asian at the same body fat percentage.</span>
+            <span class="kv-key">African</span><span class="kv-val">Most fat cells of all groups — highest fat threshold. Also store more fat subcutaneously and less viscerally, offering further metabolic protection. Can carry more fat mass before metabolic disease develops.</span>
+            <span class="kv-key">Women vs. men</span><span class="kv-val">Women universally have more fat than men, yet are healthier metabolically — because sex hormones give them more fat cells that are smaller. More cells, smaller size = better metabolic health.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Subcutaneous vs. Visceral Fat</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Subcutaneous fat</span><span class="kv-val">Under the skin. Pinchable. More fat cells, smaller size. Relatively inert metabolically — "just sitting there minding its own business." Has more room to expand and can even form limited new fat cells. Transferring this fat to another animal causes no harm.</span>
+            <span class="kv-key">Visceral fat</span><span class="kv-val">Tucked within the abdominal cavity — surrounding kidneys, intestines, liver. Only grows via hypertrophy (getting bigger). Much fewer cells but they get enormous. Pro-inflammatory, hypermetabolic. Transferring visceral fat to a lean animal immediately causes insulin resistance and metabolic disease. The dangerous fat.</span>
+          </div>
+          <div class="caution">Transferring subcutaneous fat between animals in animal studies causes no harm. Transferring visceral fat immediately makes the recipient animal insulin resistant and diabetic — direct evidence that visceral fat is the metabolic driver, not fat mass itself.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why Liposuction Makes Metabolic Health Worse</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Liposuction removes fat cells — it does not shrink them. Adults have extreme difficulty making new fat cells.</li>
+            <li>If the person doesn't change eating habits, the body still has insulin telling it to store the same amount of fat — but now has fewer fat cells to store it in.</li>
+            <li>The remaining fat cells must carry a higher burden — they get bigger. Bigger fat cells = more insulin resistance = worse health outcomes.</li>
+            <li>Fat cannot regrow in the suctioned area (no new fat cells), so it redistributes to wherever remaining fat cells exist — typically the abdomen (visceral).</li>
+            <li>Published US study in women: after liposuction of buttocks and hips, every health marker was unchanged. Years later, fat had redistributed to the abdomen and metabolic health had deteriorated.</li>
+            <li>"Liposuction is not dangerous to fit into the clothes you want to wear — but it is deeply problematic for metabolic health."</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Personal Fat Threshold & How to Measure IR</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Every individual body has a rate at which it can store fat in a healthy way. Once that threshold is met, any further fat storage begins creating insulin resistance. This threshold is determined primarily by how many fat cells you have and how much room they have.</p>
+          <div class="kv-grid">
+            <span class="kv-key">You can be thin and insulin resistant</span><span class="kv-val">Especially East Asian ethnicity and women with PCOS. A lean East Asian man can have the same risk of Type 2 diabetes as an obese American. Young lean women with PCOS are more insulin resistant than their identically matched non-PCOS counterparts.</span>
+            <span class="kv-key">Fasting insulin target</span><span class="kv-val">US units: anything above 10 micro-units/mL is a warning. UK units: anything above 40 picomoles/L is a warning. Many GPs in the UK cannot easily order this test — seek one who can.</span>
+            <span class="kv-key">Measuring IR</span><span class="kv-val">Many people with insulin resistance have normal blood glucose — it's the insulin that's high. Measuring only glucose misses most early cases. Fasting insulin is the most important single number.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: KETONES -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Ketones — The Metabolic Superpower</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Ketones are produced when insulin is low and fat burning is high. The liver, having burned so much fat it fills its own needs, converts the excess into ketones — a metabolic release valve. They are not just an alternative fuel; they are a signalling molecule with direct benefits on the brain, muscle, inflammation, and fat tissue metabolism.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Where Ketones Come From</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>After ~16 hours of low insulin, the liver starts burning large amounts of fat — including fat leaking out of fat cells (which, without insulin to hold it in, release freely)</li>
+            <li>The liver burns so much fat it meets its own energy needs and has excess — this excess fat is converted into ketone bodies (primarily beta-hydroxybutyrate, BHB)</li>
+            <li>Ketones are essentially calories in a different form — they have energy. When the body excretes them in breath or urine, it is literally wasting calories.</li>
+            <li>This is why low-insulin (low-carb) eating raises metabolic rate by ~300 calories/day — the body is expending energy on ketone production and elimination while fat burning drives up heat production</li>
+            <li>Even a 24-hour fast produces detectable ketosis. It is not extreme — most humans ideally cycle in and out of mild ketosis frequently.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Ketones Do</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Brain fuel</span><span class="kv-val">The brain prefers ketones to glucose. At just 1 mmol/L of ketones vs 5 mmol/L glucose, the brain already gets the majority of its energy from ketones. Glucose is not the brain's preferred fuel — this is a common misconception.</span>
+            <span class="kv-key">Alzheimer's reversal</span><span class="kv-val">Published case reports: Alzheimer's patients who cannot draw a clock or tie their shoelaces when not in ketosis can do both when placed into ketosis. The brain's energy gap is filled by ketones when glucose can no longer enter due to IR.</span>
+            <span class="kv-key">Fat tissue metabolic rate</span><span class="kv-val">Bikman's lab published: in ketosis, the metabolic rate of belly fat is 3× higher than when not in ketosis. Fat cells start burning energy like muscle cells. This directly accelerates fat loss beyond caloric restriction alone.</span>
+            <span class="kv-key">Muscle protection</span><span class="kv-val">Bikman's lab published: ketones make muscle cells significantly more resistant to injury. Ketones act as a signal to the brain — "you don't need to strip protein from muscle for glucose, I'm here as an alternative." Muscle is protected.</span>
+            <span class="kv-key">Anti-inflammatory</span><span class="kv-val">Ketones directly inhibit inflammatory processes in the body and improve antioxidant defences — reducing oxidative stress independently of their fuel role.</span>
+            <span class="kv-key">Autophagy</span><span class="kv-val">Low insulin enables autophagy (cellular self-cleaning). Insulin is a powerful inhibitor of autophagy. A ketogenic diet, by keeping insulin low, enables autophagy without caloric restriction — animal studies show significantly extended lifespan.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exogenous Ketone Supplements</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Ketone salts</span><span class="kv-val">Cheapest and least effective. Ketone bound to a mineral (calcium, magnesium). Risk of excess mineral intake, possible kidney stone risk, dental plaque. Raises ketones modestly.</span>
+            <span class="kv-key">Ketone esters</span><span class="kv-val">More effective — comes as shots. Higher cost. More reliable ketone elevation.</span>
+            <span class="kv-key">Bioidentical BHB</span><span class="kv-val">Most effective. Identical to the BHB the body produces naturally. Can raise ketones to ~1 mmol/L even after a high-carb meal. Price coming down as competition increases.</span>
+          </div>
+          <div class="note">BYU's men's and women's cross-country teams (national champions) use ketone drinks before training and racing — to access a second fuel source that doesn't deplete glucose. Athletes in ketosis burn fat at rates previously thought impossible, preserving glycogen reserves for intense efforts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: FOUR PILLARS -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>The Four Pillars — Fixing Insulin Resistance</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">These four pillars are the framework Bikman presents in his book <em>Why We Get Sick</em>. They must be implemented in order — the fourth pillar (fasting) only works well once the first three are established, because it requires the body to have adapted to burning its own fat.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR ONE</span>
+          <span class="pillar-title">Control Carbohydrates</span>
+          <span class="pillar-detail">Eat whole fruits and vegetables — don't drink them. Avoid anything from bags, boxes, and barcodes. Whole food carbs are fine. Packaged refined carbs are the problem.</span>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR TWO</span>
+          <span class="pillar-title">Prioritise Protein</span>
+          <span class="pillar-detail">Especially animal-source protein — the best source of all essential amino acids. Protein is essential. Carbohydrate is not. The US Dept of Agriculture acknowledges zero is the lower limit of carbohydrate need.</span>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR THREE</span>
+          <span class="pillar-title">Don't Fear Fat</span>
+          <span class="pillar-detail">Fat that comes with protein is exactly how we should eat it — nature never serves protein without fat. Protein + fat together produces significantly more muscle growth than protein alone (published human studies). Fat is essential. Carbohydrate is not.</span>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR FOUR</span>
+          <span class="pillar-title">Frequently Fast</span>
+          <span class="pillar-detail">Only implement once pillars 1–3 are established. The body must be adapted to burning its own fat first. Any format works — one meal a day, 16:8, alternate day. In ketosis, fasting is less critical as insulin is already low.</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why "Eat Less, Exercise More" Doesn't Work Long-Term</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Cutting calories while insulin stays high = profound hunger. Harvard Professor David Ludwig: a low-calorie meal that spikes insulin makes you significantly more hungry than the same calorie meal that doesn't spike insulin.</li>
+            <li>The Biggest Loser study (NIH): contestants lost massive weight through severe restriction + exercise. Years later, they regained it all. More critically — their metabolic rate permanently broke. It stayed lower than expected even as they regained weight. The body never recovered.</li>
+            <li>If insulin stays high while calories are cut, the fat cells are still receiving the "grow" signal. The body interprets this as starvation and ramps up hunger hormones. Hunger always wins eventually.</li>
+            <li>The correct approach: lower insulin first (control carbs). As insulin drops, the body can finally access its own fat stores. Hunger drops naturally. Caloric restriction follows from satiety, not willpower.</li>
+          </ul>
+          <div class="positive">When insulin is low, metabolic rate rises by ~300 calories/day. The same caloric deficit feels completely different — without hunger — because the body can now access its own stored fat. "Control calories because you're not hungry, not because you're forcing yourself to eat less."</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Muscle Preservation on Keto — How to Get It Right</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Peer-reviewed studies confirm humans can maintain muscle and strength on a ketogenic diet — it is possible, not automatic.</li>
+            <li>Two primary culprits when muscle is lost on keto: dehydration and insufficient calories</li>
+            <li>Low insulin → low aldosterone → kidneys excrete much more salt and water. People urinate more on keto. This is why blood pressure improves so rapidly — but also why hydration and salt intake must increase deliberately.</li>
+            <li>If too lean to be consuming enough fat, the body may start breaking down muscle protein for glucose (gluconeogenesis) to fuel the brain — this is the edge between fasting and starvation</li>
+            <li>Fix: eat more fat (butter on steak, butter in coffee). Increase salt intake. Maintain sufficient calories — let fat be the calorie source, not restriction.</li>
+            <li>The longest documented fast in history: a man in the UK fasted for 384 days under medical supervision, consuming only vitamins, minerals, and water. He went on to live a perfectly healthy life. Starvation only begins when fat reserves are exhausted.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exercise — Best Type for Insulin Sensitivity</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>"The best exercise is the one you'll do."</li>
+            <li>Resistance/muscle-building exercise is minute-for-minute more effective at improving insulin sensitivity than aerobic exercise</li>
+            <li>Muscle is the largest consumer of glucose in the body. More muscle = better glucose control = lower insulin</li>
+            <li>Exercising muscle has an insulin-independent method of pulling glucose in — it doesn't need to wait for insulin to open the door. Contracting muscle opens its own doors.</li>
+            <li>Muscle strength predicts longevity better than aerobic fitness — because it predicts better glucose control, which predicts better insulin control</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: ALZHEIMER'S -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Alzheimer's — Insulin Resistance of the Brain</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Bikman does not use the term "Type 3 diabetes" — he prefers the more accurate description: insulin resistance of the brain. The plaque theory of Alzheimer's has been scientifically discredited, including by the revelation that the original foundational papers were based on fabricated data.</p>
+      <ul class="bullet-list">
+        <li>Billions spent on drugs that reduce plaque in the brain — none improved cognition. Plaques are found equally in brains with and without Alzheimer's at autopsy. They appear to be irrelevant.</li>
+        <li>The original papers linking plaque to Alzheimer's causation were found to be fraudulent — fabricated data. The entire research direction was built on fraud.</li>
+        <li>The correct mechanism: the section of the brain affected in Alzheimer's needs insulin to allow glucose in. When this region becomes insulin resistant, glucose cannot enter, and the brain starves — brain glucose hypometabolism.</li>
+        <li>The same person eating constantly (high insulin, no ketones) cannot fill this gap — they have plenty of glucose circulating but none can enter the brain, and they're never in ketosis to provide an alternative fuel.</li>
+        <li>Alzheimer's, depression, migraines, epilepsy, and Parkinson's disease all share brain glucose hypometabolism as a common feature. All benefit from ketosis.</li>
+        <li>Published case reports: Alzheimer's patients in ketosis can draw clocks, tie shoelaces, and dress themselves — things they cannot do when not in ketosis.</li>
+      </ul>
+      <div class="positive">Ketosis directly addresses the energy gap in Alzheimer's disease — providing the brain an alternative fuel it can still use even when insulin-driven glucose entry is blocked. This is not speculative — it is published in peer-reviewed case reports.</div>
+    </div>
+  </div>
+
+  <!-- S7: PREGNANCY, PCOS, PUBERTY -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Physiological IR — Pregnancy, Puberty & PCOS</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Not all insulin resistance is pathological. There are two instances of healthy, physiological insulin resistance — both designed to support explosive growth. Understanding these explains gestational diabetes and PCOS.</p>
+      <div class="kv-grid">
+        <span class="kv-key">Puberty</span><span class="kv-val">The body needs explosive growth of muscle, bone, and fat. Insulin resistance is deliberately induced to keep insulin high and activate growth signals throughout the body. This is healthy and temporary.</span>
+        <span class="kv-key">Pregnancy</span><span class="kv-val">The woman's body becomes insulin resistant so that more glucose passes through to the baby (she's now living for two). High insulin grows the placenta, expands the breasts, stores extra fat as an energy reserve for lactation. Progesterone accelerates this further.</span>
+        <span class="kv-key">Gestational diabetes</span><span class="kv-val">Normal pregnancy IR that goes too far — insulin cannot keep glucose in check. Heavily influenced by diet (high refined carbs compound it) and family history of T2D. Offspring are 40% more likely to be obese and develop metabolic complications in their teens and beyond — they are hardwired to a high-insulin, high-glucose state from development in the womb.</span>
+        <span class="kv-key">PCOS</span><span class="kv-val">Insulin resistance of the ovaries disrupts sex hormone production. Even lean women with PCOS are more insulin resistant than matched controls without PCOS. Pure dietary change has produced complete reversal of PCOS in published reports. Dietary change should be attempted before any pharmaceutical intervention.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: CANCER LINK -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Cancer & Rising Breast Cancer Incidence</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Cancer incidence among women under 49 has risen sharply over the past 20 years while male cancer rates have been flat. Bikman's explanation is primarily metabolic.</p>
+      <ul class="bullet-list">
+        <li>The rise is almost certainly driven primarily by breast cancer — the dominant cancer in women by a wide margin</li>
+        <li>Breast tumour tissue has <strong>7× more insulin receptors</strong> than normal breast tissue adjacent to it. Insulin tells cells to grow. Cancer is unregulated growth. High insulin = accelerated tumour growth.</li>
+        <li>Having babies and breastfeeding is protective against breast cancer — well documented. As birth rates fall, breast cancer risk rises. The mechanism is unclear but the correlation is strong.</li>
+        <li>Delayed childbearing also increases risk.</li>
+        <li>The obesity epidemic over the same 20-year period tracks closely — the mechanism being not obesity per se but the insulin resistance and chronic hyperinsulinaemia that accompanies it.</li>
+        <li>Almost every tumour ever measured has more insulin receptors than normal tissue — the tumour is essentially advertising for insulin to come and tell it to grow.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S9: VAPING, SMOKING, TOXINS -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Vaping, Smoking, Toxins & Insulin Resistance</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The fat cell is not only responding to food. What you breathe and what chemical compounds enter your body also directly promote fat cell growth and insulin resistance — independently of calories.</p>
+      <ul class="bullet-list">
+        <li><strong>Diesel exhaust:</strong> Bikman's lab published that animals breathing diesel exhaust particles had fatter fat cells and more insulin resistance than controls eating the exact same amount of food. What you breathe determines how fat you get.</li>
+        <li><strong>Cigarette smoke:</strong> Same mechanism confirmed in Bikman's lab — promotes fat cell growth and insulin resistance independent of caloric intake.</li>
+        <li><strong>Vaping:</strong> A funded grant is underway in Bikman's lab to study this. Given the mechanism seen with diesel exhaust and cigarette smoke, he considers vaping likely to be at least as bad, if not worse, for insulin resistance. Results pending.</li>
+        <li><strong>Microplastics:</strong> Absorbed through the intestine, enter the bloodstream, and deposit preferentially in fat cells. Once there, they directly promote fat cell growth — mimicking the insulin signal without being insulin.</li>
+        <li><strong>BPA / DES and other endocrine disruptors:</strong> Estrogen-mimicking chemicals from plastics, soaps, and detergents that instruct fat cells to grow, directly promoting obesity without involving caloric intake.</li>
+      </ul>
+      <div class="caution">"The caloric model of obesity is naive." Fat cells must be told what to do with the energy they have. Insulin is the strongest signal — but it is not the only one. The air you breathe, the plastics you drink from, and the chemicals in your environment are all telling your fat cells to grow.</div>
+    </div>
+  </div>
+
+  <!-- S10: GLP-1 DRUGS -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>GLP-1 Drugs — Ozempic, Mounjaro & the Full Picture</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Bikman's dissertation work was in one of the first labs to study GLP-1 drugs. He knows this class better than almost anyone and has a nuanced position: they have legitimate use cases, but their negative effects are being systematically suppressed while their benefits are amplified.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What GLP-1 Drugs Actually Do</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>GLP-1 is a hormone we all produce from the small intestine — it tells the brain we are full</li>
+            <li>Important: eating lower-carb meals triples GLP-1 response versus high-carb meals of identical calories. You can naturally boost GLP-1 significantly through diet alone.</li>
+            <li>Obese people have a blunted GLP-1 response to carbohydrates — they eat the same amount of carbs as lean people and feel no satiety. Lean people feel full. This explains part of the compulsive eating cycle.</li>
+            <li>Semaglutide (Ozempic/Wegovy) and tirzepatide (Mounjaro/Zepbound) are GLP-1 receptor agonists — they dramatically amplify the satiety signal</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Suppressed Negative Effects</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">40% lean mass loss</span><span class="kv-val">NEJM Step 5 trial: for every 6 lbs of fat lost, 4 lbs of fat-free mass (muscle and bone) is also lost. 40% of all weight lost on these drugs is lean mass. In a 60-year-old woman, that muscle and bone loss may be permanent — adults cannot rebuild it.</span>
+            <span class="kv-key">69% off the drug at 2 years</span><span class="kv-val">In the UK, 69% of people stop taking the drug within 2 years. When they stop, fat rapidly returns — but muscle and bone do not. The net result over time may be metabolically worse than before.</span>
+            <span class="kv-key">Suicidal thoughts double</span><span class="kv-val">Published paper: suicidal thoughts increase by over 100% on these drugs. Major depression triples. The drug reduces appetite for everything — food, exercise, hobbies, social life. Cravings for life itself seem to decline.</span>
+            <span class="kv-key">Paralytic gut risk</span><span class="kv-val">GLP-1 drugs slow gastric emptying significantly. If emptying slows too much (paralytic gut), contents can putrefy in the gut. A serious gastrointestinal risk with high-dose or long-term use.</span>
+            <span class="kv-key">Bone density loss</span><span class="kv-val">Published case reports of young women developing osteoporosis after a year on these drugs. Bikman believes this is an artefact of stopping eating and moving — malnutrition + inactivity — rather than the drug directly attacking bone.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Bikman's Recommended Use Case</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">"I find there is a use case for these drugs — but very different from how they are being used."</p>
+          <ul class="bullet-list">
+            <li>Best use: as a short-term tool to break carbohydrate addiction. Sweet cravings fall significantly within 6 months on the drug — use this window to learn to eat properly.</li>
+            <li>Simultaneous requirements: follow the four pillars (especially protein and fat), do resistance training to protect muscle and bone</li>
+            <li>Find the lowest effective dose — do not assign all responsibility to the syringe. There is value in learning to deny yourself something you know you shouldn't eat.</li>
+            <li>Goal: reduce the dose over time and eventually come off the drug entirely, having built new dietary habits in the window the drug provided</li>
+            <li>Not appropriate for: vanity use in already-lean people, people who won't do resistance training alongside, people who won't address diet simultaneously</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: SWEETENERS -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Sweeteners — The Insulin Framework</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Bikman evaluates sweeteners through one lens: do they spike insulin? This cuts through the noise of broader debates about sweeteners.</p>
+
+      <div class="sweetener-grid">
+        <div class="sweetener-card s-safe">
+          <div class="sweetener-label">✓ No Insulin Effect</div>
+          Aspartame (Diet drinks) · Monk fruit extract · Stevia · Allulose · Erythritol (sugar alcohol)
+        </div>
+        <div class="sweetener-card s-caution">
+          <div class="sweetener-label">⚠ Caution</div>
+          <strong>Sucralose (Zero drinks)</strong> — no insulin effect, but crosses the blood-brain barrier. Bikman avoids it — he doesn't know what it's doing there and doesn't want it there.
+        </div>
+        <div class="sweetener-card s-avoid">
+          <div class="sweetener-label">✗ Avoid — Insulin Effect</div>
+          Maltitol · Mannitol (found in some artificially sweetened chocolates). Also cause bloating/diarrhoea as they draw water into the intestine and ferment.
+        </div>
+      </div>
+
+      <div class="note">Sugar alcohols (ending in "-ol") are a mixed category. Erythritol = safe. Maltitol and mannitol = insulin effect. The gut will tell you if you've eaten too much of the problematic ones — bloating and loose stools follow as the unabsorbed sweetener ferments in the intestine.</div>
+    </div>
+  </div>
+
+  <!-- S12: SALT -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>Salt — The Misunderstood Mineral</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Cutting salt doesn't lower blood pressure — it raises insulin resistance. The evidence has been misread for decades.</p>
+      <ul class="bullet-list">
+        <li>The DASH diet lowered blood pressure — but the DASH diet also reduced refined starches and sugars. The blood pressure benefit was almost certainly from reduced insulin, not reduced salt.</li>
+        <li>Human studies: give healthy subjects strict salt restriction for one week. Measure them. They are significantly more insulin resistant than before the restriction.</li>
+        <li>Mechanism: insulin tells the kidneys to retain salt and water. When you eat less salt, insulin rises to try to hold on to what little salt is coming in. Higher insulin = more insulin resistance = higher blood pressure.</li>
+        <li>A physician telling a hypertensive patient to cut salt while leaving diet otherwise unchanged may be making their blood pressure worse.</li>
+        <li>On a ketogenic diet, low insulin → low aldosterone → kidneys release salt and water more rapidly. This is why blood pressure normalises so quickly — and why blood pressure medications must sometimes be halved within 48 hours of starting keto to avoid dangerous hypotension.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S13: LONGEVITY & EVOLUTION -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Longevity, Evolution & the Expensive Tissue Hypothesis</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why We Have Insulin Resistance at All — The Evolutionary Case</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The Expensive Tissue Hypothesis proposes that early humans began eating meat — food so nutrient-dense it allowed two dramatic changes compared to other primates: our intestines (especially the colon) shrank because we no longer needed to ferment huge quantities of plant matter, and our brains grew because we had sufficient nutrition — including ketones from fat — to fuel an energetically expensive tissue.</p>
+          <ul class="bullet-list">
+            <li>Ketones were the fuel that allowed the human brain to grow — fat babies are healthy babies precisely because they are in constant mild ketosis, fuelling brain development</li>
+            <li>A premature baby (no time to accumulate fat) is more likely to have learning disorders — they missed the ketone-fuelled brain development window</li>
+            <li>A 6-month-old baby fasted for 2 hours achieves deeper ketosis than an adult fasted for 2 days — because they're burning their abundant baby fat furiously to fuel brain growth</li>
+            <li>Published data: vegetarians have measurably smaller brains. The less animal food consumed, the smaller the brain. The brain requires omega-3 fatty acids (DHA, EPA) found exclusively in animal foods — plant-derived ALA cannot be converted to usable amounts of DHA/EPA.</li>
+            <li>Insulin resistance likely evolved as a mechanism for the body to hold on to energy during scarcity — useful in the ancestral environment of feast and famine, destructive in the modern environment of perpetual abundance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Longevity — Bikman's Scepticism of Longevity Gurus</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Modern longevity gurus rely primarily on correlational studies — among the weakest evidence available. Correlational studies cannot establish causation, cannot control for confounders (religion, social circles, loneliness), and are often based on self-reported surveys where people lie or misremember.</li>
+            <li>Cynthia Kenyon (the "mother of modern longevity research") found in worms that restricting glucose extended lifespan by ~50%. Later work found that reducing insulin-related genes extended lifespan even without food restriction — pointing directly at insulin as the longevity lever.</li>
+            <li>Autophagy (cellular self-cleaning) is the longevity mechanism most discussed — and insulin is its most powerful inhibitor. Control your insulin and you enable autophagy without fasting.</li>
+            <li>Bikman's view: longevity gurus taking thousands of dollars worth of supplements would achieve more by simply controlling their insulin. The mechanism is already known — it just isn't profitable to say so.</li>
+            <li>The caloric data point that most strikes Bikman: every centenarian he encountered in 20 years of mortality data had clinically elevated LDL cholesterol at time of death. This directly challenges the dogma that high LDL must be pharmaceutically reduced.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
