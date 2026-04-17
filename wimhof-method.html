@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wim Hof – The Wim Hof Method Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4f8;
+    --bg-card: #ffffff;
+    --bg-dark: #0a1628;
+    --ice: #1a5c8a;
+    --ice-light: #3a8ab5;
+    --ice-pale: #e8f4fb;
+    --ice-dim: rgba(26,92,138,0.1);
+    --frost: #0d3d5e;
+    --steel: #2a4a6e;
+    --amber: #b07820;
+    --amber-pale: #fdf6e8;
+    --amber-dim: rgba(176,120,32,0.1);
+    --crimson: #8c1c1c;
+    --crimson-pale: #fdf0f0;
+    --crimson-dim: rgba(140,28,28,0.1);
+    --sage: #2a5e48;
+    --sage-pale: #eaf5f0;
+    --sage-dim: rgba(42,94,72,0.1);
+    --text: #0a1628;
+    --text-mid: #2a3a4e;
+    --text-dim: #6a7a8a;
+    --border: rgba(26,92,138,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: block;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; border-color: rgba(0,0,0,0.25); }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(26,92,138,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(58,138,181,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    color: #e8f4fb;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    max-width: 580px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: #5ab5e8; font-style: normal; }
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 520px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(90,181,232,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #5ab5e8;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--ice-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--ice);
+    background: var(--ice-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: var(--bg-dark);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--ice); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 40px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--ice-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--ice-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--ice-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--ice);
+  }
+  .kv-key {
+    font-family: 'Space Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ice);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 700;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--amber-pale);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--amber);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 10px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pillar-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: #5ab5e8;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .pillar-title { font-size: 15px; font-weight: 700; color: #e8f4fb; }
+  .pillar-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+  .step-list { margin: 12px 0; }
+  .step-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .step-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ice);
+    background: var(--ice-dim);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 26px; height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--ice);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'Space Mono', monospace;
+  }
+  svg text { font-family: 'Space Grotesk', sans-serif; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <h1>Wim Hof<br><em>The Wim Hof Method</em><br>Reference Guide</h1>
+    <p>Wim Hof — the Iceman — has run to the top of Everest in his underwear, held world records for cold exposure, and been injected with E. coli with no immune response. His method is now backed by peer-reviewed science. All claims represent his interpretation of the evidence.</p>
+    <div class="hero-tags">
+      <span class="tag">Breathing</span>
+      <span class="tag">Cold Exposure</span>
+      <span class="tag">Immune System</span>
+      <span class="tag">Stress Resilience</span>
+      <span class="tag">Trauma</span>
+      <span class="tag">Inflammation</span>
+      <span class="tag">Autonomic Nervous System</span>
+    </div>
+  </section>
+
+  <!-- S1: THREE PILLARS -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>The Three Pillars</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The Wim Hof Method rests on three pillars that work together. Each pillar alone has benefit, but the real power is in combining all three. The method is not about extremes — it is about gaining control over the body's deepest mechanisms so that stress — of any kind — cannot cause damage.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR ONE</span>
+          <span class="pillar-title">Breathing</span>
+          <span class="pillar-desc">Conscious deep breathing that changes blood chemistry, activates cannabinoid receptors, accesses the autonomic nervous system, and releases stored trauma from deep tissue.</span>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR TWO</span>
+          <span class="pillar-title">Cold Exposure</span>
+          <span class="pillar-desc">Voluntary contact with extreme cold that forces the brain stem into active command, triggers hormonal adaptation, and builds an immune system buffer zone against all forms of stress.</span>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-num">PILLAR THREE</span>
+          <span class="pillar-title">Power of the Mind</span>
+          <span class="pillar-desc">Interoception — the trained ability to sense and command the body from the inside. Overrides conditioned self-limiting beliefs. Builds personal responsibility and the ability to regulate emotion.</span>
+        </div>
+      </div>
+
+      <div class="note">The method is not about going to extremes — cold plunging and ultra-marathons are a reaction against excess comfort. The real goal is learning to handle emotion so that you are always on top of it, regardless of external circumstances. The extremes are just a reliable doorway.</div>
+    </div>
+  </div>
+
+  <!-- S2: BREATHING -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>The Breathing Technique</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Breathing is the first step and the foundation. It changes blood chemistry, unlocks deep brain mechanisms, activates the immune system, and provides access to trauma stored in the body's deep tissue — all of which was previously believed to be beyond voluntary control.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Full Protocol — Step by Step</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-num">1</span>
+              <span class="step-text"><strong>Sit or lie down somewhere safe.</strong> Never do this while driving, in water, in a pool, near danger, or anywhere that requires motor control. You may feel dizzy or faint — that is expected and harmless in a controlled environment.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">2</span>
+              <span class="step-text"><strong>Breathe fully in</strong> using belly and chest together. Inhale as deep as possible through mouth or nose — whichever feels natural. Use the belly and chest muscles fully — this is not the shallow automatic breathing the body does on autopilot.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">3</span>
+              <span class="step-text"><strong>Let it go.</strong> Release without force — just release. Do not push the exhale. Fully in, Let It Go. Repeat.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">4</span>
+              <span class="step-text"><strong>Repeat 30 times continuously.</strong> The mind follows the breath. You may feel tingling, light-headedness, or a buzzing sensation. This is the CO2 being exhaled and pH rising — normal and safe in this context.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">5</span>
+              <span class="step-text"><strong>After the 30th exhale — stop. Close the mouth. No breathing.</strong> The CO2 level is now so low that the breathing trigger (which is CO2-dependent, not oxygen-dependent) does not fire. You can comfortably hold for 1 to 3+ minutes depending on practice.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">6</span>
+              <span class="step-text"><strong>During the hold:</strong> Five times more blood flows into the brain and heart. The adrenal axis activates. Adrenaline is released. The brain stem enters deep function. Cannabinoid receptors activate. Trauma held in deep tissue begins to release. This is where the real work happens.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">7</span>
+              <span class="step-text"><strong>When you need to breathe — take a full deep breath in, hold it, press it to the head</strong> (bear down slightly). This pushes cerebrospinal fluid toward the brain. Hold for 10–15 seconds. Release. That is one round.</span>
+            </div>
+            <div class="step-item">
+              <span class="step-num">8</span>
+              <span class="step-text"><strong>Repeat for 3–4 rounds.</strong> Each round, the breath hold extends naturally — round one may be 1 minute, round three may be 2.5–3 minutes. With regular practice this deepens further.</span>
+            </div>
+          </div>
+          <div class="caution"><strong>Never practise while driving, swimming, in a bath, or in any situation requiring motor control.</strong> Loss of consciousness is possible — it is harmless on a bed or soft surface, but dangerous near water or when operating a vehicle.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Is Happening in the Body</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="diagram-wrap">
+            <div class="diagram-label">Breathing → Blood Chemistry → Brain Activation Sequence</div>
+            <svg width="100%" viewBox="0 0 840 175" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr-i" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L8,3 z" fill="#1a5c8a"/>
+                </marker>
+              </defs>
+              <rect x="10" y="48" width="140" height="78" rx="6" fill="#e8f4fb" stroke="#1a5c8a" stroke-width="1.5"/>
+              <text x="80" y="72" text-anchor="middle" fill="#0a1628" font-size="12" font-weight="700">30 Deep Breaths</text>
+              <text x="80" y="89" text-anchor="middle" fill="#2a3a4e" font-size="10">CO2 blown off</text>
+              <text x="80" y="104" text-anchor="middle" fill="#2a3a4e" font-size="10">blood pH rises</text>
+              <text x="80" y="118" text-anchor="middle" fill="#1a5c8a" font-size="9">may feel dizzy/tingly</text>
+              <path d="M150,87 L188,87" stroke="#1a5c8a" stroke-width="1.5" marker-end="url(#arr-i)" fill="none"/>
+              <rect x="188" y="40" width="155" height="94" rx="6" fill="#e8f4fb" stroke="#1a5c8a" stroke-width="1.5"/>
+              <text x="265" y="64" text-anchor="middle" fill="#0a1628" font-size="12" font-weight="700">Hold After Exhale</text>
+              <text x="265" y="81" text-anchor="middle" fill="#2a3a4e" font-size="10">no CO2 → no breathe</text>
+              <text x="265" y="96" text-anchor="middle" fill="#2a3a4e" font-size="10">trigger = peacefully</text>
+              <text x="265" y="111" text-anchor="middle" fill="#2a3a4e" font-size="10">1 to 3+ mins possible</text>
+              <text x="265" y="126" text-anchor="middle" fill="#1a5c8a" font-size="9">5× blood to brain + heart</text>
+              <path d="M343,87 L381,87" stroke="#1a5c8a" stroke-width="1.5" marker-end="url(#arr-i)" fill="none"/>
+              <rect x="381" y="35" width="160" height="104" rx="6" fill="#e8f4fb" stroke="#1a5c8a" stroke-width="2"/>
+              <text x="461" y="59" text-anchor="middle" fill="#0a1628" font-size="12" font-weight="700">Deep Brain Activated</text>
+              <text x="461" y="76" text-anchor="middle" fill="#2a3a4e" font-size="10">adrenaline released</text>
+              <text x="461" y="91" text-anchor="middle" fill="#2a3a4e" font-size="10">cannabinoid receptors on</text>
+              <text x="461" y="106" text-anchor="middle" fill="#2a3a4e" font-size="10">salience network active</text>
+              <text x="461" y="121" text-anchor="middle" fill="#2a3a4e" font-size="10">autonomic NS accessed</text>
+              <text x="461" y="133" text-anchor="middle" fill="#1a5c8a" font-size="9">trauma release begins</text>
+              <path d="M541,87 L579,87" stroke="#1a5c8a" stroke-width="1.5" marker-end="url(#arr-i)" fill="none"/>
+              <rect x="579" y="28" width="250" height="118" rx="6" fill="#eaf5f0" stroke="#2a5e48" stroke-width="2"/>
+              <text x="704" y="52" text-anchor="middle" fill="#0a1628" font-size="12" font-weight="700">Outcomes Over Time</text>
+              <text x="704" y="69" text-anchor="middle" fill="#2a3a4e" font-size="10">voluntary immune control</text>
+              <text x="704" y="84" text-anchor="middle" fill="#2a3a4e" font-size="10">stress resilience ↑ sharply</text>
+              <text x="704" y="99" text-anchor="middle" fill="#2a3a4e" font-size="10">inflammation down</text>
+              <text x="704" y="114" text-anchor="middle" fill="#2a3a4e" font-size="10">mood/emotion regulated</text>
+              <text x="704" y="129" text-anchor="middle" fill="#2a5e48" font-size="9">works better than mindfulness (540-person study)</text>
+            </svg>
+          </div>
+          <ul class="bullet-list">
+            <li>CO2 is the trigger for the breathing reflex — not low oxygen. By exhaling CO2 fully, the breathing urge disappears entirely during the hold despite comfortable oxygen levels</li>
+            <li>During the hold, five times more blood flows into the brain and heart — shown in recent cardiac imaging studies</li>
+            <li>The technique engages the sympathetic nervous system (releasing adrenaline/epinephrine) and triggers the periaqueductal grey region of the brain stem, releasing cannabinoids and opioids that reduce pain and anxiety</li>
+            <li>Cannabinoid receptors are part of the salience network — the network that makes all other brain networks work together. Activating them opens access to areas of physiology normally beyond conscious reach</li>
+            <li>Trauma is stored as unprocessed biochemistry in the deep tissue of the body. Shallow, conditioned breathing never reaches this depth. The WHM breathing pattern breaks through the conditioned state and allows this material to surface and be processed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Science — Published Studies</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>2010 — Radboud University Medical Centre, Netherlands:</strong> Wim was injected with a dead strain of E. coli. 100 healthy volunteers previously all responded with flu-like symptoms. Wim had no negative immune response — only a minor headache. Blood tests showed cortisol, adrenaline, and IL-10 (anti-inflammatory protein). 18 volunteers then trained with Wim in Poland for 4 days on breathing, cold exposure, and meditation. When injected with the same toxin, the trained group had significantly reduced immune response, recovered faster, and their results matched Wim's. This was the first time humans had been shown to voluntarily control the autonomic nervous system and innate immune system.</li>
+            <li><strong>2018 — Wayne State University, Michigan (Brain Over Body study):</strong> A perfusion vest pumped cold water against subjects' skin while inside an fMRI scanner. All normal subjects showed automatic stress brain activity in response to the cold. Wim, using breathing and meditation, maintained a sustained skin temperature of 34°C over 25 minutes. PET scans showed the intercostal muscles (between the ribs) burning glucose and generating heat deliberately. His brain showed no automatic stress response to the cold — instead the breathing engaged the brain stem directly, releasing cannabinoids and opioids, producing wellbeing rather than pain.</li>
+            <li><strong>2024 — Landmark study (Detroit, Professor Divya):</strong> Found that the WHM activates cannabinoid receptors in the salience network — providing the mechanism for mood and emotion regulation. Published with "compelling evidence" findings. 540-person Australian study compared WHM to mindfulness and meditation — WHM showed significantly greater stress resilience increase, stress experience decrease, and cognitive awareness increase.</li>
+          </ul>
+          <div class="positive">These are peer-reviewed, scientifically rigorous studies published in major journals. The autonomic nervous system and innate immune system were previously considered beyond voluntary human control. That is no longer the scientific consensus.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: COLD EXPOSURE -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Cold Exposure</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">"If you don't go to the cold, the cold will come to you." The cold is a metaphor for all of life's stresses and difficulties. By choosing voluntary discomfort — cold exposure — you train the body to handle involuntary stress more effectively. The cold forces the deepest part of the brain online.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What the Cold Does in the Body</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Forces the brain stem — the survival part of the brain — to activate. This is the deepest level of neural function, and most people never consciously access it in modern comfortable life</li>
+            <li>The first 20 seconds trigger panic — this is the conditioned response. It is a wall built by the mind, not a real physiological limit. Pushing through it is the exercise.</li>
+            <li>After approximately 20 seconds, the hormonal system adapts — the body begins opposing the cold impact from within. This is the moment training is happening.</li>
+            <li>The immune system activates and strengthens</li>
+            <li>Emotions come into voluntary control — the same mechanism that handles cold stress handles emotional stress</li>
+            <li>Cardiovascular system strengthens — regular cold exposure is directly linked to improved cardiovascular health, which Wim identifies as the leading cause of death</li>
+            <li>Regular cold exposure builds what Wim calls the "buffer zone" — an elevated threshold before stress causes physiological damage</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Practical Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Temperature</span><span class="kv-val">Any genuinely cold water — household cold showers or ice baths both work. No specific temperature required.</span>
+            <span class="kv-key">Minimum duration</span><span class="kv-val">2–3 minutes is sufficient for significant benefit. Longer is not necessarily better for beginners.</span>
+            <span class="kv-key">How to get in</span><span class="kv-val">Command your body before entry — tell yourself to be strong. Use breath to anchor. Long out-breath as you enter. Stay with the breath. The first 20 seconds are the wall — if you can hold through 20 seconds, the body adapts.</span>
+            <span class="kv-key">Timing</span><span class="kv-val">Morning — Wim's preference. Do breathing exercises first, then cold exposure.</span>
+            <span class="kv-key">Frequency</span><span class="kv-val">Daily. Consistency is the key variable.</span>
+            <span class="kv-key">Trauma with cold</span><span class="kv-val">Some people have a traumatic association with cold (e.g. cold used as punishment in childhood). This shows up as extreme aversion. The method itself can resolve this — the trauma surfaces and is processed through the same mechanism. Patrice Evra's experience described in the transcript is a direct example.</span>
+          </div>
+          <div class="note">Wim celebrated each birthday by staying in an ice bath for as many minutes as his age — 60 minutes at 60, 61 at 61, and so on. He stopped at 64 — "that's boring now." The point is not the record but the principle: the body is capable of far more than the conditioned mind believes.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Metaphor — Cold as All of Life's Stressors</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The cold is not special because of the cold. It is special because it is a reliable, controllable, repeatable stressor that activates the same deep brain mechanisms as any other form of stress — emotional, physical, or existential.</p>
+          <ul class="bullet-list">
+            <li>The panic at entry is not the cold — it is your belief about what you can handle. Sitting through it proves the belief wrong.</li>
+            <li>This proof of false belief then cascades — if that wall I was certain was real turned out to be imaginary, what other walls am I creating in my life?</li>
+            <li>One ice bath session, done properly, can shift someone from victimhood to personal responsibility. The experience provides direct evidence of their own capacity.</li>
+            <li>The modern world has optimised discomfort out of life. The body evolved to receive and process discomfort — without it, the deeper mechanisms atrophy.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: POWER OF MIND -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Power of the Mind — Interoception</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The third pillar is interoception — the ability to sense and command the body from the inside. It is the trained skill of going past conditioned thought and connecting with the body's deeper regulatory systems. This is the key that the 2024 landmark study identified as the mechanism for mood and emotion control.</p>
+      <ul class="bullet-list">
+        <li>Modern conditioning creates a narrow band of experience — the system, schooling, and social expectations build a helmet that interrupts the flow of authentic expression</li>
+        <li>Interoception trains the ability to feel bad states and consciously shift them — not suppress them, not avoid them, but actually regulate them from the inside</li>
+        <li>This works better than mindfulness and meditation for stress resilience, stress reduction, and cognitive awareness — demonstrated in a 540-person Australian study</li>
+        <li>After training, stress experience decreases significantly, stress resilience increases significantly, and cognitive clarity improves</li>
+        <li>The method overrides self-limiting beliefs by providing direct experience that they are false — one session of conscious breathing and cold exposure is often sufficient to break a deeply held conditioned belief</li>
+      </ul>
+      <div class="positive">The 2024 landmark study found that the WHM activates the cannabinoid receptors of the salience network — the brain's coordinator of all other networks. This is the physiological key to why the method achieves what it achieves: it opens access to systems that are normally closed off by conditioning.</div>
+    </div>
+  </div>
+
+  <!-- S5: IMMUNE SYSTEM & DISEASE -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Immune System, Inflammation & Disease</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The most startling finding of the WHM research: voluntary control of the immune system. Previously considered impossible, this is now demonstrated in peer-reviewed science. The mechanism is clear — by activating the deep brain, the body's innate defences can be deliberately heightened.</p>
+      <ul class="bullet-list">
+        <li>Stress is the gateway through which most disease enters. Chronic unresolved stress depletes immune function and allows inflammation to persist</li>
+        <li>The WHM builds a buffer zone — an elevated stress threshold. Stress that would previously cause physiological damage no longer reaches the damage threshold</li>
+        <li>When trained volunteers were injected with E. coli toxin, they mounted a dramatically reduced immune response — the same as Wim's. Their bodies did not over-react with inflammation because the system was in balance and in command</li>
+        <li>The research points to implications for autoimmune disorders, diabetes, MS, arthritis, and psychiatric conditions</li>
+        <li>Inflammation is fundamentally linked to unprocessed stress — biochemical, emotional, and physical. Resolving the stress (through breath, cold, and interoception) resolves the inflammation driver</li>
+        <li>Cortisol, adrenaline, and IL-10 (the anti-inflammatory protein) were all measurably elevated in Wim and the trained group when exposed to the toxin — the immune response was active but controlled and intelligent</li>
+      </ul>
+      <div class="caution">Wim's position is that the current healthcare system is financially motivated to maintain chronic disease rather than resolve it. Natural methods that produce comparable results without side effects receive minimal scientific funding because they cannot be patented. This is his view — not a medical claim.</div>
+    </div>
+  </div>
+
+  <!-- S6: TRAUMA & GRIEF -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Trauma, Grief & the Cold as Medicine</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Wim's wife Mariposa took her own life in 1995, jumping from an eighth-floor building, leaving him with four children aged 7–12 and almost no money. He describes the cold as the tool that gave him access to his own healing when grief had no space to exist — when there was simply no time to fall apart.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How the Cold Helped Him Through Grief</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>The cold is stronger than the thinking mind — it forces the brain stem online and cuts through agonising, looping thought</li>
+            <li>In the immediate aftermath of trauma, the cold provided "a little opening of this agonising thinking" — brief moments of relief that made survival possible</li>
+            <li>He describes the brain stem as the body's own pharmacy — the place where natural healing chemicals are produced, and the place we have most disconnected from</li>
+            <li>The cold did not fix his grief. It gave him access to his own depth — enough energy to create warmth, playfulness, and presence for his children</li>
+            <li>Now, years later, his four children all work with him and describe the family chemistry as better than ever. He credits his wife as an angelic presence that continues to drive their connection.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What to Say to Someone Going Through Grief or Trauma</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Wim's answer when asked what he would say to someone going through grief was immediate and simple:</p>
+          <ul class="bullet-list">
+            <li>Start with the breathing exercises. Not to fix the grief — to provide access to the depth where grief is stored and where healing naturally lives</li>
+            <li>The cold, if you can reach it, gives you a glimpse of power. Just surviving the first minute of ice water when you believe you cannot — that changes the belief.</li>
+            <li>The body knows how to heal. The problem is that the conditioned, thinking mind has been cut off from the body's deeper healing capacity. The method reopens that connection.</li>
+            <li>You do not need to understand it. You do not need to believe it. Just do the breathing in a safe place. The experience will speak for itself within one session.</li>
+          </ul>
+          <div class="note">Wim describes trauma as "stored up chemistry" — unprocessed experience that becomes biochemical and is held in the body's deep tissue. It cannot be accessed by thinking about it. The breathing creates a different physiological state that allows the body to process it naturally. The emotion that surfaces in breathwork sessions is real — it is the stored material finally reaching the surface.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: DAILY ROUTINE -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Wim's Daily Routine</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="kv-grid">
+        <span class="kv-key">Wake time</span><span class="kv-val">~4:30–5:00 am, though not rigid — "time serves me, I don't serve time"</span>
+        <span class="kv-key">Morning ritual</span><span class="kv-val">Breathing exercises on waking, in bed — done to cleanse biochemistry before the day begins. "I breathe like a madman in there and cleanse myself so deeply that I'm ready to take on anything."</span>
+        <span class="kv-key">Exercise</span><span class="kv-val">Body weight exercises — push-ups, a weighted bar (~10kg) swung in circles up to 500 repetitions. Exercises to the threshold of pain, then overcomes the pain. Uses own body weight as primary resistance.</span>
+        <span class="kv-key">Coffee</span><span class="kv-val">One coffee in the morning — no sugar, a little milk. Nothing else in the morning.</span>
+        <span class="kv-key">Eating</span><span class="kv-val">Once a day, later in the day — no breakfast, no lunch. Intuitive fasting since childhood. "Any animal in the world doesn't eat when it doesn't need to eat." Food comes when hunger is genuinely felt, not by clock. First meal often 5–7pm.</span>
+        <span class="kv-key">Cold exposure</span><span class="kv-val">Daily ice bath or cold shower in the morning, following breathing exercises. Minimum 2–3 minutes.</span>
+        <span class="kv-key">Key principle</span><span class="kv-val">10–15 minutes of intentional practice in the morning is enough to be ready for the entire day. Not hours in the gym — short, deep, and consistent.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: FASTING -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Fasting — Intuitive Deprivation</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Wim has eaten once a day since childhood — not as a protocol he adopted, but as a natural intuition. He frames fasting the same way he frames cold exposure: voluntary deprivation that exercises deeper systems before involuntary deprivation arrives uninvited.</p>
+      <ul class="bullet-list">
+        <li>Fasting is hormetic — it is a self-inflicted acute stressor that, done consciously, strengthens the system</li>
+        <li>"If you don't go to deprivation, deprivation will come to you" — the same principle as the cold</li>
+        <li>When hunger is deliberately delayed, the body sharpens: adrenaline rises, alertness increases, all systems activate. This is the body's natural state when driven by genuine hunger rather than habit and conditioning</li>
+        <li>The three-meals-a-day narrative is "made up" — no animal eats on a clock. They eat when they feel hunger. Wim eats when he feels hunger.</li>
+        <li>His first meal is typically 5–7pm, sometimes later. He reports better focus, better conversations, and more energy in the fasted state</li>
+        <li>He does not prescribe this rigidly — he acknowledges that a relaxed breakfast with coffee and eggs by the sea is also a beautiful way to live. The point is to eat from feeling, not from habit or external instruction</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S9: PHILOSOPHY -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Philosophy — Happiness, Strength & Health</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Wim reduces his entire mission to three words: happiness, strength, and health. He is emphatic that these are not outcomes to strive for — they are the natural state of a human being whose deeper mechanisms are connected and working. You do not work for happiness. You remove what is blocking it.</p>
+      <ul class="bullet-list">
+        <li>"What is the purpose of living? It's life — to love life as it is. Pure. No thoughts, no confusion. Just feel alive."</li>
+        <li>Purpose follows naturally from happiness, strength, and health — you do not need to go looking for it. "Be happy, strong, and healthy. The rest is bullshit. Purpose will follow."</li>
+        <li>We are built to endure far more than modern life asks of us. When the capacity for endurance is never exercised, the deeper mechanisms atrophy — immunity, emotional regulation, stress resilience, purpose all weaken together.</li>
+        <li>The three things that Mother Nature provides and that the body needs: magnetism from the Earth, oxygen from the air, light from the sun. The further we get from these, the sicker we become.</li>
+        <li>Spending 97% of time indoors (versus the 85% outdoors we evolved for) is a form of disconnection from the body's natural maintenance systems</li>
+        <li>The world is not going to change from the outside. Change comes from inside — from each person reclaiming their own happiness, strength, and health. That is the counter-narrative.</li>
+      </ul>
+      <div class="kv-grid">
+        <span class="kv-key">On E. coli study</span><span class="kv-val">Wim views the scientific community's failure to urgently follow up on these findings as scandalous. Natural methods with no side effects that equal or exceed pharmaceutical outcomes should receive thorough examination — the barrier is funding from pharmaceutical companies.</span>
+        <span class="kv-key">On democracy</span><span class="kv-val">Quotes Professor Friedrich — "Democracy is only composed of the strength of the people. Once the people become weak, democracy will know its end." Wim believes the WHM can reverse societal weakness — not through politics but through individual strength reclaimed.</span>
+        <span class="kv-key">On the 9 to 5</span><span class="kv-val">"Do what we just did. You thought you weren't able to. You can do that too. The most precious wealth you can embrace is your happiness, your strength, and your health. You can get it every day. Anybody. That's you."</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
