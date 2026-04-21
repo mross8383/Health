@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tim Ferriss – Mindset, Fuel & Focus Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #1a1714;
+    --orange: #c4541c;
+    --orange-light: #e07a3c;
+    --orange-pale: #fdf1e8;
+    --orange-dim: rgba(196,84,28,0.1);
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+    --text: #1a1714;
+    --text-mid: #3a342e;
+    --text-dim: #776e65;
+    --border: rgba(196,84,28,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(196,84,28,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(90,107,78,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(224,122,60,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: #e07a3c; font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.38); font-size: 13.5px; max-width: 560px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(224,122,60,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #e07a3c;
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--orange-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--orange); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--orange-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--orange);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--orange-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--orange-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--orange);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--orange);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--orange-pale);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--orange);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--orange);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--orange);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+  .q-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bg-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .q-detail { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #e07a3c;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <div class="hero-sub">On Purpose with Jay Shetty</div>
+    <h1>Tim Ferriss<br><em>Mindset, Fuel & Focus</em><br>Reference Guide</h1>
+    <p>Tim Ferriss — author of The 4-Hour Work Week, host of The Tim Ferriss Show — on the conversation with Jay Shetty. Cognitive fuel, bioelectric medicine, achievement vs. acceptance, hunting antelope, the 17 questions, conflict resolution, and the cost of chronic self-improvement.</p>
+    <div class="hero-tags">
+      <span class="tag">Cognitive Fuel</span>
+      <span class="tag">Bioelectric Medicine</span>
+      <span class="tag">Acceptance</span>
+      <span class="tag">Focus</span>
+      <span class="tag">Relationships</span>
+      <span class="tag">Key Questions</span>
+    </div>
+  </section>
+
+  <!-- S1: COGNITIVE FUEL -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>Cognitive Fuel — The Brain as Musculature</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The mind-body duality is a falsehood. Everything is tightly interrelated. Before you journal your way out of a problem, check whether you have a fuel issue. Sometimes you're not stuck — you're starving.</p>
+
+      <div class="pullquote">
+        Sometimes you don't have a problem-solving issue. You have a fuel issue. Before you try to riddle yourself with journaling out of all your issues, maybe you're just starving.
+        <span class="pullquote-attr">— Tim Ferriss</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Three Fuels for the Brain</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Glucose</span><span class="kv-val">The brain's default fuel — but in Alzheimer's ("type 3 diabetes"), the brain becomes insulin-insensitive and cannot use it effectively. In many cognitive disorders (depression, migraines, epilepsy, Parkinson's), there's a glucose hypometabolism in the brain.</span>
+            <span class="kv-key">Ketones</span><span class="kv-val">The alternate fuel source. Ferriss has given exogenous ketone shots to his Alzheimer's relatives. Within 20 minutes — sentences longer, speech faster. The "clock test" — patients who couldn't draw a clock could do so 30 minutes later. Cultivating your ketogenic machinery through intermittent fasting or a keto diet gives you this backup fuel on demand.</span>
+            <span class="kv-key">Lactate</span><span class="kv-val">The third fuel. The burn you feel from intense cycling or weight training. Introduced to Ferriss by Dr. Tommy Wood. Lactate is not just fuel — it's a signalling molecule that produces changes in the brain. Some credible scientists believe lactate is the main driver of cognitive benefits from intense exercise.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Norwegian 4x4 Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="diagram-wrap">
+            <div class="diagram-label">The Norwegian 4x4 — VO₂ Max Training for Cognitive Longevity</div>
+            <svg width="100%" viewBox="0 0 820 140" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="30" width="160" height="80" rx="6" fill="#c4541c"/>
+              <text x="90" y="55" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">4 MIN ON</text>
+              <text x="90" y="72" text-anchor="middle" fill="#fff" font-size="10">85–90% max HR</text>
+              <text x="90" y="87" text-anchor="middle" fill="#fff" font-size="10">(running from wolves)</text>
+              <rect x="175" y="30" width="155" height="80" rx="6" fill="#fdf1e8" stroke="#c4541c" stroke-width="1.5"/>
+              <text x="252" y="55" text-anchor="middle" fill="#c4541c" font-size="12" font-weight="700">3–4 MIN OFF</text>
+              <text x="252" y="72" text-anchor="middle" fill="#3a342e" font-size="10">active recovery</text>
+              <rect x="335" y="30" width="160" height="80" rx="6" fill="#c4541c"/>
+              <text x="415" y="55" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">4 MIN ON</text>
+              <text x="415" y="72" text-anchor="middle" fill="#fff" font-size="10">lactate threshold</text>
+              <rect x="500" y="30" width="155" height="80" rx="6" fill="#fdf1e8" stroke="#c4541c" stroke-width="1.5"/>
+              <text x="577" y="55" text-anchor="middle" fill="#c4541c" font-size="12" font-weight="700">3–4 MIN OFF</text>
+              <rect x="660" y="30" width="150" height="80" rx="6" fill="#5a6b4e"/>
+              <text x="735" y="55" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">REPEAT ×4 CYCLES</text>
+              <text x="735" y="72" text-anchor="middle" fill="#fff" font-size="10">3× per week</text>
+              <text x="735" y="87" text-anchor="middle" fill="#fff" font-size="10">6 months</text>
+            </svg>
+          </div>
+          <ul class="bullet-list">
+            <li>Stationary biking (or equivalent): 4 minutes at 85–90% max heart rate, 3–4 minutes recovery, 4 rounds total</li>
+            <li>Done 3 times per week for 6 months — the studied protocol</li>
+            <li>Effects extend out 5 years from 6 months of training. The hippocampus (the primary area affected by Alzheimer's) shows volumetric growth.</li>
+            <li>The cycling itself has no magic — it's the lactate concentration. Could be rowing, running, or weight training as long as you hit the intensity threshold.</li>
+            <li>Ferriss's adaptation: 4–5 minute sets of weight training on large muscle groups (leg press, leg extension) timed to music tracks — hits lactate without a bike</li>
+            <li>Ferriss funds research through his foundation on whether a smaller minimum effective dose exists — the protocol may not need to be 6 months to produce benefits</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Intermittent Fasting — Ferriss's Protocol</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>16-hour fast, 8-hour eating window. Two big meals inside the window.</li>
+            <li>Minimum 16 hours so liver glycogen depletes and the body builds ketogenic machinery (research from Mark Mattson)</li>
+            <li>Ferriss's family has insulin insensitivity — after 4–6 weeks of IF: all energy dips resolved, sustained energy, wakes up awake</li>
+            <li>Lab work after 4–6 weeks: oral glucose tolerance test A++, insulin markers dramatically improved</li>
+            <li>If getting tested: don't just test fasting glucose. Get fasting insulin measured and an oral glucose tolerance test.</li>
+          </ul>
+          <div class="note">Before committing to a GLP-1 drug like Ozempic for metabolic health, Ferriss's view: intermittent fasting is incredibly undervalued. It's portable, free, and humans have done it for the entirety of our species' history. The GLP-1 route is harder to have with a typical doctor because they're in the business of adding — they only get 11 minutes per patient on average in the US.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Race Car Analogy</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Jay's example: he felt low-energy despite having purpose and meaningful relationships. Everything mental was in order. Then he tested biomarkers — vitamin D was at 10 (optimal range 60–100). Fixing that one thing resolved the fatigue.</p>
+          <p class="prose">Micronutrient testing often reveals deficiencies in trace minerals — copper, selenium, zinc — that cause anxiety, depression, or fatigue. Ferriss's example: deficient in selenium? Try a handful of Brazil nuts daily for a week.</p>
+          <div class="pullquote">
+            It doesn't matter how good you are at driving the race car if no one's done an oil change, no one's checked the tires, no one's put proper fuel in the tank.
+            <span class="pullquote-attr">— Tim Ferriss</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: BIOELECTRIC MEDICINE -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Bioelectric Medicine — Microchips Over Pills</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Drugs have off-target effects. The body has many locks, and a pill is often a blunt key. Bioelectric medicine — using electrical or magnetic stimulation to target specific neural circuits — offers a path to restoring homeostasis with fewer side effects. Ferriss has personally experimented as a "human guinea pig."</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Transcranial Magnetic Stimulation (TMS)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>TMS has existed for decades. A magnetic paddle placed near the head delivers magnetic fields that either excite or inhibit specific brain regions</li>
+            <li>Conventional TMS is widely accessible, often reimbursed by insurance. Treatments 1–3× per week over 5 months.</li>
+            <li>Published results for treatment-resistant depression: around 70% remission, durable</li>
+            <li>Also shows benefit for OCD, generalized anxiety disorder (GAD)</li>
+            <li>Main hardware companies: Brainsway and MagVenture. Both have very sophisticated hardware.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Saint Protocol — Accelerated TMS</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Developed by the late Dr. Nolan Williams at Stanford. Compresses 5 months of TMS treatment into 5 days — stimulations 10 times a day, every hour. Durable remission results match or exceed conventional TMS.</p>
+          <div class="caution">The accelerated protocol is mentally exhausting. After his first 8-minute stimulation, Ferriss felt as though he'd pulled three all-nighters. The 5-day version requires a full week off work. Not currently reimbursable by insurance. Available at certain clinics — Acacia Clinics (Sunnyvale, CA) is one Ferriss used. Expensive.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Ferriss's One-Day Protocol — The Experimental Breakthrough</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Ferriss volunteered for an experimental single-day protocol. He has diagnosed severe OCD and generalized anxiety disorder.</p>
+          <div class="kv-grid">
+            <span class="kv-key">Preload</span><span class="kv-val">D-cycloserine — an old antibiotic used for tuberculosis, known to aid neuroplasticity — in a lozenge in the mouth</span>
+            <span class="kv-key">One hour later</span><span class="kv-val">Begin stimulations. 3-minute stimulations, one per hour, for one day only</span>
+            <span class="kv-key">Starting state</span><span class="kv-val">8–9 out of 10 severity of generalized anxiety disorder</span>
+            <span class="kv-key">After one day</span><span class="kv-val">Dropped to 0–1 out of 10. Sustained 4–5 months and counting from that single day of treatment</span>
+          </div>
+          <p class="prose">Ferriss's OCD is internal and ruminative — not hand-washing or light-switch flipping. It manifests as "What if this? I should have said that. Loop loop loop" and imagined outcomes. His depression was downstream — born of fatigue from anxiety interrupting sleep. Treating the anxiety tipped the domino.</p>
+          <div class="note">If compressing 5 days into 1 works broadly, the cost should drop dramatically and the protocol becomes accessible to people who cannot take a week off work. Most people cannot take 5 days off — accelerated TMS exhausts the brain completely. The one-day version could be the future. Ampa Health focuses specifically on this format.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Ibogaine — For Traumatic Brain Injury</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Alkaloid derived from Tabernanthe iboga — used traditionally by the Bwiti tribe. Long, intense psychedelic experience.</li>
+            <li>Nolan Williams pioneered the research. Ibogaine effectively reversed brain age in veterans with traumatic brain injury (TBI) — something not seen with other drugs or psychedelics</li>
+            <li>Appears to work via glial-derived neurotrophic factor (GDNF) upregulation</li>
+          </ul>
+          <div class="caution">Significant cardiac risks for some people. Unlike most psychedelics, ibogaine can kill you. Not to be trifled with. Any exploration requires qualified medical supervision.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Ketamine — The Narrow Use Case</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Dr. John Krystal at Yale did seminal work on ketamine as an antidepressant. The 0.5mg/kg dose has become "religious dogma" — it was the dose tested, not necessarily the optimal dose.</li>
+            <li>Very risky compound. High likelihood of addiction.</li>
+            <li>One specific use case where ketamine stands out: acute suicidality. An infusion or injection can take someone from "I'm going to kill myself today" to "I don't know what I was so upset about" in a few hours. Few interventions work that fast in that scenario.</li>
+          </ul>
+          <div class="caution">Do not have ketamine lozenges at home — whether Johnson & Johnson's Spravato (esketamine) or anything else. High addiction risk. Only pursue in a clinical setting.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: HABIT FORMATION -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Habit Formation — Setting Expectations</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Most habits fail because people don't know what the curve looks like. The missing ingredient is almost always expectation-setting.</p>
+
+      <div class="pullquote">
+        Do less than you think you can do. That contributes to endurance, longevity, and enthusiasm. Don't bleed the stone.
+        <span class="pullquote-attr">— Tim Ferriss</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Rules of Adoption</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Show the curve</span><span class="kv-val">Tell people what to expect — "here's what the stock chart of your brain will look like." When people expect a trough of sorrow, they don't freak out when it arrives. Abandonment rates drop significantly.</span>
+            <span class="kv-key">Commit to the minimum</span><span class="kv-val">Meditation: commit to 2.5 weeks. Binary pass/fail like ketosis. A switch flips around 2 weeks — you'll know if it works for you. If you give up after a week, the whole thing is wasted.</span>
+            <span class="kv-key">Do less than you think</span><span class="kv-val">If you think you can do 20 minutes, do 10. Don't push into redline territory. The Protestant work ethic isn't the place to prove how much you can do when you're building a new habit.</span>
+            <span class="kv-key">Set external stakes</span><span class="kv-val">Bet a friend. Have them take unflattering photos that get released if you quit. Write a $100 cheque to your most hated political candidate, held by your friend, activated if you stop. Incentives work.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Managing Expectations in Relationships Too</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The same principle applies to partners. You can have almost anything you want in life if you manage expectations early.</p>
+          <ul class="bullet-list">
+            <li>"I've got a crazy week coming up — I may not have the same space and presence I usually do"</li>
+            <li>"I'm traveling this week, I'm only back for 3 hours before I'm out again"</li>
+            <li>We assume partners should know our schedule. They don't. Just tell them.</li>
+            <li>We send cues instead of words — being huffy, being on the phone, being short. Words work better.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: ACHIEVEMENT VS ACCEPTANCE -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Achievement vs. Acceptance — The Core Balance</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The central philosophical thread of the conversation. Ferriss spent decades on achievement. In the last few years he has deliberately balanced it with acceptance practices. Both are needed — either alone is a trap.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">ACHIEVEMENT ONLY</div>
+          <div class="pillar-answer">A greyhound chasing a rabbit</div>
+          <div class="pillar-sub">Can sprint — can't run long. Western psychotherapy, self-help, "improve yourself" frameworks. Huge upside. Also a way to always feel broken.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">ACCEPTANCE ONLY</div>
+          <div class="pillar-answer">A cow standing in the rain</div>
+          <div class="pillar-sub">Complacency. Passivity. Pure acceptance without action on things you can change is just learned helplessness dressed as wisdom.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Book That Shaped This View</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Ferriss cites Bruce Tift's <em>Already Free</em> — a book discussing the two complementary approaches:</p>
+          <ul class="bullet-list">
+            <li><strong>Developmental / achievement (Western psychotherapy):</strong> How do I improve myself? How do I change my circumstances?</li>
+            <li><strong>Acceptance (often Buddhist, but not exclusive):</strong> Recognising what is. Allowing what is.</li>
+            <li>The serenity prayer is effectively a prescription for this balance — accept what you can't change, change what you can, and know the difference</li>
+            <li>None of us have as much control as we'd like to think — especially once other humans are involved</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Goes in Each Bucket</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>If you can't control it or won't act on it — it belongs in the acceptance bucket (or the "selective ignorance" bucket)</li>
+            <li>Social media lives in this bucket for Ferriss — no social media on his phone for 3–4 years</li>
+            <li>An accomplished business friend removed X from his phone — reports it was "a month of it" = 20 years of therapy. Then got dragged back in. Psychological state worsened measurably.</li>
+            <li>If you can't act on something constructively, consuming it just causes harm</li>
+          </ul>
+          <div class="pullquote">
+            If you just get off of social media for 2 weeks, it will do the same amount of good for a lot of folks as 10 years of therapy.
+            <span class="pullquote-attr">— Tim Ferriss</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: SIMMERING SIX -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Avoid the Simmering Six — Hunting Antelope</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Two interconnected frameworks for focus, from Josh Waitzkin (the chess prodigy behind <em>Searching for Bobby Fischer</em>) and from a political strategy book Ferriss read on a road trip.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Avoid the Simmering Six</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">From Josh Waitzkin: you are either off, or you are on. Either taking a nap under a set of bleachers — or in sixth gear, fully focused, the greyhound running. What murders you psycho-emotionally is the middle — the simmering six.</p>
+          <ul class="bullet-list">
+            <li>Simmering six = half-engaged. Responding to text messages, handling everyone else's manufactured emergencies, juggling 10 semi-interesting projects</li>
+            <li>The default state for most people. The gravitational pull of modern life pulls you here.</li>
+            <li>Ferriss oscillates between restfulness (completely off) and sprint (completely on). "I'm a working dog, a border collie. Idle hands are the devil's workshop for me."</li>
+            <li>His pattern with a book: full-on immersive retreat for a few weeks (write, eat, sleep, exercise) → immediately followed by 3–7 days with close friends doing nothing purposeful</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Are You Hunting Antelope or Field Mice?</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Borrowed from Newt Gingrich (by way of a Bill Clinton campaign strategist), included despite Ferriss having no political alignment with Gingrich — because the framing is powerful.</p>
+          <ul class="bullet-list">
+            <li>A lion can survive eating field mice. Hundreds per day. The calories add up.</li>
+            <li>But a lion isn't living — they're just surviving. The real life is hunting antelope — one big kill that feeds you for days.</li>
+            <li>The metaphor: are you chasing dozens of small things that add up to calories but no meaning? Or focusing on one big thing that's worth it?</li>
+            <li>"That's no way for a lion to live."</li>
+          </ul>
+          <div class="pullquote">
+            Humans are in the meaning-making business. You can't do that with triaging email. There is a part of you that will know it's not deeply meaningful, and you will suffer accordingly.
+            <span class="pullquote-attr">— Tim Ferriss</span>
+          </div>
+          <div class="note">Your antelope doesn't have to be grand or permanent. It could be teaching your kids. For a kindergarten teacher, it's whatever makes the lives of her students better — and the PTA bake sale is a field mouse. For Ferriss, focus on one thing for a season (psychedelic science from 2015 onward; bioelectric medicine now) — then pass the baton and move on.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Offence vs. Defence</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">From Chris Sacca, one of the best investors Ferriss has ever met.</p>
+          <ul class="bullet-list">
+            <li><strong>Defence</strong> = responding to everyone else's agenda for your time. Email. Text. Sunday catch-up messages.</li>
+            <li><strong>Offence</strong> = deciding what you want to do and applying time/energy to it before reacting</li>
+            <li>When someone pings Ferriss about business on Sunday — his sanity response is "I'll respect me again on Monday or Tuesday"</li>
+            <li>Dr. Seuss (Ted Geisel): <em>"Those who matter don't mind and those who mind don't matter."</em> If someone gets pissed off at your boundaries — let them opt out.</li>
+            <li>Jim Collins (author of <em>Good to Great</em>) tracks his creative hours — he needs 1,000+ in every 365-day period. If the count runs behind, something changes.</li>
+            <li>Ferriss reserves the hours after waking for creative work. His best work historically came 9pm–4am but that's socially incompatible with a partner.</li>
+          </ul>
+          <div class="positive">The top 1–5% of high performers — even when they don't realise it — are militant about firewalling their attention. Unusual calendaring, no available email address, systems or employees protecting focus. Not because they're dramatic — because they had to be to sustain output. The top 40% don't operate this way.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: THE 17 QUESTIONS -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>The Key Questions — Tools for Thinking</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Ferriss's collection of core questions lives at <em>tim.blog/17</em>. He uses them when he's grinding his teeth, when he wakes up groaning, when he's running too fast in too many directions. Also useful when opening new chapters — advising startups, entering new industries, making life decisions.</p>
+
+      <div class="question-card">
+        <div class="q-label">Question 1 — Focus</div>
+        <div class="q-text">Am I hunting antelope or field mice?</div>
+        <div class="q-detail">Am I doing one big thing that matters, or juggling many small things that add up to calories but not meaning? If my calendar is full of field mice, something needs to change.</div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 2 — Subtraction</div>
+        <div class="q-text">What if I could only subtract instead of add?</div>
+        <div class="q-detail">The default in addressing problems is adding: new software, new supplement, new book. What if the solution is removing something — a category of content, a relationship, a habit, food? Intermittent fasting (cutting food out) is incredibly undervalued vs. obsessing over the perfect diet.</div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 3 — The Opposite</div>
+        <div class="q-text">What if I did the opposite for 48 hours or a week?</div>
+        <div class="q-detail">Ferriss's first sales job: everyone made cold calls 9–5. He started calling 7–9am and 5–7pm — when the gatekeepers were gone and the CEOs answered phones themselves. He outsold entire offices of competitors in 2–3 months. For his podcast, he flipped net-30 advertising terms to prepayment. Try the ideal first. You can always do the standard later.</div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 4 — Ideal vs. Standard</div>
+        <div class="q-text">What's the ideal thing? Try that first.</div>
+        <div class="q-detail">Most people default to the conventional approach. Start by asking what your dream scenario looks like — and try to make that work first. You can always fall back to the standard later.</div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 5 — Relationships</div>
+        <div class="q-text">What if everything I did had to improve my relational life somehow?</div>
+        <div class="q-detail">A filter Ferriss is currently testing on himself. Borrowed partly from Kelly Starrett, who only adds new time-consuming activities that he can do with his wife and kids. Doesn't have to be big — saying hi to your partner before picking up your phone counts.</div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 6 — Offence vs. Defence</div>
+        <div class="q-text">Am I living on offence or on defence today?</div>
+        <div class="q-detail">Chris Sacca's frame. If today's plan is reactive — emails, texts, everyone's agenda but yours — it's defence. Are you running your calendar, or is your calendar running you?</div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 7 — The Essential</div>
+        <div class="q-text">What is my current big yes?</div>
+        <div class="q-detail">From Derek Sivers' "hell yes or no" framework. If you're drifting between cool-sounding projects, you end up sitting on the toilet looking at Instagram for 45 minutes and realising you can't feel your legs. That's the symptom of lacking a big yes. You need a bigger yes.</div>
+      </div>
+
+      <div class="note">The full PDF of 17 questions is available free at <em>tim.blog/17</em>. Ferriss uses them when something feels off — grinding teeth, vague existential dread, too many half-finished projects. He also uses them in the good direction: advising startups, testing assumptions before getting involved with a new industry, making big decisions.</div>
+    </div>
+  </div>
+
+  <!-- S7: RELATIONSHIPS & CONFLICT -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Relationships & Conflict Resolution</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Ferriss did not grow up with models of conflict resolution — "lots of yelling and screaming." He carried those patterns into his relationships for years. The last decade has been about unlearning that. This section is the applied side of acceptance.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Non-Violent Communication (Marshall Rosenberg)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Marshall Rosenberg's <em>Non-Violent Communication</em>. Feels schlocky and repetitive at first — but if your upbringing didn't model conflict resolution, you need a format. You need a template. It's incredibly helpful.</p>
+          <ul class="bullet-list">
+            <li>The key rule: <strong>at the end of any difficult conversation, make a request.</strong> Don't just complain about how you feel or what your partner did. Ask for a specific thing.</li>
+            <li>Give direction for what to do — not what not to do</li>
+            <li>The parallel from Acro Yoga (partner acrobatics): if someone is standing on your hands, you never say "don't push your heel down" — that's unhelpful and dangerous. Instead you say "more toe." Always direct toward an action, not away from one.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Don't Debate Objective Reality When Dysregulated</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Objective reality in relationships is usually the simmering six — the distraction that steals the real conversation</li>
+            <li>"This is how they felt in that moment" — regardless of whatever objectively happened. Accept that first.</li>
+            <li>You can discuss objective reality sometimes — but not when one or more people are dysregulated. It won't work.</li>
+            <li>This also applies to yourself: if you're unresourced (too much coffee, too little sleep, work stress), you cannot have a good conversation. Say so.</li>
+          </ul>
+          <div class="positive">Ferriss's example: when his partner wants to talk and he's dysregulated, he says: "Babe, I'm happy to talk about this. Let's do it at dinner. I'm really unresourced right now. I'm not in a place to have a good conversation. I'm pretty pissed off about a few things — nothing to do with you." Both people need to agree upfront that this is an option.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sit With Uncomfortable Feelings</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The same skill — sitting with discomfort without the urge to fix or suppress it — underlies workaholism, hustle culture, and compulsive social media use. "I'm bored. I don't like it. I need to do X." That urge to escape discomfort is the driver of a thousand destructive habits.</p>
+          <ul class="bullet-list">
+            <li>Cultivating the space to think (vs. react) can come through meditation — but not only through meditation</li>
+            <li>Check your fuel first: three cups of coffee and an overdrive sympathetic nervous system means you will bite someone's head off</li>
+            <li>Practice in real relationships. You can read every relationship book ever written — you have to practice it in the mess, or it doesn't count.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: SELF-HELP TRAP & COSMIC INSIGNIFICANCE -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>The Self-Help Trap & Cosmic Insignificance</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Ferriss recently wrote a blog post called "The Self-Help Trap" — on track to be his most popular post of the last decade. The central insight came from 20+ years of "optimising himself."</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why Chronic Self-Improvement Makes You Feel Broken</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="pullquote">
+            The cost of constantly trying to improve yourself in a vacuum — without the acceptance piece — is that you always think you're broken. That's too high a cost for anyone to pay.
+            <span class="pullquote-attr">— Tim Ferriss</span>
+          </div>
+          <ul class="bullet-list">
+            <li>If self-improvement is your only lens, you are — almost by definition — constantly looking for ways you're broken. You are always in the red.</li>
+            <li>There is always one more problem to fix. Peace eludes you by one workshop, one book, one retreat, one psychedelic.</li>
+            <li>The achievement ladder has no top. It only has "not yet enough."</li>
+            <li>The acceptance side is what makes self-improvement sustainable rather than corrosive</li>
+            <li>Jay's metaphor: you'd never go on a hike and refuse to look at the view until you reach the top. There is no top. You stop at the flat parts, eat your sandwiches, appreciate how far you've come — and then continue.</li>
+            <li>Pema Chödrön's poem from <em>When Things Fall Apart</em>: the problem with the mountaintop is that you leave your alcoholic sister and schizophrenic friend behind. When you reach the top, you find the mountain descends again into the messiness of human relationships. That's where the playing field is.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Cosmic Insignificance Therapy</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">From Oliver Burkeman's <em>4,000 Weeks</em> — a book Ferriss strongly recommends to anyone feeling behind in life. Not nihilism — perspective therapy.</p>
+          <ul class="bullet-list">
+            <li>Ed Cooke (world-class memory competitor, trained Joshua Foer for <em>Moonwalking with Einstein</em>) uses the same technique independently</li>
+            <li>When feeling overwhelmed: zoom out. Above your house. Above the city. Above the country. Out to see the planet. Out to the solar system.</li>
+            <li>"At the end of the day, we are a bunch of monkeys on a spinning rock in the middle of the cosmos. So someone sent a pissy email? In the grand scheme of things... okay."</li>
+            <li>Ferriss admits: he's good in crises, with giant projects, real problems. What undoes him is dumb things — someone cuts him off in an airline lounge, and he'll think about it for 8 hours on a flight. That's what the medicine is for.</li>
+            <li>Bertrand Russell: <em>"The sure sign of impending nervous breakdown is taking one's work incredibly seriously."</em></li>
+          </ul>
+          <div class="pullquote">
+            You have to hold it. You hold the bird in your hand, but not too tightly. Hold it too tightly, you suffocate it. Don't hold it at all, you can't help it.
+            <span class="pullquote-attr">— Buddhist teaching, referenced by Jay Shetty</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>If You Feel Behind — It's Not Too Late</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Ferriss's message to anyone who feels late to the game:</p>
+          <ul class="bullet-list">
+            <li>It's never too late. Jim Collins' forthcoming book <em>What to Make of a Life</em> profiles about 30 people — many did their most important work in their 50s, 60s, and 70s.</li>
+            <li>Read <em>4,000 Weeks</em> by Oliver Burkeman — specifically the Cosmic Insignificance Therapy chapter</li>
+            <li>The hyper-individualism of most self-help is problematic. The top of the mountain is actually found back in the messy reality of human relationships.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: QUICK-FIRE INSIGHTS -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Quick-Fire Insights</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Advice That Made Him the Most Money</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="pullquote">
+            Don't aim to be the best. Aim to be the only.
+            <span class="pullquote-attr">— Tim Ferriss</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Aim to be a category of one. Not the best at something — the only one doing a specific thing.</li>
+            <li>Related: Kevin Kelly's essay "1,000 True Fans" (at kk.org). True a decade ago. About to become ultra-true as AI consumes everything.</li>
+            <li>The Law of Category (from <em>22 Immutable Laws of Marketing</em>). Blue Ocean Strategy. All related frameworks.</li>
+            <li>Second strategy (from Marc Andreessen and Scott Adams): if you can't be top 1% in one field (Michael Jordan, Yo-Yo Ma — almost everyone gets cut), be top 25% in two fields that are rarely combined. Software + debate. Medicine + entrepreneurship.</li>
+            <li>Third strategy: choose projects based on the skills you'll acquire and the relationships you'll deepen — because most projects fail on external metrics anyway, and if you win on skills and relationships, you win regardless.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What Makes a Good Friend</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Someone who says what they mean, means what they say. Reliable. Someone you can share both your joys and sorrows with over time. Trustworthiness and reliability have come to matter far more to Ferriss than intelligence — though his friends tend to be smart, he doesn't sort by that first.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Efficient vs. Cutting Corners</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Cutting corners = short-term gain, long-term consequences. You're not doing something you should do.</p>
+          <p class="prose">Peter Drucker (from <em>The Effective Executive</em>): <strong>effectiveness is doing the right things. Efficiency is doing things right.</strong> What you choose to do matters far more than how well you do it.</p>
+          <p class="prose">"If you're starting in Kansas and heading to California with your car pointed at New York, you could be Mario Andretti — it doesn't matter. You're going the wrong direction."</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Allure of Yes</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>FOMO</strong> — modern marketing is explicitly designed to manufacture it. But if you're saying yes because you only have one idea or one chance, you're in trouble. Build confidence in your ability to generate opportunities.</li>
+            <li><strong>People pleasing</strong> — short-term nice, long-term mean. You always end up paying the piper.</li>
+            <li><strong>Field mice</strong> — if you don't have an antelope, you'll fill your calendar with other people's exciting projects, parties, and requests. Before you know it, your calendar is full of field mice.</li>
+            <li>Applied to angel investing: if you can't say no, you run out of money. Game over. You can make more money later. You can't make more time.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Final Five</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">Best advice received</span><span class="kv-val">Don't believe everything you think.</span>
+            <span class="kv-key">Worst advice received</span><span class="kv-val">You need money to make money.</span>
+            <span class="kv-key">No longer values</span><span class="kv-val">Achievement without acceptance.</span>
+            <span class="kv-key">Now values</span><span class="kv-val">Emotional experience. He used to view emotions as limbic-system liabilities. Realised you can't get around them. To experience the full richness of being human, you have to embrace being human — and a very large part of that is emotional.</span>
+            <span class="kv-key">One law for the world</span><span class="kv-val">Smile and say hi first. Borrowed from Gabby Reece (and Laird Hamilton). Go first. If you walk into a room and bring the energy you hope to get back, it actually changes everything.</span>
+          </div>
+          <div class="pullquote">
+            If you walk outside and meet one jerk, that person's a jerk. If you walk outside and everyone's a jerk — you're the jerk.
+            <span class="pullquote-attr">— Tim Ferriss</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
