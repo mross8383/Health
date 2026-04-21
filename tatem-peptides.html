@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Alex Tatem – Peptides Reference Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f5f4;
+    --bg-card: #ffffff;
+    --bg-dark: #0c1a14;
+    --teal: #1a7a58;
+    --teal-light: #2db87e;
+    --teal-pale: #e8f7f2;
+    --teal-dim: rgba(26,122,88,0.1);
+    --steel: #1e4a5e;
+    --steel-pale: #e8f2f7;
+    --steel-dim: rgba(30,74,94,0.1);
+    --amber: #8a5a10;
+    --amber-pale: #fdf6e8;
+    --amber-dim: rgba(138,90,16,0.1);
+    --crimson: #7a1c1c;
+    --crimson-pale: #fdf0f0;
+    --crimson-dim: rgba(122,28,28,0.1);
+    --text: #0c1a14;
+    --text-mid: #2a3a32;
+    --text-dim: #6a7a70;
+    --border: rgba(26,122,88,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; left: -50px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(26,122,88,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(45,184,126,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    color: #e8f5f0;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  #hero h1 em { color: #2db87e; font-style: normal; }
+  #hero p { color: rgba(255,255,255,0.38); font-size: 13.5px; max-width: 520px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(45,184,126,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #2db87e;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--teal-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    color: var(--bg-dark);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--teal); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--teal-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--teal-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--teal);
+  }
+  .kv-key {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10.5px;
+    color: var(--teal);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--amber-pale);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--amber);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--teal-pale);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--teal);
+    line-height: 1.55;
+  }
+
+  /* Peptide card grid */
+  .peptide-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .peptide-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    transition: border-color 0.2s;
+  }
+  .peptide-card:hover { border-color: var(--teal-light); }
+  .peptide-name {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 4px;
+    letter-spacing: 0.03em;
+  }
+  .peptide-aka {
+    font-size: 10.5px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+  .peptide-desc { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; }
+  .peptide-status {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .status-legal { background: rgba(26,122,88,0.12); color: var(--teal); }
+  .status-pending { background: rgba(138,90,16,0.12); color: var(--amber); }
+  .status-banned { background: rgba(122,28,28,0.12); color: var(--crimson); }
+  .status-research { background: rgba(30,74,94,0.12); color: var(--steel); }
+
+  .category-bar {
+    display: flex;
+    gap: 8px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .cat-badge {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+  }
+  .cat-1 { background: var(--teal-pale); border: 1px solid rgba(26,122,88,0.25); color: var(--teal); }
+  .cat-2 { background: var(--crimson-pale); border: 1px solid rgba(122,28,28,0.2); color: var(--crimson); }
+  .cat-3 { background: var(--steel-pale); border: 1px solid rgba(30,74,94,0.2); color: var(--steel); }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--teal);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'Roboto Mono', monospace;
+  }
+  svg text { font-family: 'Outfit', sans-serif; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .peptide-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <h1>Dr. Alex Tatem<br><em>Peptides</em><br>Reference Guide</h1>
+    <p>Dr. Alex Tatem is a urologist and men's health specialist with deep expertise in peptides, hormones, and metabolic medicine. This guide covers what peptides are, the full regulatory landscape, every peptide discussed, administration, safety, fertility, and the coming pipeline. Not medical advice — consult your physician.</p>
+    <div class="hero-tags">
+      <span class="tag">Peptides</span>
+      <span class="tag">BPC-157</span>
+      <span class="tag">GLP-1</span>
+      <span class="tag">Growth Hormone</span>
+      <span class="tag">Male Fertility</span>
+      <span class="tag">Anti-Aging</span>
+      <span class="tag">Compounding</span>
+    </div>
+  </section>
+
+  <!-- S1: WHAT ARE PEPTIDES -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>What Are Peptides</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Peptides are short chains of amino acids — the building blocks of all proteins — configured to act as highly specific keys that unlock precise receptors in the body. Unlike conventional small-molecule drugs (which act like a hammer, hitting many targets), peptides are targeted tools with focused, specific effects and far fewer off-target side effects.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Peptides vs. Small Molecules — Specificity Comparison</div>
+        <svg width="100%" viewBox="0 0 820 145" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="20" width="370" height="105" rx="8" fill="#fdf0f0" stroke="#7a1c1c" stroke-width="1.5"/>
+          <text x="195" y="46" text-anchor="middle" fill="#0c1a14" font-size="13" font-weight="700">Small Molecule Drugs</text>
+          <text x="195" y="63" text-anchor="middle" fill="#2a3a32" font-size="11">Wide-ranging, like a hammer</text>
+          <text x="195" y="78" text-anchor="middle" fill="#2a3a32" font-size="11">Does what you want — but also</text>
+          <text x="195" y="93" text-anchor="middle" fill="#2a3a32" font-size="11">hits many unintended targets</text>
+          <text x="195" y="108" text-anchor="middle" fill="#7a1c1c" font-size="10">→ Significant side effects · FDA approval often fails</text>
+          <text x="410" y="78" text-anchor="middle" fill="#6a7a70" font-size="20">vs</text>
+          <rect x="440" y="20" width="370" height="105" rx="8" fill="#e8f7f2" stroke="#1a7a58" stroke-width="2"/>
+          <text x="625" y="46" text-anchor="middle" fill="#0c1a14" font-size="13" font-weight="700">Peptides</text>
+          <text x="625" y="63" text-anchor="middle" fill="#2a3a32" font-size="11">Targeted key for a specific lock</text>
+          <text x="625" y="78" text-anchor="middle" fill="#2a3a32" font-size="11">Amino acid chains → precise receptor binding</text>
+          <text x="625" y="93" text-anchor="middle" fill="#2a3a32" font-size="11">Minimal off-target effects</text>
+          <text x="625" y="108" text-anchor="middle" fill="#1a7a58" font-size="10">→ Favourable safety profiles · extremely high LD50s</text>
+        </svg>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">Definition</span><span class="kv-val">Short chains of amino acids (the Lego bricks of proteins) configured to bind specific cellular receptors or regulate specific intracellular pathways.</span>
+        <span class="kv-key">Mechanism</span><span class="kv-val">A key-and-lock system. The peptide (key) is configured to fit only the specific receptor (lock) it targets. Unlike a hammer — it does one job precisely.</span>
+        <span class="kv-key">First medical peptide</span><span class="kv-val">Insulin — isolated and used in medicine in 1921. Insulin is itself a peptide (a chain of amino acids). The GLP-1 drugs are also peptides.</span>
+        <span class="kv-key">Why they're powerful</span><span class="kv-val">They mimic or enhance natural biological signals. The question is not "what can peptides do?" — it is "what can't they do?" Every area of physiology has peptide pathways that can theoretically be targeted.</span>
+        <span class="kv-key">LD50 safety</span><span class="kv-val">BPC-157 is so well-tolerated that scientists cannot even determine its LD1 dose (the amount that would harm 1% of a population). No lethal dose has been found. This is an extraordinary safety signal for a bioactive compound.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: REGULATORY HISTORY -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>The Regulatory History — Why They Were Banned</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Understanding why peptides were banned requires understanding the intersection of patent law, compounding pharmacy regulation, pharmaceutical economics, and political influence. The sequence of events is not flattering to the FDA or the pharmaceutical industry.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2013 — The Supreme Court Ruling That Changed Everything</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Myriad Genetics had patented the BRCA1 and BRCA2 genes — the genes that predict breast, ovarian, and prostate cancer risk. They claimed ownership of naturally occurring human DNA.</li>
+            <li>The Supreme Court ruled that naturally occurring compounds — things found within the human body — cannot be patented</li>
+            <li>Unintended consequence: pharmaceutical companies instantly lost financial incentive to develop any naturally occurring compound through the expensive FDA approval process. If you spend $100–300 million on clinical trials, you must be able to patent the result to recoup the cost. No patent = no investment.</li>
+            <li>This created a legal vacuum. Peptides that already existed in the body (like BPC-157, which is derived from gastric juice) could not be patented — so no pharma company would fund their development.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2014 — Compounding Pharmacies Fill the Gap</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">After a 2012–13 contamination scandal at a New England compounding pharmacy caused a fungal meningitis outbreak, the FDA introduced federal oversight of compounding pharmacies. They created a list of what could and could not be compounded. Peptides were placed on the approved "Category 1" list.</p>
+          <ul class="bullet-list">
+            <li>From 2014 onward, physicians could prescribe peptides from 503A compounding pharmacies — custom-formulated for individual patients</li>
+            <li>Compounding pharmacies are the modern version of the historical pharmacist who made custom formulations — now large industrial operations with quality standards</li>
+            <li>The advantage: personalised dosing. Standard pharmaceutical doses are one-size-fits-all — compounded medications can be adjusted precisely for each patient.</li>
+            <li>Dr. Tatem and colleagues were prescribing these peptides successfully from 2014. They worked. No significant adverse events were recorded.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2023 — The Overnight Ban</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>In 2023, the FDA moved 19 popular peptides from Category 1 (can compound) to Category 2 (banned). Physicians received email notifications from their compounding pharmacy partners overnight — prescriptions for these compounds were no longer possible.</li>
+            <li>Official reason given: insufficient data to confirm safety because these compounds had not completed the full FDA approval process</li>
+            <li>Contradiction: there was no evidence of harm in the population. These were widely prescribed with no documented adverse event patterns. The official reason — "lack of safety data" — was applied despite clinical experience suggesting excellent tolerability.</li>
+            <li>RFK Jr. has characterised the 2023 ban as illegal.</li>
+          </ul>
+          <div class="caution">Dr. Tatem's assessment: pharmaceutical companies — whose interests lie not in directly competing drugs but in patient spending generally — likely influenced the FDA's decision. Every dollar spent on a compounded peptide doesn't go to a commercial pharmaceutical company. The FDA commissioner subsequently tweeted more about cracking down on compounded GLP-1 drugs than about diabetes or heart disease combined.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2025 — The Comeback & July Decision</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>In April 2025, the FDA announced it will consider moving 7 specific peptides from Category 2 back to Category 1 (compoundable) in July 2025</li>
+            <li>The seven include: BPC-157, TB-500, MOTS-C (exercise in a vial), DSIP (sleep), Selank (cognition/anxiety), Dihexa (cognition), and Epithalon (telomere/longevity)</li>
+            <li>The combination of the ban's forbidden fruit effect, TikTok virality, and new administration emphasis under HHS and RFK has driven a 400% surge in public interest in peptides</li>
+            <li>During the ban, an unregulated grey market emerged — "research use only" vials sold for rat studies (wink-wink). These lack quality control — no standards on purity, endotoxin removal, or accurate dosing. Dr. Tatem compares them to gas station sushi.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Three Current Categories</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="category-bar">
+            <div class="cat-badge cat-1">✓ Category 1 — Prescribable Now<br><small>GLP-1s, PT-141, oxytocin, GHKCU (topical). Available from licensed pharmacies with a prescription.</small></div>
+            <div class="cat-badge cat-2">✗ Category 2 — Currently Banned<br><small>BPC-157, TB-500, growth hormone secretagogues, Epithalon, etc. Pending July 2025 FDA review.</small></div>
+            <div class="cat-badge cat-3">⊘ Category 3 — Research Use Only<br><small>No legal framework for human use. Unregulated grey market. No quality control. Avoid.</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: PEPTIDE DIRECTORY -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Peptide Directory — What Each One Does</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Every peptide covered in the conversation, with its mechanism, benefits, risks, and current legal status. The key principle: use the right key for the right lock. No single peptide solves everything — they are tools for specific problems.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Healing & Tissue Repair</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="peptide-grid">
+            <div class="peptide-card">
+              <div class="peptide-name">BPC-157</div>
+              <div class="peptide-aka">Body Protection Compound 157</div>
+              <div class="peptide-desc">Synthetic version of a naturally occurring peptide found in gastric juice. Enhances angiogenesis (new blood vessel growth) in areas of injury — which is why the gut doesn't digest itself. Animal models: complete Achilles tendon transection healed spontaneously. Potentially beneficial for ulcerative colitis. Outstanding safety profile — LD1 dose has not been established in any study. Also exists in an oral form that survives gut digestion.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">TB-500</div>
+              <div class="peptide-aka">Thymosin Beta-4</div>
+              <div class="peptide-desc">The "brother" to BPC-157. Improves blood flow to injured areas and sends the cellular building materials needed to repair damaged tissue matrix — tendons, ligaments, muscle tears, cuts. Think of it as sending soldiers (cells) to a wound site. Often stacked with BPC-157 for combined effect on injury recovery.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">KPV</div>
+              <div class="peptide-aka">Lys-Pro-Val</div>
+              <div class="peptide-desc">Tripeptide linked to angiogenesis and tissue repair. Also coming back in the July 2025 FDA review. Less publicly known than BPC-157 but covers similar biological territory around wound healing and inflammation modulation.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">GHK-Cu</div>
+              <div class="peptide-aka">Copper Tripeptide-1</div>
+              <div class="peptide-desc">A copper tripeptide that declines naturally with age. Topically highly effective — increases collagen and elastin production, improves skin complexion, reduces signs of aging on the face. Some benefit for hair reported but evidence is less consistent. Available OTC in topical cream form — regulated differently from injectables. Bodybuilders use it; Dr. Tatem would use it for his rosacea.</div>
+              <span class="peptide-status status-legal">Legal — Topical OTC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Weight Loss & Metabolic</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="peptide-grid">
+            <div class="peptide-card">
+              <div class="peptide-name">Semaglutide</div>
+              <div class="peptide-aka">Ozempic / Wegovy</div>
+              <div class="peptide-desc">GLP-1 receptor agonist. Slows gastric emptying → slower glucose absorption → improved insulin sensitivity. Reduces appetite significantly. Single receptor agonist (GLP-1 only). Highly effective for weight loss and T2D management. Compounded versions available but under increasing FDA enforcement pressure from Novo Nordisk lobbying.</div>
+              <span class="peptide-status status-legal">Legal — Prescription</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Tirzepatide</div>
+              <div class="peptide-aka">Mounjaro / Zepbound</div>
+              <div class="peptide-desc">Dual GLP-1 + GIP receptor agonist. More weight loss per milligram than semaglutide. The brand version (Mounjaro) is commercial. A compounded version with niacinamide offers flexible micro-dosing — multiple smaller doses across the week instead of one large weekly dose — which Dr. Tatem prefers for patients who experience significant nausea on large single doses. Lily is aggressively lobbying the FDA to shut down compounded tirzepatide.</div>
+              <span class="peptide-status status-legal">Legal — Prescription</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Retatrutide</div>
+              <div class="peptide-aka">Triple Receptor GLP-1</div>
+              <div class="peptide-desc">The next generation from Eli Lilly — a triple agonist targeting GLP-1 + GIP + glucagon receptors simultaneously. The glucagon receptor activation mobilises stored liver fat (preventing NASH/NAFLD) while GLP-1/GIP reduces intake. Clinical trials showing 20–25% total body weight loss. Also produces the best improvements in liver health ever recorded in clinical trials. Dr. Tatem's single most exciting compound. Not yet commercially released — already used in the bodybuilding community from research-use-only sources.</div>
+              <span class="peptide-status status-research">Not Yet Commercial</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Tesamorelin</div>
+              <div class="peptide-aka">Egrifta</div>
+              <div class="peptide-desc">Commercially available by prescription now — can be written and filled at CVS. Growth hormone releasing hormone (GHRH) analogue. Uniquely effective at stripping visceral (abdominal) fat specifically. Popular with bodybuilders for cutting cycles. Like all GH-stimulating peptides: if you stop without lifestyle changes, fat returns. The underlying cause must be addressed.</div>
+              <span class="peptide-status status-legal">Legal — Prescription</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Growth Hormone Secretagogues</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">This class stimulates the body's own natural growth hormone (GH) release rather than injecting GH directly. This is preferable — more physiological, lower doses, fewer side effects than exogenous GH.</p>
+          <div class="peptide-grid">
+            <div class="peptide-card">
+              <div class="peptide-name">CJC-1295</div>
+              <div class="peptide-aka">Growth Hormone Releasing Hormone Analogue</div>
+              <div class="peptide-desc">A modified GHRH analogue that stimulates the pituitary to release GH. Often stacked with Ipamorelin for synergistic effect. Benefits: improved sleep quality, better skin/hair/nails, easier recovery from injury, modest fat loss, modest muscle support. Must still train. Injected subcutaneously.</div>
+              <span class="peptide-status status-banned">Currently Banned</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Ipamorelin</div>
+              <div class="peptide-aka">Ghrelin Receptor Agonist</div>
+              <div class="peptide-desc">Acts on the ghrelin receptor to release GH through a different mechanism to CJC-1295. Together, CJC-1295 + Ipamorelin produce a more robust, more natural GH pulse than either alone. Two synergistic pathways = more complete effect. One of the most commonly stacked combinations.</div>
+              <span class="peptide-status status-banned">Currently Banned</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">MK-677</div>
+              <div class="peptide-aka">Ibutamoren — Oral GH Secretagogue</div>
+              <div class="peptide-desc">Technically a small molecule, not a peptide, but was lumped in with the ban. Orally bioavailable — binds the ghrelin receptor and stimulates significant GH release. Originally studied for cachexia (severe wasting in cancer patients) — it profoundly stimulates hunger. Caution: also significantly increases appetite which can work against fat loss goals if food intake is not controlled.</div>
+              <span class="peptide-status status-banned">Currently Banned</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Somatropin</div>
+              <div class="peptide-aka">Human Growth Hormone (direct)</div>
+              <div class="peptide-desc">Growth hormone itself. Injected at night → improved sleep quality, skin/hair/nails, recovery, modest muscle, modest fat loss. Risks of excess: insulin resistance (GH raises glucose), acromegaly (irreversible bone growth in face/hands/feet), hand numbness from joint fluid. The dose margin between benefit and harm is narrower than secretagogues. Do not self-prescribe.</div>
+              <span class="peptide-status status-legal">Legal — Prescription</span>
+            </div>
+          </div>
+          <div class="caution">Peptides that boost growth hormone (GH) can raise blood glucose levels. Anyone with insulin resistance should be cautious — the metabolic effects of elevated GH may worsen glucose control. Always consider the full picture before stacking GH secretagogues with metabolic conditions.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Cognition, Sleep & Circadian Rhythm</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="peptide-grid">
+            <div class="peptide-card">
+              <div class="peptide-name">Semax</div>
+              <div class="peptide-aka">CAX — Intranasal Cognitive Peptide</div>
+              <div class="peptide-desc">7 amino acid peptide originally studied in Russia for TBI (traumatic brain injury) and stroke recovery — patients bounced back faster. Upregulates factors for cognition and neural connectivity. Administered intranasally — through the nose, across mucous membranes, directly to where it's needed. One of the July 2025 candidates. Dr. Tatem considers this among the most promising for cognitive performance in busy professionals.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Dihexa</div>
+              <div class="peptide-aka">Cognitive Enhancer</div>
+              <div class="peptide-desc">Peptide with cognitive enhancement and neuroprotective properties. Being considered in the July 2025 FDA review. Works on pathways relevant to memory, learning, and neural plasticity. Part of the category of peptides that could meaningfully benefit performance-demanding professionals.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">DSIP</div>
+              <div class="peptide-aka">Delta Sleep-Inducing Peptide</div>
+              <div class="peptide-desc">Helps regulate circadian rhythm — particularly useful for frequent travellers crossing time zones. Also one of the July 2025 candidates. Works on the sleep-wake cycle regulation machinery and helps re-synchronise disrupted rhythms. Not a sedative — it works on the underlying regulatory system rather than forcing sleep chemically.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Selank</div>
+              <div class="peptide-aka">Anxiolytic & Sleep Peptide</div>
+              <div class="peptide-desc">Calming and anxiolytic peptide — taken approximately one hour before sleep. Helps promote deep delta wave brain activity during sleep, the most restorative phase. Also reportedly reduces anxiety without the sedative effects of benzodiazepines. Another July 2025 candidate.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sexual Health, Tanning & Other</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="peptide-grid">
+            <div class="peptide-card">
+              <div class="peptide-name">Melanotan II</div>
+              <div class="peptide-aka">Melanocortin Receptor Agonist</div>
+              <div class="peptide-desc">Stimulates melanocortin receptors — the system that controls skin pigmentation. Effect: produces a deep, natural tan with minimal UV exposure. Also produces significant pro-erectile effects in men (a side effect of melanocortin system activation). Safety concern: theoretical risk of stimulating melanoma. Not commercially available. Used in the grey market.</div>
+              <span class="peptide-status status-research">Research Use Only</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">PT-141</div>
+              <div class="peptide-aka">Bremelanotide</div>
+              <div class="peptide-desc">A derivative of Melanotan II — retains the pro-sexual benefits (significant improvement in erections, libido) without the tanning effect. This is commercially available now by prescription. Acts centrally on the brain's melanocortin system rather than on blood vessels — a different mechanism from Viagra/Cialis, which means it may work where those fail.</div>
+              <span class="peptide-status status-legal">Legal — Prescription</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">IGF-1 LR3</div>
+              <div class="peptide-aka">Insulin-like Growth Factor 1 Long</div>
+              <div class="peptide-desc">The downstream product of growth hormone in the liver. Longer-acting version. Higher doses can contribute to muscle mass (used by bodybuilders). Also capable of raising blood glucose — potential insulin resistance risk. Cannot independently produce significant muscle mass without training stimulus. "Peptides can't do for you what the gym does."</div>
+              <span class="peptide-status status-research">Research Use Only</span>
+            </div>
+            <div class="peptide-card">
+              <div class="peptide-name">Epithalon</div>
+              <div class="peptide-aka">Telomere Peptide / Longevity</div>
+              <div class="peptide-desc">Activates telomerase — the enzyme that repairs telomeres (the "junk" end-caps of chromosomes that shorten with each cell division, contributing to aging). Shorter telomeres are associated with aging and worse health outcomes. Epithalon promotes telomerase activity. Also shows some benefit in regulating the pineal gland's circadian function. Dr. Tatem is sceptical about "fountain of youth" claims but acknowledges the biological mechanism is real. One of the July 2025 candidates.</div>
+              <span class="peptide-status status-pending">Pending July 2025</span>
+            </div>
+          </div>
+          <div class="note">Methylene blue was shown on the table. Dr. Tatem's clear advice: do not take it. It will stain your nails and hair blue. Whatever longevity claims are made about it do not justify this.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Exercise Performance</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="peptide-card" style="margin-bottom:0">
+            <div class="peptide-name">MOTS-C</div>
+            <div class="peptide-aka">"Exercise in a Vial"</div>
+            <div class="peptide-desc">Improves VO2 max and exercise tolerance by upregulating the energy production pathway — specifically making more ATP (the body's universal energy currency) available. Patients and researchers have described it as exercising the mitochondria without physically exercising. One of the July 2025 candidates. Used by some elite athletes as an ergogenic aid alongside actual training.</div>
+            <span class="peptide-status status-pending">Pending July 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: HOW TO TAKE PEPTIDES -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Administration — How Peptides Are Taken</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Most peptides cannot be taken orally — the gut breaks them down into individual amino acids before they can reach their target, indistinguishable from a piece of chicken. The route of administration is dictated by the peptide's chemistry.</p>
+      <div class="kv-grid">
+        <span class="kv-key">Subcutaneous injection</span><span class="kv-val">Most common route. Small needle under the skin — "pinch an inch" and inject. Used for BPC-157, TB-500, GLP-1 drugs, growth hormone peptides. The same method used for insulin at home. Low pain, low skill requirement.</span>
+        <span class="kv-key">Intramuscular injection</span><span class="kv-val">Some peptides prefer IM injection for faster absorption — into muscle rather than fat. Less common but used for specific compounds.</span>
+        <span class="kv-key">Intranasal</span><span class="kv-val">Peptides that target the brain (like Semax/CAX) can be absorbed through nasal mucous membranes directly, bypassing the blood-brain barrier issue and gut degradation. Administered like any nasal spray.</span>
+        <span class="kv-key">Topical cream</span><span class="kv-val">GHK-Cu in topical cream form — applies to skin and is effective without injection. Regulated differently, available OTC.</span>
+        <span class="kv-key">Oral (rare exception)</span><span class="kv-val">BPC-157 has an oral form that survives gut digestion — useful specifically for gut-related applications (ulcerative colitis, IBD). Most peptides cannot be taken this way.</span>
+        <span class="kv-key">Autoinjector pens</span><span class="kv-val">Commercial GLP-1 drugs (Mounjaro, Ozempic) come as pre-loaded autoinjector pens — dial the dose, press against skin, auto-deploys. No skill required. Compounded versions come as vials requiring manual draw-up with a syringe — more flexible dosing but more technique required.</span>
+      </div>
+      <div class="note">The advantage of compounded peptide vials over commercial autoinjector pens is infinite dosing flexibility. Micro-dosing multiple times a week (rather than one large weekly dose) can reduce nausea and side effects significantly for GLP-1 drugs while maintaining the same total weekly dose.</div>
+    </div>
+  </div>
+
+  <!-- S5: GLP-1 DRUGS IN DEPTH -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>GLP-1 Drugs — The Full Picture</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">GLP-1 drugs are the biggest peptide story of the current era. Dr. Tatem has extensive clinical experience with them, has conducted early lab research on this drug class, and currently takes tirzepatide himself. His view is nuanced — they are powerful tools with real risks that are being systematically under-discussed.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What GLP-1 Drugs Do</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>GLP-1 is a hormone we all produce from the small intestine after eating — it tells the brain we are full</li>
+            <li>Obese individuals have a blunted GLP-1 response to carbohydrates — they eat the same carbs as lean people and feel no satiety. Lean people eating pure fat produce the same GLP-1 as obese people eating the same fat — but carbs produce a dramatically different response between groups.</li>
+            <li>GLP-1 drugs dramatically amplify this satiety signal, slowing gastric emptying, reducing caloric intake, and improving insulin sensitivity through slower glucose absorption</li>
+            <li>Eating lower-carb meals already triples the natural GLP-1 response vs high-carb meals — diet alone can meaningfully boost this system</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Lean Mass Problem</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>NEJM Step 5 trial finding: for every 6 lbs of weight lost, 4 lbs is fat — and 4 lbs is lean mass (muscle and bone). This means approximately 40% of weight lost on GLP-1 drugs is not fat.</li>
+            <li>In a patient who loses 20kg on a GLP-1 drug, approximately 8kg of that is muscle and bone. For a 60-year-old woman, that muscle and bone loss may be permanent — adults cannot easily rebuild it.</li>
+            <li>When 69% of UK users stop the drug within 2 years (per published data), the fat returns. The muscle and bone do not.</li>
+            <li>The drug reduces appetite for everything — food, exercise, hobbies, social engagement. This reduction in physical activity compounds the lean mass loss.</li>
+            <li>Published paper: suicidal thoughts increase by over 100% on these drugs. Major depression triples. This appears to be an effect of the drug reducing drive and motivation broadly — not just for food.</li>
+          </ul>
+          <div class="caution">Anyone using GLP-1 drugs should be doing resistance training simultaneously and eating high protein. These are not optional add-ons — they are essential to prevent permanent lean mass loss. Coming off the drug without lifestyle changes causes full weight regain but without the muscle and bone that was lost.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Compounded vs Brand — The Political Battle</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Eli Lilly holds a patent on the tirzepatide molecule in its specific commercial formulation. Compounding pharmacies make tirzepatide + niacinamide — a different compound, not covered by the patent.</li>
+            <li>Rather than fight this in court (expensive, slow), Lily lobbied the FDA commissioner to enforce against compounding pharmacies administratively. The FDA is enforcing using taxpayer money, not Lily's money.</li>
+            <li>Dr. Tatem's view: compounded tirzepatide offers genuine advantages for some patients — flexible micro-dosing reduces nausea dramatically. An ecosystem where both options exist serves patients best.</li>
+            <li>The revenue scale: semaglutide + tirzepatide alone are expected to exceed $55 billion in revenue in 2025 — approaching parity with the entire AI large language model sector ($58–62 billion). This is the financial context driving enforcement.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Dr. Tatem's Recommended Use Case</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Dr. Tatem takes tirzepatide himself. His framing is practical and non-evangelical:</p>
+          <ul class="bullet-list">
+            <li>Best suited to: morbidly obese patients with metabolic dysfunction, T2D, or insulin resistance — conditions where lifestyle changes alone have proved insufficient</li>
+            <li>Using these drugs as a metabolic reset tool — to get weight down far enough that lifestyle changes become maintainable — is legitimate</li>
+            <li>Must be combined with: resistance training, high protein diet, and ideally supervision from a physician familiar with both the drug and its risks</li>
+            <li>Not appropriate for: people using it for vanity who are already lean — the lean mass loss risk outweighs the benefit at low body fat percentages</li>
+            <li>What stops working when you stop: all weight returns unless lifestyle has genuinely changed during the drug period. Some people can maintain at a lower maintenance dose long-term.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: MALE FERTILITY CRISIS -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>The Male Fertility Crisis</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Dr. Tatem brought three vials of coloured water representing sperm density across time: 1973 (nearly opaque), 2026 (lightly tinted), 2045 (projected — nearly clear). The decline in male sperm count, quality, and motility is documented across multiple studies and is real.</p>
+      <ul class="bullet-list">
+        <li>Total modal sperm count — the number of healthy, motile sperm per ejaculation — has declined dramatically and progressively since the 1970s</li>
+        <li>Leading culprits: microplastics and environmental toxins are unavoidable contributors — but the biggest <em>modifiable</em> risk factor is insulin resistance and metabolic disease</li>
+        <li>Metabolic dysfunction → low testosterone signals in the brain → testes not stimulated → low sperm count. Treating only the hormonal symptom (with testosterone) makes things worse — testosterone shuts down fertility in men.</li>
+        <li>Case study: patient who couldn't conceive due to low sperm count. Treated the root cause (obesity and insulin resistance) with tirzepatide + diet + exercise. Lost 100 lbs. Sperm count increased 10× into normal range. Now able to conceive.</li>
+        <li>Projection: if peptides like GLP-1s can be deployed earlier — before a patient becomes morbidly obese — the fertility crisis may be partially reversible at a population level</li>
+      </ul>
+      <div class="positive">30 million men in the US have erectile dysfunction — more than the entire population of Australia. Only 85% of them will be adequately served by oral medications like Viagra/Cialis. The rest need alternatives. Metabolic disease is the upstream driver of most of these cases.</div>
+    </div>
+  </div>
+
+  <!-- S7: WHAT PEPTIDES CAN'T DO -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>What Peptides Can't Do — Important Limits</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <ul class="bullet-list">
+        <li><strong>They cannot independently build significant muscle.</strong> IGF-1 LR3 and growth hormone secretagogues can support muscle building modestly — but without training stimulus, there is no meaningful muscle gain. Peptides amplify the signal — the gym provides the signal.</li>
+        <li><strong>They cannot replace basic lifestyle.</strong> GLP-1 drugs are the closest thing to a shortcut that exists — and even they don't exercise for you or lift the weight. The alarm still went off at 4:45am.</li>
+        <li><strong>Results don't persist without maintenance.</strong> When tesamorelin is stopped without lifestyle change, visceral fat returns. When GLP-1 drugs are stopped without lifestyle change, all weight returns.</li>
+        <li><strong>They can't replace a doctor.</strong> Peptides are tools. A full approach requires: a knowledgeable physician, ideally a personal trainer, and often a nutritionist. They work best as part of a comprehensive health system.</li>
+        <li><strong>There is no free lunch.</strong> Every intervention has a trade-off. For GLP-1s, the trade-off is lean mass loss, potential mood effects, and dependency risk. For growth hormone, the trade-off is insulin resistance risk and acromegaly risk with abuse.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S8: SAFETY & SOURCING -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Safety, Sourcing & What to Do Now</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Grey Market Risk</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>"Research use only" peptides are sold as though intended for rat studies — a legal fiction that removes them from FDA jurisdiction, at the cost of all quality standards</li>
+            <li>No verification of: actual compound identity, purity, endotoxin removal, accurate concentration, sterility</li>
+            <li>The comparison: gas station sushi. You might get lucky. You might not. You genuinely don't know what you're injecting.</li>
+            <li>Contaminated peptides can cause serious infections, allergic reactions, or systemic complications</li>
+            <li>This is why moving peptides back to 503A compounding (with quality standards) is the correct policy outcome — not legalization without oversight</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What to Do If You're Interested</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ol style="list-style:decimal; padding-left: 18px; color: var(--text-mid); font-size: 13.5px; line-height: 1.8;">
+            <li>Identify your actual problem — not "which peptide should I take?" but "what is bothering me?" Low energy, poor sleep, injury recovery, weight? The problem determines the tool.</li>
+            <li>Check your testosterone levels before chasing peptides. Low energy and poor sex drive in men are often simply low testosterone — not a peptide deficiency.</li>
+            <li>Talk to a physician who is educated on peptide medicine. This is currently a minority of physicians — seek one specifically.</li>
+            <li>Start with what is legally available now: GLP-1s, tesamorelin, PT-141, GHK-Cu topical, oxytocin — if relevant to your situation.</li>
+            <li>Wait for July 2025 to see which of the seven peptides are legalised and then discuss with a physician whether any are appropriate for you.</li>
+            <li>Do not buy research-use-only compounds. The risk of contamination is not theoretical — it is a real documented problem.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: COMING PIPELINE -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>The Coming Pipeline</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The peptide space is accelerating exponentially. Pharmaceutical companies that previously avoided naturally occurring compounds are now investing billions in AI-assisted peptide development — creating synthetic or modified versions they can patent. The next decade of medicine will be defined by this class of drugs.</p>
+      <div class="kv-grid">
+        <span class="kv-key">Retatrutide</span><span class="kv-val">Triple GLP-1 + GIP + glucagon agonist from Eli Lilly. 20–25% total body weight loss in trials. Best liver health improvements ever recorded. Dr. Tatem's most anticipated compound. Will be patented by Lily — not accessible via compounding. Potential trillion-dollar drug.</span>
+        <span class="kv-key">Myostatin inhibitors</span><span class="kv-val">The next generation beyond peptides — monoclonal antibody biologics. Three in the pipeline: bimagrumab (Lily), two others. Specifically designed to inhibit the enzyme that breaks down muscle. Allow significant fat loss without lean mass loss. The solution to the GLP-1 muscle problem. Not yet commercially available.</span>
+        <span class="kv-key">AI + peptide design</span><span class="kv-val">Major pharmaceutical companies have signed multi-billion dollar deals using AI to fast-track novel peptide discovery and design. The number of peptide drugs coming down the pipeline in the next decade will dwarf anything seen previously.</span>
+        <span class="kv-key">Enhanced Games</span><span class="kv-val">A new competition format allowing performance-enhancing compounds under medical supervision — potentially setting new world records at events in Las Vegas. Athletes openly using BPC-157. Dr. Tatem finds it fascinating as a natural experiment in what human performance looks like with medical oversight and peptide enhancement.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
