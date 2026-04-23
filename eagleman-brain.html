@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Eagleman – The Brain Reference</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #14141f;
+
+    --accent: #4338ca;
+    --accent-light: #6d63e8;
+    --accent-pale: #eeecfa;
+    --accent-dim: rgba(67,56,202,0.1);
+
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+
+    --text: #14141f;
+    --text-mid: #3a3a4a;
+    --text-dim: #6e6e80;
+    --border: rgba(67,56,202,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(109,99,232,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(90,107,78,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(109,99,232,0.65);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: var(--accent-light); font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.40); font-size: 13.5px; max-width: 560px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(109,99,232,0.40);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--accent-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--accent-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--accent-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+  .q-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bg-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .q-detail { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    #hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <div class="hero-sub">Diary of a CEO · Stanford Neuroscientist</div>
+    <h1>David Eagleman<br><em>The Brain</em><br>Reference Guide</h1>
+    <p>Stanford neuroscientist and author of LiveWired on brain plasticity, the team-of-rivals self, why we dream, fluid vs. crystallised intelligence, cognitive reserve, the Ulysses contract, virtuous vs. vicious friction with AI, and the spectrum of inner experience from aphantasia to synaesthesia.</p>
+
+    <div class="hero-tags">
+      <span class="tag">Plasticity</span>
+      <span class="tag">Dreams</span>
+      <span class="tag">Cognitive Reserve</span>
+      <span class="tag">AI &amp; Brain</span>
+      <span class="tag">Ulysses Contract</span>
+      <span class="tag">Perception</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 01 — TEAM OF RIVALS
+       ============================================================ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>You Are a Team of Rivals</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The illusion of a single unified self breaks down on inspection. Eagleman's central frame is that the brain is a parliament of competing neural networks, all with different drives, voting on every decision. Behaviour is the output of whichever coalition wins at a given moment.</p>
+
+      <p class="prose">The brain contains roughly 86 billion neurons, hooked up into networks that talk to each other at high speed. These networks are not all aligned — they actively compete. The chocolate-chip cookie example: one network wants to eat it (energy), another doesn't (weight), a third negotiates a compromise (eat one, hit the gym). You are not deciding; you are arguing with yourself.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">SHIP OF STATE</span><span class="kv-val">Behaviour at any moment depends on the vote of the "neural parliament"</span>
+        <span class="kv-key">REGRET</span><span class="kv-val">Why we look back and disown actions — a different coalition was in charge then</span>
+        <span class="kv-key">KNOW THYSELVES</span><span class="kv-val">Eagleman's update on the Greek admonition — the better you know your sub-selves, the closer you can align with who you want to be</span>
+      </div>
+
+      <div class="pullquote">
+        The way your ship of state moves depends on the vote of the neural parliament at any time.
+        <span class="pullquote-attr">— David Eagleman</span>
+      </div>
+
+      <p class="prose">Different circumstances summon different sub-selves. The "you" at 1am near the cookie jar is not the "you" at 9am planning the day. Treating yourself as one fixed person is a trap because you'll keep being surprised by your own behaviour. This isn't a metaphor — it's structural.</p>
+
+      <div class="note">Counterpoint worth noting: the team-of-rivals framing is intuitive and useful, but it is one model, not settled neuroscience. Some researchers argue it overstates how modular the brain is, and that conflict is better described as competing weighted signals within shared circuitry. Useful as a thinking tool; don't confuse the metaphor for the mechanism.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 02 — THE ULYSSES CONTRACT
+       ============================================================ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>The Ulysses Contract</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The practical consequence of the team-of-rivals model: if the future you is a different person, the present you can constrain them. A Ulysses contract is any structural commitment made now that prevents bad behaviour later.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">DEFINITION</span><span class="kv-val">An action taken now to prevent yourself from behaving badly in the near future</span>
+        <span class="kv-key">CLASSIC CASE</span><span class="kv-val">AA's first instruction — clear all alcohol out of the house. Don't trust the future you to refuse it.</span>
+        <span class="kv-key">PRINCIPLE</span><span class="kv-val">Constrain the environment, not the willpower</span>
+      </div>
+
+      <p class="prose">Sober reflection is unreliable as a guarantee. A festive Saturday or a lonely Sunday will summon a different parliament. The trick is to remove the option before the wrong coalition shows up.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How to apply it to a behaviour change goal</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Resolve alone has poor odds — most New Year's resolutions are dead by February. Eagleman's framing for, say, becoming a marathon runner:</p>
+          <ul class="bullet-list">
+            <li>Identify the distant dream (run a marathon)</li>
+            <li>Work out what actually motivates you in the short term — who you're trying to impress, what you're trying to prove</li>
+            <li>Lock in a Ulysses contract: commit to meeting Bob at 7am every morning to run. The social commitment makes the future you show up.</li>
+            <li>Let the flywheel kick in — body adapts, brain adapts, running gets easier, you do more of it</li>
+          </ul>
+          <div class="positive">A new book by Eagleman on the Ulysses contract is scheduled for 2027.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 03 — PLASTICITY: THE HALF-BAKED HUMAN BRAIN
+       ============================================================ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Plasticity &amp; the Half-Baked Human Brain</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Brain plasticity — coined a century ago by William James — describes the brain's ability to mould to experience and hold the new shape. Unlike other animals, humans drop into the world deliberately under-developed so the environment can finish the job.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">HORSE BRAIN</span><span class="kv-val">Born ready. Does roughly what horses did 100,000 years ago.</span>
+        <span class="kv-key">HUMAN BRAIN</span><span class="kv-val">Born half-baked. Absorbs everything that came before, then springboards off the top.</span>
+        <span class="kv-key">THE CORTEX</span><span class="kv-val">The wrinkly outer 3mm — the bit that is dramatically larger in humans and is a "one-trick pony" of generic plastic tissue</span>
+        <span class="kv-key">THE GAMBLE</span><span class="kv-val">If a human doesn't get the right input during critical windows, the under-baked brain doesn't recover</span>
+      </div>
+
+      <p class="prose">The Romanian orphanage case after Ceaușescu's fall is one of the cleanest illustrations: tens of thousands of children fed but not held or spoken to, on the deliberate policy that attention would make them clingy. The cognitive deficits were severe and enduring. This is the downside of plasticity — the system depends on input, and the absence of input is itself an input.</p>
+
+      <div class="caution">Critical-window claims are real but often overstated in popular accounts. Eagleman's stronger version — that the very <em>concept</em> of language is unreachable without early exposure — relies heavily on rare cases like Genie, where confounding abuse and malnutrition make the data hard to read. The general direction (earlier is easier, some windows close) is well supported; the categorical "never" is more contested.</div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The cortex is generic — sensory areas are interchangeable</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The textbook colour-coded brain diagram — visual cortex here, auditory cortex there — misleads. The tissue is largely the same stuff and can be reassigned. People born blind have their "visual cortex" recruited for hearing and touch. People born deaf have their "auditory cortex" repurposed. What we call a sensory area is simply whatever input has been wired into it.</p>
+          <p class="prose">This is the foundation for Eagleman's theory of dreaming (see Section 09) and for his broader claim that we can become the sculptors of our own brains by deciding what to feed them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 04 — FLUID VS CRYSTALLISED INTELLIGENCE
+       ============================================================ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Fluid vs. Crystallised Intelligence</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Why your brain becomes harder to change isn't simply decay — it's that you're getting fewer wrong answers about how the world works.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">EARLY LIFE</div>
+          <div class="pillar-answer">Fluid intelligence</div>
+          <div class="pillar-sub">You can learn anything. Drop a baby into 10th-century Mongolia and they become a 10th-century Mongolian.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">ADULT LIFE</div>
+          <div class="pillar-answer">Crystallised intelligence</div>
+          <div class="pillar-sub">You know how to drive, run a business, operate a phone. Internal model is set, so the brain doesn't require as much change.</div>
+        </div>
+      </div>
+
+      <p class="prose">Eagleman is blunt about the structural cost: <em>your brain peaked at age two</em>. That's when neural connections are densest — an overgrown garden. From there it's pruning. The reason most people interpret this as "plasticity diminishes with age" is that they confuse <em>doesn't change</em> with <em>can't change</em>. The brain changes less because the world keeps confirming its existing model.</p>
+
+      <div class="positive">When the model is broken, plasticity returns. Eagleman cites the pandemic as an unintended natural experiment — every adult had to reassess basic assumptions about how the world worked (will the bank be open? will there be toilet paper?). Awful, but the kind of forced model-revision adults rarely get.</div>
+
+      <div class="kv-grid">
+        <span class="kv-key">PRACTICAL FRAME</span><span class="kv-val">The reason brains change less is because they don't have to. To force change, force the brain to be wrong.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 05 — THE SWEET SPOT
+       ============================================================ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>The Sweet Spot: Frustrating but Achievable</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">If forcing the brain to be wrong is the mechanism of change, the practical question is how to do that on demand. Eagleman's answer: deliberately seek tasks at the edge of your competence, and abandon things once you're good at them.</p>
+
+      <ul class="bullet-list">
+        <li>Stay in the zone where the task is <strong>frustrating but achievable</strong> — not so easy it confirms what you already know, not so hard it shuts you down</li>
+        <li>Seek novelty. Take on new tasks. Become expert in a field, then drop it.</li>
+        <li>Once you're good at something, dropping it is the highest-yield move for the brain — it forces new roadways instead of strengthening old ones</li>
+        <li>The internet is a feature here, not a bug — exposure to new domains has never been cheaper</li>
+      </ul>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Where Brain Change Happens</div>
+        <svg width="100%" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="zoneGrad" x1="0" x2="1">
+              <stop offset="0" stop-color="#eeecfa"/>
+              <stop offset="0.5" stop-color="#4338ca"/>
+              <stop offset="1" stop-color="#fdecec"/>
+            </linearGradient>
+          </defs>
+          <rect x="40" y="70" width="740" height="50" rx="6" fill="url(#zoneGrad)" opacity="0.45"/>
+          <line x1="40" y1="120" x2="780" y2="120" stroke="#3a3a4a" stroke-width="1.2"/>
+          <text x="50" y="155" font-size="12" fill="#6e6e80">TOO EASY</text>
+          <text x="50" y="170" font-size="10.5" fill="#6e6e80">brain coasts on internal model</text>
+          <text x="345" y="155" font-size="12" fill="#4338ca" font-weight="700">SWEET SPOT</text>
+          <text x="305" y="170" font-size="10.5" fill="#4338ca">frustrating but achievable — change happens here</text>
+          <text x="690" y="155" font-size="12" fill="#8c2c2c">TOO HARD</text>
+          <text x="660" y="170" font-size="10.5" fill="#8c2c2c">overwhelm, withdrawal, no learning</text>
+          <circle cx="410" cy="95" r="8" fill="#4338ca"/>
+          <text x="380" y="55" font-size="11" fill="#14141f" font-weight="600">YOU WANT TO BE HERE</text>
+        </svg>
+      </div>
+
+      <div class="pullquote">
+        Once you become good at something, you have to drop that and take on something you're not good at. This is the best thing you can do for your brain.
+        <span class="pullquote-attr">— David Eagleman</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 06 — COGNITIVE RESERVE & THE NUNS STUDY
+       ============================================================ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Cognitive Reserve &amp; the Nuns Study</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">If the brain's structure is always degenerating, what determines whether degeneration shows up as cognitive decline? Answer: how many alternative pathways you've built.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Religious Orders Study (the "Nun Study")</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Catholic nuns who agreed to donate their brains for autopsy. On post-mortem, a fraction of them showed clear physical signs of Alzheimer's — tissue degenerating with the disease — yet showed no cognitive deficits in life. No memory loss. No decline that anyone noticed.</p>
+          <p class="prose">The explanation: convent life. They lived together until they died, with social conflict, games, chores, responsibilities, and constant interpersonal challenge. Their brains were forced to keep building new roadways even as old tissue died. Eagleman calls this <strong>cognitive reserve</strong>.</p>
+          <div class="caution">Worth flagging — the Religious Orders Study is real and influential, but the framing here is simplified. Cognitive reserve is genuinely well-evidenced, but the mechanism is debated, and pathology-without-symptoms is a complex finding that has more than one interpretation. The general moral (keep your brain working) is sound; the causal story is less tidy than the anecdote suggests.</div>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">CONTRAST</span><span class="kv-val">People who retire at 65, watch TV, social circle shrinks → no challenge, no new pathways, decline accelerates</span>
+        <span class="kv-key">SOCIAL LIFE</span><span class="kv-val">Among the most demanding things the brain ever does — you can never predict what another person will say or feel</span>
+        <span class="kv-key">HEARING LOSS</span><span class="kv-val">A common vicious cycle: hearing declines → parties become unfun → social life shrinks → cognitive load drops</span>
+      </div>
+
+      <div class="pullquote">
+        Nothing is as hard for the brain as other people.
+        <span class="pullquote-attr">— Neuroscience saying cited by Eagleman</span>
+      </div>
+
+      <p class="prose">The framing for what you're doing in your 30s and 40s: you're not just learning for now, you're banking pathways. When degeneration eventually starts, the more roads you've built, the more redundancy you have. Or as Stephen Bartlett summarised it back to him: build pathways now so there's more left over once degeneration begins.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 07 — WHAT THE BRAIN PHYSICALLY CHANGES IN RESPONSE TO
+       ============================================================ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>What Physically Changes — Visible Brain Adaptations</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Plasticity isn't abstract — physical brain structure measurably reorganises in response to what you do.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">PIANISTS</span><span class="kv-val">Visibly larger loop of motor cortex tissue — both hands doing fine work</span>
+        <span class="kv-key">VIOLINISTS</span><span class="kv-val">The same enlargement, but only on one side — the bowing hand doesn't get it</span>
+        <span class="kv-key">JUGGLERS</span><span class="kv-val">Measurable cortical changes from sustained practice</span>
+        <span class="kv-key">MEDICAL STUDENTS</span><span class="kv-val">Cortical distribution visibly shifts during periods of intense final-exam study</span>
+      </div>
+
+      <p class="prose">The brain devotes more real estate to whatever it deems relevant. The mechanism for change isn't motivation in any mystical sense — it's repeated, demanding use of a circuit, which the brain reads as a signal to invest more tissue there.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Novice vs. expert brains under load</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">When two people perform the same task — say juggling — the expert's brain shows <em>less</em> activity, not more. The novice's brain is on fire trying to figure out where to put each hand, what the rules are, what comes next. The expert has burned the routine deep into the circuitry and barely needs to think.</p>
+          <p class="prose">This is the brain's whole goal: practise something enough that it stops costing energy. Useful for survival; less useful if you want continued growth, because mastery is the off-switch for change.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The anterior mid-cingulate cortex — the "willpower muscle"?</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Bartlett raises the popular Andrew Huberman framing — that the anterior mid-cingulate cortex is bigger in people who do hard things they don't want to do, and that it functions as a willpower muscle.</p>
+          <p class="prose">Eagleman pushes back gently. He'd reframe it: a larger anterior mid-cingulate is a <em>retrospective indicator</em> of how much hard work someone has done, not necessarily a muscle you can train directly. Brain regions get bigger as a consequence of demand on them — that's true everywhere in the cortex. Calling it the willpower muscle reverses cause and effect.</p>
+          <div class="caution">Worth holding lightly. The "willpower muscle" framing is popular online but not how most neuroscientists characterise the region. Eagleman's correction is the more conservative read.</div>
+        </div>
+      </div>
+
+      <p class="prose">Exercise is broadly important for brain health. In rats, physical exercise demonstrably increases the trickle of new neurons (neurogenesis); whether this happens to a meaningful degree in humans is still genuinely unsettled. What is settled: sleep, diet and exercise matter for the brain. Not new, but it bears repeating.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 08 — VIRTUOUS VS VICIOUS FRICTION (THE AI QUESTION)
+       ============================================================ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Virtuous vs. Vicious Friction — Using AI Without Atrophy</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">If hard things build the brain, doesn't outsourcing thinking to AI cause atrophy? Eagleman's answer is more careful than the popular take. The distinction isn't AI vs. no AI — it's which kind of friction you're cutting.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">VICIOUS FRICTION</div>
+          <div class="pillar-answer">Cut it ruthlessly</div>
+          <div class="pillar-sub">Copying spreadsheet rows. Filling tax forms. Admin. Busy work. There is no honour in doing this manually. Push to AI.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">VIRTUOUS FRICTION</div>
+          <div class="pillar-answer">Protect it</div>
+          <div class="pillar-sub">Thinking through hard problems. Wrestling with structure. Writing your own argument. This is where growth lives — don't let AI do it for you.</div>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">CALCULATOR PRECEDENT</span><span class="kv-val">In the 1990s there was real debate about letting kids use calculators. We resolved it sensibly — learn long division for a few days, then move on. AI is the same shape of question.</span>
+        <span class="kv-key">SUPER-HUMAN MODE</span><span class="kv-val">Used well, AI is "a motorcycle for the mind" (Eagleman's update on Steve Jobs's "bicycle for the mind"). The race now is who uses it best, not whether to use it.</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The prompt that builds the brain — "tell me where I'm wrong"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Both Eagleman and Bartlett converge on the same practice. Bring an idea to your AI and ask it to argue against you. Eagleman's habit: pitch a half-formed idea, then say "give me pros and cons, tell me why this is wrong." Engage with the counter-arguments seriously. This is virtuous friction.</p>
+          <p class="prose">The instinct to avoid being wrong is strong and social — admitting it to a human is embarrassing. AI strips out the social cost, which makes it easier to actually update. AIs do default to flattery, but you can instruct them to be brutally honest, and once you do, the feedback loop is genuinely useful.</p>
+          <div class="positive">Eagleman's view on what to teach the next generation: there are really only two things worth teaching — <strong>critical thinking</strong> and <strong>creativity</strong>. Specific technical skills (his example: programming) may already be obsolete as taught.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The "effort phenomenon" — why AI slop is so irritating</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Psychology studies consistently show people value things that look like they took effort. Bottle-cap sculptures sell for more than blank canvases. Real diamonds command a premium over chemically identical lab-grown ones — because mother nature took hundreds of millions of years on the first one.</p>
+          <p class="prose">This is why obvious AI emails and LinkedIn posts read as offensive. They signal "I didn't care enough to think." The damage isn't only to the recipient — the sender almost certainly didn't learn anything from generating it either. Whatever cognitive growth might have come from doing the hard thing was traded for a quick output.</p>
+          <div class="note">Practical heuristic: if the same friction would otherwise be done by an intern doing busywork, send it to AI. If the friction is the part where your own model of the world gets stretched, do it yourself — possibly with AI as a sparring partner, but not as a substitute.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Where AI is creative — and where it isn't</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Eagleman defines creativity as bending, breaking and blending what you've absorbed into new remixes. By that definition AI is massively creative — it's exactly what it does. What it can't do is <strong>selection</strong>. It can generate a hundred images, but it can't know which one will land for you. It can write jokes structurally but can't reliably break a pattern in a way that's funny — it doesn't think of the punchline first and then build toward it.</p>
+          <p class="prose">Bartlett pushes back with examples — Gemini predicting YouTube thumbnail winners with unsettling accuracy, predicting drop-off points in long videos. Eagleman concedes the point but flags the catch: the AI may be picking up on dimensions humans can't see (font size, colour ratios), and it can only ever optimise toward the centre of the existing distribution. The genuinely new song or image — the one that breaks out — sits at the edges, where AI can generate it but not pick it out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 09 — WHY WE DREAM
+       ============================================================ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Why We Dream — Defending the Visual Cortex</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Eagleman proposes a relatively new theory of dreaming that follows directly from his work on plasticity. The thesis: dreams are not for processing memories or rehearsing fears or revealing the unconscious. They are a defensive mechanism to stop other senses from colonising the visual cortex during the half of every day we spend in darkness.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">THE PROBLEM</span><span class="kv-val">Earth rotates into darkness for ~half of every 24 hours. The visual cortex is starved of input.</span>
+        <span class="kv-key">THE THREAT</span><span class="kv-val">Cortex is generic — unused territory gets repurposed by other senses. Lose-it-or-lose-it tissue.</span>
+        <span class="kv-key">THE DEFENCE</span><span class="kv-val">Every ~90 minutes, an ancient circuit in the midbrain blasts random activity into the visual cortex. The brain weaves it into a story. That's a dream.</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Harvard blindfold experiment</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Normally sighted people were blindfolded tightly. Within 60 minutes, the visual cortex began responding to sound and touch — takeover was already starting. That speed was what tipped Eagleman toward the defence theory: if the visual area can be invaded that fast, the brain needs an active mechanism to hold the territory through the long darkness of sleep.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The cross-species evidence</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Eagleman's lab compared 25 species of primates. Two measurements: how plastic each species' brain is, and how much REM (rapid eye movement) sleep they get. The correlation was, in his telling, perfect — the more plastic the brain, the more dreaming.</p>
+          <ul class="bullet-list">
+            <li>Humans, the most plastic, dream the most</li>
+            <li>Infants spend roughly 50% of sleep time in REM. Plasticity is highest then; the visual cortex needs the most defending.</li>
+            <li>As you age, REM share declines — the territory is more entrenched and needs less protection</li>
+            <li>Species that drop into the world fully baked have minimal REM</li>
+            <li>Even blind mole rats — which lost vision over evolutionary time — still dream, because the underlying defence circuitry is so ancient</li>
+          </ul>
+          <div class="note">Read the strength of this carefully. A correlation across 25 species, even a tight one, is suggestive but not proof of mechanism. Other theories of dreaming (memory consolidation, emotional regulation, threat simulation) are not mutually exclusive with Eagleman's, and the field is far from consensus. His framing is interesting and elegant; treat it as a leading hypothesis, not settled science.</div>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        Evolution gave us this TV that comes on at nighttime when the real TV — our real life — turns off, just to keep that part of the brain doing something so it doesn't atrophy.
+        <span class="pullquote-attr">— Stephen Bartlett, summarising the theory</span>
+      </div>
+
+      <p class="prose">A consequence Eagleman is willing to follow through: most dreams are bizarre and meaningless. If it's random activity stitched into a story, occasional dreams might feel resonant the way a randomly opened book passage might — but the brain is the one supplying meaning, not the dream. He suspects the deeper symbolic interpretations of dreams have always been over-reading noise.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 10 — HOW DIFFERENT PEOPLE EXPERIENCE THINKING
+       ============================================================ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>The Hidden Spectrum of Inner Experience</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">A theme Eagleman returns to: the assumption that other people's inner worlds resemble your own is almost always wrong. The variation across the population is much wider than people realise, and visualisation is one of the cleanest examples.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">THE TEST</span><span class="kv-val">Imagine an ant on a purple-and-white tablecloth crawling toward a jar of red jelly. What do you actually see?</span>
+        <span class="kv-key">HYPERFANTASIA</span><span class="kv-val">A vivid mental image — colours, motion, almost like watching a film</span>
+        <span class="kv-key">APHANTASIA</span><span class="kv-val">Nothing visual at all. No image. The thought is conceptual, motoric, auditory or olfactory — but not pictorial.</span>
+        <span class="kv-key">DISTRIBUTION</span><span class="kv-val">Spread evenly across the population</span>
+      </div>
+
+      <p class="prose">Eagleman is aphantasic — he doesn't see his children in his head as images. He has a rich notion of being with them through motor, auditory and olfactory imagery, but no visual picture. He notes the surprising counterintuitive finding from Pixar founder Ed Catmull (also aphantasic): when Catmull surveyed Pixar's staff, many of the best animators and directors turned out to be aphantasic too. The likely reason: an aphantasic child who wants to draw has to look hard at the actual subject and stay in dialogue with the page, while a hyperfantasic child draws what they already think a horse looks like.</p>
+
+      <div class="positive">Crucially: aphantasia translates to no measurable cognitive deficit. People accomplish tasks via dozens of different routes — visual, motoric, conceptual, auditory. Different inner experience, same external capability.</div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Synaesthesia — blended senses</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">At least 3% of the population has synaesthesia — the senses bleed into each other. Letters trigger colours (J is green, M is blue). Music triggers visual experience. Tastes produce textures on the fingertips. The specifics are different for every synaesthete. It is not a disease or disorder — Eagleman is firm on this — it is an alternative perceptual reality.</p>
+          <p class="prose">The broader point: across dozens of axes Eagleman has studied, almost no two people are having the same inner experience. The folk model of "we all see the world basically the same way" is wrong.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 11 — THE BRAIN VS THE ARTIFICIAL NEURAL NETWORK
+       ============================================================ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Brains vs. AI — Why the Resemblance Is Superficial</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Artificial neural networks were inspired by the brain, but the inspiration is superficial. Eagleman is sharper on this than the popular framing suggests.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">THE ANALOGY</span><span class="kv-val">Imagine units connected to other units, each connection with a weight. Strip out everything else.</span>
+        <span class="kv-key">WHAT WAS STRIPPED</span><span class="kv-val">A single neuron is as complex as a city — it carries the entire human genome and traffics millions of proteins. None of that exists in an artificial network.</span>
+        <span class="kv-key">JAGGED INTELLIGENCE</span><span class="kv-val">Why AI does something brilliant in one moment and something incoherent the next — convergent on intelligence, but via a fundamentally different structure</span>
+      </div>
+
+      <p class="prose">Two structural differences worth holding onto:</p>
+      <ul class="bullet-list">
+        <li><strong>One-trial learning</strong> — humans encounter a pomegranate once and have it for life. AI needs thousands or millions of examples for anything, and a training phase costing billions of dollars before it can answer a single question.</li>
+        <li><strong>No team of rivals</strong> — AI doesn't have competing drives, appetites, emotions, or sub-selves. You don't <em>want</em> ChatGPT to be hungry or anxious. Useful, but a profoundly different kind of system.</li>
+        <li><strong>Outside-only access</strong> — AI watches human behaviour from outside. It can model what people do; it cannot know what it is to be a human from the inside. Whether that matters in practice is a genuinely open question.</li>
+      </ul>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The renaissance of the human</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Eagleman's prediction: a renaissance in live performance, live theatre, in-person talks. He has personally seen demand for in-person speaking go up since the AI boom, not down — people specifically don't want a virtual avatar of him giving the talk. Earlier waves of technology were predicted to kill concerts (Napster) but only made the live experience more valued.</p>
+          <p class="prose">The corollary for healthcare and other domains: AI takes over admin and paperwork; humans focus on what only humans can do — holding a hand, being present, meeting in person. The technology may finally be delivering on a promise it has long made and never quite kept: making us more human, not less.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 12 — POLITICS, OUT-GROUPS, COMPLEXIFICATION
+       ============================================================ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>Out-Groups &amp; the Complexification of Relationships</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">When Eagleman is asked what people most need to hear that hasn't yet been covered, this is what he goes to. The brain has dedicated social circuitry for treating others as fully human — and it gets dialled down when we cluster into in-groups and out-groups.</p>
+
+      <p class="prose">When we encounter a homeless person, a drug addict, or a political opponent and pre-classify them as "out-group", the social circuitry that perceives them as a person quietens. They become an object to navigate around. Eagleman's prescription is what he calls <strong>complexification</strong>: deliberately surfacing the cross-cutting facts about a person — they grew up in your hometown, love the same dogs, surf, share an interest. The more cross-cuts you find, the harder it is to keep them in a flat out-group category.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">EYE CONTACT &amp; CONVERSATION</span><span class="kv-val">Among the simplest practices that keep social circuitry online</span>
+        <span class="kv-key">UNDERSTANDING ≠ AGREEING</span><span class="kv-val">Trying to model someone's internal worldview is not endorsement — it's keeping the perception-of-personhood circuit working</span>
+        <span class="kv-key">AI'S POSSIBLE ROLE</span><span class="kv-val">Could be used to challenge dismissals — "what if I told you this story about a person from that group?"</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>On echo chambers — Eagleman's contrarian read</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Eagleman is more optimistic about online discourse than the prevailing narrative. His argument: echo chambers are nothing new — your village 500 years ago was already an echo chamber, and so was state-controlled media in the USSR. At least now you are aware that other points of view exist, even if those views drive you crazy.</p>
+          <p class="prose">Faced with a choice between state-controlled single-narrative media and the messy, polarised, algorithmically-curated open spectrum, he'd take the spectrum.</p>
+          <div class="note">Bartlett's pushback is worth holding alongside this: the design of modern algorithmic feeds exploits dopamine the way slot machines do, and the rise of interest-graph distribution (the algorithm decides who sees what, not your follower list) creates a different kind of echo chamber than the village ever did. Eagleman's response is essentially that humans don't actually only want slot machines — we go to Vegas occasionally, not constantly — and there's a market opening for a social network designed around connection rather than rage. Both views have merit.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 13 — STAVING OFF DEMENTIA
+       ============================================================ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Staving Off Dementia — The Concrete Advice</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">When asked directly what he would do to fend off dementia, Eagleman's answer is blunt and short.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">RULE 1</div>
+          <div class="pillar-answer">Keep the brain active until the day you die</div>
+          <div class="pillar-sub">No coasting. The structure is always degenerating; the only counter is to keep building new pathways.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">RULE 2</div>
+          <div class="pillar-answer">Drop things as soon as you're good at them</div>
+          <div class="pillar-sub">If sudoku is now easy, stop doing sudoku. Pick up something you're bad at. The brain only changes when forced to.</div>
+        </div>
+      </div>
+
+      <p class="prose">The mechanism: brain structure is always degrading. With Alzheimer's, much faster. The defence is to be constantly building new roadways and fashioning new paths that haven't been walked before — so that even as parts of the network fall apart, alternative routes remain from A to B.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">SLEEP, DIET, EXERCISE</span><span class="kv-val">All matter for the brain. Not new advice. Worth taking seriously anyway.</span>
+        <span class="kv-key">SOCIAL LIFE</span><span class="kv-val">From Section 06 — possibly the single highest-leverage cognitive demand. Don't let it shrink.</span>
+        <span class="kv-key">ALCOHOL</span><span class="kv-val">Eagleman notes the cultural shift away from drinking, especially in younger generations. Worth flagging that the trade-off isn't one-way — his anecdote about a younger friend wanting drinking back because parties have become socially awkward.</span>
+      </div>
+
+      <div class="positive">The simplest summary of the whole guide: the brain changes less because it doesn't have to. To keep changing, deliberately make it have to. Find the frustrating-but-achievable edge, sit there, and move on as soon as the edge becomes flat.</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
