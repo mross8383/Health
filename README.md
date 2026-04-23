@@ -55,7 +55,7 @@ STEP 3 — PASTE THIS CARD BLOCK INSIDE <div class="cards">
 ============================================================
 
 
-<a class="card card-NAME" href="FILENAME.html">
+a class="card card-NAME" href="FILENAME.html">
   <div class="card-inner">
     <div class="card-icon icon-NEWCOLOUR">{{ICON_EMOJI}}</div>
     <div class="card-text">
