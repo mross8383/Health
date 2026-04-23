@@ -53,7 +53,7 @@ Replace NAME with the class name, and HEX values with your colour.
 ============================================================
 STEP 3 — PASTE THIS CARD BLOCK INSIDE <div class="cards">
 ============================================================
--->
+
 
 <a class="card card-NAME" href="FILENAME.html">
   <div class="card-inner">
