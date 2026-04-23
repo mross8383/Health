@@ -20,6 +20,7 @@
     --emerald:#1a7a58;--emerald-light:#2db87e;--emerald-glow:rgba(26,122,88,0.1);
     --orange:#c4541c;--orange-light:#e07a3c;--orange-glow:rgba(196,84,28,0.1);
     --text:#d8e4ee;--text-dim:#7a9ab5;--text-bright:#eef4fa;--border:rgba(255,255,255,0.08);
+    --indigo: #4338ca;--indigo-light: #6d63e8;--indigo-glow: rgba(67,56,202,0.1);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
@@ -45,6 +46,7 @@
   .card-wimhof{border-color:rgba(26,92,138,.25);background:#080f1a;}.card-wimhof:hover{border-color:var(--ice-light);box-shadow:0 5px 20px rgba(26,92,138,.15);}.card-wimhof::before{background:var(--ice-glow);}
   .card-tatem{border-color:rgba(26,122,88,.25);background:#081410;}.card-tatem:hover{border-color:var(--emerald-light);box-shadow:0 5px 20px rgba(26,122,88,.15);}.card-tatem::before{background:var(--emerald-glow);}
   .card-ferriss{border-color:rgba(196,84,28,.25);background:#1a1108;}.card-ferriss:hover{border-color:var(--orange-light);box-shadow:0 5px 20px rgba(196,84,28,.15);}.card-ferriss::before{background:var(--orange-glow);}
+  .card-eagleman { border-color: rgba(67,56,202,.25); background: #0f0f1a; }.card-eagleman:hover { border-color: var(--indigo-light); box-shadow: 0 5px 20px rgba(67,56,202,.15); }.card-eagleman::before { background: var(--indigo-glow); }
   .card-inner{display:flex;align-items:center;gap:15px;position:relative;z-index:1;}
   .card-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
   .icon-teal{background:var(--teal-glow);border:1px solid rgba(0,180,166,.25);}
@@ -58,12 +60,14 @@
   .icon-violet{background:var(--violet-glow);border:1px solid rgba(107,58,125,.3);}
   .icon-emerald{background:var(--emerald-glow);border:1px solid rgba(26,122,88,.3);}
   .icon-orange{background:var(--orange-glow);border:1px solid rgba(196,84,28,.3);}
+  .icon-indigo { background: var(--indigo-glow); border: 1px solid rgba(67,56,202,.3); }
   .card-text{flex:1;}
   .card-guest{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px;}
   .text-teal{color:var(--teal);}.text-green{color:#7dc87d;}.text-amber{color:var(--amber-light);}
   .text-plum{color:var(--plum-light);}.text-forest{color:var(--forest-light);}
   .text-slate{color:var(--slate-light);}.text-copper{color:var(--copper-light);}
   .text-ice{color:var(--ice-light);}.text-violet{color:var(--violet-light);}.text-emerald{color:var(--emerald-light);}.text-orange{color:var(--orange-light);}
+  .text-indigo { color: var(--indigo-light); }
   .card-title{font-family:'DM Serif Display',serif;font-size:15.5px;color:var(--text-bright);margin-bottom:2px;line-height:1.2;}
   .card-desc{font-size:10.5px;color:var(--text-dim);line-height:1.5;}
   .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
@@ -79,11 +83,13 @@
   .tag-violet{background:rgba(107,58,125,.12);color:var(--violet-light);border:1px solid rgba(107,58,125,.25);}
   .tag-emerald{background:rgba(26,122,88,.12);color:var(--emerald-light);border:1px solid rgba(26,122,88,.25);}
   .tag-orange{background:rgba(196,84,28,.12);color:var(--orange-light);border:1px solid rgba(196,84,28,.25);}
+  .tag-indigo { background: rgba(67,56,202,.12); color: var(--indigo-light); border: 1px solid rgba(67,56,202,.25); }
   .card-arrow{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s;}
   .arrow-teal{background:rgba(0,180,166,.1);}.arrow-green{background:rgba(45,106,45,.15);}.arrow-amber{background:rgba(196,120,32,.12);}
   .arrow-plum{background:rgba(123,45,139,.12);}.arrow-forest{background:rgba(46,107,46,.12);}
   .arrow-slate{background:rgba(44,74,110,.12);}.arrow-copper{background:rgba(181,106,32,.12);}
   .arrow-ice{background:rgba(26,92,138,.12);}.arrow-violet{background:rgba(107,58,125,.12);}.arrow-emerald{background:rgba(26,122,88,.12);}.arrow-orange{background:rgba(196,84,28,.12);}
+  .arrow-indigo { background: rgba(67,56,202,.12); }
   .card:hover .card-arrow{transform:translateX(3px);}
   .card-arrow svg{width:10px;height:10px;}
   .divider{width:40px;height:1px;background:rgba(255,255,255,.1);margin:0 auto 24px;}
@@ -143,6 +149,10 @@
 
     <a class="card card-ferriss" href="ferriss-mindset.html">
       <div class="card-inner"><div class="card-icon icon-orange">🎯</div><div class="card-text"><div class="card-guest text-orange">Tim Ferriss · On Purpose</div><div class="card-title">Mindset, Fuel & Focus Reference</div><div class="card-desc">Cognitive fuel and the Norwegian 4x4, bioelectric medicine, achievement vs. acceptance, hunting antelope, the 17 questions, non-violent communication, the self-help trap and cosmic insignificance therapy.</div><div class="card-tags"><span class="card-tag tag-orange">Acceptance</span><span class="card-tag tag-orange">Focus</span><span class="card-tag tag-orange">Bioelectric</span><span class="card-tag tag-orange">Key Questions</span></div></div><div class="card-arrow arrow-orange"><svg viewBox="0 0 24 24" fill="none" stroke="#e07a3c" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+    </a>
+
+    <a class="card card-eagleman" href="eagleman-brain.html">
+      <div class="card-inner"><div class="card-icon icon-indigo">🧠</div><div class="card-text"><div class="card-guest text-indigo">David Eagleman · Diary of a CEO</div><div class="card-title">The Brain Reference Guide</div><div class="card-desc">Brain plasticity and the team-of-rivals self, the Ulysses contract, fluid vs. crystallised intelligence, cognitive reserve and the nuns study, virtuous vs. vicious friction with AI, why we dream, aphantasia and synaesthesia, and how to stave off dementia.</div><div class="card-tags"><span class="card-tag tag-indigo">Plasticity</span><span class="card-tag tag-indigo">Dreams</span><span class="card-tag tag-indigo">AI &amp; Brain</span><span class="card-tag tag-indigo">Ulysses Contract</span></div></div><div class="card-arrow arrow-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="#6d63e8" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
     </a>
 
   </div>
