@@ -1,122 +1,183 @@
-# Health
-https://mross8383.github.io/Health/
+# Health Reference Library
 
+Personal knowledge base of HTML reference guides built from podcast transcripts.
 
-HOW TO USE:
-When a new guide is built, paste a copy of the card block below
-into your index.html (inside the <div class="cards">...</div> block).
-Place it in the order you want it to appear.
+Live at: https://mross8383.github.io/Health/
 
-YOU MUST:
-1. Add the CSS variables for the new colour in the :root block at
-   the top of index.html (both the solid and the glow)
-2. Add the 5 CSS rules for the new colour class (.card-NAME, icon-NAME,
-   text-NAME, tag-NAME, arrow-NAME) — see existing ones as reference
-3. Paste the card block in the right position within the cards div
-4. Update href, guest name, title, description, tags, icon emoji, stroke colour
+---
 
-COLOUR CLASS NAMES ALREADY USED:
-rhonda, gut, bikman, bikman2, jamnadas, mills, goldhamer, brecka,
-wimhof, tatem, ferriss
+## How to add a new guide to the index
 
-For new guides, pick a short class name (usually the guest's surname).
+When Claude builds a new guide, follow these 4 steps to add it to the index page.
 
-============================================================
-STEP 1 — ADD COLOUR VARIABLES TO :root (at top of <style>)
-============================================================
+You'll be editing **`index.html`** — that's the only file you need to change. The new guide HTML file (e.g. `newguest-topic.html`) just needs to be uploaded to the repo separately; it doesn't need to be edited.
 
---NEWCOLOUR: #HEX;
---NEWCOLOUR-light: #HEX;
---NEWCOLOUR-glow: rgba(R,G,B,0.1);
+---
 
-============================================================
-STEP 2 — ADD THESE CSS RULES TO THE STYLE BLOCK
-Replace NAME with the class name, and HEX values with your colour.
-============================================================
+### Step 1 — Pick a colour name
 
-.card-NAME { border-color: rgba(R,G,B,.25); background: #HEX_dark; }
-.card-NAME:hover { border-color: var(--NEWCOLOUR-light); box-shadow: 0 5px 20px rgba(R,G,B,.15); }
-.card-NAME::before { background: var(--NEWCOLOUR-glow); }
+Pick a short one-word name for your new colour. Use the guest's surname or the colour itself.
 
-.icon-NEWCOLOUR { background: var(--NEWCOLOUR-glow); border: 1px solid rgba(R,G,B,.3); }
+Examples already used:
+`rhonda`, `gut`, `bikman`, `bikman2`, `jamnadas`, `mills`, `goldhamer`, `brecka`, `wimhof`, `tatem`, `ferriss`
 
-.text-NEWCOLOUR { color: var(--NEWCOLOUR-light); }
+For these instructions, we'll use **`NEWNAME`** as the placeholder. Replace it everywhere with your actual name.
 
-.tag-NEWCOLOUR {
-  background: rgba(R,G,B,.12);
-  color: var(--NEWCOLOUR-light);
-  border: 1px solid rgba(R,G,B,.25);
-}
+You'll also need:
+- The **hex colour** of your guide (e.g. `#c4541c` for orange) — Claude will tell you this
+- The **RGB values** of that hex (e.g. `196,84,28`) — convert at https://www.google.com/search?q=hex+to+rgb
+- A **lighter version** of the hex for hover effects (e.g. `#e07a3c`) — Claude will tell you this
+- A **dark background hex** (e.g. `#1a1108`) — Claude will tell you this
 
-.arrow-NEWCOLOUR { background: rgba(R,G,B,.12); }
+---
 
-============================================================
-STEP 3 — PASTE THIS CARD BLOCK INSIDE <div class="cards">
-============================================================
+### Step 2 — Add 3 lines to the top of `index.html`
 
+Open `index.html` and scroll to the top. Find the block that starts with `:root {` near the top of the `<style>` section.
 
-a class="card card-NAME" href="FILENAME.html">
+You'll see lines like this:
+```
+--orange: #c4541c;
+--orange-light: #e07a3c;
+--orange-glow: rgba(196,84,28,0.1);
+```
+
+**Add 3 new lines just like these, but with your colour:**
+```
+--NEWNAME: #YOUR_HEX;
+--NEWNAME-light: #YOUR_LIGHTER_HEX;
+--NEWNAME-glow: rgba(YOUR_RGB,0.1);
+```
+
+Place them with the other colour variables. Order doesn't matter.
+
+---
+
+### Step 3 — Add 7 CSS rules further down
+
+Stay in `index.html`, scroll down past the `:root` block. Find the section where you see card colour rules grouped together. They look like this (the Ferriss/orange example):
+
+```
+.card-ferriss { border-color: rgba(196,84,28,.25); background: #1a1108; }
+.card-ferriss:hover { border-color: var(--orange-light); box-shadow: 0 5px 20px rgba(196,84,28,.15); }
+.card-ferriss::before { background: var(--orange-glow); }
+.icon-orange { background: var(--orange-glow); border: 1px solid rgba(196,84,28,.3); }
+.text-orange { color: var(--orange-light); }
+.tag-orange { background: rgba(196,84,28,.12); color: var(--orange-light); border: 1px solid rgba(196,84,28,.25); }
+.arrow-orange { background: rgba(196,84,28,.12); }
+```
+
+**Copy this entire 7-line block, paste it just below the existing ones, and find-and-replace inside your new block:**
+
+| Find | Replace with |
+|---|---|
+| `ferriss` | your `NEWNAME` |
+| `orange` | your `NEWNAME` |
+| `196,84,28` | your RGB values |
+| `#1a1108` | your dark background hex |
+
+Don't touch the existing Ferriss block — just edit your new copy.
+
+---
+
+### Step 4 — Add the card to the visible list
+
+Stay in `index.html`. Scroll further down to find `<div class="cards">`.
+
+Inside it, you'll see a list of `<a class="card card-...">` blocks — one per existing guide.
+
+**Copy any existing card block (entirety: `<a>` to `</a>`) and paste it where you want your new guide to appear in the list.**
+
+Then in your pasted copy, change these things:
+
+| Find | Replace with |
+|---|---|
+| `card-ferriss` (or whichever you copied) | `card-NEWNAME` |
+| `ferriss-mindset.html` | your filename, e.g. `newguest-topic.html` |
+| `icon-orange` | `icon-NEWNAME` |
+| `text-orange` | `text-NEWNAME` |
+| `tag-orange` | `tag-NEWNAME` (×4 — there are 4 tags) |
+| `arrow-orange` | `arrow-NEWNAME` |
+| `stroke="#e07a3c"` | `stroke="#YOUR_LIGHTER_HEX"` |
+| The emoji icon | A new emoji that fits the topic |
+| The guest name | Your guest's name |
+| The title text | Your guide's title |
+| The description | One sentence covering 5-8 topics in the guide |
+| The 4 tag labels | 4 short tags from the guide |
+
+---
+
+### Step 5 — Save and commit
+
+Save `index.html`. Upload it to GitHub along with the new guide HTML file. GitHub Pages will rebuild within a minute or two.
+
+Visit https://mross8383.github.io/Health/ to confirm the new card appears and links correctly.
+
+---
+
+## Worked example
+
+If your new guide is for **Dr. Jane Smith** on **sleep science**, with a deep blue colour theme:
+
+**Step 1:** Choose `smith` as your name. Hex: `#1a3a6e`. RGB: `26,58,110`. Lighter: `#5a7ab8`. Dark bg: `#0a121e`.
+
+**Step 2:** Add to `:root`:
+```
+--smith: #1a3a6e;
+--smith-light: #5a7ab8;
+--smith-glow: rgba(26,58,110,0.1);
+```
+
+**Step 3:** Add the 7 CSS rules:
+```
+.card-smith { border-color: rgba(26,58,110,.25); background: #0a121e; }
+.card-smith:hover { border-color: var(--smith-light); box-shadow: 0 5px 20px rgba(26,58,110,.15); }
+.card-smith::before { background: var(--smith-glow); }
+.icon-smith { background: var(--smith-glow); border: 1px solid rgba(26,58,110,.3); }
+.text-smith { color: var(--smith-light); }
+.tag-smith { background: rgba(26,58,110,.12); color: var(--smith-light); border: 1px solid rgba(26,58,110,.25); }
+.arrow-smith { background: rgba(26,58,110,.12); }
+```
+
+**Step 4:** Inside the cards div, add:
+```
+<a class="card card-smith" href="smith-sleep.html">
   <div class="card-inner">
-    <div class="card-icon icon-NEWCOLOUR">{{ICON_EMOJI}}</div>
+    <div class="card-icon icon-smith">😴</div>
     <div class="card-text">
-      <div class="card-guest text-NEWCOLOUR">{{GUEST NAME — optional podcast/episode label}}</div>
-      <div class="card-title">{{GUIDE TITLE}}</div>
-      <div class="card-desc">{{ONE-SENTENCE DESCRIPTION — list 5–8 topics covered, comma-separated}}</div>
+      <div class="card-guest text-smith">Dr. Jane Smith</div>
+      <div class="card-title">Sleep Science Reference</div>
+      <div class="card-desc">Sleep architecture, circadian rhythm, melatonin, sleep apnea, deep vs REM sleep, the 90-minute cycle, and protocols for shift workers.</div>
       <div class="card-tags">
-        <span class="card-tag tag-NEWCOLOUR">{{TAG 1}}</span>
-        <span class="card-tag tag-NEWCOLOUR">{{TAG 2}}</span>
-        <span class="card-tag tag-NEWCOLOUR">{{TAG 3}}</span>
-        <span class="card-tag tag-NEWCOLOUR">{{TAG 4}}</span>
+        <span class="card-tag tag-smith">Circadian</span>
+        <span class="card-tag tag-smith">Melatonin</span>
+        <span class="card-tag tag-smith">Sleep Apnea</span>
+        <span class="card-tag tag-smith">Protocols</span>
       </div>
     </div>
-    <div class="card-arrow arrow-NEWCOLOUR">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#HEX_LIGHT" stroke-width="2.5">
+    <div class="card-arrow arrow-smith">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#5a7ab8" stroke-width="2.5">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
     </div>
   </div>
 </a>
+```
 
-<!--
-============================================================
-WORKED EXAMPLE — Tim Ferriss guide (orange)
-============================================================
+Save, upload, done.
 
-In :root:
-  --orange: #c4541c;
-  --orange-light: #e07a3c;
-  --orange-glow: rgba(196,84,28,0.1);
+---
 
-CSS rules:
-  .card-ferriss { border-color: rgba(196,84,28,.25); background: #1a1108; }
-  .card-ferriss:hover { border-color: var(--orange-light); box-shadow: 0 5px 20px rgba(196,84,28,.15); }
-  .card-ferriss::before { background: var(--orange-glow); }
-  .icon-orange { background: var(--orange-glow); border: 1px solid rgba(196,84,28,.3); }
-  .text-orange { color: var(--orange-light); }
-  .tag-orange { background: rgba(196,84,28,.12); color: var(--orange-light); border: 1px solid rgba(196,84,28,.25); }
-  .arrow-orange { background: rgba(196,84,28,.12); }
+## Troubleshooting
 
-Card block:
-  <a class="card card-ferriss" href="ferriss-mindset.html">
-    <div class="card-inner">
-      <div class="card-icon icon-orange">🎯</div>
-      <div class="card-text">
-        <div class="card-guest text-orange">Tim Ferriss · On Purpose</div>
-        <div class="card-title">Mindset, Fuel & Focus Reference</div>
-        <div class="card-desc">Cognitive fuel and the Norwegian 4x4, bioelectric medicine, achievement vs. acceptance, hunting antelope, the 17 questions, non-violent communication, the self-help trap and cosmic insignificance therapy.</div>
-        <div class="card-tags">
-          <span class="card-tag tag-orange">Acceptance</span>
-          <span class="card-tag tag-orange">Focus</span>
-          <span class="card-tag tag-orange">Bioelectric</span>
-          <span class="card-tag tag-orange">Key Questions</span>
-        </div>
-      </div>
-      <div class="card-arrow arrow-orange">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#e07a3c" stroke-width="2.5">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </div>
-    </div>
-  </a>
-============================================================
--->
+**Colour not showing up?**
+You probably missed one find-and-replace in Step 3 or Step 4. Search the file for the original colour name (e.g. `orange`) inside your new block — anything you missed will still be there.
+
+**Card looks unstyled?**
+Check that all 7 CSS rules from Step 3 are present and spelled the same as the class names in your card block. The class name has to match exactly.
+
+**Guide page won't open from card?**
+The `href` value in your card must exactly match the filename of your guide HTML file (case-sensitive). Check both.
+
+**Rebuild not showing?**
+GitHub Pages takes 1-2 minutes after upload. Hard-refresh your browser (Ctrl/Cmd+Shift+R).
