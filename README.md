@@ -2,10 +2,6 @@
 https://mross8383.github.io/Health/
 
 
-<!--
-============================================================
-INDEX.HTML CARD TEMPLATE
-============================================================
 HOW TO USE:
 When a new guide is built, paste a copy of the card block below
 into your index.html (inside the <div class="cards">...</div> block).
