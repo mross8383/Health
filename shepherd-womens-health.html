@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Jessica Shepherd – Menopause, HRT & Women's Health Reference</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #1a1714;
+
+    /* Rose accent */
+    --accent: #b03060;
+    --accent-light: #d45a85;
+    --accent-pale: #fbeaf0;
+    --accent-dim: rgba(176,48,96,0.1);
+
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+
+    --text: #1a1714;
+    --text-mid: #3a342e;
+    --text-dim: #776e65;
+    --border: rgba(176,48,96,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(176,48,96,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(90,107,78,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(212,90,133,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: var(--accent-light); font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.38); font-size: 13.5px; max-width: 560px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(212,90,133,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--accent-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--accent-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--accent-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+  .q-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bg-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .q-detail { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <div class="hero-sub">The Ultimate Human · Gary Brecka · Ep 253</div>
+
+    <h1>Dr. Jessica Shepherd<br><em>Menopause, HRT &amp; Women's Health</em><br>Reference Guide</h1>
+    <p>Board-certified OBGYN, menopause expert and minimally invasive gynecologic surgeon. Founder of Modern Menow. On the perimenopause timeline, the WHI fallout, testing, lifestyle, autoimmune disease in women, creatine, and why muscle is metabolic currency.</p>
+
+    <div class="hero-tags">
+      <span class="tag">Perimenopause</span>
+      <span class="tag">HRT</span>
+      <span class="tag">Autoimmune</span>
+      <span class="tag">Muscle</span>
+      <span class="tag">Creatine</span>
+      <span class="tag">Gut Health</span>
+    </div>
+  </section>
+
+  <!-- SECTION 01 -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>The Perimenopause Timeline</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The biggest misconception is that perimenopause arrives in the 50s. Shepherd argues it typically begins in the late 30s and runs through the 40s — a decade-long transition that most women don't recognise until symptoms become undeniable.</p>
+
+      <p class="prose">A menstrual cycle is not proof that nothing is shifting. Estrogen and progesterone can still fluctuate enough to produce a cycle while already failing to deliver adequate signalling to the brain, muscle, skin, gut, bone and fat-distribution systems that also depend on them. Nothing in the body changes overnight; hormone change is a slow, years-long process.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">LATE 30s</span><span class="kv-val">Earliest perimenopausal symptoms can appear. Flux between estrogen and progesterone begins.</span>
+        <span class="kv-key">40s</span><span class="kv-val">Symptoms typically intensify — more frequent, more severe. Cycle may still be regular, irregular, or infrequent.</span>
+        <span class="kv-key">45–55</span><span class="kv-val">Late perimenopause into early menopause — the ideal window for starting HRT.</span>
+        <span class="kv-key">MENOPAUSE</span><span class="kv-val">Defined by 12 months without a cycle. Estrogen has "flatlined" — ovaries no longer release enough to produce a cycle.</span>
+        <span class="kv-key">POST-MENO</span><span class="kv-val">~40% of a woman's life is spent post-menopausal.</span>
+      </div>
+
+      <div class="pullquote">
+        If there was just one way to torture a woman, it would be the estrogen lever — saggy skin, mood disorders, libido leaving the building, poor sleep, brain fog, crushing fatigue, all with one little lever.
+        <span class="pullquote-attr">— Gary Brecka (paraphrased)</span>
+      </div>
+
+      <div class="note">Key reframe: symptoms are not dismissible if labs look "normal." Labs show hormone levels at a snapshot in time; they don't show how the body's estrogen receptors are experiencing that level. The experiential picture matters as much as the number.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Early Symptoms to Watch For</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Most women hit "the wall" only once hot flashes arrive — but the trail of symptoms starts years earlier. Shepherd's own first symptom was brain fog, and it took her roughly six months to connect it despite being a menopause specialist.</p>
+
+      <ul class="bullet-list">
+        <li>Brain fog — loss of executive function, clarity, memory</li>
+        <li>Sleep changes — waking early, struggling to get going, no longer a "morning person"</li>
+        <li>Mood shifts — anxiety, irritability, frustration, tearfulness</li>
+        <li>Libido decline</li>
+        <li>Skin changes — loss of elasticity, jawline changes, texture</li>
+        <li>Night sweats and hot flashes (often the "obvious" late signal)</li>
+        <li>Frozen shoulder / adhesive capsulitis — under-recognised link to estrogen loss</li>
+        <li>Fatigue that doesn't match sleep tracking data</li>
+        <li>Weight gain and water retention</li>
+        <li>Period changes — infrequent, irregular, or heavier</li>
+      </ul>
+
+      <p class="prose">The key is consistency. One bad night of sleep or one forgetful week is not a signal. The signal is when something recurs, even if not frequently, and doesn't resolve. That pattern is worth discussing with a clinician who takes the experiential picture seriously.</p>
+
+      <div class="positive">Brecka's wife had frozen shoulder so severe that bending to unbuckle a ski boot brought her to the ground. Three weeks on hormone therapy resolved libido, deepened sleep, and the frozen shoulder cleared about 10 days later. An orthopedic surgeon had wanted to do manipulation under anesthesia to break the adhesions.</div>
+
+      <div class="note">"The plumber always has a leaky faucet." Shepherd notes that even experts miss it in themselves — denial and attributing symptoms to stress are near-universal. Self-awareness is the entry point.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Testing: What to Measure and Why</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Testing in perimenopause is tricky because hormones are fluctuating by design. A single blood draw shows a moment, not a trajectory. Shepherd treats labs as a starting point for conversation — not a gate to treatment.</p>
+
+      <p class="prose">The conventional physician training is to hunt for abnormalities. That approach misses perimenopause, where values can sit "within normal limits" while the patient is experiencing a clear hormonal transition. The receptor-level experience is what drives symptoms, not the serum number.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Shepherd's suggested panel</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">ESTROGEN</span><span class="kv-val">Baseline reference; interpret against symptom picture.</span>
+            <span class="kv-key">PROGESTERONE</span><span class="kv-val">Counterpart to estrogen; flux signals perimenopause.</span>
+            <span class="kv-key">FSH</span><span class="kv-val">Follicle-stimulating hormone — helps situate where you are in the transition.</span>
+            <span class="kv-key">CORTISOL</span><span class="kv-val">Chronic stress is a driver of symptom severity.</span>
+            <span class="kv-key">THYROID</span><span class="kv-val">Overlaps heavily with perimenopause symptoms; must be ruled in or out.</span>
+            <span class="kv-key">VITAMIN D</span><span class="kv-val">Commonly deficient; needed for bone, mood, immune function.</span>
+            <span class="kv-key">HBA1C</span><span class="kv-val">3-month glucose picture — see Section 07.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Dutch test vs blood work</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Shepherd sees the Dutch test (a dried urine panel) as a useful follow-through rather than a starting point. It shows estradiol and progesterone metabolites — how hormones are being processed and where peaks and troughs sit. Better suited to someone already investigating than to a first screen.</p>
+          <p class="prose">Brecka reports his wife's Dutch test mapped almost perfectly onto her subjective symptoms — nearly every complaint had a corresponding finding.</p>
+        </div>
+      </div>
+
+      <div class="caution">A "normal" blood panel does not mean there is no hormonal transition happening. Normal ranges are population-level, not receptor-level. If labs look fine but the experience is compromised, the conversation about treatment is still valid.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Hormone Therapy &amp; the WHI Fallout</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The Women's Health Initiative (WHI) study and its media coverage arguably caused a generation of women to avoid HRT. The FDA removal of the black-box warning on estrogen therapy reset the conversation, but the reversal has not yet reached most patients or most prescribers.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What the WHI got wrong</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The WHI's original aim was cardiovascular — could hormones reduce heart disease risk, the leading cause of death in women. The design problem was the population. Participants were on average older than menopausal age (late 50s into 60s), included smokers, and included women with pre-existing cardiovascular disease. This is not the population that benefits most from HRT.</p>
+          <p class="prose">The resulting alarmist messaging caused two cascading failures: prescribers stopped offering hormones on "do no harm" grounds, and patients came to believe they would harm themselves by taking them. The benefits — symptom relief plus long-term preventive effects on brain, bone, heart and glucose — were buried.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The "good, better, best" window</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">BEST</span><span class="kv-val">Late perimenopause into early menopause, roughly ages 45–55, within the first 5–10 years of no cycle.</span>
+            <span class="kv-key">BETTER</span><span class="kv-val">Starting later than ideal but before significant inflammatory damage to heart, vessels and brain has accumulated.</span>
+            <span class="kv-key">LATER</span><span class="kv-val">Still potentially beneficial, but the preventive window for cardiovascular and neurological protection narrows.</span>
+          </div>
+          <p class="prose">Starting later does not mean no benefit — but the preventive case weakens as vascular changes (atherosclerosis, etc.) progress.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why estrogen matters beyond symptoms</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Estrogen receptors are distributed across multiple organ systems. When estrogen drops, many tissues lose a key signalling input at once. Shepherd's short list of what estrogen supports:</p>
+          <ul class="bullet-list">
+            <li>Glucose metabolism — loss of estrogen worsens insulin response</li>
+            <li>Inflammation — estrogen is a potent anti-inflammatory</li>
+            <li>Lean muscle mass — loss compounds age-related sarcopenia</li>
+            <li>Gut health — gut wall integrity and permeability</li>
+            <li>Bone density</li>
+            <li>Heart muscle and vasculature</li>
+            <li>Brain — cognition, memory, executive function</li>
+            <li>Skin elasticity and connective tissue</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        50 million women have unnecessarily suffered for decades because of one misread study.
+        <span class="pullquote-attr">— episode framing, per Brecka</span>
+      </div>
+
+      <div class="caution">Even after the black-box removal, many prescribers have not updated their approach. Shepherd's read: both patients and doctors still operate on the old caution. A patient may need to seek a menopause-literate clinician rather than assume their GP is current.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Autoimmune Disease &amp; Why It Targets Women</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Roughly 82% of autoimmune diagnoses occur in women. Through the 40s and 50s there is a parabolic spike where men and women — who tracked together earlier — diverge sharply. Shepherd's framing is multi-factorial: biology, chronic stress, trauma, and the drop in estrogen's anti-inflammatory effect.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">HORMONAL</div>
+          <div class="pillar-answer">Estrogen is anti-inflammatory</div>
+          <div class="pillar-sub">When it drops in midlife, inflammatory conditions including autoimmune disease are unmasked.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">STRESS</div>
+          <div class="pillar-answer">Chronic sympathetic state</div>
+          <div class="pillar-sub">Prolonged cortisol load degrades immune regulation. Autoimmunity "preys on the weak."</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">TRAUMA</div>
+          <div class="pillar-answer">The body keeps score</div>
+          <div class="pillar-sub">Shepherd references Gabor Maté — unprocessed trauma can surface externally as autoimmune disease.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">SOCIAL</div>
+          <div class="pillar-answer">Caregiver burden</div>
+          <div class="pillar-sub">Women are socialised to put themselves last. Self-neglect compounds into physiological stress.</div>
+        </div>
+      </div>
+
+      <p class="prose">Autoimmune disease is, mechanically, the body's cells attacking themselves. Shepherd emphasises mind-body regulation not as alternative medicine but as direct intervention: what happens in the mind directs what the body's cells do. This is why meditation has measurable effects on disease progression.</p>
+
+      <div class="note">Brecka's anecdotal audience-poll observation: in large audiences worldwide, around 75–80% of hands go up when he asks who has (or loves someone with) an autoimmune diagnosis. At least half of those hands go up again when he asks about multiple autoimmune diagnoses.</div>
+
+      <div class="pullquote">
+        Women are taught not to feel safe in their own bodies. They are emotional absorbers of everyone else around them, and that wreaks havoc internally.
+        <span class="pullquote-attr">— Dr. Jessica Shepherd (paraphrased)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Lifestyle Foundations — Gut, Nutrition, Protein</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Hormones are layered on top of lifestyle, not a replacement for it. Shepherd's framework prioritises gut, nutrition and protein as the base — without them, HRT's benefits are blunted.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Gut health in midlife</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The gut has estrogen receptors. Both aging and estrogen decline increase intestinal permeability — more of what should stay in leaks out, and absorption degrades. This drives vitamin deficiencies and inflammation, and the gut-brain axis connects both to cognitive symptoms.</p>
+          <ul class="bullet-list">
+            <li>Minimise processed foods — still a major share of the Western diet</li>
+            <li>Whole foods, "make your plate the rainbow"</li>
+            <li>Anti-inflammatory foods as the organising principle</li>
+            <li>Less cooked / less processed options where possible</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Protein — the under-eaten macro</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Protein intake in women is, in Shepherd's view, woefully inadequate. Protein supports the lean muscle mass that is the body's metabolic currency, and the gut-brain axis means it also supports cognitive clarity. Starting the day with protein rather than a high-glycemic breakfast keeps cortisol and glucose in check through the morning.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Common deficiencies Shepherd sees</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <div class="kv-grid">
+            <span class="kv-key">VITAMIN D</span><span class="kv-val">Most common deficiency in her patient population.</span>
+            <span class="kv-key">VITAMIN B12</span><span class="kv-val">Frequently low, especially with gut permeability issues.</span>
+            <span class="kv-key">FIBRE</span><span class="kv-val">Needs to be raised in most Western diets.</span>
+            <span class="kv-key">PROTEIN</span><span class="kv-val">Under-consumed relative to muscle-preservation needs.</span>
+          </div>
+          <p class="prose">Whole foods first. Supplementation fills gaps that diet alone doesn't close, but it is not a substitute.</p>
+        </div>
+      </div>
+
+      <div class="caution">Environmental burden compounds the picture: hormone-mimicking chemicals in cosmetics, microplastics, mold and mycotoxins, heavy metals, glyphosate, paraquat. Any one may not be catastrophic alone; the total load is what overwhelms the system.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 07 -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Blood Sugar — HbA1c and CGM</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Loss of estrogen directly worsens glucose metabolism. For midlife women, blood sugar management moves from a diabetic's concern to a universal one. Brecka's framing: "when glucose goes out of control, the dominoes go down fast."</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">FASTING</span><span class="kv-val">A single snapshot. Often "fine" and therefore dismissive.</span>
+        <span class="kv-key">HBA1C</span><span class="kv-val">Glycosylated hemoglobin — the 3-month picture of how the body manages glucose. Better proxy for trouble brewing.</span>
+        <span class="kv-key">CGM</span><span class="kv-val">Continuous glucose monitor — the individualised real-time picture. Reveals how specific foods and behaviours affect <em>you</em>.</span>
+      </div>
+
+      <p class="prose">Why a CGM matters: generic nutrition templates break down at the individual level. Shepherd notes that ethnic background changes how some carbohydrates (e.g. rice) are metabolised. Without personal data, people follow templates that may not suit them.</p>
+
+      <div class="positive">Behaviours Shepherd and Brecka saw move glucose in real time: a 10–15 minute walk after a meal, a cold plunge (drops glucose significantly via the stress response), sauna, high-fat / high-protein / high-fibre meals instead of high-glycemic ones, starting the day with protein instead of sugar.</div>
+
+      <div class="note">The morning glucose rise after a fasted night is not a problem — it's the liver releasing stored glycogen as glucose. A normal adaptive response, not a malfunction.</div>
+
+      <div class="caution">CGM can tip into paralysis by analysis. Two weeks gives most people actionable information. Wearing one year-round is not the goal — learning your patterns is.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 08 -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Muscle as Metabolic Currency</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Strength training is a non-negotiable in Shepherd's framework. Age-related muscle loss is a normal phenomenon; estrogen loss compounds it. Without active resistance training, the trajectory is downward.</p>
+
+      <p class="prose">Muscle is one of the body's two largest glucose sponges (the other being the brain). Building and preserving muscle directly improves glucose disposal, supports bone density, and — less intuitively — supports brain health. Resistance training has documented cognitive benefits.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>What "strength training" actually means here</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Heavy weight — not light weights-for-tone. The body adapts to load, safely progressed.</li>
+            <li>Short sessions are fine — Shepherd favours focused 30–35 minute workouts over long ones.</li>
+            <li>The "I'll get bulky" fear is misplaced; that is not what happens with progressive resistance training in most women.</li>
+            <li>Cardio remains useful but is not a substitute for resistance work.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="positive">Triple return on resistance training: prevents frailty, improves strength and glucose disposal; supports bone density (counters post-menopausal osteoporosis risk); supports brain health and cognitive function.</div>
+
+      <div class="pullquote">
+        Muscle is our currency of longevity. You can choose to ignore it — but it will come back to bite you.
+        <span class="pullquote-attr">— Dr. Jessica Shepherd (paraphrased)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 09 -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Creatine — Not Just for Bodybuilders</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Creatine has moved from a gym supplement to a longevity supplement. Evidence is accumulating for brain-barrier crossing effects, cognitive function, and inflammation markers — alongside its established role in muscle.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Common confusion — creatine vs creatinine</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Patients often confuse creatine (the supplement) with creatinine (a kidney function marker on lab panels). They are not the same substance. Elevated creatinine is a kidney concern; creatine the supplement is, for most people, safe.</p>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">MUSCLE DOSE</span><span class="kv-val">~5g per day. Shepherd sometimes starts at 2g and titrates up.</span>
+        <span class="kv-key">BRAIN DOSE</span><span class="kv-val">Emerging data supports ~10g per day for cognitive benefit.</span>
+        <span class="kv-key">WHO SHOULD AVOID</span><span class="kv-val">People with significant chronic kidney disease. Otherwise broadly well-tolerated.</span>
+      </div>
+
+      <div class="positive">Creatine's appeal to Shepherd is that it hits multiple systems: muscle building and retention, brain clarity and cognition, and possibly inflammation. Few supplements have that breadth of effect backed by accumulating research.</div>
+
+      <div class="note">Standard evidence-based context still applies — get baseline kidney function if there's any history, and start at a lower dose to assess tolerance before moving to the higher brain-health dose.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Morning Routine &amp; Daily Protocol</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Cortisol is already elevated in the early morning. The first decisions of the day either compound that stress or settle it. Shepherd's routine is deliberately low-cortisol and stackable within 60 minutes.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">MEDITATION</span><span class="kv-val">10–15 minutes. Shepherd uses guided (Calm app). She calls it a muscle — it builds.</span>
+        <span class="kv-key">SUNLIGHT</span><span class="kv-val">"Say hello to the sun" — early light exposure plus some vitamin D.</span>
+        <span class="kv-key">WATER + LEMON</span><span class="kv-val">Simple anti-inflammatory start before any high-glycemic food.</span>
+        <span class="kv-key">PROTEIN FIRST</span><span class="kv-val">Breakfast leads with protein, not sugar — keeps energy steady and glucose flat.</span>
+        <span class="kv-key">RESISTANCE</span><span class="kv-val">Gym in the morning, because later in the day it rarely happens. 30–35 minutes, focused.</span>
+      </div>
+
+      <div class="note">Shepherd's framing of universal access: if the protocol works for the person with the least resources and the most responsibilities, it reaches everyone. Jumping rope, a 10-minute walk, a bodyweight routine — all count. The gadgets are optional.</div>
+
+      <div class="pullquote">
+        Self-care is not selfish. It's the best way to be selfless — you take this time for yourself, then give the rest of your day away.
+        <span class="pullquote-attr">— Gary Brecka (paraphrased)</span>
+      </div>
+
+      <div class="positive">Brecka's six-year shift: schedule meetings and travel around sleep and exercise, not the other way around. Skip the red-eye; leave the next morning. Small rule, big downstream effect.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Maternal Mortality &amp; the Race Gap</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">The US leads the developed world in maternal mortality. Black women are 3–4x more likely than other women to die in childbirth. Shepherd's assessment is direct: the causes are systemic, dietary, and communicative — and the discussion as currently held isn't moving the numbers.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The domino chain Shepherd describes</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>Unequal access to resources and quality food in lower-resource communities</li>
+            <li>Diets heavier in inflammatory, processed foods</li>
+            <li>Higher rates of gestational diabetes and cardiovascular disease entering pregnancy</li>
+            <li>Pre-eclampsia — a vascular disorder that reflects that cardiovascular baseline</li>
+            <li>Higher morbidity and mortality in delivery</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Shepherd's recommendations for policymakers</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li>More women and more people of colour at the decision-making table — you cannot understand a community you are not part of</li>
+            <li>Language that the community being served can actually act on — it's the clinician's job to ensure the patient leaves understanding, not the patient's job to decode</li>
+            <li>Acknowledge systemic racism directly rather than talking around it — it's a precondition for action</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        Until we take care of a community with the least resources and access, nobody is okay.
+        <span class="pullquote-attr">— Dr. Jessica Shepherd (paraphrased)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>Menopause in the Workplace</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Many women leave the workforce during perimenopause and menopause — not because they want to, but because symptoms become unmanageable without support. Insurance and workplace policies have not caught up.</p>
+
+      <p class="prose">Shepherd's parallel: it took roughly 10–15 years for workplaces to accommodate lactating mothers in any systematic way. Midlife women are now at the same starting line — no established norms, no insurance packages tailored to the transition, no time or space to manage symptoms at work.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">INSURANCE</span><span class="kv-val">Coverage bundles for labs, HRT, menopause-specialist consultations — largely absent.</span>
+        <span class="kv-key">WORKPLACE</span><span class="kv-val">Accommodations for hot flashes, cognitive load, time for medical appointments — not standard.</span>
+        <span class="kv-key">RESEARCH</span><span class="kv-val">Women were largely excluded from medical research for decades. The assumption that women are "little men" is recent to disprove.</span>
+      </div>
+
+      <div class="positive">The financial argument for prevention is strong. US healthcare spending is ~$5 trillion annually — more than the next 6–7 countries combined. Shifting a fraction of that into preventive care for midlife women would keep them out of chronic-disease management pathways (thyroid, hypertension, diabetes, autoimmune) that are dramatically more expensive.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 13 -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>It's Never Too Late — A Case Study</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Two case studies from the episode illustrate how quickly the body responds to basic inputs — even in frail, older, or post-surgical populations. The lesson is not that intervention is always dramatic; it's that the basics, done consistently, move measurable outcomes fast.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Assisted care / memory care facility</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Brecka describes a chain of assisted-living / memory-care facilities that introduced simple, cheap interventions and are tracking outcomes. The changes:</p>
+          <ul class="bullet-list">
+            <li>Red light therapy, including transcranial red light with a helmet, several times per week</li>
+            <li>Farm-to-table whole foods — processed foods removed from the menu</li>
+            <li>Creatine supplementation</li>
+            <li>Regular sunlight exposure (small gardens, residents wheeled out)</li>
+          </ul>
+          <p class="prose">Reported outcomes are subjective so far, but the team is seeing rapid and significant improvement in a heavily-medicated population, many of whom have osteopenia or osteoporosis.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Brecka's mother — 78, post-surgical cognitive crash</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">After bilateral knee replacement, Brecka's mother was kept in bed for 45 days in a post-surgical rehab facility due to a prosthetic infection. When the family arrived to surprise her, she barely recognised her only child and believed she was being held against her will. The cognitive decline tracked directly with the immobility.</p>
+          <p class="prose">The protocol that reversed it over roughly 10 weeks:</p>
+          <ul class="bullet-list">
+            <li>Mandated out of bed twice a day, five days a week, for occupational and physical therapy</li>
+            <li>Dietary overhaul — low-glycemic, focused on fats and proteins</li>
+            <li>Four or five targeted supplements including creatine</li>
+            <li>Cerebrolysin (a peptide) for cognitive recovery</li>
+            <li>Hydration and regular sunlight exposure</li>
+          </ul>
+          <p class="prose">Brecka's father's check-in call at 10 weeks — she wanted to redecorate the entire house, didn't like any of the artwork. Arguably sharper than before the surgery.</p>
+        </div>
+      </div>
+
+      <div class="positive">The pattern across both cases: movement, sunlight, nutrition, and a small number of targeted supplements. Low-cost. Low-complexity. Measurable effect in weeks, not years. It is never too late to start, even if starting earlier would have been better.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 14 -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">14</span><h2>Resources &amp; Further Reading</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+      <p class="section-intro">Shepherd's work beyond this episode — for patients looking for community, clinical care, or longer-form material.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">BOOK</span><span class="kv-val">Generation M (2024) — written as a "love letter" to patients. Covers libido, sex, muscle, brain, meditation, hormones. Framed as comedic love story rather than horror movie.</span>
+        <span class="kv-key">COMMUNITY</span><span class="kv-val">Modern Menow — a global community for midlife women. Webinars, patient stories, question-and-answer format.</span>
+        <span class="kv-key">SOCIAL</span><span class="kv-val">Jessica Shepherd MD (M-D-S-H-E-P-H-E-R-D).</span>
+        <span class="kv-key">REFERENCED</span><span class="kv-val">Dr. Gabrielle Lyon (muscle-centric medicine). Dr. Gabor Maté (trauma and disease).</span>
+      </div>
+
+      <div class="pullquote">
+        Hormones are part of the framework, not the framework itself. Without the lifestyle pillars — nutrition, movement, mind — hormones aren't doing anything.
+        <span class="pullquote-attr">— Dr. Jessica Shepherd (paraphrased)</span>
+      </div>
+
+      <div class="note">Shepherd's closing definition of being an "ultimate human": attending to all aspects of your life in the best way you can, so you can serve yourself and be the best version of yourself — and then show up for everyone else.</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
