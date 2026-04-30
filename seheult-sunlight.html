@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roger Seheult – Sunlight, Mitochondria & NEWSTART Reference</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     COLOUR VARIABLES — gold scheme for Seheult guide
+     ============================================================ */
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #1a1714;
+
+    --accent: #c89020;       /* warm gold */
+    --accent-light: #e0a83c; /* lighter gold for hero text */
+    --accent-pale: #fbf3df;  /* very pale gold for backgrounds */
+    --accent-dim: rgba(200,144,32,0.1);
+
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+
+    --text: #1a1714;
+    --text-mid: #3a342e;
+    --text-dim: #776e65;
+    --border: rgba(200,144,32,0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(200,144,32,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(224,168,60,0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(224,168,60,0.65);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: var(--accent-light); font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.42); font-size: 13.5px; max-width: 560px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(224,168,60,0.4);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--accent-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--accent-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--accent-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+  .q-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bg-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .q-detail { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    #hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-sub">Diary of a CEO · Vitamin D Expert</div>
+    <h1>Roger Seheult<br><em>Sunlight, Mitochondria</em><br>& NEWSTART Reference</h1>
+    <p>Board-certified pulmonologist and critical care intensivist, sleep physician, and co-founder of MedCram. Roger Seheult works in three California ICUs and lays out an eight-pillar framework — NEWSTART — for preventing the chronic disease he sees at the end of life. The bulk of the conversation is the case for sunlight, infrared light and mitochondrial health.</p>
+    <div class="hero-tags">
+      <span class="tag">Sunlight</span>
+      <span class="tag">Infrared</span>
+      <span class="tag">Mitochondria</span>
+      <span class="tag">Melatonin</span>
+      <span class="tag">Sauna</span>
+      <span class="tag">Circadian</span>
+      <span class="tag">NEWSTART</span>
+    </div>
+  </section>
+
+  <!-- SECTION 01 — THE FRAMEWORK -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>The Eight Pillars — NEWSTART</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Seheult frames health as a chain of links — heart, lungs, liver, kidneys and so on. Disease shows up where the weakest link breaks. Modern medicine treats the broken link with drugs, but every drug has side effects, so you're effectively leveraging other links to protect the failing one. The longevity strategy is the opposite: strengthen all the links upstream so nothing breaks. Eight categories of intervention do this. Together they spell NEWSTART, a framework codified by Weimar University in Northern California.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">N · NUTRITION</div>
+          <div class="pillar-answer">What you put in your body changes everything</div>
+          <div class="pillar-sub">Foundation pillar — covered briefly in this episode</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">E · EXERCISE</div>
+          <div class="pillar-answer">Side benefits, not side effects</div>
+          <div class="pillar-sub">Reduces stroke, depression, improves wellbeing</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">W · WATER</div>
+          <div class="pillar-answer">External use as much as internal</div>
+          <div class="pillar-sub">Hydrotherapy — sauna, hot/cold for immune function</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">S · SUNLIGHT</div>
+          <div class="pillar-answer">The lowest-hanging fruit</div>
+          <div class="pillar-sub">Infrared light → mitochondrial melatonin → less disease</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">T · TEMPERANCE</div>
+          <div class="pillar-answer">Avoid the obvious toxins</div>
+          <div class="pillar-sub">Smoking, alcohol abuse, methamphetamines</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">A · AIR</div>
+          <div class="pillar-answer">Not just clean — biologically alive</div>
+          <div class="pillar-sub">Phytoncides from trees boost natural killer cells</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">R · REST</div>
+          <div class="pillar-answer">Daily sleep + a weekly rest</div>
+          <div class="pillar-sub">Plus dark nights, not just bright days</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">T · TRUST</div>
+          <div class="pillar-answer">Faith as a stress-buffering structure</div>
+          <div class="pillar-sub">Associated with less depression and anxiety</div>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        All medications have side effects. The aim is to use that knowledge to leverage the other links to protect the weakest one. Exercise has side benefits — it improves every link at once.
+        <span class="pullquote-attr">— Roger Seheult</span>
+      </div>
+
+      <p class="prose">The premise running through every pillar: chronic disease is downstream of mitochondrial dysfunction. By the time we're old, the energy output of our cellular batteries has dropped roughly 70%. Where that drop bites depends on the tissue — fatty liver in the liver, congestive heart failure in the heart, dementia in the brain, blood sugar dysregulation in metabolic tissue. The interventions in NEWSTART are the ones that protect, repair or recharge mitochondria.</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 02 — SUNLIGHT IS NOT VITAMIN D -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Sunlight ≠ Vitamin D</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The single biggest misconception, in Seheult's view: that sunlight equals vitamin D, and therefore a vitamin D capsule replaces going outside. It doesn't. Vitamin D supplementation is real and useful — but it's a fraction of what sunlight does. The active ingredient he focuses on is infrared light, and its target is the mitochondria.</p>
+
+      <p class="prose">Sunlight is a broad spectrum running from ultraviolet B at the short-wavelength end (the part that makes vitamin D in skin) to far infrared at the long-wavelength end. The key physical principle: longer wavelengths penetrate further. Just as bass from a car next to you sounds muffled and travels through the chassis, infrared travels through skin and clothes — up to roughly 8 cm into tissue, according to light engineer Scott Zimmerman.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">UVB</span><span class="kv-val">Shortest biological wavelength. Makes vitamin D in the skin. Cannot penetrate clothes or window glass well. Blocked obliquely by atmosphere when sun is low.</span>
+        <span class="kv-key">VISIBLE</span><span class="kv-val">What you see. Includes blue light, which signals "daytime" to your circadian system via the retina.</span>
+        <span class="kv-key">RED</span><span class="kv-val">Toward the long end of visible. Penetrates several cm. Activates mitochondria. The wavelength used in red-light therapy devices.</span>
+        <span class="kv-key">INFRARED</span><span class="kv-val">Invisible. Penetrates ~8 cm. Goes through clothes. The main driver of mitochondrial melatonin. Trees reflect it; concrete doesn't.</span>
+      </div>
+
+      <p class="prose">Crucially, in winter at northern latitudes (UK included), the sun is too low in the sky for UVB to make it through atmospheric scattering — so you can't make vitamin D from sun for several months. But infrared still gets through. So even when "vitamin D season" is closed, the sunlight benefit isn't.</p>
+
+      <div class="positive">When you're outside on a clear day you get the entire biological spectrum — UV, visible, red and infrared — at the right relative intensities. No artificial source replicates this. Lamps, windows and screens give you slices.</div>
+
+      <p class="prose">Modern windows in particular — especially in hot climates like Southern California — are often engineered to block infrared specifically, because infrared is what heats a building. The unintended consequence: even sitting by a sunny window indoors, the infrared component is largely filtered out.</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 03 — MITOCHONDRIA & MELATONIN -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Mitochondria, Melatonin & the Cooling System</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The central mechanism in Seheult's argument. Mitochondrial output drops about 70% across a lifetime. Just as a car engine produces both motion and heat, mitochondria produce both ATP and oxidative stress — and oxidative stress, unmanaged, is what destroys them. The cell's cooling system for that oxidative stress is melatonin, but not the kind you swallow.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">PINEAL MELATONIN</span><span class="kv-val">Made in the brain at night. Circulates in blood. Tells the body it's time to sleep. About 5% of the body's melatonin.</span>
+        <span class="kv-key">MITOCHONDRIAL MELATONIN</span><span class="kv-val">Made inside the mitochondria of every cell. Stays local. A powerful antioxidant that protects against oxidative stress. The remaining ~95%.</span>
+      </div>
+
+      <p class="prose">The 2019 paper by Russell Reiter (executive editor of Melatonin Research, University of Texas) and light engineer Scott Zimmerman proposed that infrared light hitting the body penetrates deep enough to stimulate and upregulate mitochondrial melatonin production. Result: less oxidative stress, healthier mitochondria, more energy output, and downstream protection against the diseases that follow from mitochondrial dysfunction — dementia, cardiovascular disease, diabetes, kidney disease.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">THE MITOCHONDRIAL COOLING LOOP</div>
+        <svg width="100%" viewBox="0 0 820 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sun -->
+          <circle cx="80" cy="120" r="44" fill="#c89020" opacity="0.9"/>
+          <text x="80" y="124" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">SUNLIGHT</text>
+          <text x="80" y="186" text-anchor="middle" fill="#776e65" font-size="10">full spectrum</text>
+
+          <!-- Arrow 1 -->
+          <line x1="130" y1="120" x2="195" y2="120" stroke="#c89020" stroke-width="2"/>
+          <polygon points="195,115 205,120 195,125" fill="#c89020"/>
+          <text x="162" y="108" text-anchor="middle" fill="#776e65" font-size="9">infrared</text>
+          <text x="162" y="138" text-anchor="middle" fill="#776e65" font-size="9">~8 cm depth</text>
+
+          <!-- Mitochondrion -->
+          <ellipse cx="290" cy="120" rx="80" ry="50" fill="none" stroke="#3a342e" stroke-width="2"/>
+          <ellipse cx="290" cy="120" rx="80" ry="50" fill="#fbf3df" opacity="0.6"/>
+          <path d="M 220 110 Q 250 130 280 110 Q 310 130 340 110 Q 360 125 360 130" fill="none" stroke="#3a342e" stroke-width="1.2"/>
+          <path d="M 220 130 Q 250 110 280 130 Q 310 110 340 130" fill="none" stroke="#3a342e" stroke-width="1.2"/>
+          <text x="290" y="186" text-anchor="middle" fill="#776e65" font-size="10">mitochondrion</text>
+
+          <!-- Arrow 2 -->
+          <line x1="375" y1="120" x2="440" y2="120" stroke="#c89020" stroke-width="2"/>
+          <polygon points="440,115 450,120 440,125" fill="#c89020"/>
+          <text x="408" y="108" text-anchor="middle" fill="#776e65" font-size="9">upregulates</text>
+
+          <!-- Melatonin -->
+          <rect x="460" y="90" width="130" height="60" rx="6" fill="#3a342e"/>
+          <text x="525" y="115" text-anchor="middle" fill="#e0a83c" font-size="11" font-weight="600">MELATONIN</text>
+          <text x="525" y="132" text-anchor="middle" fill="#fff" font-size="10">(antioxidant)</text>
+
+          <!-- Arrow 3 -->
+          <line x1="595" y1="120" x2="660" y2="120" stroke="#c89020" stroke-width="2"/>
+          <polygon points="660,115 670,120 660,125" fill="#c89020"/>
+          <text x="628" y="108" text-anchor="middle" fill="#776e65" font-size="9">neutralises</text>
+
+          <!-- Oxidative stress -->
+          <rect x="680" y="90" width="120" height="60" rx="6" fill="#fdecec" stroke="#8c2c2c" stroke-width="1.2"/>
+          <text x="740" y="115" text-anchor="middle" fill="#8c2c2c" font-size="11" font-weight="600">OXIDATIVE</text>
+          <text x="740" y="132" text-anchor="middle" fill="#8c2c2c" font-size="11" font-weight="600">STRESS</text>
+
+          <!-- Bottom outcome -->
+          <text x="410" y="220" text-anchor="middle" fill="#5a6b4e" font-size="11" font-weight="600">→ healthier mitochondria → less dementia, cardiovascular, diabetes, kidney disease</text>
+        </svg>
+      </div>
+
+      <p class="prose">Seheult's COVID-era epiphany came from this framework. The patients dying in his ICU weren't the predicted respiratory cases — they were people with obesity, dementia, diabetes, heart failure, kidney disease. All chronic conditions rooted in mitochondrial dysfunction. SARS-CoV-2 binds the ACE2 receptor, which itself plays a role in mitigating oxidative stress. So the virus knocks out part of every cell's cooling system. Patients whose mitochondrial cooling was already marginal couldn't make it over the additional hill the virus imposed.</p>
+
+      <div class="pullquote">
+        Picture driving up a hill. Who makes it over? The engines that were running cool to begin with. The ones with the temperature gauge already in the red are the ones pulled over with steam coming out of the hood.
+        <span class="pullquote-attr">— Roger Seheult on COVID severity</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 04 — THE CASE FOR SUN -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>The Case for Sun — Studies, Anecdotes, Magnitude</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The clinical and epidemiological case Seheult assembles. He acknowledges most of these are association studies, not randomised trials, but stacks them via the Bradford Hill criteria — the same logic that established smoking causes lung cancer.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Swedish women's cohort (Lindqvist et al., ~30,000 women, 20 years)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Roughly 20–30,000 Swedish women, surveyed about sun habits, divided into low / moderate / high sun exposure groups, followed for 20 years. The women with the most sun exposure had the lowest mortality from cancer, cardiovascular disease and non-cardiovascular disease. Magnitude: women in the low-sun group who didn't smoke had the same all-cause mortality as women in the high-sun group who did smoke. Avoiding the sun, in this dataset, looked like the same risk factor as smoking.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>UK Biobank (Richard Weller, Edinburgh) — ~10× larger replication</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Dermatologist Richard Weller did a similar study an order of magnitude larger — roughly 300–400,000 people, both sexes — using UK Biobank data plus solar radiation by region of residence. Same finding: more sun → lower all-cause and non-skin cancer mortality. Critically, no statistically increased melanoma incidence. Weller's op-ed in the <em>Journal of Investigative Dermatology</em> ("Sunlight: time for a rethink") argues public health bodies that frame the sun as "a deadly laser to be avoided at all costs" are getting the trade-off wrong.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Brazilian infrared jacket trial (n=30, hospitalised COVID)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A custom jacket lined with LEDs emitting at 940 nm (infrared). Hospitalised COVID patients sick enough to be admitted but not in ICU. Randomised, blinded (light invisible, no heat). 15 minutes a day for 7 days. Every endpoint reached statistical significance: oxygen saturation, breath strength, white cell counts, heart rate, respiratory rate. Length of stay dropped from 12 days (sham) to 8 days (active) — a 4-day reduction on a small sample.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Green Heart study (South Louisville, Kentucky)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Researchers measured high-sensitivity C-reactive protein (hs-CRP, a marker of inflammation linked to stroke and heart attack risk) in roughly 700 people across a four-square-mile urbanised area. They then planted 8,000 mature trees into the area. Two years later, hs-CRP had dropped 13–20% in the same residents — corresponding to an estimated 10–15% reduction in stroke risk. No socioeconomic change, no exercise programme. Hard to attribute to anything other than the trees themselves.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Latitude predicts COVID surges</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Researchers asked what predicted when European countries got their first autumn 2020 surge. Not temperature. Not humidity. Latitude. The wave moved north to south as the sun's angle dropped — Finland first, Greece last. A separate study from the University of Edinburgh, focused on the northern US in winter (where vitamin D synthesis is impossible regardless of behaviour), found regions with more winter sunlight had lower COVID mortality. Replicated in England and Italy.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The 15-year-old who went outside to die</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Amy Hammer's 15-year-old son was diagnosed with lymphoblastic leukaemia. Chemotherapy suppressed his immune system; he developed a flesh-eating fungal infection that took his left lung. The infection spread to the right lung. Doctors gave him two days. His one wish: to go outside. Staff wheeled his bed and BiPAP machine onto the hospital grounds and added a Firefly device emitting different light wavelengths a few times a day. By day two, white count was falling. By day five, he was off BiPAP onto nasal cannula. A new CT showed 60–70% of the right-lung infection cleared. He went home. No change to medication or treatment — only the sunlight (and Firefly) was added.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Hospital ward window position</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">In two-bed shared rooms, the patient in the bed nearer the window is discharged faster on average. Hospitals with bigger windows score better on patient satisfaction surveys (which are tied to reimbursement in the US). Seheult is actively trying to get patients outside in three California hospitals — he says the biggest barrier is getting staff to take them.</p>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        We are the scurvy of the 21st century. Everything is inside. We avoid the sun. We avoid discomfort. We avoid extremes of temperature. We are the generation that needs the lemon and doesn't know it.
+        <span class="pullquote-attr">— Roger Seheult</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 05 — VITAMIN D SUPPLEMENTATION -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Vitamin D Supplementation</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Seheult is not anti-supplement. He takes vitamin D himself. His position: supplement when needed, particularly through northern winters, but understand it's not a substitute for sun exposure — and in his clinical experience, much of the apparent benefit of high vitamin D blood levels is actually a marker for outdoor time rather than the molecule itself.</p>
+
+      <p class="prose">Vitamin D is unusual: technically a vitamin, but functionally a steroid hormone. It's lipid-soluble, which lets it pass through cell membranes and bind directly to nuclear DNA, where it acts as a transcription factor — affecting which genes get expressed. Vitamin D receptors exist on immune cells, in calcium-handling tissue and elsewhere, which is why deficiency shows up across so many systems.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">DEFICIENCY</span><span class="kv-val">~1 billion people globally are vitamin D deficient. ~50% of the world's population is insufficient.</span>
+        <span class="kv-key">DARKER SKIN</span><span class="kv-val">More melanin = harder to make vitamin D in skin. Need more time outside, especially at northern latitudes.</span>
+        <span class="kv-key">UK WINTER</span><span class="kv-val">Sun is too low for UVB to penetrate atmosphere. No vitamin D production from sun for several months. Supplementation is reasonable.</span>
+        <span class="kv-key">FOOD SOURCES</span><span class="kv-val">Mushrooms, certain fish (salmon, mackerel, sardines).</span>
+      </div>
+
+      <div class="positive">A BMJ meta-analysis of randomised trials (Martineau et al.) found daily vitamin D supplementation reduces risk of acute respiratory infections. A separate trial showed 2,000 IU/day reduced the risk of all-cause autoimmune conditions (rheumatoid arthritis, Crohn's, ulcerative colitis and others).</div>
+
+      <div class="caution">Vitamin D is fat-soluble. It can be overdosed. Excess affects calcium metabolism — abnormally high blood calcium. Rare, but possible. Get blood levels checked rather than self-dosing indefinitely. Especially relevant if combining high-dose supplements with significant sun exposure.</div>
+
+      <p class="prose">Seheult's clinical observation during COVID: hospitalised patients with normal vitamin D blood levels did far better than those with low levels — but giving low-vitamin-D patients a supplement on admission did not change outcomes meaningfully. His interpretation: vitamin D was acting as a biomarker for sun exposure, and the active protective ingredient (infrared, mitochondrial benefit) was what they were actually missing. The molecule was a flag, not the fix.</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 06 — RED LIGHT -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Red Light Therapy & Photobiomodulation</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Red and near-infrared light devices (masks, panels, beds) sit at the visible end of the infrared range. Glenn Jeffery at University College London has run randomised trials on 670 nm light specifically — the wavelength is real, the mechanism is real, and the magnitude on certain endpoints is meaningful.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">670 nm</span><span class="kv-val">Glenn Jeffery's headline wavelength — visible deep red, just before infrared. Improves mitochondrial efficiency.</span>
+        <span class="kv-key">SKIN</span><span class="kv-val">Penetrates deep into skin → activates fibroblast mitochondria → fibroblasts deposit more collagen → tighter skin. The mechanism behind red-light face masks.</span>
+        <span class="kv-key">EYESIGHT</span><span class="kv-val">3 minutes of 670 nm in the eye in the morning improved colour discrimination. Retina is the most mitochondria-rich tissue in the body.</span>
+        <span class="kv-key">GLUCOSE</span><span class="kv-val">Jeffery shone red light on subjects' backs after a glucose load. Their blood sugar spike was lower. Exhaled CO₂ rose — evidence the mitochondria metabolised the glucose faster.</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The 15-minute saturation point</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Across fruit flies, mosquitoes, bees and humans, Jeffery has observed the same pattern: about 15 minutes of red light flips a switch in the mitochondria. More exposure beyond that point doesn't add benefit. The hypothesis sits around complex IV of the electron transport chain, but the mechanism is still being characterised. The field is called photobiomodulation.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Systemic effect from local exposure</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">In Jeffery's glucose study, light only on the back produced a systemic glucose-handling improvement. Mitochondria appear to communicate across cells, so local exposure can have body-wide effects. The corollary: where you put the device matters most for local cosmetic effects (face mask for facial skin), but doesn't have to cover the whole body for systemic mitochondrial benefit.</p>
+        </div>
+      </div>
+
+      <div class="positive">If you're already getting plenty of infrared from real sunlight, additional red-light devices add diminishing returns — Seheult uses the scurvy analogy: an extra lemon has little value if your diet is already rich in fruit and vegetables.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 07 — PRACTICAL SUNLIGHT PROTOCOL -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Practical Sunlight Protocol</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The actionable version. Roughly 93% of Americans and 92% of Brits spend their time indoors. Closing some of that gap is the lowest-hanging intervention in the framework.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">DURATION</span><span class="kv-val">~15 minutes is the inflection point at which the mitochondrial benefit appears to saturate. Seheult aims for 15 minutes at lunchtime when ICU shifts allow.</span>
+        <span class="kv-key">TIMING (low UV)</span><span class="kv-val">Morning and evening — sun low in sky → less UVB (less burn risk) but still good infrared. Best for those concerned about UV damage.</span>
+        <span class="kv-key">TIMING (max IR)</span><span class="kv-val">Midday delivers the most infrared, but also the most UVB. Use sun-cautiously if you haven't built up tolerance.</span>
+        <span class="kv-key">CLOUDY DAYS</span><span class="kv-val">Cloud (water vapour) absorbs much of the infrared. You still get more outside on a cloudy day than inside, but less than on a clear day.</span>
+        <span class="kv-key">TREES VS CONCRETE</span><span class="kv-val">Trees reflect infrared (which is why satellites use IR to map forest cover). A green park gives you more infrared than a concrete urban environment.</span>
+        <span class="kv-key">CLOTHING</span><span class="kv-val">UVB is mostly blocked by clothes. Infrared passes through clothes. So "covered up but outside" still delivers most of the mitochondrial benefit while reducing burn risk.</span>
+        <span class="kv-key">WHERE ON BODY</span><span class="kv-val">For mitochondrial effect, location doesn't matter — exposure anywhere works systemically. For circadian effect, light must enter the eyes specifically.</span>
+        <span class="kv-key">WINDOWS</span><span class="kv-val">Modern windows (especially in hot climates) often filter infrared. Sitting indoors near a sunny window is not a substitute for being outside.</span>
+      </div>
+
+      <div class="note">If you're shift-bound or office-bound, 15 minutes outside at lunch is the realistic target. A walk in the park beats a walk on a city street; both beat lunch at your desk.</div>
+
+      <p class="prose">Two further leverages worth adding: walking outside compounds the sunlight benefit with exercise (another NEWSTART pillar) and with fresh air; and walking among trees adds the phytoncide benefit covered later. The pillars stack.</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 08 — CIRCADIAN, DARK NIGHTS -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Circadian Rhythm — Bright Days, Dark Nights</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Mitochondrial sunlight benefit happens through the body. Circadian rhythm runs through the eyes specifically. A recent paper titled "Dark days and bright nights" correlated that exact pattern — the modern norm — with increased mortality. The fix is symmetrical: maximise daytime light exposure, minimise nighttime light exposure.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>SAD lamps & the 3,000 lux-hour target</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">SAD (seasonal affective disorder) lamps deliver about 10,000 lux at close range. Used in the morning, they entrain the circadian clock and stimulate the perihabenular nucleus — a region in the brain that, when under-stimulated by light, contributes to depression. The dose target is roughly 3,000 lux-hours: at 10,000 lux, that's about 20 minutes a day. Available cheaply on Amazon, ~$20. Position 11–16 inches from the face.</p>
+          <p class="prose">Important: this fixes the depression / circadian piece, not the mitochondrial piece. SAD lamps emit visible light only. They are not a substitute for sun exposure.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why nighttime light is a bigger problem than people think</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Two simultaneous harms when light enters the eyes at night: (1) it suppresses pineal melatonin production — losing the very antioxidant that protects mitochondria; (2) it confuses circadian rhythm, because the brain interprets light as "still daytime" and pushes the sleep-onset signal back by hours. Several days of evening screen exposure can shift natural sleep onset from 10pm to 1am.</p>
+          <p class="prose">Reading a paper book under a lamp delivers far less light to the eye than reading the same text on a Kindle. The Kindle delays sleep onset and suppresses melatonin meaningfully. Candlelight is excellent for sleep (only fire risk to manage).</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Blue blockers, night modes, sleep masks</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Phone "night shift" modes red-shift the spectrum but still emit enough light overall to suppress melatonin. Blue-blocker glasses help but light still bleeds in around the frames. Better than nothing, but not a substitute for turning the screen off.</p>
+          <p class="prose">Sleep masks are worthwhile because closed eyelids still let some light reach the retina. Useful in cities or hotels where blackout isn't possible.</p>
+          <p class="prose">No nightlights in bedrooms. No clock radios with LED displays. No air conditioner status lights. Bedrooms should be as dark as possible.</p>
+        </div>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">BEST</span><span class="kv-val">No light at all in the bedroom.</span>
+        <span class="kv-key">2ND BEST</span><span class="kv-val">Light with no blue spectrum (warm amber lamps, candlelight).</span>
+        <span class="kv-key">WORST</span><span class="kv-val">Blue-rich light (overhead LEDs, screens, cool-white bulbs).</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 09 — INDOOR LIGHTING -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Indoor Lighting — Why LEDs Are a Problem</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">For the entire history of human lighting — fire, candle, kerosene lamp, incandescent bulb — light came as full spectrum. Some red, some yellow, some green, some blue, all together. LEDs and fluorescent bulbs broke this pattern by design: efficiency means stripping out wavelengths the eye can't see and concentrating energy in the visible band, especially blue.</p>
+
+      <p class="prose">For the first time in history, humans are spending most of their waking hours under narrow-spectrum light — blue-heavy, red-poor. Evolution has no precedent for this. The retina has metabolic consequences.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The Glenn Jeffery incandescent swap (preprint)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Jeffery took 22 office workers operating under standard LED lighting and replaced their bulbs with incandescents. Result (preprint, not yet peer-reviewed): a 25% improvement in colour discrimination. Mechanism: the cones in the retina are the most metabolically active tissue in the body and the richest in mitochondria. Older mitochondria produce less energy; cones with under-fuelled mitochondria distinguish colour less well. Restore the red-spectrum input the cones evolved with and discrimination recovers.</p>
+        </div>
+      </div>
+
+      <div class="caution">In the US, regular incandescent bulbs (general service lamps) are now restricted by energy efficiency law. Specialty incandescents (chandelier, microwave, oven) are still available. UK regulations are similar. Realistic options: full-spectrum LED bulbs, halogen bulbs, or specialty incandescents.</div>
+
+      <p class="prose">Practical defaults: get outside whenever possible during daylight; SAD lamp in the morning if dark winter mornings keep you indoors; warm-spectrum lighting only after sunset; bedroom completely dark.</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 10 — WATER (HYDROTHERAPY) -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Water — Sauna, Cold & Interferon</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The "W" in NEWSTART. Beyond drinking, the case is for hydrotherapy — using water externally to manipulate body temperature, which in turn manipulates the innate immune system. The lever is interferon.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Innate vs adaptive immunity (and why fever matters)</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The adaptive immune system makes specific antibodies — the COVID conversation everyone became familiar with. The innate immune system is the older, faster, less specific first line: monocytes, natural killer cells, and a master signalling molecule called interferon.</p>
+          <p class="prose">Interferon is so effective against viral infection that essentially every virus that successfully infects humans has evolved a workaround for it. Critical fact: interferon production goes up sharply with body temperature. Mouse studies (mice run the same body temperature as humans) show that going from 37°C to 38°C — just below fever — triggers a roughly 10-fold increase in interferon production. Lymphocytes pulled from the body and warmed to 38–39°C in vitro show the same off-the-charts interferon spike.</p>
+        </div>
+      </div>
+
+      <div class="caution">The take-home Seheult draws from this: don't routinely suppress fevers with paracetamol/acetaminophen unless they're high enough to cause complications (cardiac strain, seizures, dehydration). The reflex of treating fever to feel better is, in his framing, cutting the legs out from under the immune response. Note this contradicts the most common over-the-counter advice — judgement call.</div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sauna as artificial fever</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A sauna heats the body through water vapour's high specific heat capacity. The body temperature rise creates the same interferon-stimulating environment a fever would. Finnish data (a country with more saunas than people) shows a clear dose-response: 4–7 sauna sessions per week is associated with substantially lower cardiovascular mortality than the once-a-week baseline. Studies link COVID severity inversely to interferon levels — high interferon, mild COVID; low interferon, severe COVID.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why the cold finish?</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A brief cold exposure (~1 minute) at the end of a sauna session does two things, per Seheult's reading of older hydrotherapy literature:</p>
+          <p class="prose"><strong>Vasoconstriction → heat retention.</strong> Cold contracts superficial blood vessels, so when you step out of the sauna, you radiate less heat. Counter-intuitive but useful: a brief cold finish keeps core temperature elevated for longer.</p>
+          <p class="prose"><strong>Demargination.</strong> White blood cells normally adhere to the inner walls of blood vessels. When vessels constrict suddenly, those cells get knocked off into circulation, where they go off and do their immune work. The protocol: long heat exposure (~20 min sauna) followed by a brief cold finish (~1 min cold shower or plunge).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 11 — AIR -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Air — Phytoncides, CO₂ & Forest Bathing</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Air isn't just oxygen and nitrogen with no contaminants. The right air is biologically alive, carrying compounds that interact directly with the immune system. The corollary: indoor air, even if clean, is missing something the outdoor version has.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">PHYTONCIDES</span><span class="kv-val">Aromatic compounds that trees release. Inhaled, they elevate natural killer cell counts and the lytic enzyme activity of those cells.</span>
+        <span class="kv-key">JAPANESE STUDIES</span><span class="kv-val">CEOs taken from urban offices into hinoki cypress forests showed measurable increases in NK cell number and function. The benefit lasted ~7 days. Just one day a week outside is enough to capture much of it.</span>
+        <span class="kv-key">URBAN VERSION</span><span class="kv-val">When the same subjects were brought back to city hotels and exposed to infused phytoncide compounds, similar effects were observed.</span>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Indoor CO₂ and cognitive performance</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Joseph Allen at the Harvard School of Public Health has demonstrated that elevated indoor CO₂ — common in sealed offices, conference rooms, hotel rooms and cars on recirculated air — measurably impairs cognitive performance. The fix is trivial: cracking a window meaningfully drops CO₂ levels. Cheap CO₂ meters are available on Amazon to monitor.</p>
+        </div>
+      </div>
+
+      <div class="note">Practical: open windows when you can. Switch car ventilation off recirculation. In hotels, prefer rooms with windows that open. If you spend hours in a small room (studio, office), a CO₂ meter on the desk gives you real-time feedback on when you need to ventilate.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 12 — REST & TRUST -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>Rest, Trust & Melatonin Supplementation</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The closing pillars. Rest is not just nightly sleep but a weekly rhythm — a day off the phone and emails. Trust is faith-related, presented carefully as association rather than causation.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sleep & the food-choice effect</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">As a sleep physician, Seheult notes one specific finding worth flagging: people who don't get enough sleep gravitate to higher-carbohydrate food choices. This is one of the proposed mechanisms by which insufficient sleep contributes to weight gain — not directly through metabolism, but through what you reach for.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Weekly rest</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Beyond daily sleep, Seheult argues for a weekly rest — a whole day off devices, off email, doing things outside normal work mode. The argument is structural rather than purely physiological: without an enforced break, the modern default is no break.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Trust — faith as a stress buffer</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A growing body of research links religious faith — across denominations — to lower depression, lower anxiety and better stress tolerance. Seheult is careful to call this association, not causation: people with faith may have more friends, stronger community ties, more social support, and these may do most of the work.</p>
+          <p class="prose">A specific study by Krause (University of Texas) divided people into conditional forgivers (will forgive if the other person apologises) and unconditional forgivers (will forgive regardless). Unconditional forgivers had less depression, less anxiety, and fewer somatic symptoms. The strongest predictor of which category someone fell into — odds ratio ~2.5 — was the answer to one question: do you believe that God has forgiven you?</p>
+          <p class="prose">A separate caveat: faith is only protective when the relationship is positive. Believing in a vindictive or punishing god is associated with worse outcomes, not better.</p>
+          <p class="prose">Randomised controlled trials of cognitive behavioural therapy show CBT becomes more effective when faith elements are integrated for patients who hold that faith. Seheult is explicit that these elements should never be imposed on patients who don't want them.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Melatonin supplementation — when it's useful</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Seheult's specific positions on swallowed melatonin:</p>
+          <ul class="bullet-list">
+            <li>Useful for occasional difficulty falling asleep — small dose, no more than 5 mg.</li>
+            <li>Useful for jet lag and for advancing a delayed circadian rhythm forward.</li>
+            <li>Useful for certain specific sleep disorders.</li>
+            <li>Not recommended as a routine, large-dose nightly supplement.</li>
+          </ul>
+          <p class="prose">Side effect of high-dose melatonin: increased mental irritability — things set you off more easily. There is also concern (unproven) that chronic high-dose supplementation may suppress the pineal gland's own melatonin production over time. Evidence isn't yet there to confirm or rule this out.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 13 — KEY TAKEAWAYS -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Key Takeaways — The Actionable Set</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Distilled to things you can change tomorrow.</p>
+
+      <ul class="bullet-list">
+        <li><strong>15 minutes outside daily.</strong> Lunchtime if you're in an office. Cloudy is still better than indoors. Mornings and evenings if UV exposure worries you.</li>
+        <li><strong>Walk under trees, not concrete.</strong> Trees reflect infrared and emit phytoncides. A park beats a pavement.</li>
+        <li><strong>Sit by the window in the office, not at the back.</strong> But know that modern windows filter most infrared — outside is still better.</li>
+        <li><strong>Vitamin D supplement through northern winter</strong> (UK November–March). 2,000 IU/day is a reasonable starting dose. Get blood levels checked before going higher.</li>
+        <li><strong>Sauna 3–4× weekly</strong> if you have access. End with a brief (~1 min) cold shower. Heat duration matters more than the cold.</li>
+        <li><strong>Bedroom dark, completely dark.</strong> Sleep mask if you can't control external light. No clock LEDs, no nightlights.</li>
+        <li><strong>Phone/Kindle off ~1 hour before sleep.</strong> Or paper book under a warm lamp. Candlelight is fine.</li>
+        <li><strong>SAD lamp 20 minutes in the morning</strong> if you're at northern latitude in winter — fixes mood and circadian alignment, but is not a sun substitute for mitochondrial benefit.</li>
+        <li><strong>Crack a window in offices, hotels and cars.</strong> Indoor CO₂ matters for cognition.</li>
+        <li><strong>One day a week off devices.</strong> The "weekly rest" pillar.</li>
+      </ul>
+
+      <div class="positive">The framework's core claim: most of the modern chronic disease load — dementia, cardiovascular, diabetes, kidney — traces back to mitochondrial dysfunction, and most of the interventions that reverse mitochondrial dysfunction (sun, heat, exercise, sleep, low oxidative load) are free and require no prescription. The barrier is behavioural, not pharmaceutical.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 14 — SOURCES -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">14</span><h2>Sources & Further Reading</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Studies, researchers and resources named in the conversation.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">REITER & ZIMMERMAN (2019)</span><span class="kv-val">Russell Reiter (Univ. of Texas, executive editor of <em>Melatonin Research</em>) and Scott Zimmerman. The paper proposing infrared light upregulates mitochondrial melatonin.</span>
+        <span class="kv-key">RICHARD WELLER</span><span class="kv-val">Dermatologist, University of Edinburgh. UK Biobank sun exposure study (~300–400k subjects). Op-ed: "Sunlight: time for a rethink," <em>Journal of Investigative Dermatology</em>.</span>
+        <span class="kv-key">LINDQVIST ET AL.</span><span class="kv-val">Swedish women's cohort study, ~30,000 subjects, 20-year follow-up linking sun exposure to all-cause mortality.</span>
+        <span class="kv-key">GLENN JEFFERY</span><span class="kv-val">Researcher at University College London. Randomised trials on 670 nm red light — eyesight, glucose handling, mitochondrial function. Includes preprint on incandescent vs LED lighting and colour discrimination.</span>
+        <span class="kv-key">MARTINEAU ET AL.</span><span class="kv-val">Meta-analysis of vitamin D supplementation and acute respiratory infection, published in the <em>BMJ</em>.</span>
+        <span class="kv-key">JOSEPH ALLEN</span><span class="kv-val">Harvard T.H. Chan School of Public Health. Research on indoor CO₂ and cognitive performance.</span>
+        <span class="kv-key">KRAUSE STUDY</span><span class="kv-val">Survey research dividing subjects into conditional vs unconditional forgivers, linking the latter to lower depression and anxiety.</span>
+        <span class="kv-key">BRAZILIAN INFRARED JACKET TRIAL</span><span class="kv-val">Randomised, blinded study on 30 hospitalised COVID patients using a 940 nm LED-lined jacket; reduced length of stay from 12 to 8 days.</span>
+        <span class="kv-key">GREEN HEART STUDY</span><span class="kv-val">South Louisville, Kentucky tree-planting intervention measuring hs-CRP changes.</span>
+        <span class="kv-key">EDINBURGH COVID/LATITUDE STUDY</span><span class="kv-val">University of Edinburgh research correlating winter US sunlight exposure with COVID mortality, replicated in England and Italy.</span>
+        <span class="kv-key">JAPANESE FOREST BATHING</span><span class="kv-val">Hinoki cypress forest research on phytoncides and natural killer cell activity.</span>
+        <span class="kv-key">FINNISH SAUNA STUDIES</span><span class="kv-val">Dose-response data on sauna frequency and cardiovascular mortality.</span>
+        <span class="kv-key">"DARK DAYS AND BRIGHT NIGHTS"</span><span class="kv-val">Recent paper correlating the modern indoor lighting pattern with increased mortality.</span>
+        <span class="kv-key">PHOTOBIOMODULATION</span><span class="kv-val">The broader field of research on therapeutic light wavelengths and mitochondrial function.</span>
+        <span class="kv-key">MEDCRAM</span><span class="kv-val">Seheult's own YouTube/educational channel covering medical topics in depth.</span>
+        <span class="kv-key">NEWSTART / WEIMAR UNIVERSITY</span><span class="kv-val">Northern California university running the formalised NEWSTART lifestyle programme.</span>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
