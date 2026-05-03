@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessie Inchauspé – Glucose Hacks Reference</title>
+
+<!-- GoatCounter analytics -->
+<script data-goatcounter="https://mross83.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<!-- Cormorant Garamond + Inter + IBM Plex Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     COLOUR VARIABLES — Rose / Dusty Pink (Inchauspé)
+     ============================================================ */
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #1a1714;
+
+    --accent: #a8456b;
+    --accent-light: #c66890;
+    --accent-pale: #fbecf2;
+    --accent-dim: rgba(168,69,107,0.1);
+
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+
+    --text: #1a1714;
+    --text-mid: #3a342e;
+    --text-dim: #776e65;
+    --border: rgba(168,69,107,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(168,69,107,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(90,107,78,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(198,104,144,0.65);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: var(--accent-light); font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 560px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(198,104,144,0.4);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--accent-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--accent-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--accent-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+  .q-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bg-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .q-detail { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-sub">The Diary of a CEO · Glucose Goddess Returns</div>
+    <h1>Jessie Inchauspé<br><em>The 10 Glucose Hacks</em><br>Reference Guide</h1>
+    <p>Biochemist and bestselling author of <em>Glucose Revolution</em> and <em>The Glucose Goddess Method</em>. This guide covers the biology of glucose spikes, her 10 dietary hacks, the 2,700-person experiment, and the links Inchauspé draws between glucose and aging, fertility, mental health, menopause and Alzheimer's.</p>
+    <div class="hero-tags">
+      <span class="tag">10 Hacks</span>
+      <span class="tag">Glucose</span>
+      <span class="tag">Insulin</span>
+      <span class="tag">Cravings</span>
+      <span class="tag">CGM</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 01 — Context & how to read this guide
+       ============================================================ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>How to read this guide</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">A short orientation. Inchauspé is a biochemist with a Master's degree, not a doctor or registered dietitian, and she sells a supplement (Anti-Spike Formula) that she discusses on the podcast. Most of her core dietary advice — eat protein at breakfast, eat fibre before refined carbs, walk after meals, prefer whole fruit over juice — aligns with mainstream nutrition guidance. A few claims in the conversation are more contested or commercially motivated, and those are flagged inline throughout this guide with red caution boxes.</p>
+
+      <p class="prose">The hacks themselves are uncontroversial as a category — they are practical applications of the well-known idea that reducing post-meal blood glucose excursions is generally beneficial, especially for people with insulin resistance, prediabetes or type 2 diabetes. Where Inchauspé extends those mechanisms to claims about Alzheimer's, PCOS reversal, fertility, and her own supplement, the evidence is thinner than the confident framing suggests. Those points are flagged where they appear.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">SOURCE</span><span class="kv-val">The Diary of a CEO with Steven Bartlett</span>
+        <span class="kv-key">GUEST</span><span class="kv-val">Jessie Inchauspé, biochemist, founder of Glucose Goddess</span>
+        <span class="kv-key">BOOKS</span><span class="kv-val">Glucose Revolution (2022); The Glucose Goddess Method (2023)</span>
+        <span class="kv-key">SCOPE</span><span class="kv-val">Glucose biology, 10 dietary hacks, downstream health implications</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 02 — Why glucose spikes matter (the biology)
+       ============================================================ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Why glucose spikes matter</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Inchauspé says one billion people worldwide have type 2 diabetes or prediabetes, and that even among people with no diagnosed metabolic condition, up to 80% experience daily glucose spikes. She frames spikes as the trigger for three damaging downstream processes.</p>
+
+      <p class="prose">Two food categories raise blood glucose: starches (bread, rice, pasta, potatoes, oats) and sugars (anything sweet, including fruit and juice). Both are made of glucose molecules. Eat a lot at once and a lot of glucose hits the blood quickly — the spike. A few small spikes are not a problem; large repeated spikes are.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>1. Mitochondrial overload</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Mitochondria are cellular factories that turn glucose into energy. Inchauspé's analogy: mitochondria are like a houseplant — some glucose gives steady energy, too much glucose at once and they "drown." When overwhelmed, they release free radicals which drive inflammation. The dopamine hit from sugary food can feel like an energy boost but is a pleasure response, not real energy production.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>2. Glycation — "cooking" from the inside</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Glycation is the same chemical process that browns a chicken in the oven: glucose molecules bind to proteins. Babies' cartilage is white; 90-year-olds' cartilage is brown. Every glucose spike accelerates this process throughout the body, contributing to wrinkles externally and organ damage internally. This is why "advanced glycation end-products" (AGEs) appear in skincare science and aging research.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>3. Insulin release and fat storage</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">In response to a spike, the pancreas releases insulin, which clears excess glucose into the liver and muscles first, then into fat cells once those stores are full. Repeated large insulin releases drive insulin resistance, the precursor to type 2 diabetes. Inchauspé notes: when insulin is high, the body cannot burn fat — insulin is a storage hormone.</p>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        Some glucose: amazing, steady energy. Too much glucose, and your mitochondria start freaking out — the same way a plant drowns if you overwater it.
+        <span class="pullquote-attr">— Jessie Inchauspé</span>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Spike–Crash Cycle</div>
+        <svg width="100%" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="180" x2="780" y2="180" stroke="#3a342e" stroke-width="1" opacity="0.3"/>
+          <line x1="60" y1="40" x2="60" y2="180" stroke="#3a342e" stroke-width="1" opacity="0.3"/>
+          <text x="60" y="200" font-size="10" fill="#776e65">Eat sugar/starch</text>
+          <text x="280" y="200" font-size="10" fill="#776e65">~30 min</text>
+          <text x="500" y="200" font-size="10" fill="#776e65">~90 min</text>
+          <text x="720" y="200" font-size="10" fill="#776e65">~2–3 hr</text>
+          <text x="20" y="45" font-size="10" fill="#776e65">High</text>
+          <text x="20" y="180" font-size="10" fill="#776e65">Low</text>
+          <path d="M 60 140 Q 200 40, 320 60 Q 440 80, 500 160 Q 560 195, 720 145" stroke="#a8456b" stroke-width="3" fill="none"/>
+          <circle cx="320" cy="60" r="5" fill="#a8456b"/>
+          <text x="335" y="55" font-size="11" fill="#a8456b" font-weight="600">SPIKE</text>
+          <text x="335" y="70" font-size="10" fill="#776e65">mitochondria stressed, glycation, insulin surge</text>
+          <circle cx="500" cy="160" r="5" fill="#5a6b4e"/>
+          <text x="515" y="160" font-size="11" fill="#5a6b4e" font-weight="600">CRASH</text>
+          <text x="515" y="175" font-size="10" fill="#776e65">cravings centre activated, fatigue, hunger</text>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 03 — The four headline hacks
+       ============================================================ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>The four headline hacks</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">These four are the ones Inchauspé tested in her 2,700-person experiment and recommends as the highest-leverage starting point. Her instruction: don't change anything else about what you eat — just add these in.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">HACK 01</div>
+          <div class="pillar-answer">Savoury breakfast</div>
+          <div class="pillar-sub">Protein-based, no sweet — keeps you steady for 4 hours</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">HACK 02</div>
+          <div class="pillar-answer">Vinegar before meals</div>
+          <div class="pillar-sub">1 tbsp diluted in water, 10 min before biggest meal</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">HACK 03</div>
+          <div class="pillar-answer">Veggie starters</div>
+          <div class="pillar-sub">Eat fibre first to coat the intestine</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">HACK 04</div>
+          <div class="pillar-answer">Move after eating</div>
+          <div class="pillar-sub">10 minutes of muscle use within 90 min of eating</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Hack 1 — Savoury breakfast</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Inchauspé calls this the single most important hack — if you only do one, do this. A sweet breakfast (cereal, juice, granola, fruit smoothie, pastries) creates a glucose spike that sets up a roller-coaster for the rest of the day: spike, crash, cravings, repeat. A savoury, protein-heavy breakfast keeps glucose steady and should keep you full for around four hours.</p>
+
+          <div class="kv-grid">
+            <span class="kv-key">PROTEIN</span><span class="kv-val">Eggs, fish, meat, tofu, nuts, dairy, protein powder, dinner leftovers</span>
+            <span class="kv-key">FATS</span><span class="kv-val">Olive oil, butter, avocado</span>
+            <span class="kv-key">OPTIONAL</span><span class="kv-val">A piece of bread or some potatoes for taste</span>
+            <span class="kv-key">AVOID</span><span class="kv-val">Cereal, muffins, orange juice, granola, fruit purée — and no sugar in coffee</span>
+          </div>
+
+          <div class="note">If you intermittent fast, the rule still applies: whatever you break the fast with should be savoury. The empty digestive system is more sensitive, so a fast broken with sugar produces a particularly large spike.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Hack 2 — Vinegar before meals</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">One tablespoon of vinegar in a large glass of water, drunk roughly 10 minutes before the biggest meal of the day. Inchauspé claims this reduces the glucose spike of the meal by up to 30%, and the insulin spike by a similar amount. The mechanism: acetic acid temporarily inactivates the digestive enzymes that break starches and sugars into individual glucose molecules, slowing absorption.</p>
+
+          <div class="kv-grid">
+            <span class="kv-key">DOSE</span><span class="kv-val">1 tablespoon, diluted in a large glass of water</span>
+            <span class="kv-key">TIMING</span><span class="kv-val">~10 minutes before the meal</span>
+            <span class="kv-key">TYPE</span><span class="kv-val">Any kitchen vinegar — white, apple cider, red wine. Not cleaning vinegar.</span>
+            <span class="kv-key">AVOID</span><span class="kv-val">Branded "vinegar drinks" with added sugar or fruit juice</span>
+          </div>
+
+          <div class="caution">Always dilute. Undiluted vinegar can damage tooth enamel and irritate the oesophagus. Inchauspé is explicit about this in the conversation. People on insulin or sulfonylureas for diabetes should speak to their doctor before adding vinegar, as compounding the glucose-lowering effect can risk hypoglycaemia.</div>
+
+          <div class="note">Inchauspé says her broader claim — vinegar's effects on visceral fat, cholesterol, glucose and insulin — is supported by clinical literature. The 30% spike-reduction figure is a ceiling drawn from small studies; results in any individual will vary.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Hack 3 — Veggie starters</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Eat a small plate of vegetables before the rest of the meal — Italian antipasti, French crudités, Middle Eastern herbs by the bunch. The fibre coats the intestine, forming a mesh that slows glucose absorption from anything eaten afterwards. Inchauspé's point: this traditional habit exists across cultures for a reason, and the science now explains why.</p>
+
+          <p class="prose">Practical examples: a small bowl of cherry tomatoes, raw carrots, broccoli, or any salad with a vinegar-based dressing (which combines hacks 2 and 3 in one). Order matters more than quantity.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Hack 4 — Move after eating</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Within 90 minutes of finishing a meal, use your muscles for around 10 minutes. Walk, clean, dance — or, if stuck at a desk, do calf raises (push up onto the balls of your feet, repeatedly). The calves contain the soleus muscle, which is unusually effective at soaking up glucose from the blood.</p>
+
+          <p class="prose">The mechanism: muscle contraction triggers insulin-independent glucose uptake into the muscle cells, blunting the post-meal spike. This is one of the better-evidenced hacks in the list — the soleus pushup specifically has been studied and shown to lower post-prandial glucose.</p>
+
+          <div class="positive">If you have to eat sugar, the best time is right before or right after a workout — your muscles are hungry for glucose and will absorb it directly rather than allowing a large spike.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 04 — The other six hacks
+       ============================================================ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>The other six hacks</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Beyond the headline four, Inchauspé references the rest of her ten in <em>The Glucose Goddess Method</em>. In this conversation she walks through five additional ones (the tenth is in the book but not separately named in the podcast). They are smaller-effect or more situational than the headline four, but follow the same logic: slow glucose arrival, blunt insulin response.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">HACK 05</span><span class="kv-val"><strong>Eat in the right order.</strong> Vegetables first, then proteins and fats, then starches and sugars. Same meal, same quantity — different order can reduce the spike by up to 75%.</span>
+        <span class="kv-key">HACK 06</span><span class="kv-val"><strong>Clothes on carbs.</strong> Never eat starch or sugar naked. Pair bread with avocado, cake with Greek yoghurt — fat, protein or fibre as a "clothing" slows absorption.</span>
+        <span class="kv-key">HACK 07</span><span class="kv-val"><strong>Savoury snacks.</strong> When snacking between meals on an empty stomach, choose savoury over sweet.</span>
+        <span class="kv-key">HACK 08</span><span class="kv-val"><strong>Sweet only as dessert.</strong> If you want cake, have it after lunch or dinner — never alone or first thing. The food already in your gut blunts the spike.</span>
+        <span class="kv-key">HACK 09</span><span class="kv-val"><strong>Whole fruit only.</strong> Never juiced, dried or smoothied. Smoothing breaks the fibre. Juice is "drinking sugar water."</span>
+      </div>
+
+      <div class="caution">The "up to 75%" figure for food order comes from a small Cornell study (Shukla et al., 2015) of 11 people with type 2 diabetes. The directional finding — fibre and protein before starch reduces the spike — is well-supported. The headline percentage is the best case from a tiny sample and shouldn't be treated as a typical result.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 05 — The 2,700-person experiment
+       ============================================================ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>The 2,700-person experiment</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">In 2019, Inchauspé recruited 2,700 people from 110 countries via Instagram. They followed a four-week protocol, adding one hack per week. She published the self-reported results in <em>The Glucose Goddess Method</em>.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">WEEK 1</span><span class="kv-val">Savoury breakfast every day</span>
+        <span class="kv-key">WEEK 2</span><span class="kv-val">Add vinegar once a day</span>
+        <span class="kv-key">WEEK 3</span><span class="kv-val">Add veggie starters</span>
+        <span class="kv-key">WEEK 4</span><span class="kv-val">Add movement after eating</span>
+      </div>
+
+      <p class="prose">Self-reported headline results (her figures):</p>
+
+      <ul class="bullet-list">
+        <li>90% reduced their cravings</li>
+        <li>90% had more energy</li>
+        <li>Significant reported improvements in sleep, hormones, skin and mood</li>
+        <li>Of those who wanted to lose weight, ~40% did, with no calorie restriction</li>
+      </ul>
+
+      <div class="caution">This is not a clinical trial. There was no control group, no placebo, no blinding, and participants self-selected from Inchauspé's Instagram following — a population already motivated to believe and to report improvement. Inchauspé acknowledges this in the conversation. The numbers are interesting as a customer-satisfaction signal but cannot establish that the hacks caused the outcomes. Don't read "90% reduced cravings" as comparable to a clinical efficacy figure.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 06 — Sweeteners, sugar, fruit
+       ============================================================ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Sweeteners, sugar and fruit</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Inchauspé's central message: there is no such thing as "good sugar." A fruit smoothie and a chocolate cake contain chemically identical sucrose; the body does not distinguish source. Honey, agave, maple syrup all carry health halos but are the same molecules.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Glucose vs fructose vs starch</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Glucose itself isn't sweet — what tastes sweet in fruit is fructose. Sucrose (table sugar) is half glucose, half fructose. Starches (bread, pasta, rice, potatoes) are long chains of glucose linked together; they don't taste sweet but break down into pure glucose on digestion. So a piece of bread can produce as big a spike as a piece of cake.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Sweeteners — Inchauspé's tier list</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+
+          <div class="kv-grid">
+            <span class="kv-key">FINE</span><span class="kv-val">Stevia, monk fruit, allulose</span>
+            <span class="kv-key">CONCERNS</span><span class="kv-val">Aspartame, sucralose</span>
+            <span class="kv-key">HER VIEW</span><span class="kv-val">Diet soda is "always" better than full-sugar soda</span>
+          </div>
+
+          <div class="caution">Inchauspé's "diet soda is always better than regular" framing overstates current scientific consensus. In 2023, the WHO's IARC classified aspartame as "possibly carcinogenic to humans" (Group 2B), and the WHO separately advised against using non-sugar sweeteners for weight control, noting they don't appear to help long-term and may carry cardiovascular and metabolic risks. A 2025 NIH-funded study linked daily aspartame intake to faster cognitive decline. The defensible position is "neither is a health food — water is the answer" rather than "always pick diet."</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fruit — what's changed</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Modern fruit has been bred for thousands of years for sweetness, juiciness and seedlessness — Inchauspé's analogy is the way wolves were bred into chihuahuas. Grapes, bananas, mangoes and papayas are particularly high in sugar. Berries are lower.</p>
+
+          <p class="prose">Whole fruit is fine because the fibre is intact and slows absorption. The problem is denaturing fruit — juicing removes the fibre and leaves sugar water; smoothies break the fibre structure even when it's still present.</p>
+
+          <div class="note">The whole-fruit point is well-supported. Across large epidemiological studies, whole-fruit consumption is consistently associated with better health outcomes (lower diabetes risk, lower cardiovascular mortality), while fruit juice is associated with the opposite. The fibre-and-matrix hypothesis is the leading explanation.</div>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        Orange juice comes from oranges, therefore it must be good for you. What people don't realise is the sugar in a can of Coke is also natural — it comes from sugar beets or canes. They all come from plants. What matters is the concentration and the medium.
+        <span class="pullquote-attr">— Jessie Inchauspé</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 07 — Downstream health: skin, fertility, PCOS, menopause
+       ============================================================ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Downstream effects: skin, fertility, hormones</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Inchauspé argues the same mechanism — repeated spikes producing inflammation, glycation and elevated insulin — explains a wide range of health conditions. Some of these links are well-established; others are speculative extensions.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Skin and aging</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Wrinkles: glycation contributes by damaging collagen and elastin. Many skincare products target glycation externally with antioxidants; reducing glucose spikes targets it internally. Don't smoke, wear sunscreen, and reduce glucose spikes — in roughly that order of impact.</p>
+
+          <p class="prose">Inflammatory skin conditions (eczema, psoriasis, acne, rosacea): glucose spikes drive inflammation through three mechanisms simultaneously — mitochondrial stress, glycation itself, and high insulin. Cutting spikes can reduce flare-up frequency and intensity in those susceptible.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>PCOS and fertility</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Inchauspé says higher insulin resistance correlates with higher infertility, and that around 60% of polycystic ovary syndrome (PCOS) cases involve insulin resistance. The mechanism: high insulin signals the ovaries to produce more testosterone, which can cause acne, facial hair, balding and missed periods.</p>
+
+          <p class="prose">Her practical point: the birth control pill masks the symptoms of high testosterone by adding female hormones, but doesn't address the underlying insulin issue. When women come off the pill to try to conceive, the high testosterone is still there.</p>
+
+          <div class="caution">Inchauspé describes PCOS as "not a real condition — it's a cluster of symptoms." This framing is misleading. PCOS is a defined endocrine disorder with international diagnostic criteria (the Rotterdam criteria), recognised by the WHO, NHS, NIH and major endocrine societies. The insulin-resistant subtype is real and well-documented, and lifestyle interventions including the kind of dietary changes Inchauspé recommends are part of standard care. But not all PCOS is insulin-driven — the lean PCOS phenotype exists, and presenting "do my hacks" as a general PCOS solution overstates the evidence. Anyone with PCOS should work with an endocrinologist or gynaecologist, not rely on dietary hacks alone. The anecdote of three women in Inchauspé's program getting pregnant in a month is encouraging but not a controlled study.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Menopause</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">After menopause, glucose response to the same food becomes higher — the body's ability to manage glucose declines. Inchauspé notes studies showing that reducing glucose spikes during menopause provides some symptom relief, including for insomnia and hot flushes. Diet is one lever among several; this is not a substitute for HRT for those who choose it.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 08 — Mental health, mood, the brain
+       ============================================================ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Mental health, mood, the brain</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">This is the angle that drew Inchauspé into the field — she had a personal history of depersonalisation episodes she traces to glucose dysregulation. She argues for tighter links between glucose and mental state than most clinicians yet accept.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Brain fog and "food coma"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Studies in rats show that frequent glucose spikes slow the speed of neural signalling. Researchers have theorised this maps to brain fog in humans. Inchauspé reports that participants in her experiment had significantly less post-meal fatigue at 90 minutes — the classic food-coma window. Cognitive performance on tasks is measurably worse after a high-glucose breakfast than after a steady one.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Depression and insulin resistance</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A 10-year prospective study followed 300 people with no insulin resistance and no depression at baseline. Those who developed insulin resistance during the decade had nearly a twofold higher rate of subsequently developing major depression. Correlation, not causation — but consistent with a growing literature linking metabolic and mental health.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The voodoo doll marriage study</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Researchers gave 300 married couples voodoo dolls of their spouse and asked them to insert a pin every time the spouse annoyed them, for six weeks. Glucose was measured throughout. People with more variable glucose — particularly more low-glucose events following spikes — put more pins in. Researchers speculated the link is via tyrosine, a neurotransmitter precursor that regulates mood and that depletes on the glucose roller-coaster.</p>
+
+          <div class="note">This is the well-known Bushman et al. (2014) "Low glucose relates to greater aggression in married couples" study published in PNAS. The finding is real; the causal chain is plausible but not proven.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Alzheimer's — "type 3 diabetes"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A 30-year study found that elevated glucose levels in people's 40s correlated with higher rates of Alzheimer's disease in their 60s, 70s and 80s. The Alzheimer's brain shows three of the same hallmarks as the diabetic body: inflammation, glycation, and insulin resistance. Some researchers now describe Alzheimer's as "type 3 diabetes" — diabetes of the brain.</p>
+
+          <div class="caution">The "type 3 diabetes" framing is a real hypothesis in the literature — most associated with Suzanne de la Monte's research from around 2008 onwards — but it remains contested and is not mainstream Alzheimer's consensus. Most Alzheimer's researchers regard amyloid, tau, neuroinflammation and vascular contributions as the dominant frameworks, with insulin resistance as one contributing factor among many. The correlation between midlife metabolic health and later cognitive decline is well-supported; the unified "type 3 diabetes" model is not.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 09 — GLP-1 drugs (Ozempic, Wegovy)
+       ============================================================ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>GLP-1 drugs and what they replace</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">GLP-1 (glucagon-like peptide-1) is a hormone the body produces naturally. Drugs like semaglutide (Ozempic, Wegovy) and tirzepatide (Mounjaro) deliver doses many times higher than the body normally produces.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How natural GLP-1 works</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">L-cells in the digestive tract sense incoming food and release GLP-1. The hormone signals satiety to the brain (telling you to stop eating) and helps the body manage incoming glucose by directing it into liver, muscle and fat stores. It's a normal part of post-meal physiology.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The drug versions</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Pharmaceutical GLP-1 agonists deliver 10–100x natural levels. Result: glucose drops sharply, appetite is largely zapped, weight comes off. First approved for type 2 diabetes, now used widely for weight loss.</p>
+
+          <div class="kv-grid">
+            <span class="kv-key">CONCERN 1</span><span class="kv-val">Up to 40% of weight lost is muscle mass, not fat</span>
+            <span class="kv-key">CONCERN 2</span><span class="kv-val">When people stop, they regain ~70% of lost weight on average — and the regain is mostly fat</span>
+            <span class="kv-key">MITIGATION</span><span class="kv-val">If on these drugs: weight train 3x/week, eat plenty of protein</span>
+          </div>
+
+          <div class="note">Inchauspé's broader frame: the existence of these drugs as a public-health response is itself the story. We've engineered a drug to stop people eating the food around them, rather than fixing the food. Her analogy: "as if we found out that tap water was toxic and instead of fixing the tap water we invented a drug that made you less thirsty."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 10 — The Anti-Spike Formula supplement
+       ============================================================ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Inchauspé's Anti-Spike Formula</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Inchauspé sells a supplement called Anti-Spike Formula and discusses it on the podcast. She describes the two active ingredients and the claimed mechanisms.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">INGREDIENT 1</span><span class="kv-val">Lemon extract — claimed to support natural GLP-1 production</span>
+        <span class="kv-key">INGREDIENT 2</span><span class="kv-val">Mulberry leaf extract (containing DNJ, 1-deoxynojirimycin) — claimed to inhibit the digestive enzymes that break starch into glucose, similar mechanism to vinegar</span>
+        <span class="kv-key">CLAIM</span><span class="kv-val">Reduces glucose spike of carbs and sugar by up to 40%</span>
+      </div>
+
+      <div class="caution">This is a commercial product Inchauspé sells. Conflict of interest is significant and should weigh heavily in how the claims are received. The mulberry leaf / DNJ research is real but small-scale — alpha-glucosidase inhibition is a known mechanism (it's the same mechanism as the prescription diabetes drug acarbose). The "up to 40%" figure is a best-case from limited trials. There are no large independent studies of this specific formulation. By Inchauspé's own logic in the same conversation, the food hacks (vinegar, veggies first, savoury breakfast) deliver similar effects for free.</div>
+
+      <div class="caution">People taking diabetes medication, particularly insulin or sulfonylureas, should not add glucose-lowering supplements without speaking to their prescriber — the effects can stack and risk hypoglycaemia.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 11 — Calories, fasting, kids, coffee
+       ============================================================ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Calories, fasting, kids, coffee</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">A grab bag of related questions from the conversation.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Calories</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Inchauspé's framing: the calorie is a measurement of heat released by burning food in a box of water. Two foods with identical calorie counts can produce very different metabolic responses. A 2,000-calorie diet of avocados leaves a person steady; a 2,000-calorie diet of glucose-spiking foods produces hunger, cravings and brain fog.</p>
+
+          <div class="caution">Energy balance — calories in vs calories out — still governs weight change at the bottom line. Inchauspé's point that food quality affects hunger, satiety and metabolic health is correct. Where the framing slips is implying calories are misleading or unimportant; they're not. Two diets of identical calories will differ enormously in how easy they are to sustain and in their effect on body composition and health, but a sustained calorie surplus will still cause weight gain regardless of glucose response.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Fasting</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Inchauspé says intermittent fasting works better in men than in women, and that for women it can disrupt hormones if used aggressively. Fasting is a stressor on the body — a useful one in moderation, but it stacks with other stressors (intense work, kids, coffee, HIIT, sauna, cold plunge). She fasts mainly on holiday and skips meals occasionally rather than running rigid daily windows.</p>
+
+          <div class="note">When breaking a fast, the rule of savoury-first applies more strongly. The empty digestive system absorbs incoming sugar more rapidly, producing a particularly large spike if the first food is sweet.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Children and sugar</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Type 2 diabetes used to be an adult disease and is now appearing in 5-year-olds. Inchauspé is particularly opposed to giving children orange juice and sweet cereals, framing them as effectively dessert. Her view: if a child is begging for sugary cereal, that's not a reason to provide it — the analogy she uses is whether you'd give them cigarettes if they asked. Children adapt to what's available at home; she grew up with no soda in the house and never developed a taste for it.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Coffee</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">In some people, even black coffee can cause a small glucose spike via the cortisol/stress response — particularly if the drinker feels jittery or anxious from caffeine. If you slept badly, drinking your coffee <em>after</em> breakfast rather than before can reduce its glucose effect by up to 50%.</p>
+
+          <p class="prose">Inchauspé's broader take: coffee studies consistently show coffee drinkers have fewer diseases on average. The downside, where there is one, is mostly what people put in it — sugar and oat milk being the worst offenders. (Her view on oat milk: "pasta juice" — i.e., starch in a glass.)</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 12 — Practical daily template
+       ============================================================ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>A practical daily template</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Pulling the conversation into one practical day, in the order Inchauspé would prioritise.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">ON WAKING</span><span class="kv-val">If you slept badly, delay coffee until after breakfast. Otherwise, black coffee is fine — no sugar, no oat milk.</span>
+        <span class="kv-key">BREAKFAST</span><span class="kv-val">Savoury, protein-led: eggs, leftovers, fish, Greek yoghurt, avocado on bread. Nothing sweet — no juice, no cereal, no granola, no fruit purée. Aim to stay full for 4 hours.</span>
+        <span class="kv-key">MID-MORNING</span><span class="kv-val">If hungry: savoury snack (nuts, cheese, hummus and veg). Not fruit alone, not biscuits.</span>
+        <span class="kv-key">BEFORE LUNCH</span><span class="kv-val">1 tbsp vinegar in a large glass of water, ~10 min before eating.</span>
+        <span class="kv-key">LUNCH</span><span class="kv-val">Veg/salad first, then protein and fat, then any starch. If carbs are present, pair them with fat or protein — never naked.</span>
+        <span class="kv-key">POST-LUNCH</span><span class="kv-val">10 minutes of movement within 90 min — a walk, calf raises at the desk, light errands.</span>
+        <span class="kv-key">DINNER</span><span class="kv-val">Same order rule: veg first, then protein, then carbs. Avoid sugar before bed — it disrupts deep sleep.</span>
+        <span class="kv-key">DESSERT</span><span class="kv-val">If you want it, have it after the meal, not as a standalone snack.</span>
+      </div>
+
+      <div class="positive">The Inchauspé position in one sentence: she is not anti-sugar, she is anti-spike. Her hacks let people keep eating what they enjoy while flattening the curve.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 13 — Sources & Further Reading
+       ============================================================ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Sources &amp; Further Reading</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Books, products, named studies and platforms referenced in the conversation. Where Inchauspé referred to studies vaguely without names ("there's a study that shows…"), they're not listed.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">BOOK</span><span class="kv-val"><strong>Glucose Revolution</strong> — Jessie Inchauspé. Her first book, the foundation text on glucose hacks.</span>
+        <span class="kv-key">BOOK</span><span class="kv-val"><strong>The Glucose Goddess Method</strong> — Jessie Inchauspé. Second book, which contains the 4-week protocol and the 2,700-person experiment results.</span>
+        <span class="kv-key">PRODUCT</span><span class="kv-val"><strong>Anti-Spike Formula</strong> — Inchauspé's own supplement. Lemon extract + mulberry leaf extract.</span>
+        <span class="kv-key">PLATFORM</span><span class="kv-val"><strong>@glucosegoddess</strong> on Instagram — where the glucose graph posts originate.</span>
+        <span class="kv-key">PODCAST</span><span class="kv-val"><strong>The Diary of a CEO with Steven Bartlett</strong> — host platform for this conversation.</span>
+        <span class="kv-key">STUDY</span><span class="kv-val">Inchauspé's own <strong>2,700-person Instagram experiment (2019)</strong> — published in <em>The Glucose Goddess Method</em>. Self-reported, no control group.</span>
+        <span class="kv-key">STUDY</span><span class="kv-val">The <strong>voodoo doll marriage and glucose study</strong> — Bushman et al. (2014), <em>PNAS</em>, on low glucose and aggression in married couples.</span>
+        <span class="kv-key">CONCEPT</span><span class="kv-val"><strong>"Type 3 diabetes"</strong> — the Alzheimer's-as-brain-diabetes hypothesis associated with Suzanne de la Monte and colleagues.</span>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
