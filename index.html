@@ -24,7 +24,8 @@
     --text:#d8e4ee;--text-dim:#7a9ab5;--text-bright:#eef4fa;--border:rgba(255,255,255,0.08);
     --indigo: #4338ca;--indigo-light: #6d63e8;--indigo-glow: rgba(67,56,202,0.1);
     --rose: #b03060;--rose-light: #d45a85;--rose-glow: rgba(176,48,96,0.1);
-    --seheult: #c89020;--seheult-light: #e0a83c;--seheult-glow: rgba(200,144,32,0.1); 
+    --seheult: #c89020;--seheult-light: #e0a83c;--seheult-glow: rgba(200,144,32,0.1);
+    --rose: #a8456b;--rose-light: #c66890;--rose-glow: rgba(168,69,107,0.1);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
@@ -55,6 +56,7 @@
   .card-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
   .card-shepherd { border-color: rgba(176,48,96,.25); background: #1a0c12; }.card-shepherd:hover { border-color: var(--rose-light); box-shadow: 0 5px 20px rgba(176,48,96,.15); }.card-shepherd::before { background: var(--rose-glow); }
   .card-seheult { border-color: rgba(200,144,32,.25); background: #1a1408; }.card-seheult:hover { border-color: var(--seheult-light); box-shadow: 0 5px 20px rgba(200,144,32,.15); }.card-seheult::before { background: var(--seheult-glow); }
+  .card-inchauspe { border-color: rgba(168,69,107,.25); background: #1a0d13; }.card-inchauspe:hover { border-color: var(--rose-light); box-shadow: 0 5px 20px rgba(168,69,107,.15); }.card-inchauspe::before { background: var(--rose-glow); }
   .icon-teal{background:var(--teal-glow);border:1px solid rgba(0,180,166,.25);}
   .icon-green{background:var(--green-glow);border:1px solid rgba(45,106,45,.3);}
   .icon-amber{background:var(--amber-glow);border:1px solid rgba(196,120,32,.3);}
@@ -69,6 +71,7 @@
   .icon-indigo { background: var(--indigo-glow); border: 1px solid rgba(67,56,202,.3); }
   .icon-rose { background: var(--rose-glow); border: 1px solid rgba(176,48,96,.3); }
   .icon-seheult { background: var(--seheult-glow); border: 1px solid rgba(200,144,32,.3); }
+  .icon-rose { background: var(--rose-glow); border: 1px solid rgba(168,69,107,.3); }
   .card-text{flex:1;}
   .card-guest{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px;}
   .text-teal{color:var(--teal);}.text-green{color:#7dc87d;}.text-amber{color:var(--amber-light);}
@@ -78,6 +81,7 @@
   .text-indigo { color: var(--indigo-light); }
   .text-rose { color: var(--rose-light); }
   .text-seheult { color: var(--seheult-light); }
+  .text-rose { color: var(--rose-light); }
   .card-title{font-family:'DM Serif Display',serif;font-size:15.5px;color:var(--text-bright);margin-bottom:2px;line-height:1.2;}
   .card-desc{font-size:10.5px;color:var(--text-dim);line-height:1.5;}
   .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
@@ -96,6 +100,7 @@
   .tag-indigo { background: rgba(67,56,202,.12); color: var(--indigo-light); border: 1px solid rgba(67,56,202,.25); }
   .tag-rose { background: rgba(176,48,96,.12); color: var(--rose-light); border: 1px solid rgba(176,48,96,.25); }
   .tag-seheult { background: rgba(200,144,32,.12); color: var(--seheult-light); border: 1px solid rgba(200,144,32,.25); }
+  .tag-rose { background: rgba(168,69,107,.12); color: var(--rose-light); border: 1px solid rgba(168,69,107,.25); }
   .card-arrow{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s;}
   .arrow-teal{background:rgba(0,180,166,.1);}.arrow-green{background:rgba(45,106,45,.15);}.arrow-amber{background:rgba(196,120,32,.12);}
   .arrow-plum{background:rgba(123,45,139,.12);}.arrow-forest{background:rgba(46,107,46,.12);}
@@ -104,6 +109,7 @@
   .arrow-indigo { background: rgba(67,56,202,.12); }
   .arrow-rose { background: rgba(176,48,96,.12); }
   .arrow-seheult { background: rgba(200,144,32,.12); }
+  .arrow-rose { background: rgba(168,69,107,.12); }
   .card:hover .card-arrow{transform:translateX(3px);}
   .card-arrow svg{width:10px;height:10px;}
   .divider{width:40px;height:1px;background:rgba(255,255,255,.1);margin:0 auto 24px;}
@@ -175,6 +181,10 @@
 
     <a class="card card-seheult" href="seheult-sunlight.html">
       <div class="card-inner"><div class="card-icon icon-seheult">☀️</div><div class="card-text"><div class="card-guest text-seheult">Dr. Roger Seheult · Diary of a CEO</div><div class="card-title">Sunlight, Mitochondria & NEWSTART Reference</div><div class="card-desc">The eight pillars of NEWSTART, infrared light and mitochondrial melatonin, the case for sunlight beyond vitamin D, red-light therapy, sauna and interferon, circadian rhythm, indoor lighting, phytoncides and forest air, and faith as a stress buffer.</div><div class="card-tags"><span class="card-tag tag-seheult">Sunlight</span><span class="card-tag tag-seheult">Mitochondria</span><span class="card-tag tag-seheult">NEWSTART</span><span class="card-tag tag-seheult">Sauna</span></div></div><div class="card-arrow arrow-seheult"><svg viewBox="0 0 24 24" fill="none" stroke="#e0a83c" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+    </a>
+
+    <a class="card card-inchauspe" href="inchauspe-glucose.html">
+      <div class="card-inner"><div class="card-icon icon-rose">📈</div><div class="card-text"><div class="card-guest text-rose">Jessie Inchauspé · Diary of a CEO</div><div class="card-title">The 10 Glucose Hacks Reference</div><div class="card-desc">Glucose biology and the spike-crash cycle, the four headline hacks (savoury breakfast, vinegar, veggie starters, post-meal movement), sweeteners and fruit, PCOS and fertility, Alzheimer's and depression, GLP-1 drugs, and the Anti-Spike Formula.</div><div class="card-tags"><span class="card-tag tag-rose">10 Hacks</span><span class="card-tag tag-rose">Glucose</span><span class="card-tag tag-rose">Insulin</span><span class="card-tag tag-rose">Cravings</span></div></div><div class="card-arrow arrow-rose"><svg viewBox="0 0 24 24" fill="none" stroke="#c66890" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
     </a>
     
   </div>
