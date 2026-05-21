@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr David Unwin – Sugar, Insulin & Metabolic Health Reference</title>
+
+<!-- GoatCounter analytics -->
+<script data-goatcounter="https://mross83.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #1a1714;
+
+    /* DEEP BURGUNDY ACCENT */
+    --accent: #8b2840;
+    --accent-light: #b85070;
+    --accent-pale: #fbeef2;
+    --accent-dim: rgba(139,40,64,0.1);
+
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+
+    --text: #1a1714;
+    --text-mid: #3a342e;
+    --text-dim: #776e65;
+    --border: rgba(139,40,64,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(184,80,112,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(90,107,78,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(184,80,112,0.65);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: var(--accent-light); font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 580px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(184,80,112,0.4);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--accent-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--accent-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--accent-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+  .q-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bg-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .q-detail { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    #hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <section id="hero">
+    <div class="hero-sub">Dr David Unwin · Diary of a CEO</div>
+
+    <h1>Dr David Unwin<br><em>Sugar, Insulin &amp; Metabolic Health</em><br>Reference Guide</h1>
+    <p>NHS GP based north of Liverpool, named in the top ten most influential UK doctors in 2018, NHS National Champion for Diabetes &amp; Obesity, and co-founder of the Public Health Collaboration. He has put 157 type 2 diabetes patients into drug-free remission using a low-carbohydrate approach and originated the "teaspoon of sugar equivalent" infographic system now translated into 35 languages. This guide covers the metabolic chain from carbs to fatty liver to insulin resistance to type 2 diabetes, how to read food labels, the hidden sugar in everyday foods, behaviour change frameworks, ultra-processed food addiction, and practical low-carb implementation.</p>
+
+    <div class="hero-tags">
+      <span class="tag">Type 2 Diabetes</span>
+      <span class="tag">Insulin Resistance</span>
+      <span class="tag">Low Carb</span>
+      <span class="tag">Hidden Sugar</span>
+      <span class="tag">Behaviour Change</span>
+      <span class="tag">UPF Addiction</span>
+    </div>
+  </section>
+
+  <!-- SECTION 01 -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>The metabolic pandemic & why young people matter most</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin opens with what he calls a "pandemic of poor metabolic health." When he started practice north of Liverpool in 1986, there was not a single case of type 2 diabetes in anyone under 55 — it was called maturity-onset diabetes because it was a disease of old age. The name had to be changed because so many young people are now affected. Yesterday in clinic he saw two patients under 25 with poorly-controlled diabetes; one was too heavy for him to weigh.</p>
+
+      <div class="pullquote">
+        We're all sleepwalking into a metabolic disaster, and the people paying the greatest price are young people. It's a scandal, and I'm hopping mad.
+        <span class="pullquote-attr">— Dr David Unwin</span>
+      </div>
+
+      <p class="prose">Each of us has a number of possible "health futures." Unwin's job, as he frames it, is behaviour change — helping people pick a lifestyle that leads to the future they actually want. He focuses on the young because they have the longest runway to change trajectory, but the message applies at any age.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">100 DAYS</span><span class="kv-val">Years of life lost for every year you live with poorly-controlled type 2 diabetes (UK government figures, roughly a third of a year per year).</span>
+        <span class="kv-key">~1 IN 3</span><span class="kv-val">Proportion of people worldwide with type 2 diabetes who don't know they have it because they haven't been tested.</span>
+        <span class="kv-key">DAD BOD</span><span class="kv-val">The "dad bod" has been normalised. A central tummy isn't how the body is supposed to be — it's a metabolic warning sign.</span>
+      </div>
+
+      <p class="prose">Most doctors assume cardiovascular complications kill people with type 2 diabetes, because high blood sugar damages arteries over time. True, but Unwin highlights a less-discussed rising cause of mortality: cancer. Eight forms of cancer are strongly associated with diabetes.</p>
+
+      <div class="caution">The cancer-diabetes link is associational, not proven causal in every case. Hyperinsulinaemia and metabolic dysfunction are plausible mechanisms, but "strongly associated" does not mean "diabetes causes these eight cancers."</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>Insulin 101: what it does, and what goes wrong</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">You can't understand type 2 diabetes without first understanding insulin. Unwin builds this from first principles — the kind of "schoolboy biology" he says doctors and the public both seem to have lost track of.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">GLUCOSE</span><span class="kv-val">The sugar in your blood. Comes from carbohydrate-heavy foods, not just from things that taste sweet.</span>
+        <span class="kv-key">INSULIN</span><span class="kv-val">Hormone produced by the pancreas. Its job is to push glucose out of the bloodstream and into cells where it can be used for energy.</span>
+        <span class="kv-key">GLYCOCALYX</span><span class="kv-val">The "non-stick lining" of your arteries. Research shows very high blood sugar can damage it within six hours.</span>
+        <span class="kv-key">EXCESS GLUCOSE</span><span class="kv-val">If you take in more carbohydrate than your activity needs, insulin converts the excess to fat inside cells — because it's safer to store sugar as fat than to leave it damaging arteries.</span>
+      </div>
+
+      <p class="prose">Unwin uses himself as the example. As senior partner he had a heavy biscuit habit — patients bringing them in as gifts, drawers full of them. He wasn't running around. Insulin did its job: shoved the excess sugar into cells where it became fat. The two visible results: a belly, and — invisibly — a liver filling with fat.</p>
+
+      <div class="pullquote">
+        Insulin is the hormone that defends you from poor dietary choices. The question is: what does insulin do with the sugar you just ate?
+        <span class="pullquote-attr">— Dr David Unwin</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>The long silent scream: fatty liver to type 2 diabetes</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin describes a multi-stage progression that happens silently over roughly a decade before clinical diabetes is diagnosed. This is the work of Professor Roy Taylor at Newcastle University, whom Unwin credits.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The Long Silent Scream — progression to type 2 diabetes</div>
+        <svg width="100%" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#8b2840"/>
+            </marker>
+          </defs>
+          <!-- 5 stages -->
+          <g>
+            <rect x="10" y="40" width="140" height="90" rx="8" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="80" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#8b2840">STAGE 1</text>
+            <text x="80" y="92" text-anchor="middle" font-size="12" fill="#3a342e">Chronic excess</text>
+            <text x="80" y="108" text-anchor="middle" font-size="12" fill="#3a342e">carb intake</text>
+          </g>
+          <line x1="155" y1="85" x2="180" y2="85" stroke="#8b2840" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g>
+            <rect x="185" y="40" width="140" height="90" rx="8" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="255" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#8b2840">STAGE 2</text>
+            <text x="255" y="92" text-anchor="middle" font-size="12" fill="#3a342e">Fatty liver</text>
+            <text x="255" y="108" text-anchor="middle" font-size="12" fill="#3a342e">(silent, ~10 yrs)</text>
+          </g>
+          <line x1="330" y1="85" x2="355" y2="85" stroke="#8b2840" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g>
+            <rect x="360" y="40" width="140" height="90" rx="8" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="430" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#8b2840">STAGE 3</text>
+            <text x="430" y="92" text-anchor="middle" font-size="12" fill="#3a342e">Insulin</text>
+            <text x="430" y="108" text-anchor="middle" font-size="12" fill="#3a342e">resistance</text>
+          </g>
+          <line x1="505" y1="85" x2="530" y2="85" stroke="#8b2840" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g>
+            <rect x="535" y="40" width="140" height="90" rx="8" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="605" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#8b2840">STAGE 4</text>
+            <text x="605" y="92" text-anchor="middle" font-size="12" fill="#3a342e">Fat in pancreas,</text>
+            <text x="605" y="108" text-anchor="middle" font-size="12" fill="#3a342e">insulin collapses</text>
+          </g>
+          <line x1="680" y1="85" x2="705" y2="85" stroke="#8b2840" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g>
+            <rect x="710" y="40" width="100" height="90" rx="8" fill="#1a1714" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="760" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#b85070">STAGE 5</text>
+            <text x="760" y="92" text-anchor="middle" font-size="12" fill="#f2ebe3">Type 2</text>
+            <text x="760" y="108" text-anchor="middle" font-size="12" fill="#f2ebe3">diabetes</text>
+          </g>
+          <text x="410" y="170" text-anchor="middle" font-size="11" font-style="italic" fill="#776e65">Most damage happens in stages 2–4, before any diagnosis. Reversibility falls the further you progress.</text>
+        </svg>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How fatty liver triggers the cascade</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Insulin doing its job pushes excess glucose into cells as fat — including, progressively, fat into the liver. About a third of people in the developed world now have fatty liver. The liver becomes yellow and enlarged. Crucially, fatty liver interferes with insulin's function, so insulin becomes less powerful — this is insulin resistance.</p>
+          <p class="prose">The pancreas compensates by cranking out more insulin. So you now have two compounding problems: insulin that doesn't work as well, plus a pancreas working overtime. Then fat is laid down in the pancreas itself — the very gland producing insulin. Eventually insulin production collapses and blood sugar can no longer be regulated. That's type 2 diabetes.</p>
+        </div>
+      </div>
+
+      <div class="caution">You can have fatty liver for about ten years and not know it. Standard blood tests may not flag it. This is why the disease is "silent" until much of the damage is done.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Reversibility & why catching it early matters</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Since 2013 Unwin has tracked hundreds of low-carb patients with baseline and follow-up data. The numbers are the case for early intervention: the further you progress, the lower the chance of remission.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">PRE-DIABETES</div>
+          <div class="pillar-answer">93% return to normal</div>
+          <div class="pillar-sub">Patients with pre-diabetes who go low-carb — and the result lasts for years on follow-up.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">EARLY T2D</div>
+          <div class="pillar-answer">73% return to normal</div>
+          <div class="pillar-sub">If type 2 diabetes is caught early and addressed with low-carb.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">5+ YEARS T2D</div>
+          <div class="pillar-answer">~50% return to normal</div>
+          <div class="pillar-sub">Wait five years before changing approach and your odds halve from the pre-diabetes baseline.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">DRUG-FREE REMISSIONS</div>
+          <div class="pillar-answer">157 patients</div>
+          <div class="pillar-sub">Number Unwin has personally helped into drug-free remission since starting in 2013.</div>
+        </div>
+      </div>
+
+      <div class="positive">A stitch in time. The reversibility window narrows the longer you progress. Pre-diabetes is where the leverage is highest — but even established T2D has meaningful remission rates with the right intervention.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>Mrs Jones: how Unwin's practice changed</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">For 25 years Unwin followed standard guidelines. He was paid in part on what percentage of his diabetic patients were on metformin — so taking patients off the drug actually cost him. He noticed two things: the health of his population was deteriorating, and prescribing six tablets a day didn't feel like success. Then came the patient who changed everything.</p>
+
+      <p class="prose">Mrs Jones (not her real name) had been on Unwin's books for over a decade with poorly-controlled diabetes. She stopped taking her metformin, which triggered an automatic letter asking her to come in. She came in furious.</p>
+
+      <div class="pullquote">
+        You think you're going to tell me off, don't you, Dr Unwin? Well, I've got news for you. I'm going to tell you off. In ten years, did you ever once tell me that bread was sugar? That breakfast cereals were sugar? This is schoolboy biology. You should have learned this when you were 16.
+        <span class="pullquote-attr">— "Mrs Jones," paraphrased from Unwin's account</span>
+      </div>
+
+      <p class="prose">She had learned online — from a community of around 40,000 people teaching each other how to do it — that cutting bread, rice and breakfast cereals worked. Her blood tests confirmed normal blood glucose with no medication. It was the first case of drug-free type 2 diabetes Unwin had ever seen in 25 years of practice.</p>
+
+      <p class="prose">He was scared but listening. Around the same month his wife Jen — a clinical health psychologist who studies hope as a clinical variable — bought a discounted copy of "Escape the Diet Trap" by Dr John Briffa. Everything Mrs Jones had said was in there, framed medically. Jen pushed: do one cheerful thing you really believe in before you retire.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The first 18 volunteers</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The other partners refused to fund it — low-carb wasn't respectable at the time. So Unwin, Jen and a nurse called Heather worked unpaid in the evenings. They recruited 18 volunteer patients. Twenty of them met every Monday night to learn how to cook and eat low-carb, together.</p>
+          <p class="prose">The first result: liver function tests improving by a third to a half within weeks, in patients Unwin had assumed had alcohol-related liver damage for ten years. Then weight dropped. Then blood pressure normalised — including Unwin's own, which he'd been hiding. Then HbA1c — average blood glucose over three months — fell dramatically. He calls this 2013, "the rest is history."</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>The teaspoon of sugar equivalent system</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin had ten minutes per consultation to explain to children, elderly patients and teachers why their food choices mattered. Grams of glucose meant nothing to most people. So he reworked the glycaemic load calculation into 4-gram teaspoons of sugar — a visual unit anyone can grasp.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">GI</span><span class="kv-val">Glycaemic index. Compares a single carb against pure glucose (=100). Doesn't account for portion size.</span>
+        <span class="kv-key">GL</span><span class="kv-val">Glycaemic load. Factors in the portion you actually eat — so watermelon (mostly water) scores low despite a high GI.</span>
+        <span class="kv-key">TSE</span><span class="kv-val">Unwin's "teaspoon of sugar equivalent." Glycaemic load translated into 4g teaspoons of sugar for clarity. Made his work go viral globally.</span>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Common foods, teaspoons-of-sugar equivalent</div>
+        <svg width="100%" viewBox="0 0 820 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Header -->
+          <text x="20" y="25" font-size="11" font-weight="700" fill="#8b2840">FOOD</text>
+          <text x="220" y="25" font-size="11" font-weight="700" fill="#8b2840">PORTION</text>
+          <text x="380" y="25" font-size="11" font-weight="700" fill="#8b2840">≈ TSP SUGAR</text>
+          <text x="540" y="25" font-size="11" font-weight="700" fill="#8b2840">VISUAL</text>
+          <line x1="20" y1="32" x2="800" y2="32" stroke="#8b2840" stroke-width="0.8"/>
+
+          <!-- Rows -->
+          <g font-size="13" fill="#3a342e">
+            <text x="20" y="58">Cornflakes (no added sugar)</text>
+            <text x="220" y="58">Standard bowl</text>
+            <text x="380" y="58" font-weight="700" fill="#8b2840">8</text>
+            <g transform="translate(540,48)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/><circle cx="39" cy="6" r="5" fill="#8b2840"/><circle cx="52" cy="6" r="5" fill="#8b2840"/><circle cx="65" cy="6" r="5" fill="#8b2840"/><circle cx="78" cy="6" r="5" fill="#8b2840"/><circle cx="91" cy="6" r="5" fill="#8b2840"/>
+            </g>
+            <line x1="20" y1="68" x2="800" y2="68" stroke="#ede9e4" stroke-width="0.5"/>
+
+            <text x="20" y="92">Baked potato (large)</text>
+            <text x="220" y="92">~200g</text>
+            <text x="380" y="92" font-weight="700" fill="#8b2840">9</text>
+            <g transform="translate(540,82)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/><circle cx="39" cy="6" r="5" fill="#8b2840"/><circle cx="52" cy="6" r="5" fill="#8b2840"/><circle cx="65" cy="6" r="5" fill="#8b2840"/><circle cx="78" cy="6" r="5" fill="#8b2840"/><circle cx="91" cy="6" r="5" fill="#8b2840"/><circle cx="104" cy="6" r="5" fill="#8b2840"/>
+            </g>
+            <line x1="20" y1="102" x2="800" y2="102" stroke="#ede9e4" stroke-width="0.5"/>
+
+            <text x="20" y="126">Boiled white rice</text>
+            <text x="220" y="126">150g</text>
+            <text x="380" y="126" font-weight="700" fill="#8b2840">10</text>
+            <g transform="translate(540,116)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/><circle cx="39" cy="6" r="5" fill="#8b2840"/><circle cx="52" cy="6" r="5" fill="#8b2840"/><circle cx="65" cy="6" r="5" fill="#8b2840"/><circle cx="78" cy="6" r="5" fill="#8b2840"/><circle cx="91" cy="6" r="5" fill="#8b2840"/><circle cx="104" cy="6" r="5" fill="#8b2840"/><circle cx="117" cy="6" r="5" fill="#8b2840"/>
+            </g>
+            <line x1="20" y1="136" x2="800" y2="136" stroke="#ede9e4" stroke-width="0.5"/>
+
+            <text x="20" y="160">Ripe banana (large)</text>
+            <text x="220" y="160">1 banana</text>
+            <text x="380" y="160" font-weight="700" fill="#8b2840">6</text>
+            <g transform="translate(540,150)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/><circle cx="39" cy="6" r="5" fill="#8b2840"/><circle cx="52" cy="6" r="5" fill="#8b2840"/><circle cx="65" cy="6" r="5" fill="#8b2840"/>
+            </g>
+            <line x1="20" y1="170" x2="800" y2="170" stroke="#ede9e4" stroke-width="0.5"/>
+
+            <text x="20" y="194">Chocolate bar</text>
+            <text x="220" y="194">Standard bar</text>
+            <text x="380" y="194" font-weight="700" fill="#8b2840">7.5</text>
+            <g transform="translate(540,184)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/><circle cx="39" cy="6" r="5" fill="#8b2840"/><circle cx="52" cy="6" r="5" fill="#8b2840"/><circle cx="65" cy="6" r="5" fill="#8b2840"/><circle cx="78" cy="6" r="5" fill="#8b2840"/><circle cx="91" cy="6" r="5" fill="#8b2840" fill-opacity="0.5"/>
+            </g>
+            <line x1="20" y1="204" x2="800" y2="204" stroke="#ede9e4" stroke-width="0.5"/>
+
+            <text x="20" y="228">Brown bread (small slice)</text>
+            <text x="220" y="228">1 slice</text>
+            <text x="380" y="228" font-weight="700" fill="#8b2840">3</text>
+            <g transform="translate(540,218)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/>
+            </g>
+            <line x1="20" y1="238" x2="800" y2="238" stroke="#ede9e4" stroke-width="0.5"/>
+
+            <text x="20" y="262">White bread (full loaf)</text>
+            <text x="220" y="262">whole loaf</text>
+            <text x="380" y="262" font-weight="700" fill="#8b2840">~12</text>
+            <g transform="translate(540,252)">
+              <circle cx="0" cy="6" r="5" fill="#8b2840"/><circle cx="13" cy="6" r="5" fill="#8b2840"/><circle cx="26" cy="6" r="5" fill="#8b2840"/><circle cx="39" cy="6" r="5" fill="#8b2840"/><circle cx="52" cy="6" r="5" fill="#8b2840"/><circle cx="65" cy="6" r="5" fill="#8b2840"/><circle cx="78" cy="6" r="5" fill="#8b2840"/><circle cx="91" cy="6" r="5" fill="#8b2840"/><circle cx="104" cy="6" r="5" fill="#8b2840"/><circle cx="117" cy="6" r="5" fill="#8b2840"/><circle cx="130" cy="6" r="5" fill="#8b2840"/><circle cx="143" cy="6" r="5" fill="#8b2840"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="note">The infographics are available from the Public Health Collaboration in 35 languages and are not copyrighted — Unwin actively encourages people to take, translate and share them.</div>
+
+      <div class="caution">Starchy carbs are not "sugar-free" because the label says zero sugar. Unwin's frame: <em>starch is glucose molecules holding hands</em>. Digestion breaks them apart and they become free glucose. The schoolboy experiment — chewing bread until it tastes sweet — proves amylase in saliva turns starch into sugar.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 07 -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>The one sugar cube of blood: why dose matters</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">A single fact Unwin uses to recalibrate people's sense of scale: a healthy adult has roughly five litres of blood. If your blood sugar is normal, the total glucose in your entire bloodstream is about one sugar cube.</p>
+
+      <div class="pullquote">
+        Glucose is vital — but toxic if you have too much. Your body controls it to within one sugar cube across five litres of blood. That's the precision your insulin is trying to maintain.
+        <span class="pullquote-attr">— Dr David Unwin</span>
+      </div>
+
+      <p class="prose">Set that against the eight teaspoons in a bowl of cornflakes or ten in a portion of rice. Insulin's job is to keep the blood pool at roughly one cube while you flood the system. When insulin works well you don't notice. When it doesn't — say you have type 2 diabetes — eating a whole banana can literally double Unwin's blood sugar. He feels ill.</p>
+
+      <div class="positive">This is why the absolute amount matters more than people realise. A normal blood glucose isn't a buffer — it's a tightly-defended setpoint. Every carb-heavy meal is a metabolic stress test.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 08 -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>The hidden-sugar audit: foods people think are healthy</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin's repeated frustration: the average person — including very intelligent, successful people — doesn't know the three macronutrients (protein, fat, carbohydrate) or that the marketing word "fruit" is often used to dress up what's effectively candy. A walk through the worst offenders.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">CORNFLAKES</span><span class="kv-val">No frosting, no added sugar — still 8 teaspoons of sugar per bowl. It's all starch converting to glucose.</span>
+        <span class="kv-key">BAKED POTATO</span><span class="kv-val">~9 teaspoons of sugar equivalent for a large potato. People assume zero.</span>
+        <span class="kv-key">BOILED RICE</span><span class="kv-val">10 teaspoons in 150g — Unwin says this single fact has astonished people worldwide.</span>
+        <span class="kv-key">RIPE BANANA</span><span class="kv-val">~6 teaspoons in one large ripe banana. Riper = more sugar.</span>
+        <span class="kv-key">WHITE BREAD LOAF</span><span class="kv-val">~12 sugar cubes per loaf. A single slice is ~0.5 cube of added sugar but doesn't account for wheat starch converting to glucose.</span>
+        <span class="kv-key">BROWN BREAD</span><span class="kv-val">A small slice is still ~3 teaspoons of sugar equivalent.</span>
+        <span class="kv-key">WHITE CHOCOLATE</span><span class="kv-val">Roughly 70–80% white sugar by weight (Unwin's recollection from a chocolate-making class in Peru — confirmed by host's spot-check).</span>
+        <span class="kv-key">MILK CHOCOLATE</span><span class="kv-val">Many teaspoons of sugar per bar. 90% dark chocolate, by comparison, is only ~2 teaspoons.</span>
+        <span class="kv-key">BARBECUE SAUCE</span><span class="kv-val">~30 sugar cubes in a standard bottle.</span>
+        <span class="kv-key">ORANGE JUICE</span><span class="kv-val">High in sugar — once juiced, the sugar hit is fast because the fibre matrix is gone.</span>
+        <span class="kv-key">DRIED-FRUIT SNACKS</span><span class="kv-val">60–70% sugar by weight (the Dragons' Den pitch the host references). "Made with fruit" is a marketing halo, not a health credential.</span>
+        <span class="kv-key">SMOOTHIES</span><span class="kv-val">Unwin: "fills me with rage" — the marketing implies health, the sugar load is often candy-level.</span>
+      </div>
+
+      <div class="caution">"Chocoholics" are usually addicted to sugar, not chocolate. Unwin's test: offer them 90% dark chocolate (only ~2 tsp sugar). If they refuse it as "too bitter," they're chasing the sugar, not the cocoa.</div>
+
+      <p class="prose">The deeper point: a typical day stacks sugar on sugar. Cereal for breakfast → glass of orange juice → mid-morning snack bar → muffin → apple → sandwich → cake or ice cream → chips or pizza for dinner. Sugar with sugar with sugar, almost no protein. "Where was the protein to grow you?"</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 09 -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>Reading labels & building a real-food plate</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Most people who do try to read labels make Unwin's specific error — they look at "sugar" alone. They miss the total carbohydrate, which converts to glucose just the same.</p>
+
+      <ul class="bullet-list">
+        <li>Don't look at "sugars" alone. Look at <strong>total carbohydrate</strong>. Every ~4g of carbohydrate is broadly one teaspoon of sugar equivalent.</li>
+        <li>UK labels: carbohydrate is listed separately from fibre — what's listed becomes sugar.</li>
+        <li>US labels: carbohydrate includes fibre, so you have to subtract fibre to estimate the absorbed portion.</li>
+        <li>Be suspicious of long ingredient lists and lots of preservatives — usually a UPF signal.</li>
+        <li>"Made with real fruit juice," "fruit," "natural" — marketing halos, not nutritional claims.</li>
+      </ul>
+
+      <p class="prose">Unwin's preferred frame is to talk about what to <em>add</em> rather than what to remove. For someone with insulin resistance or T2D:</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">START WITH</span><span class="kv-val">Protein. Chicken, eggs, fish — what's in the fridge? Have plenty.</span>
+        <span class="kv-key">ADD</span><span class="kv-val">Green vegetables. Fresh, frozen, salad — whatever you'll actually eat.</span>
+        <span class="kv-key">MAKE TASTY WITH</span><span class="kv-val">Full-fat mayo, butter, olive oil. Not barbecue sauce (which is essentially sugar syrup).</span>
+        <span class="kv-key">AIM FOR</span><span class="kv-val">Real food, not packets. "Russian roulette food out of packets."</span>
+      </div>
+
+      <p class="prose">On bread specifically: it depends. If you're young, lean, active and insulin-sensitive, brown bread is probably fine. If you have a developing belly or insulin resistance, even small slices are a problem. The honest answer is: experiment, ideally with a continuous glucose monitor for feedback.</p>
+
+      <div class="positive">Sprouted-grain bread and 100% whole-grain rye are commonly cited as the healthiest bread options (zero added sugar, high fibre) — but Unwin's qualifier is that "healthy" still depends on your individual insulin status.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>The hunger paradox & the keto "brain thing"</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">One of the first things Unwin's patients told him in 2013 — and one of the things he experienced himself — was the disappearance of hunger. This was confusing because the standard model says: eat less → be hungrier. The reverse turned out to be true.</p>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">The carb-hunger spiral</div>
+        <svg width="100%" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#8b2840"/>
+            </marker>
+          </defs>
+          <g>
+            <ellipse cx="100" cy="100" rx="80" ry="40" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="100" y="95" text-anchor="middle" font-size="12" fill="#3a342e">Eat carb-heavy</text>
+            <text x="100" y="111" text-anchor="middle" font-size="12" fill="#3a342e">food / biscuit</text>
+          </g>
+          <path d="M 180 90 Q 220 60 260 90" stroke="#8b2840" stroke-width="1.5" fill="none" marker-end="url(#arr2)"/>
+          <g>
+            <ellipse cx="340" cy="100" rx="80" ry="40" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="340" y="95" text-anchor="middle" font-size="12" fill="#3a342e">Blood sugar</text>
+            <text x="340" y="111" text-anchor="middle" font-size="12" fill="#3a342e">spikes up</text>
+          </g>
+          <path d="M 420 90 Q 460 60 500 90" stroke="#8b2840" stroke-width="1.5" fill="none" marker-end="url(#arr2)"/>
+          <g>
+            <ellipse cx="580" cy="100" rx="80" ry="40" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="580" y="95" text-anchor="middle" font-size="12" fill="#3a342e">Insulin floods,</text>
+            <text x="580" y="111" text-anchor="middle" font-size="12" fill="#3a342e">overshoots</text>
+          </g>
+          <path d="M 660 110 Q 700 140 660 170" stroke="#8b2840" stroke-width="1.5" fill="none" marker-end="url(#arr2)"/>
+          <g>
+            <ellipse cx="580" cy="170" rx="80" ry="22" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="580" y="175" text-anchor="middle" font-size="12" fill="#3a342e">Blood sugar crashes low</text>
+          </g>
+          <path d="M 500 175 L 180 175" stroke="#8b2840" stroke-width="1.5" fill="none" marker-end="url(#arr2)"/>
+          <g>
+            <ellipse cx="100" cy="170" rx="80" ry="22" fill="#fbeef2" stroke="#8b2840" stroke-width="1.5"/>
+            <text x="100" y="175" text-anchor="middle" font-size="12" fill="#3a342e">Hunger / craving returns</text>
+          </g>
+          <path d="M 100 148 L 100 140" stroke="#8b2840" stroke-width="1.5" fill="none" marker-end="url(#arr2)"/>
+        </svg>
+      </div>
+
+      <p class="prose">Unwin's own experience: he thought his shaky moments were panic attacks. They were reactive hypoglycaemia — low blood sugar following the insulin overshoot from his biscuits. The answer his brain offered? More biscuits. Round and round.</p>
+
+      <p class="prose">When patients went low-carb, the loop broke. They weren't hungry. They started skipping breakfast naturally — not as a discipline, but because the urge wasn't there. Unwin himself dropped breakfast and his belly went away.</p>
+
+      <div class="pullquote">
+        The more carbs you eat, the hungrier you become. Once you escape that loop, foods that used to be your kryptonite stop being food at all. It feels like a superpower.
+        <span class="pullquote-attr">— Paraphrased from Unwin and the host</span>
+      </div>
+
+      <p class="prose">The host adds his own observation: on keto, the cinnamon roll concession stand stops being tempting. The signal just isn't there. Christmas cake, biscuits, buns — for both Unwin and the host, lifelong favourites became, in their words, "no longer food."</p>
+
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">11</span><h2>Ultra-processed food addiction</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin's wife Jen — a clinical health psychologist — works on ultra-processed food addiction. Her estimate, from her published work: roughly 14% of the population has some aspect of UPF addiction. The signature isn't gluttony; it's intelligent people doing things that harm them and concealing it.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Jen's own story</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Jen was a "boomerang dieter" for decades — big to small to big. She'd make tray bakes "for the children" and eat the lot. Unwin would throw food out, confront her, get into arguments. He framed it as a weight problem. Both of them, despite his medical training and her psychology training, missed what it actually was: addiction. The frame only clicked recently.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The bleach-on-bread patient</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">A wealthy 55-year-old businessman with T2D, both knees destroyed by his weight. Anaesthetists wouldn't operate because his blood sugar control was so poor. He'd lose weight on low-carb then regain it. After four years his wife finally told Unwin what she'd witnessed.</p>
+          <p class="prose">Her husband was getting up at 4am to eat bread from the fridge. She started binning unfinished bread; he raided the bin. She started pouring liquid detergent on bread before binning it; he ate it anyway. Eventually she sprayed bleach on the bread and left the bleach can visible next to the bin as deterrent. This is an intelligent man, a successful business owner — concealing this from his wife and from his doctor for years.</p>
+          <p class="prose">Unwin's working solution combined three tools: a continuous glucose monitor for real-time feedback, a low dose of a GLP-1 drug (Ozempic-class) to reduce craving "noise" in his head, and ongoing low-carb support. He couldn't moderate but he could abstain. He had his knee operation. Maintenance is lifelong.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The patient who lost two toes</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Another patient achieved drug-free remission, then disappeared. Came back with two dead toes — diabetes had cut the blood supply — and had to have part of his foot amputated. Unwin's frame: "We trivialise this. We call it carb creep, as if it doesn't matter. He ended up with half his foot taken off. That's not carb creep — that's something far more sinister."</p>
+        </div>
+      </div>
+
+      <div class="positive"><strong>Step one if you suspect addiction is your problem: honesty.</strong> Even if you can't tell anyone else, be honest with yourself. Step two: be specific about which foods. Step three: have a plan for abstinence (because for an addictive food, "just one" doesn't work). Step four (optional): share with someone who loves you.</div>
+
+      <div class="caution">Unwin took a year to give up biscuits and weaned himself through chocolate ginger → digestive plain → oat biscuits → almonds. He calls it "pathetic" in hindsight — his wife Jen is a cold-turkey believer. There's no single right method. The point is having a plan.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">12</span><h2>The GRIN model: Jen Unwin's behaviour-change framework</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Jen Unwin spent two years stripping down CBT to its functional core. What survived is a four-step published model called GRIN, used in nearly every one of David's consultations. The goal: replace blame and guilt with engagement in a better future.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">G — GOALS</div>
+          <div class="pillar-answer">What does a year of "going well" actually look like?</div>
+          <div class="pillar-sub">Specific. Not "I want to lose weight" — what difference would that make to you? What specifically?</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">R — RESOURCES</div>
+          <div class="pillar-answer">What do you already bring?</div>
+          <div class="pillar-sub">Intelligence, friends, past wins, expertise in yourself. You're not starting from zero.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">I — INCREMENTS</div>
+          <div class="pillar-answer">What's a small, realistic step today?</div>
+          <div class="pillar-sub">Tiny moves toward the goal — not the whole climb at once.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">N — NOTICING</div>
+          <div class="pillar-answer">What do you notice when it's going well?</div>
+          <div class="pillar-sub">The feedback loop. Energy, mood, identity, self-trust — name what's working.</div>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        Get a doctor's attention by saying it's so bad, so so bad — and the result is a miserable two-hour surgery. But even people having a terrible time have hope if you can find it. They have goals if you can discuss them.
+        <span class="pullquote-attr">— Dr David Unwin</span>
+      </div>
+
+      <p class="prose">Why the model works on Unwin's own admission: when he stopped being the expert telling patients what to do and instead drew out what mattered to <em>them</em>, his consultations stopped being grim. Motivation, not information, is the limiting factor. Most patients already know broadly what's good for them.</p>
+
+      <div class="note">The host's own example of "increments": instead of "go to the gym every day" (which collapsed when he missed one day in month five), he reframed the goal as <em>consistency</em>. He also built a WhatsApp group with ten friends, where the least consistent person each month gets evicted. Four years running, no eviction.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 13 -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">13</span><h2>Continuous glucose monitors as the "cavalry"</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin treats CGMs as a turning point in nutrition literacy: "I see them as the cavalry coming over the hill — because we can't be fooled much longer." Once you've watched your blood glucose spike from something the marketing told you was healthy, you can't unsee it.</p>
+
+      <ul class="bullet-list">
+        <li>Wear one for two weeks. Eat your normal diet. Watch the spikes.</li>
+        <li>You'll find foods you assumed were neutral are doing something dramatic — ketchup, white rice, smoothies, "healthy" cereals.</li>
+        <li>Stress also spikes blood sugar. Watch how social or work pressure shows up on the trace.</li>
+        <li>Unwin's own trace, off-camera with the host, was flat — he doesn't eat foods that spike him.</li>
+        <li>If a relative would benefit and they have a smartphone, a CGM is a more useful gift than another ornament.</li>
+      </ul>
+
+      <div class="positive">Unwin frames CGMs as a behaviour-change tool more than a medical one. The point isn't the data — it's that you can't argue with what you see on your own phone.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 14 -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">14</span><h2>Supplements: a minimal stack</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin's default is real food first. He's interested in regenerative agriculture and notes that crop nutrient density has dropped substantially over a century — particularly zinc and magnesium — because of repeated nitrogen-only fertilisation and soil depletion.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">MAGNESIUM</span><span class="kv-val">Hard to get enough from modern diet. Absorption falls with age and is interfered with by certain drugs (especially acid-suppressors). For Unwin personally it eliminated muscle cramps and improved sleep.</span>
+        <span class="kv-key">→ CITRATE</span><span class="kv-val">More laxative — useful if you tend toward constipation.</span>
+        <span class="kv-key">→ GLYCINATE / THREONATE</span><span class="kv-val">Crosses the blood-brain barrier — better for sleep and mood. Won't help constipation.</span>
+        <span class="kv-key">VITAMIN D</span><span class="kv-val">Most people don't get enough sunlight; supplementation is widely sensible. Sunshine is preferable where possible.</span>
+        <span class="kv-key">SERUM MAGNESIUM</span><span class="kv-val">Doesn't reflect real status because most magnesium is intracellular. Easier to just try supplementing and notice the effect.</span>
+      </div>
+
+      <div class="caution">It's possible to over-supplement, particularly with fat-soluble vitamins like vitamin D. Unwin frequently sees patients arrive with carrier bags of bottles. A short evidence-led stack beats stacking everything you read about.</div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>The cow story — why magnesium matters</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Jen surprised David with a field of cows in Lancaster — pick any one as a gift, the farmer had been prepaid. The farmer warned: he'd lost 15 cows that year to "the staggers" because the grass had become so magnesium-depleted the cows were having fatal seizures. He wouldn't release the cow unless David promised to supplement magnesium.</p>
+          <p class="prose">Around the same week David had a patient repeatedly admitted to ICU with seizures of unknown cause. No brain tumour. Eventually he joined the dots: severe magnesium deficiency caused by the patient's medication. The first time he'd ever taken magnesium seriously as a clinical issue.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 15 -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">15</span><h2>The string test, healthspan & the cost of doing nothing</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">A free metabolic-health check anyone can do at home, plus the wider macro picture of where lifespan and healthspan are diverging — particularly in the UK and US.</p>
+
+      <div class="positive"><strong>The string test:</strong> a piece of string the length of your height, cut in half, should comfortably reach around the widest part of your belly. If it doesn't, your waist is more than half your height — a recognised metabolic risk marker. Belly fat is more concerning than fat on arms or legs because of where insulin resistance deposits it.</div>
+
+      <div class="kv-grid">
+        <span class="kv-key">UK HEALTHSPAN</span><span class="kv-val">Healthy life expectancy in the UK has fallen by roughly 2 years over the last decade. Lifespan is roughly flat — so people are spending more years sick.</span>
+        <span class="kv-key">UK SICK-YEARS</span><span class="kv-val">~23 years at end of life in poor health (ONS / Health Foundation, 2024–2026 data the host references).</span>
+        <span class="kv-key">UK TAX BURDEN</span><span class="kv-val">Government figures the host cites: every UK taxpayer pays ~£7,000/year extra tax for the consequences of UPF — about two-thirds of which is lost revenue from people too unwell to work.</span>
+        <span class="kv-key">US HEALTHSPAN</span><span class="kv-val">Largest healthspan-to-lifespan gap on Earth per the figures the host reads out. Premature death rate roughly twice the comparable-country average.</span>
+      </div>
+
+      <div class="caution">These macro statistics are read by the host from research compilations during the episode, not from Unwin's own data. They're broadly consistent with published ONS / Health Foundation figures but should be treated as directional rather than precise.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 16 -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">16</span><h2>Diet and cancer: the associational picture</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The host reads out a string of statistics on diet–cancer associations, prompted by a friend's recent breast cancer diagnosis. Unwin's broader point: after smoking, diet is the next commonest cause of cancer, and prevention deserves the same focus as treatment.</p>
+
+      <div class="caution"><strong>Important framing.</strong> All of the figures below come from observational / epidemiological studies. They describe statistical associations, not proven causation. Real causation in cancer is multifactorial — genetics, environment, age, smoking, alcohol, infection, and chance all matter. These figures inform risk thinking; they do not say "sugary drinks cause cancer."</div>
+
+      <ul class="bullet-list">
+        <li>A large French study associated ~100ml/day of sugary drinks (about a third of a can of soda) with a roughly 18–20% higher overall cancer risk in observational data.</li>
+        <li>Women consuming two or more dietary drinks daily had over double the risk of early-onset colorectal cancer compared to those drinking less than one a week.</li>
+        <li>High intake of sugar-sweetened beverages has been linked to a ~78% higher risk of oestrogen-dependent endometrial cancer in women.</li>
+        <li>Drinking ~20oz of sugary soda daily was linked to telomere shortening equivalent to ~4.6 years of additional biological ageing.</li>
+        <li>Chronic hyperinsulinaemia (persistently high insulin) can inhibit apoptosis — the programmed self-destruction of damaged or cancerous cells — a plausible mechanism for the association.</li>
+        <li>Fructose is processed in the liver and converted to lipids; some research suggests certain tumours can use these lipids to build cell membranes.</li>
+        <li>Diets high in added sugar chronically elevate C-reactive protein (CRP), an inflammation marker correlated with tumour progression and metastasis.</li>
+      </ul>
+
+      <div class="pullquote">
+        We talk so much about treating cancer. But for that patient, a diagnosis is a life sentence of uncertainty and fear. If we know diet matters, are we trying hard enough at prevention?
+        <span class="pullquote-attr">— Dr David Unwin</span>
+      </div>
+
+      <div class="note">The host's "premortem" framing: imagine being diagnosed with a serious illness, and the doctor telling you your lifestyle choices contributed. In that imagined moment, is any specific sugary drink or snack worth it? It's a tool for re-pricing today's decisions against future regret.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 17 -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">17</span><h2>What changed for Unwin personally (13 years on)</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Unwin started his own low-carb experiment in 2013 alongside his patients. The downstream effects, in his own description:</p>
+
+      <ul class="bullet-list">
+        <li>Liver function tests improved within weeks (his and his patients').</li>
+        <li>Weight dropped — his belly went away.</li>
+        <li>Long-standing moderate hypertension (which he'd hidden by avoiding doctors himself) returned to low-normal — he started feeling dizzy standing up before he realised why.</li>
+        <li>HbA1c — average blood glucose over three months — fell dramatically across the patient cohort.</li>
+        <li>Sleep need dropped by about an hour per day. He stopped needing the daily lunchtime nap in his office.</li>
+        <li>Mental clarity improved — he describes it as "more mental horsepower," like being a younger man.</li>
+        <li>Hunger between meals largely disappeared.</li>
+      </ul>
+
+      <div class="pullquote">
+        Each of us is on a journey. Be clear about your goals. Notice what works for you. See yourself as an experiment — don't be frightened of experimenting, but measure something. Then you'll know how you're doing.
+        <span class="pullquote-attr">— Dr David Unwin</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 18 -->
+  <div class="section" id="s18">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">18</span><h2>Sources & Further Reading</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">All books, papers, researchers, organisations and tools named in the conversation.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">BOOK</span><span class="kv-val"><em>Escape the Diet Trap</em> — Dr John Briffa. The book Jen Unwin bought in a supermarket discount bin in 2012 that catalysed David's shift to a low-carb approach.</span>
+        <span class="kv-key">BOOK</span><span class="kv-val">Jen Unwin has published books on ultra-processed food addiction (the conversation references "a book and many papers" without giving the exact title; her work on food addiction and hope-based behaviour change is the underpinning of the GRIN model).</span>
+        <span class="kv-key">RESEARCHER</span><span class="kv-val">Professor Roy Taylor — Newcastle University. Originator of the "long silent scream" / fatty-liver model of T2D progression; pioneer of the dietary-remission research Unwin builds on.</span>
+        <span class="kv-key">RESEARCHER</span><span class="kv-val">Dr George Reed — close friend of Unwin's, works in nutritional psychiatry.</span>
+        <span class="kv-key">RESEARCHER</span><span class="kv-val">Dr Iain Campbell — University of Edinburgh. Working on ketogenic interventions for bipolar disorder.</span>
+        <span class="kv-key">FRAMEWORK</span><span class="kv-val">The GRIN model (Goals, Resources, Increments, Noticing) — Jen Unwin's published distillation of CBT for behaviour change in clinical settings.</span>
+        <span class="kv-key">TOOL</span><span class="kv-val">"Teaspoon of Sugar Equivalent" infographics — Dr David Unwin's redrawing of glycaemic load into 4g sugar-cube units. Available in 35 languages via the Public Health Collaboration. Not copyrighted; free to use.</span>
+        <span class="kv-key">CHARITY</span><span class="kv-val">The Public Health Collaboration (UK) — co-founded by David Unwin and Dr Rangan Chatterjee a decade ago. 16 founding clinicians. Hosts conferences, publishes free clinical resources.</span>
+        <span class="kv-key">RESEARCHER</span><span class="kv-val">Dr Rangan Chatterjee — co-founder of the Public Health Collaboration with Unwin.</span>
+        <span class="kv-key">FIGURE</span><span class="kv-val">Sir David Attenborough — Unwin's choice as humanity's ambassador to a more intelligent species (closing question), citing biodiversity and sustainable agriculture.</span>
+        <span class="kv-key">SOCIAL</span><span class="kv-val">@lowcarbGP — David Unwin's X / Twitter handle, where the teaspoon-of-sugar infographics are circulated.</span>
+        <span class="kv-key">DRUG CLASS</span><span class="kv-val">GLP-1 agonists (Ozempic / semaglutide and related). Unwin uses low-dose GLP-1s in combination with low-carb and CGM feedback for patients with significant UPF addiction.</span>
+        <span class="kv-key">DEVICES</span><span class="kv-val">Continuous glucose monitors (CGMs). Mentioned generically as widely available consumer tools; Unwin wears one and uses them clinically.</span>
+        <span class="kv-key">STATS SOURCES</span><span class="kv-val">UK Office for National Statistics (ONS) and the Health Foundation — sources the host cites for UK healthspan figures.</span>
+        <span class="kv-key">METRIC</span><span class="kv-val">HbA1c (haemoglobin A1c) — average blood glucose over the preceding ~3 months. The primary outcome Unwin tracks for diabetes remission.</span>
+      </div>
+
+      <div class="note">Unwin's own published clinical work — built from real-world data on patients allocated to him by the NHS, not a cherry-picked cohort — is the empirical backbone of much of the conversation. Specific paper citations weren't given in the transcript; his publication list is searchable under his name on PubMed.</div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
