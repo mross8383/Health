@@ -28,6 +28,7 @@
     --rose: #a8456b;--rose-light: #c66890;--rose-glow: rgba(168,69,107,0.1);
     --burgundy: #8b2840;--burgundy-light: #b85070;--burgundy-glow: rgba(139,40,64,0.1);
     --burgundy: #7a2e3a;--burgundy-light: #b05566;--burgundy-glow: rgba(122,46,58,0.1);
+    --bakri: #2b59c3;--bakri-light: #5b82e0;--bakri-glow: rgba(43,89,195,0.1);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
@@ -61,6 +62,7 @@
   .card-inchauspe { border-color: rgba(168,69,107,.25); background: #1a0d13; }.card-inchauspe:hover { border-color: var(--rose-light); box-shadow: 0 5px 20px rgba(168,69,107,.15); }.card-inchauspe::before { background: var(--rose-glow); }
   .card-unwin { border-color: rgba(139,40,64,.25); background: #1a0c10; }.card-unwin:hover { border-color: var(--burgundy-light); box-shadow: 0 5px 20px rgba(139,40,64,.15); }.card-unwin::before { background: var(--burgundy-glow); }
   .card-candow { border-color: rgba(122,46,58,.25); background: #1a0d10; }.card-candow:hover { border-color: var(--burgundy-light); box-shadow: 0 5px 20px rgba(122,46,58,.15); }.card-candow::before { background: var(--burgundy-glow); }
+  .card-bakri { border-color: rgba(43,89,195,.25); background: #0e1424; }.card-bakri:hover { border-color: var(--bakri-light); box-shadow: 0 5px 20px rgba(43,89,195,.15); }.card-bakri::before { background: var(--bakri-glow); }
   .icon-teal{background:var(--teal-glow);border:1px solid rgba(0,180,166,.25);}
   .icon-green{background:var(--green-glow);border:1px solid rgba(45,106,45,.3);}
   .icon-amber{background:var(--amber-glow);border:1px solid rgba(196,120,32,.3);}
@@ -78,6 +80,7 @@
   .icon-rose { background: var(--rose-glow); border: 1px solid rgba(168,69,107,.3); }
   .icon-burgundy { background: var(--burgundy-glow); border: 1px solid rgba(139,40,64,.3); }
   .icon-burgundy { background: var(--burgundy-glow); border: 1px solid rgba(122,46,58,.3); }
+  .icon-bakri { background: var(--bakri-glow); border: 1px solid rgba(43,89,195,.3); }
   .card-text{flex:1;}
   .card-guest{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px;}
   .text-teal{color:var(--teal);}.text-green{color:#7dc87d;}.text-amber{color:var(--amber-light);}
@@ -90,6 +93,7 @@
   .text-rose { color: var(--rose-light); }
   .text-burgundy { color: var(--burgundy-light); }
   .text-burgundy { color: var(--burgundy-light); }
+  .text-bakri { color: var(--bakri-light); }
   .card-title{font-family:'DM Serif Display',serif;font-size:15.5px;color:var(--text-bright);margin-bottom:2px;line-height:1.2;}
   .card-desc{font-size:10.5px;color:var(--text-dim);line-height:1.5;}
   .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
@@ -111,6 +115,7 @@
   .tag-rose { background: rgba(168,69,107,.12); color: var(--rose-light); border: 1px solid rgba(168,69,107,.25); }
   .tag-burgundy {background: rgba(139,40,64,.12);color: var(--burgundy-light);border: 1px solid rgba(139,40,64,.25);}
   .tag-burgundy { background: rgba(122,46,58,.12); color: var(--burgundy-light); border: 1px solid rgba(122,46,58,.25); }
+  .tag-bakri { background: rgba(43,89,195,.12); color: var(--bakri-light); border: 1px solid rgba(43,89,195,.25); }
   .card-arrow{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s;}
   .arrow-teal{background:rgba(0,180,166,.1);}.arrow-green{background:rgba(45,106,45,.15);}.arrow-amber{background:rgba(196,120,32,.12);}
   .arrow-plum{background:rgba(123,45,139,.12);}.arrow-forest{background:rgba(46,107,46,.12);}
@@ -122,6 +127,7 @@
   .arrow-rose { background: rgba(168,69,107,.12); }
   .arrow-burgundy { background: rgba(139,40,64,.12); }
   .arrow-burgundy { background: rgba(122,46,58,.12); }
+  .arrow-bakri { background: rgba(43,89,195,.12); }
   .card:hover .card-arrow{transform:translateX(3px);}
   .card-arrow svg{width:10px;height:10px;}
   .divider{width:40px;height:1px;background:rgba(255,255,255,.1);margin:0 auto 24px;}
@@ -206,10 +212,15 @@
     <a class="card card-candow" href="candow-creatine.html">
       <div class="card-inner"><div class="card-icon icon-burgundy">⚡</div><div class="card-text"><div class="card-guest text-burgundy">Dr. Darren Candow · Diary of a CEO</div><div class="card-title">Creatine Reference</div><div class="card-desc">The five myths, dosing for muscle, bone and brain, monohydrate vs newer forms, micro-dosing and the methyl-scavenger jitters, sleep-deprivation and stress dosing, inflammation, and the early evidence on Alzheimer's, mood and fat loss.</div><div class="card-tags"><span class="card-tag tag-burgundy">Creatine</span><span class="card-tag tag-burgundy">Dosing</span><span class="card-tag tag-burgundy">Brain</span><span class="card-tag tag-burgundy">Bone</span></div></div><div class="card-arrow arrow-burgundy"><svg viewBox="0 0 24 24" fill="none" stroke="#b05566" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
     </a>
-    
+
+    <a class="card card-bakri" href="bakri-peptides.html">
+      <div class="card-inner"><div class="card-icon icon-bakri">🧬</div><div class="card-text"><div class="card-guest text-bakri">Dr. Abud Bakri · Huberman Lab</div><div class="card-title">Peptides: Science, Uses &amp; Safety</div><div class="card-desc">BPC-157 origins and safety, GLP-1 agonists, the pineal/thymic bioregulators (pinealon, epitalon), thymosin α1 and TB-500, growth hormone secretagogues, GHK-Cu copper peptide, and how peptide sourcing and legality actually work.</div><div class="card-tags"><span class="card-tag tag-bakri">BPC-157</span><span class="card-tag tag-bakri">GLP-1s</span><span class="card-tag tag-bakri">Bioregulators</span><span class="card-tag tag-bakri">Sourcing</span></div></div><div class="card-arrow arrow-bakri"><svg viewBox="0 0 24 24" fill="none" stroke="#5b82e0" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+    </a>    
+
+
   </div>
   <footer class="footer">
-    Distilled from long-form podcast conversations including the Diary of a CEO and On Purpose with Jay Shetty.<br>
+    Distilled from long-form podcast conversations including the Diary of a CEO, Huberman Lab and On Purpose with Jay Shetty.<br>
     These guides represent the experts' interpretation of scientific literature — not medical advice.
   </footer>
 </div>
