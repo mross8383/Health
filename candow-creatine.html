@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Darren Candow – Creatine Reference</title>
+
+<!-- GoatCounter analytics — tracks page views, referrers, country, browser. Cookieless, no banner needed. -->
+<script data-goatcounter="https://mross83.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<!-- FONT IMPORT -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     COLOUR VARIABLES — burgundy (#7a2e3a)
+     ============================================================ */
+  :root {
+    --bg: #f4f2ef;
+    --bg-card: #ffffff;
+    --bg-dark: #19130f;
+
+    --accent: #7a2e3a;
+    --accent-light: #b05566;
+    --accent-pale: #fbf0f2;
+    --accent-dim: rgba(122,46,58,0.1);
+
+    --graphite: #3a342e;
+    --graphite-pale: #ede9e4;
+    --sage: #5a6b4e;
+    --sage-pale: #ecf0e7;
+    --sage-dim: rgba(90,107,78,0.12);
+    --crimson: #8c2c2c;
+    --crimson-pale: #fdecec;
+
+    --text: #1a1714;
+    --text-mid: #3a342e;
+    --text-dim: #776e65;
+    --border: rgba(122,46,58,0.14);
+  }
+
+  /* ============================================================
+     BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #main { margin: 0 auto; max-width: 900px; padding: 0 0 80px; }
+
+  /* BACK BUTTON */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin: 20px 48px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.13); color: #111; }
+  .back-btn svg { width: 14px; height: 14px; }
+
+  /* HERO */
+  #hero {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(122,46,58,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(90,107,78,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(176,85,102,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  #hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    color: #f2ebe3;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 580px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  #hero h1 em { color: var(--accent-light); font-style: italic; font-weight: 400; }
+  #hero p { color: rgba(255,255,255,0.4); font-size: 13.5px; max-width: 580px; margin-bottom: 26px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    padding: 3px 11px;
+    border: 1px solid rgba(176,85,102,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  /* SECTIONS */
+  .section { border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--bg);
+  }
+  .section-header:hover { background: var(--accent-pale); }
+  .section-header-left { display: flex; align-items: center; gap: 16px; }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--bg-dark);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    display: none;
+    padding: 0 48px 38px;
+    animation: fadeIn 0.22s ease;
+    background: var(--bg);
+  }
+  .section-body.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SUBSECTIONS */
+  .subsection {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    overflow: hidden;
+  }
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .subsection-header:hover { background: var(--accent-pale); }
+  .subsection-header h3 { font-size: 13.5px; font-weight: 600; color: var(--bg-dark); font-family: 'Inter', sans-serif; }
+  .subsection-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .subsection-body.open { display: block; }
+
+  /* CONTENT BLOCKS */
+  .prose { margin: 12px 0; color: var(--text-mid); font-size: 13.5px; line-height: 1.7; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .pullquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--graphite);
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 20px;
+    margin: 18px 0;
+  }
+  .pullquote-attr {
+    display: block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bullet-list { list-style: none; margin: 10px 0; }
+  .bullet-list li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .bullet-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 14px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: var(--accent-pale);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .kv-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .kv-val { font-size: 13px; color: var(--text-mid); }
+
+  .note {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--sage-pale);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--sage);
+    line-height: 1.55;
+  }
+  .caution {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--crimson-pale);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--crimson);
+    line-height: 1.55;
+  }
+  .positive {
+    margin: 10px 0;
+    padding: 9px 13px;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+
+  .diagram-wrap {
+    margin: 18px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .diagram-label {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  svg text { font-family: 'Inter', sans-serif; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .pillar-card {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    padding: 16px 14px;
+  }
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent-light);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2ebe3;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .pillar-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    #hero, .section-header, .section-body { padding-left: 24px; padding-right: 24px; }
+    .back-btn { margin: 16px 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    #hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <!-- BACK BUTTON -->
+  <a class="back-btn" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Health Reference Library
+  </a>
+
+  <!-- HERO -->
+  <section id="hero">
+    <h1>Dr. Darren Candow<br><em>Creatine</em><br>Reference Guide</h1>
+    <p>A creatine researcher (kinesiology PhD; he cites 120+ published papers and 30–40 studies from his own lab) walks through the molecule, the five persistent myths, and how dosing shifts across muscle, bone and brain. The bulk of this is mainstream exercise science; a few claims that run ahead of the evidence are flagged inline.</p>
+    <div class="hero-tags">
+      <span class="tag">Creatine</span>
+      <span class="tag">Muscle</span>
+      <span class="tag">Bone</span>
+      <span class="tag">Brain</span>
+      <span class="tag">Dosing</span>
+    </div>
+  </section>
+
+  <!-- ============================================================ 01 -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">01</span><h2>The Researcher &amp; The Molecule</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Candow's stated mission is to help people live longer free of disease, with a focus on resistance training and nutrition. He came to creatine by accident: his master's work was on the amino acid glutamine, which he concluded did little for body composition in healthy young people, while a colleague's creatine subjects kept getting bigger, stronger and faster. He switched focus to creatine and healthy ageing.</p>
+
+      <p class="prose">Creatine is a natural metabolite, first identified in 1832. The body synthesises roughly 1–3 grams a day — but only in the liver and brain, <em>not</em> in skeletal muscle. Despite that, about 95% of the body's creatine is stored in skeletal muscle. Creatine made in the liver is transported through the blood to the muscles; creatine made in the brain largely stays there.</p>
+
+      <p class="prose">Its job is energetic. Adenosine triphosphate (ATP) is the energy currency of every cell. During high-intensity effort — sprinting, lifting, a World Cup match — ATP stores get depleted fast, and creatine donates a phosphate to regenerate them.</p>
+
+      <div class="pullquote">
+        If ATP is Batman, creatine is Robin — the sidekick that sacrifices itself to keep the cell's energy currency from running dry.
+        <span class="pullquote-attr">— Dr. Darren Candow (paraphrased)</span>
+      </div>
+
+      <div class="kv-grid">
+        <span class="kv-key">SYNTHESISED IN</span><span class="kv-val">Liver and brain only (~1–3 g/day)</span>
+        <span class="kv-key">STORED IN</span><span class="kv-val">~95% in skeletal muscle</span>
+        <span class="kv-key">DIET SOURCES</span><span class="kv-val">Red meat, seafood, poultry — animal flesh only</span>
+        <span class="kv-key">ROLE</span><span class="kv-val">Regenerates ATP during high-intensity / anaerobic effort</span>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Where Creatine Is Made vs. Where It's Used</div>
+        <svg width="100%" viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="45" width="150" height="60" rx="8" fill="none" stroke="#7a2e3a" stroke-width="2"/>
+          <text x="105" y="72" text-anchor="middle" font-size="14" fill="#7a2e3a" font-weight="600">Liver + Brain</text>
+          <text x="105" y="92" text-anchor="middle" font-size="11" fill="#776e65">make ~1–3 g/day</text>
+
+          <line x1="180" y1="75" x2="320" y2="75" stroke="#b05566" stroke-width="2" stroke-dasharray="5,4"/>
+          <polygon points="320,75 310,70 310,80" fill="#b05566"/>
+          <text x="250" y="65" text-anchor="middle" font-size="10" fill="#776e65">via blood</text>
+
+          <rect x="320" y="45" width="170" height="60" rx="8" fill="#fbf0f2" stroke="#7a2e3a" stroke-width="2"/>
+          <text x="405" y="72" text-anchor="middle" font-size="14" fill="#7a2e3a" font-weight="600">Skeletal Muscle</text>
+          <text x="405" y="92" text-anchor="middle" font-size="11" fill="#776e65">stores ~95% — makes none</text>
+
+          <rect x="560" y="20" width="230" height="50" rx="8" fill="none" stroke="#5a6b4e" stroke-width="2"/>
+          <text x="675" y="42" text-anchor="middle" font-size="12" fill="#5a6b4e" font-weight="600">Diet: meat / seafood</text>
+          <text x="675" y="59" text-anchor="middle" font-size="10" fill="#776e65">tops up stores</text>
+
+          <rect x="560" y="82" width="230" height="50" rx="8" fill="none" stroke="#5a6b4e" stroke-width="2"/>
+          <text x="675" y="104" text-anchor="middle" font-size="12" fill="#5a6b4e" font-weight="600">Supplement</text>
+          <text x="675" y="121" text-anchor="middle" font-size="10" fill="#776e65">tops up stores</text>
+
+          <line x1="490" y1="75" x2="555" y2="50" stroke="#5a6b4e" stroke-width="1.5"/>
+          <line x1="490" y1="80" x2="555" y2="105" stroke="#5a6b4e" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <p class="prose"><strong>Who is short on creatine?</strong> A rare genetic population cannot synthesise it at all and requires supplementation. The other group is vegans and vegetarians: their diet contains no creatine (it is found only in animal flesh), so although they still synthesise some endogenously, they respond more strongly than anyone to supplementation. Candow also notes that ancestral, meat-heavy diets likely delivered far more dietary creatine than most modern diets — getting ~3 g from food alone means eating a lot of meat.</p>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 02 -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">02</span><h2>The Five Myths</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Candow argues five persistent myths keep people — especially women — from taking creatine. Uptake is still low (he cites figures of roughly 3% of women and somewhat higher in men).</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Myth 1 — "Creatine damages your kidneys"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The confusion is a measurement artefact. Creatine is stored as creatine but broken down to <em>creatinine</em>, which is what shows up on a blood panel — right next to eGFR (estimated glomerular filtration rate), a marker of kidney function. Supplementers often show slightly elevated creatinine, which can make filtration rate look lower, prompting a doctor to say "stop creatine." When they re-test off creatine, kidney markers read normal. Candow calls it a false positive roughly 99 times out of 100, and notes randomised controlled trials over several years show no kidney harm. Creatinine can also rise from a high-meat diet, mild dehydration or exercise.</p>
+          <div class="note">Practical takeaway: tell your doctor you supplement creatine before any blood work, so an elevated creatinine reading isn't misread.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Myth 2 — "Creatine makes you retain water / bloat"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Partly true, but temporary and misunderstood. A high "loading" dose (20–30 g/day for 5–7 days) can cause acute water retention that resides for a few days. On a maintenance dose (3–5 g/day) it resolves. Crucially, the retained water ends up <em>inside</em> the muscle, volumising it — and a swollen muscle cell turns on protein-synthesis signalling. So the osmotic water-pull is one of the mechanisms by which creatine works, not a side effect to fear. He also notes the overall mass change is small: a 6-week study showed a gain of under ~0.9 kg, most of it lean mass.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Myth 3 — "Creatine is only for men"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">False. Across the totality of the evidence, women respond robustly — strength, endurance, performance, a small reduction in fat mass, and increases in lean mass. Candow highlights bone health as a particularly favourable area for women (covered in Section 04). Meta-analysis, he says, shows creatine reduces fat mass rather than adding it.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Myth 4 — "Creatine causes hair loss"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">The myth traces to a single decades-old study in rugby players given ~20–25 g/day for 7 days, in which the hormone DHT (a testosterone precursor linked to follicle thinning) rose — but stayed within the normal biological range, and no actual measure of hair thinning or loss was taken. A more recent study giving 5 g/day to young men over 6–8 weeks of training found no effect on hair. Candow notes he was balding before he ever started creatine.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Myth 5 — "Creatine causes muscle cramps"</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Overplayed, in his view — and likely backwards. Cramping is often linked to dehydration in the muscle; because creatine pulls water into muscle and super-hydrates it, it should if anything help. He notes this makes creatine useful in hot summer conditions.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 03 -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">03</span><h2>Muscle: Performance Over Size</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">The honest framing here is the part most people get wrong: creatine's effect on raw muscle size is modest. Its more robust effect is on performance and training capacity — which then drives size over time.</p>
+
+      <p class="prose">In an 8-week study, training volume (load × reps × sets) rose with creatine and fell when it was withdrawn, then rebounded when it was reintroduced. The plausible mechanism: creatine lets you do a little more work each session — an extra rep or set — and that accumulated extra volume drives adaptation. It also speeds recovery between sessions, which matters for athletes training twice a day.</p>
+
+      <ul class="bullet-list">
+        <li>Lean-mass gain is roughly 1.2–2 kg with training — but only about half of "lean mass" is actually skeletal muscle (the rest is water, connective tissue and organs).</li>
+        <li>Creatine decreases protein breakdown, helping muscle hold its integrity and recover faster.</li>
+        <li>It accelerates rehabilitation — useful after injury, when returning to training.</li>
+        <li>In older adults it improves functional ability: sit-to-stand, getting off the toilet, out of bed, out of a car.</li>
+      </ul>
+
+      <div class="positive">Combined with a standard resistance-training programme, creatine produces greater gains in muscle mass, strength and performance than training alone — and this holds across all age groups.</div>
+
+      <div class="note">Washout: it takes about a month for elevated muscle creatine to return to baseline after stopping. So a holiday without supplementing won't undo your progress, and reintroducing it produces a rebound.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 04 -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">04</span><h2>Bone: Slowing the Loss</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Bone is one of Candow's own lab's focus areas, and it raises the dosing higher than muscle does. The single most important caveat: the bone benefit only appears alongside exercise.</p>
+
+      <p class="prose">The lowest dose ever shown to benefit bone is ~8 g/day, up to ~12 g, paired with resistance training. In post-menopausal women, creatine plus weightlifting reduced the <em>rate</em> of bone mineral density loss around the hip and appeared to maintain or improve bone structure. Note what it does and doesn't do: it did not increase bone density — it slowed the loss.</p>
+
+      <p class="prose"><strong>Mechanism.</strong> Creatine appears to energise bone-building cells (osteoblasts) — Candow's "Super Mario mushroom" analogy — while reducing the activity of bone-resorbing cells (osteoclasts). The net effect on bone turnover is loosely comparable to how a bisphosphonate drug helps preserve bone, though creatine is not a drug.</p>
+
+      <div class="caution">This matters clinically because a slower rate of hip-bone loss could mean the difference between a fall that fractures and one that doesn't — and a hip fracture in older age often leads to long-term care or months of inactivity. But the benefit is modest: creatine is not an osteoporosis cure and does not raise bone density. It requires exercise to do anything for bone at all.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 05 -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">05</span><h2>The Brain: A Stress-Dependent Safety Net</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">This is the area driving creatine's recent popularity — and the one with the most nuance. The brain makes its own creatine and uses about 20% of the body's resting energy. A healthy, well-rested brain probably needs little or no extra. A metabolically stressed brain is a different story.</p>
+
+      <div class="pullquote">
+        A healthy brain likely doesn't need any creatine. A stressed brain does — and the more stressed it is, the higher the dose.
+        <span class="pullquote-attr">— Dr. Darren Candow (paraphrased)</span>
+      </div>
+
+      <p class="prose">"Stress" here means metabolic load on the brain: sleep deprivation, night-shift work, jet lag and time-zone changes, ER doctors and pilots, students cramming, and high-pressure performance. Most people, Candow argues, spend a lot of time in this state — which is why "take a bit more" has caught on. The catch: creatine struggles to cross the blood–brain barrier, so brain effects need higher or longer dosing than muscle does.</p>
+
+      <p class="prose"><strong>The sleep-deprivation data.</strong> The strongest brain studies use MRI to confirm uptake. Around 20 g acutely shows some effect; a 2024 German study gave 30 g to volunteers kept awake for 21 hours, which raised brain creatine and offset some of the cognitive decline. A follow-up at a much lower dose (~14 g) did not reproduce the effect. So the effective acute dose for an acutely stressed brain sits high — roughly 20 g and up.</p>
+
+      <p class="prose"><strong>What it feels like — nothing.</strong> You won't notice a buzz. The benefit shows up the next day, in tasks: memory, problem-solving, sustained attention. Candow points to the <em>Stroop test</em> — naming the ink colour of colour-words that spell a different colour — which is mentally exhausting, especially over the 90-minute version used in research. A classic study gave 20 g before the test and saw improved speed and accuracy under fatigue.</p>
+
+      <div class="note">Emerging, not settled: brain dosing is the frontier of creatine research. Most positive findings are acute, in small samples, and Candow is explicit that "we still don't know a lot" — regional brain effects in particular are poorly mapped. Treat the high brain doses as promising experiments, not an established protocol.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 06 -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">06</span><h2>Inflammation &amp; Recovery</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Systemic inflammation tends to rise from the fourth decade onward and accelerates ageing — more soreness, more joint pain. Candow says creatine has anti-inflammatory effects, with an important distinction.</p>
+
+      <p class="prose">Creatine is <em>not</em> like ibuprofen or acetaminophen — it doesn't act as a drug that directly blocks an inflammatory pathway. Instead it has been shown to lower markers of inflammation, most clearly during long-duration exercise. Endurance athletes (Ironman, triathlon) who took ~20 g/day for 5 days beforehand showed reduced inflammation markers, potentially aiding recovery and reducing post-event illness. Weight training is too brief an acute stimulus to show the same effect, but creatine does reduce markers of muscle damage there, indicating anti-catabolic and recovery benefits.</p>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 07 -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">07</span><h2>Neurodegeneration &amp; Mental Health</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">This is the most speculative territory in the conversation. Candow is reasonably careful about the limits, but a couple of claims run ahead of the evidence and are flagged below.</p>
+
+      <p class="prose"><strong>Alzheimer's.</strong> Patients with Alzheimer's, clinical depression and concussion tend to show reduced brain creatine. Single-arm studies in 2024 (Matt Taylor and Aaron Smith) reported that 20 g/day for 8 weeks raised brain creatine in Alzheimer's patients and appeared to improve memory and cognition, alongside a modest ~1.9 kg increase in hand-grip strength (a predictor of survival in dementia). A study of 20 patients (Journal of Psychiatry and Brain Science) found 20 g/day for 8 weeks raised brain creatine by ~11% and improved cognitive test scores. The proposed mechanisms: maintaining brain bioenergetics, reducing inflammation, and possible neuroprotection (seen in cell cultures and rodents).</p>
+
+      <div class="note">Read these carefully. As Candow himself flags, these were single-arm trials with no placebo group and very small samples (~20 people) — so the cognitive improvements can't be cleanly separated from placebo or natural variation. The honest framing is "promising adjunct under early investigation," not a treatment.</div>
+
+      <p class="prose"><strong>Mental health.</strong> The better evidence is for clinical depression and anxiety, from a University of Utah group. The critical qualifier: creatine here works <em>as an add-on to other therapies</em> — by itself it has not been shown to be an effective standalone treatment for depression.</p>
+
+      <div class="caution">Claim flagged — anti-cancer properties. Candow states early on that creatine "can have potential anti-cancer properties." This is not established and is presented one-sidedly. The actual research is mixed: some preclinical work suggests creatine metabolism may <em>promote</em> the spread (metastasis) of certain cancers, not just protect against them. Do not treat cancer prevention or treatment as a reason to supplement; this is an open research question, not a benefit.</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 08 -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">08</span><h2>Choosing a Creatine</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Despite a shelf full of newer forms — hydrochloride, gummies and others — Candow's position is unambiguous: creatine monohydrate, and it isn't close.</p>
+
+      <p class="prose">Monohydrate is simply creatine bound to one water molecule, which dissolves on ingestion, leaving a compound identical to what the liver and brain produce. Essentially all of the safety and efficacy evidence — going back to the molecule's "boring" 1832 origins — is on monohydrate. Newer forms such as hydrochloride do have some evidence behind them, but the key point is that none has been shown to be safer or more effective than monohydrate. They are typically just more expensive.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">FORM</span><span class="kv-val">Creatine monohydrate</span>
+        <span class="kv-key">RAW MATERIAL</span><span class="kv-val">Look for "Creapure" — a German monohydrate held to a high quality/purity standard</span>
+        <span class="kv-key">CERTIFICATION</span><span class="kv-val">NSF certified or another third-party certification</span>
+        <span class="kv-key">WHY CERTIFY</span><span class="kv-val">Independent testing screens for contaminants (lead, arsenic) and issues a certificate of analysis</span>
+      </div>
+
+      <p class="prose">NSF is the National Sanitation Foundation — an independent body that tests the product and verifies it against the label. The little certification logo on the tub is the signal to look for.</p>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 09 -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">09</span><h2>The Dosing Dilemma</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">There is no single right number — the dose depends on the goal, and the goals don't agree. Muscle is satisfied with a little; bone needs more; the brain depends entirely on stress. This is the "dilemma."</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-label">MUSCLE</div>
+          <div class="pillar-answer">3–5 g/day</div>
+          <div class="pillar-sub">One scoop. A bit more if over 50 (lower-leg stores are more jeopardised with age). No loading phase required.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">BONE</div>
+          <div class="pillar-answer">8–12 g/day</div>
+          <div class="pillar-sub">Only works alongside resistance training. Higher than the muscle dose.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">BRAIN — HEALTHY</div>
+          <div class="pillar-answer">~10 g/day or none</div>
+          <div class="pillar-sub">A rested brain makes enough; a ~10 g "safety net" covers muscle, most of bone, and baseline stress.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-label">BRAIN — STRESSED</div>
+          <div class="pillar-answer">~20 g, up to 30 g</div>
+          <div class="pillar-sub">Acutely, during sleep deprivation, jet lag or high pressure. Emerging evidence only.</div>
+        </div>
+      </div>
+
+      <div class="diagram-wrap">
+        <div class="diagram-label">Dose Climbs With Stress &amp; Goal</div>
+        <svg width="100%" viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="130" x2="790" y2="130" stroke="#776e65" stroke-width="1"/>
+          <!-- bars -->
+          <rect x="70" y="105" width="80" height="25" rx="3" fill="#fbf0f2" stroke="#7a2e3a" stroke-width="1.5"/>
+          <text x="110" y="122" text-anchor="middle" font-size="11" fill="#7a2e3a" font-weight="600">3–5 g</text>
+          <text x="110" y="148" text-anchor="middle" font-size="10" fill="#776e65">Muscle</text>
+
+          <rect x="220" y="78" width="80" height="52" rx="3" fill="#f6e3e6" stroke="#7a2e3a" stroke-width="1.5"/>
+          <text x="260" y="122" text-anchor="middle" font-size="11" fill="#7a2e3a" font-weight="600">8–12 g</text>
+          <text x="260" y="148" text-anchor="middle" font-size="10" fill="#776e65">Bone + exercise</text>
+
+          <rect x="370" y="88" width="80" height="42" rx="3" fill="#f1d4d9" stroke="#7a2e3a" stroke-width="1.5"/>
+          <text x="410" y="122" text-anchor="middle" font-size="11" fill="#7a2e3a" font-weight="600">~10 g</text>
+          <text x="410" y="148" text-anchor="middle" font-size="10" fill="#776e65">Daily safety net</text>
+
+          <rect x="520" y="48" width="80" height="82" rx="3" fill="#e3a9b2" stroke="#7a2e3a" stroke-width="1.5"/>
+          <text x="560" y="122" text-anchor="middle" font-size="11" fill="#7a2e3a" font-weight="600">~20 g</text>
+          <text x="560" y="148" text-anchor="middle" font-size="10" fill="#776e65">Stressed brain</text>
+
+          <rect x="670" y="28" width="80" height="102" rx="3" fill="#b05566" stroke="#7a2e3a" stroke-width="1.5"/>
+          <text x="710" y="122" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="600">30 g</text>
+          <text x="710" y="148" text-anchor="middle" font-size="10" fill="#776e65">Acute / loading</text>
+        </svg>
+      </div>
+
+      <p class="prose"><strong>Candow's own routine:</strong> ~10 g/day baseline (covering muscle, most of bone, and general stress), rising to 20–25 g acutely on heavy travel / jet-lag days, then back to 10 g once home.</p>
+
+      <p class="prose"><strong>Micro-dosing.</strong> His current interest is spreading smaller amounts through the day rather than one big dose — e.g. a few grams in the morning and a few later, or 5 g in a workout water bottle. Across a thousand-plus assessments in his lab, this proved well tolerated and reduced GI irritation, water-retention swings and weight fluctuations.</p>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Why a big dose can make you feel jittery or queasy</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Creatine is the body's biggest "methyl scavenger." Taking a large dose — especially on an empty stomach or when dehydrated — spares methyl groups that would otherwise be used to make creatine. Those freed-up methyl groups go elsewhere, and one thing they help synthesise is adrenaline (epinephrine). That's why a big dose can feel energising, jittery, or mildly nauseating. Splitting the dose smooths this out.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>How to take it &amp; consistency</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <p class="prose">Daily is preferable to training-days-only, because creatine distributes to other tissues (including the brain) on a daily basis. It's bland and tasteless, so it can go into water, yogurt, juice or coffee. There's minor debate about coffee, but Candow considers caffeine under ~350 mg (most standard coffees/teas) a non-issue. Pick whatever method keeps you consistent.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header" onclick="toggleSub(this)">
+          <h3>Special populations &amp; safety</h3>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="subsection-body">
+          <ul class="bullet-list">
+            <li><strong>Vegans / vegetarians:</strong> respond most strongly of anyone, since they get no dietary creatine.</li>
+            <li><strong>Over 50:</strong> a slightly higher muscle dose, as lower-leg creatine stores are more depleted with age.</li>
+            <li><strong>Pregnancy:</strong> Candow says the jury is still out. Human trials are ongoing (Dr. Stacy Eller, Australia, looking at breast milk and transfer to the fetus); it currently <em>seems</em> tolerated, but is not established.</li>
+          </ul>
+          <p class="prose">On overall safety he calls the profile exceptional and says he can't find anyone who shouldn't take it — with the standing caveat that anyone with a pre-existing medical condition should consult their doctor first.</p>
+          <div class="caution">Claim flagged — creatine for children. Candow suggests children should get "at least 1 g/day" for bone and muscle development. Routine creatine supplementation in children is <em>not</em> standard paediatric or sports-medicine advice and isn't well established by trial evidence. Dietary creatine from a normal diet is fine; deliberately supplementing a child is a decision for a paediatrician, not a default.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ 10 -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left"><span class="section-num">10</span><h2>Sources &amp; Further Reading</h2></div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="section-body">
+
+      <p class="section-intro">Studies, researchers, products and bodies named or clearly identified in the conversation. Vague references ("there's a study that shows…") are omitted, as are sponsor segments.</p>
+
+      <div class="kv-grid">
+        <span class="kv-key">STUDY (2024)</span><span class="kv-val">Matt Taylor &amp; Aaron Smith — single-arm trials reporting raised brain creatine and improved cognition in Alzheimer's patients (20 g/day, 8 weeks)</span>
+        <span class="kv-key">JOURNAL</span><span class="kv-val">Journal of Psychiatry and Brain Science — study of 20 Alzheimer's patients; 20 g/day for 8 weeks raised brain creatine ~11% and improved cognitive scores (no placebo group)</span>
+        <span class="kv-key">STUDY (2024)</span><span class="kv-val">German research team — MRI sleep-deprivation studies; a 30 g acute dose offset cognitive decline after 21 hours awake (effect not reproduced at ~14 g)</span>
+        <span class="kv-key">RESEARCH GROUP</span><span class="kv-val">University of Utah group — creatine as an adjunct to existing therapies in clinical depression and anxiety</span>
+        <span class="kv-key">RESEARCHER</span><span class="kv-val">Dr. Stacy Eller (Australia) — ongoing human trials on creatine in pregnancy (breast milk, fetal transfer)</span>
+        <span class="kv-key">PRODUCT STD.</span><span class="kv-val">Creapure (Germany) — high-purity creatine monohydrate raw-material standard</span>
+        <span class="kv-key">CERTIFIER</span><span class="kv-val">NSF (National Sanitation Foundation) — independent third-party supplement testing &amp; certification</span>
+      </div>
+
+      <div class="note">Names and study details are reproduced as stated in the conversation and have not been independently verified against the primary literature. Where a researcher's name may be misspelled in the transcript, it is left as given.</div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  function toggleSub(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    body.classList.toggle('open', !body.classList.contains('open'));
+    chevron.classList.toggle('open', !chevron.classList.contains('open'));
+  }
+  const firstHeader = document.querySelector('.section-header');
+  if (firstHeader) toggleSection(firstHeader);
+</script>
+</body>
+</html>
